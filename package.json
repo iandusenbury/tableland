@@ -1,23 +1,5 @@
 {
-  "name": "tableland",
-  "version": "1.0.0",
-  "description": "Website for MESA",
-  "main": "index.js",
-  "dependencies": {
-    "koa": "^2.4.1"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/iandusenbury/tableland.git"
-  },
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/iandusenbury/tableland/issues"
-  },
-  "homepage": "https://github.com/iandusenbury/tableland#readme"
+  "name": "vagrant",
+  "private": true,
+  "dependencies": {}
 }

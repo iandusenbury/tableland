@@ -2,11 +2,13 @@
 
 ## Virtual machine software
 
-Download and install Virtual Box, Vagrant
+Download and install Virtual Box, Vagrant, Ansible
 
 [Vagrant](http://downloads.vagrantup.com)
 
 [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
+
+[Ansible](http://docs.ansible.com/ansible/latest/intro_installation.html#installing-the-control-machine)
 
 ## Clone this repo
 
@@ -14,37 +16,22 @@ a common folder to put this in would be a 'workspace' folder, but wherever is fi
 
 ## Setup virtual machine
 
+This will setup the machine and install rails, this may take a while
+
 ````
 cd ~/workspace/tableland
 vagrant Up
 ````
 
-## Install nvm (node version manager) and node
-````
-vagrant ssh
-cd ~
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | bash
-source ~/.bashrc
-nvm install node
-````
-
-## Set the machine to cd into the vagrant shared folder upon ssh
-
-while still in virtual machine
-
-````
-grep -q "cd /vagrant" .bashrc || echo "cd /vagrant" >> .bashrc
-````
-
 ## Install dev dependencies
 ````
 cd /vagrant
-npm install
+bundle install
 ````
 
-## Hello world
+## Run Server
 ````
-node index.js
+rails s
 ````
 
 navigate to localhost:3000 in your web browser

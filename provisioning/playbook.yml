@@ -1,0 +1,28 @@
+---
+- hosts: all
+  gather_facts: yes
+  become: yes
+
+  vars_files:
+    - vars/main.yml
+
+  roles:
+    - zzet.rbenv
+
+  tasks:
+
+    # Install Rails.
+    - name: Install rails dependencies.
+      apt: "name={{ item }} state=present"
+      with_items:
+        - zlib1g-dev
+        - libsqlite3-dev
+        - nodejs
+
+    - command: which rails
+      register: rails_result
+      changed_when: false
+      failed_when: false
+
+    - name: Add default cd path for ssh
+      shell: grep -q "cd /vagrant" .bashrc || echo "cd /vagrant" >> .bashrc

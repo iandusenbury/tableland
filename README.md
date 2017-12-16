@@ -25,7 +25,6 @@ vagrant Up
 
 ## Install dev dependencies
 ````
-cd /vagrant
 bundle install
 ````
 

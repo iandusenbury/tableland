@@ -2,13 +2,15 @@
 
 ## Virtual machine software
 
-Download and install Virtual Box, Vagrant, Ansible
+Download and/or install Virtual Box, Vagrant, Ansible, Yarn
 
 [Vagrant](http://downloads.vagrantup.com)
 
 [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
 
 [Ansible](http://docs.ansible.com/ansible/latest/intro_installation.html#installing-the-control-machine)
+
+[Yarn](https://yarnpkg.com/lang/en/docs/install/)
 
 ## Clone this repo
 
@@ -23,14 +25,19 @@ cd ~/workspace/tableland
 vagrant Up
 ````
 
-## Install dev dependencies
+## Install backend dependencies and start the server
 ````
+vagrant ssh
 bundle install
-````
-
-## Run Server
-````
 rails s
 ````
+
+## Install frontend dependencies and start the server
+
+In a new terminal window
+
+```
+yarn start
+```
 
 navigate to localhost:3000 in your web browser

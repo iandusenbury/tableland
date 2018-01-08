@@ -37,7 +37,7 @@ rails s
 In a new terminal window
 
 ```
-yarn start
+cd client && yarn start
 ```
 
 navigate to localhost:3000 in your web browser

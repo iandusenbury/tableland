@@ -22,7 +22,7 @@ This will setup the machine and install rails, this may take a while
 
 ````
 cd ~/workspace/tableland
-vagrant Up
+vagrant up
 ````
 
 ## Install backend dependencies and start the server

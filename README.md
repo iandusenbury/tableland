@@ -22,7 +22,7 @@ This will setup the machine and install rails, this may take a while
 
 ````
 cd ~/workspace/tableland
-vagrant Up
+vagrant up
 ````
 
 ## Install backend dependencies and start the server
@@ -32,12 +32,26 @@ bundle install
 rails s
 ````
 
+The api is being served on localhost:5000. As an example you can go to
+localhost:5000/api/v1/example in your browser to see a json response
+
 ## Install frontend dependencies and start the server
 
-In a new terminal window
+In a new terminal window and on your development machine (not in vagrant)
+
+cd into directory and install dependencies
 
 ```
-cd client && yarn start
+cd client && yarn
 ```
 
-navigate to localhost:3000 in your web browser
+start the server
+
+```
+yarn start
+```
+
+This should automatically open your browser to localhost:3000
+
+## Team Members
+* Ian Dusenbury

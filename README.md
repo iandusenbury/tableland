@@ -55,3 +55,4 @@ This should automatically open your browser to localhost:3000
 
 ## Team Members
 * Ian Dusenbury
+* Theodore Mason

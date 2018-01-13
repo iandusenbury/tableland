@@ -57,3 +57,4 @@ This should automatically open your browser to localhost:3000
 * Ian Dusenbury
 * Theodore Mason
 * Matthew Balleza
+* Dan Crayne

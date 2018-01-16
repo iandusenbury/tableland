@@ -58,3 +58,4 @@ This should automatically open your browser to localhost:3000
 * Theodore Mason
 * Matthew Balleza
 * Dan Crayne
+* Halala Khoshnaw

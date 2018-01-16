@@ -59,3 +59,4 @@ This should automatically open your browser to localhost:3000
 * Matthew Balleza
 * Dan Crayne
 * Halala Khoshnaw
+* Evan White

@@ -60,3 +60,4 @@ This should automatically open your browser to localhost:3000
 * Dan Crayne
 * Halala Khoshnaw
 * Evan White
+* Daniel J. Arredondo

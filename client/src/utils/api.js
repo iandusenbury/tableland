@@ -1,9 +1,13 @@
 import ActionTypes from '../constants/actionTypes'
-import { map, contains } from 'ramda'
+import { map, contains, identity } from 'ramda'
 import { camelizeKeys, decamelizeKeys } from 'humps'
 import { CALL_API, ApiError, getJSON } from 'redux-api-middleware'
 
+const defaultCallback = { onSuccess: identity }
+
 export function callApi(url, callbacks = {}) {
+  const mergedCallbacks = { ...defaultCallback, callbacks }
+
   return dispatch =>
     dispatch({
       [CALL_API]: {
@@ -26,7 +30,7 @@ export function callApi(url, callbacks = {}) {
         ]
       }
     }).then(response => {
-      return response && handleResponse(response, callbacks, dispatch)
+      return response && handleResponse(response, mergedCallbacks, dispatch)
     })
 }
 

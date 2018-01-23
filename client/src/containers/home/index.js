@@ -4,15 +4,21 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 const Home = props => {
-  const { changePage } = props
+  const { changePage, message } = props
 
   return (
     <div>
       <h1>Home</h1>
-      <p>Welcome home!</p>
+      <p>{message}</p>
       <button onClick={() => changePage()}>Go to about page via redux</button>
     </div>
   )
+}
+
+const mapStateToProps = state => {
+  return {
+    message: state.app.example.message
+  }
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -20,6 +26,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch)
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Home)

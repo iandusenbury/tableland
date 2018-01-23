@@ -13,8 +13,7 @@ class App extends Component {
   componentWillMount() {
     const { fetchExample } = this.props
 
-    // callApi('/api/v1/example')
-    fetchExample('example')
+    fetchExample()
   }
 
   render() {

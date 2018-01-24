@@ -2,56 +2,49 @@ import React, { Component } from 'react'
 import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { PageHeader, Table } from 'react-bootstrap'
-import { ListGroup, ListGroupItem } from 'react-bootstrap'
-import { Button } from 'react-bootstrap'
+import { Table } from 'react-bootstrap'
+
+/* dummies */
+import { dummyList } from './dummies.js'
+
 require('./style.css')
 
-const dummyList = Array.from(Array(5).keys());
+const dummySearchKey = '\"searchkey\"';
 
 class searchresults extends Component {
-  testConsole(num) {
-    console.log('hello ', num);
+  testConsole(user) {
+    console.log('Loading page for', user.linkedin_id);
   }
+
   displayUsers() {
-    /* example below
-    return this.props.users.map((user) => {
-      return (
-        <div key={user.id}>
-          // Display a user's information here.
-        </div>
-      )
-    });
-    */
     return (
       <tbody>
-        {
-          this.displayUser()
-        }
+        { this.displayUser() }
       </tbody>
     )
   }
 
   displayUser() {
-    return dummyList.map((user) => {
+    return this.props.users.map((user) => {
       return (
-        <tr key={user}>
+        <tr key={user.id}>
           <td>
             <div className='table-name'>
-              <h4>Mike Wazowski</h4>
+              <h4>{ user.first_name } { user.last_name }</h4>
             </div>
             <div className='table-icon'>
-              <img src={require('./mike.jpg')} alt='portrait' height='72' width='72'/>
+              <img src={require('./portrait.png')} alt='portrait' height='72' width='72'/>
+              {/* Loads a user's roadmap.
+                <p onClick={() => changePage(user)}>View profile</p>
+              */}
               <p onClick={() => this.testConsole(user)}>View profile</p>
             </div>
             <div className='table-about'>
-              <p>Title</p>
-              <p>Education</p>
-              <p>Current Position</p>
+              <p>Works at: { user.org_name }</p>
             </div>
             <ul className='table-contact'>
-              <li>mikew@monsters.inc</li>
-              <li>scarebecausewecare.com/contact</li>
+              <li>LinkedIn: { user.linkedin_id }</li>
+              <li>Contact: { user.contact_url }</li>
             </ul>
           </td>
         </tr>
@@ -63,29 +56,12 @@ class searchresults extends Component {
     return (
       <div>
         <div className='search-header'>
-          <h1 className='search-title'>Search Results
-          </h1>
+          <h1 className='search-title'>Search Results</h1>
+          <p>Results for { dummySearchKey }</p>
         </div>
-        {/*
-        <div className='search-button-box'>
-          <div className='search-button'>
-            <Button bsStyle='primary search-button'>
-              View Roadmap
-            </Button>
-          </div>
-        </div>
-        */}
         <div className='search-box'>
           <div className='search-box-list'>
-            <Table responsive striped condensed hover>{/* Div for list of results */}
-              {/*
-              <thead>
-                <tr className='tr-header'>
-                  <th className='td-about'>About</th>
-                  <th>Contact</th>
-                </tr>
-              </thead>
-              */}
+            <Table responsive condensed hover>
               { this.displayUsers() }
             </Table>
           </div>
@@ -100,10 +76,7 @@ class searchresults extends Component {
 
 const matchStateToProps = state => {
   return {
-    /* example below
-    users: state.app.users,
-    currentUser: state.app.currentUser
-    */
+    users: dummyList,
   };
 }
 
@@ -112,6 +85,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch)
 
 export default connect(
-  null,
+  matchStateToProps,
   mapDispatchToProps
 )(searchresults)

@@ -4,11 +4,15 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { PageHeader, Table } from 'react-bootstrap'
 import { ListGroup, ListGroupItem } from 'react-bootstrap'
-//require('./style.css')
+import { Button } from 'react-bootstrap'
+require('./style.css')
 
-const dummyList = Array.from(Array(100).keys());
+const dummyList = Array.from(Array(5).keys());
 
 class searchresults extends Component {
+  testConsole(num) {
+    console.log('hello ', num);
+  }
   displayUsers() {
     /* example below
     return this.props.users.map((user) => {
@@ -24,7 +28,6 @@ class searchresults extends Component {
         {
           this.displayUser()
         }
-
       </tbody>
     )
   }
@@ -33,10 +36,24 @@ class searchresults extends Component {
     return dummyList.map((user) => {
       return (
         <tr key={user}>
-          <td>{user}</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
+          <td>
+            <div className='table-name'>
+              <h4>Mike Wazowski</h4>
+            </div>
+            <div className='table-icon'>
+              <img src={require('./mike.jpg')} alt='portrait' height='72' width='72'/>
+              <p onClick={() => this.testConsole(user)}>View profile</p>
+            </div>
+            <div className='table-about'>
+              <p>Title</p>
+              <p>Education</p>
+              <p>Current Position</p>
+            </div>
+            <ul className='table-contact'>
+              <li>mikew@monsters.inc</li>
+              <li>scarebecausewecare.com/contact</li>
+            </ul>
+          </td>
         </tr>
       )
     });
@@ -44,24 +61,37 @@ class searchresults extends Component {
 
   render() {
     return (
-      <div style={{padding: '0 10% 0 10%'}}>
-    {/*<h1 name='top'>Search Results</h1>*/}
-        <PageHeader style={{paddingLeft: '5%'}}>Search Results</PageHeader>
-        <div style={{overflow: 'scroll', height: 640}}>
-          <Table responsive striped boredered condensed hover> {/* Div for list of results */}
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Icon</th>
-                <th>Name</th>
-                <th>Desc</th>
-              </tr>
-            </thead>
-            { this.displayUsers() }
-          </Table>
+      <div>
+        <div className='search-header'>
+          <h1 className='search-title'>Search Results
+          </h1>
         </div>
-        <div>
-          <a href='#top'>{'Back to top of results'}</a>
+        {/*
+        <div className='search-button-box'>
+          <div className='search-button'>
+            <Button bsStyle='primary search-button'>
+              View Roadmap
+            </Button>
+          </div>
+        </div>
+        */}
+        <div className='search-box'>
+          <div className='search-box-list'>
+            <Table responsive striped condensed hover>{/* Div for list of results */}
+              {/*
+              <thead>
+                <tr className='tr-header'>
+                  <th className='td-about'>About</th>
+                  <th>Contact</th>
+                </tr>
+              </thead>
+              */}
+              { this.displayUsers() }
+            </Table>
+          </div>
+          <div className='back-to-top'>
+            <a href='#top'>{'Back to top of results'}</a>
+          </div>
         </div>
       </div>
     )

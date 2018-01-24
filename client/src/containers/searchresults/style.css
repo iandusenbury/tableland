@@ -1,0 +1,72 @@
+/* search page */
+
+.search-header {
+  padding-left: 0px;
+  text-align: center;
+  padding-bottom: 16px;
+}
+
+.search-box {
+  margin: 0 5%;
+}
+
+/* table of list of results */
+
+td {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 25% auto;
+  grid-template-areas:
+    'name name name name'
+    'icon about contact contact'
+    'icon about contact contact';
+}
+
+.table-name {
+  grid-area: name;
+}
+
+.table-icon {
+  grid-area: icon;
+}
+
+.table-about {
+  grid-area: about;
+  padding-left: 10px;
+}
+
+.table-contact{
+  grid-area: contact;
+  padding-left: 10px;
+}
+
+ul {
+  list-style-type: none;
+}
+/*
+tr {
+  height: 180px;
+}
+
+.tr-header {
+  height: 48px;
+}
+
+.td-about {
+  width: 240px;
+}
+*/
+
+@media only screen and (max-width: 700px) {
+  /*
+  .search-box-list {
+    height: 340px;
+  }
+  */
+  td {
+    grid-template-areas:
+      'name name name name'
+      'icon about about about'
+      'icon contact contact contact';
+  }
+}

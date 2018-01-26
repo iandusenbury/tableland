@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://localhost:5000",
   "dependencies": {
+    "google-maps-react": "^1.1.2",
     "history": "^4.7.2",
     "humps": "^2.0.1",
     "ramda": "^0.25.0",
@@ -13,6 +14,7 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.9",
     "react-scripts": "1.0.17",
+    "react-toolbox": "^2.0.0-beta.12",
     "redux": "^3.7.2",
     "redux-api-middleware": "^2.0.1",
     "redux-thunk": "^2.2.0"

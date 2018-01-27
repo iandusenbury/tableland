@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180126054136) do
+ActiveRecord::Schema.define(version: 20180127013822) do
 
   create_table "experiences", force: :cascade do |t|
     t.integer "user_id"
@@ -55,15 +55,6 @@ ActiveRecord::Schema.define(version: 20180126054136) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "organizations_programs", id: false, force: :cascade do |t|
-    t.integer "organization_id"
-    t.integer "program_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["organization_id"], name: "index_organizations_programs_on_organization_id"
-    t.index ["program_id"], name: "index_organizations_programs_on_program_id"
-  end
-
   create_table "programs", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -71,6 +62,15 @@ ActiveRecord::Schema.define(version: 20180126054136) do
     t.boolean "visible"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "sponsors", force: :cascade do |t|
+    t.integer "organization_id"
+    t.integer "program_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_sponsors_on_organization_id"
+    t.index ["program_id"], name: "index_sponsors_on_program_id"
   end
 
   create_table "users", force: :cascade do |t|

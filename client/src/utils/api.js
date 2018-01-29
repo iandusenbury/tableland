@@ -1,6 +1,6 @@
 import { map, identity } from 'ramda'
 import { camelizeKeys, decamelizeKeys } from 'humps'
-import { CALL_API, ApiError, getJSON } from 'redux-api-middleware'
+import { RSAA, ApiError, getJSON } from 'redux-api-middleware'
 
 // identity used as a default function see http://ramdajs.com/docs/#identity
 const defaultCallback = { onSuccess: identity }
@@ -15,7 +15,7 @@ export function callApi(callDescriptor, callbacks = {}) {
 
   return dispatch =>
     dispatch({
-      [CALL_API]: {
+      [RSAA]: {
         body: JSON.stringify(decamelizeKeys), // TODO test on POST request
         endpoint,
         method: method || 'GET',

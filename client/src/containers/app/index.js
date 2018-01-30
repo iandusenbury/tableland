@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom'
 import Home from '../home'
 import About from '../about'
+import Demo from '../demo'
 
 
 import { bindActionCreators } from 'redux'
@@ -22,11 +23,13 @@ class App extends Component {
         <header>
           <Link to="/">Home</Link>
           <Link to="/about-us">About</Link>
+          <Link to="/demo">Demo</Link>
         </header>
 
         <main>
           <Route exact path="/" component={Home} />
           <Route exact path="/about-us" component={About} />
+          <Route exact path="/demo" component={Demo} />
         </main>
       </div>
     )

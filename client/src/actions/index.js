@@ -19,3 +19,12 @@ export function fetchExample() {
     ))
   }
 }
+
+export function updateFirstNameTo(firstName) {
+  return {
+    type: ActionTypes.UPDATE_FIRST_NAME,
+    payload: {
+      firstName
+    }
+  }
+}

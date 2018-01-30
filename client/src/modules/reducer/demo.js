@@ -2,22 +2,31 @@ import createReducer from '../../utils/createReducer'
 import ActionTypes from '../../constants/actionTypes'
 
 const initialState = {
-  message: 'initial message'
+  user: {
+    firstName: 'Test',
+    lastName: 'Testerson',
+    age: 25,
+    salary: 500000
+  }
 }
 
 const handlers = {
   // Pattern:
   // [ActionTypes.ACTION_NAME]: actionFunction
-  [ActionTypes.RECIEVE_EXAMPLE]: requestExample
+  [ActionTypes.UPDATE_FIRST_NAME]: updateName
 }
 
 export default createReducer(initialState, handlers)
 
-function requestExample(state, { payload }) {
-  const { message } = payload
+function updateName(state, { payload }) {
+  const { user } = state
+  const { firstName } = payload
 
   return {
     ...state,
-    message
+    user: {
+      ...user,
+      firstName
+    }
   }
 }

@@ -5,13 +5,21 @@ import { ConnectedRouter } from 'react-router-redux'
 import store, { history } from './base/store'
 import App from './containers/app'
 
+// import material-ui theme
+import './assets/react-toolbox/theme.css';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import theme from 'material-ui/styles/getMuiTheme';
+
+
 const target = document.querySelector('#root')
 
 render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <div>
-        <App />
+	  	<MuiThemeProvider theme={theme}>
+			<App />
+		</MuiThemeProvider>
       </div>
     </ConnectedRouter>
   </Provider>,

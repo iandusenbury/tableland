@@ -1,6 +1,5 @@
 import React from 'react'
-import { Route, Link } from 'react-router-dom'
-import About from '../about'
+import { Link } from 'react-router-dom'
 //  material-ui
 import IconMenu from 'material-ui/IconMenu'
 import IconButton from 'material-ui/IconButton'

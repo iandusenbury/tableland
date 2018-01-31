@@ -3,7 +3,6 @@ import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-
 const Home = props => {
   const { changePage, message } = props
 
@@ -11,7 +10,6 @@ const Home = props => {
     <div>
       <h1>Home</h1>
       <p>{message}</p>
-
       <button onClick={() => changePage()}>Go to about page via redux</button>
     </div>
   )
@@ -19,8 +17,7 @@ const Home = props => {
 
 const mapStateToProps = state => {
   return {
-    //message: state.app.example.message
-    message: state.navbar
+    message: state.app.example.message
   }
 }
 

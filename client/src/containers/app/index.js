@@ -20,11 +20,11 @@ class App extends Component {
   render() {
     return (
       <div>
-				<Navbar />
-				<main>
-					<Route exact path="/" component={Home} />
-					<Route exact path="/about-us" component={About} />
-				</main>
+        <Navbar />
+        <main>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/about-us" component={About} />
+        </main>
       </div>
     )
   }

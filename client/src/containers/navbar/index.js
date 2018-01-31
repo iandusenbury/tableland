@@ -48,31 +48,31 @@ export default () => (
 						</IconButton>
 				}>
 					<MenuItem 
-										containerElement={<Link to="/" />}
-										value="sign_in" 
-										primaryText="Sign In" />
+						containerElement={<Link to="/" />}
+						value="sign_in" 
+						primaryText="Sign In" />
 					<Divider />
 					<MenuItem 
-										containerElement={<Link to="/" />}
-										value="view_profile" 
-										primaryText="View Profile" />
+						containerElement={<Link to="/" />}
+						value="view_profile" 
+						primaryText="View Profile" />
 					<MenuItem 
-										containerElement={<Link to="/" />}
-										value="edit_profile" 
-										primaryText="Edit Profile" />
+						containerElement={<Link to="/" />}
+						value="edit_profile" 
+						primaryText="Edit Profile" />
 					<MenuItem 
-										containerElement={<Link to="/" />}
-										value="admin_page" 
-										primaryText="Admin Page" />
+						containerElement={<Link to="/" />}
+						value="admin_page" 
+						primaryText="Admin Page" />
 					<Divider />
 					<MenuItem 
-										containerElement={<Link to="/" />}
-										value="sign_out" 
-										primaryText="Sign Out" />
+						containerElement={<Link to="/" />}
+						value="sign_out" 
+						primaryText="Sign Out" />
 					<MenuItem 
-										containerElement={<Link to="/about-us" />}
-										value="about" 
-										primaryText="About" />
+						containerElement={<Link to="/about-us" />}
+						value="about" 
+						primaryText="About" />
 				</IconMenu>
 			</ToolbarGroup>
 		</Toolbar>

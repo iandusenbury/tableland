@@ -1,14 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-//  material-ui
-import IconMenu from 'material-ui/IconMenu'
-import IconButton from 'material-ui/IconButton'
-import MenuItem from 'material-ui/MenuItem'
-import RaisedButton from 'material-ui/RaisedButton'
-import FlatButton from 'material-ui/FlatButton'
-import Divider from 'material-ui/Divider'
-import TextField from 'material-ui/TextField'
-import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar'
+//  import material-ui components
+import {
+  IconMenu,
+  IconButton,
+  MenuItem,
+  RaisedButton,
+  FlatButton,
+  Divider,
+  TextField,
+  Toolbar,
+  ToolbarGroup
+} from 'material-ui'
 
 import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/menu'
 // figure out how to get a MESA icon

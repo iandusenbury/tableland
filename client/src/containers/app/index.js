@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom'
+import React, { Component } from 'react'
+import { Route } from 'react-router-dom'
 import Home from '../home'
 import About from '../about'
+import Navbar from '../navbar'
 import Admin from '../admin'
 
 import { bindActionCreators } from 'redux'
@@ -19,11 +20,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <header>
-          <Link to="/">Home</Link>
-          <Link to="/about-us">About</Link>
-        </header>
-
+        <Navbar />
         <main>
           <Route exact path="/" component={Home} />
           <Route exact path="/about-us" component={About} />

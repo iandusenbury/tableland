@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import DisplayTable from './displaytable'
 import {
-  FlatButton
+  FlatButton,
 } from 'material-ui'
 
 /* dummies */

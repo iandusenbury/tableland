@@ -10,12 +10,15 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { fetchExample } from '../../actions'
 
+
+
 class App extends Component {
   componentWillMount() {
     const { fetchExample } = this.props
 
     fetchExample()
   }
+
 
   render() {
     return (

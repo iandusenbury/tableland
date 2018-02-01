@@ -11,11 +11,7 @@ import mapStyle from './style.json'
 
 /*
  * TODO:
- *    Remove Map/Satellite option   (maybe)           (Done)
- *    Remove Streetview option      (probably)        (Done)
- *    Remove Fullscreen option      (probably)        (Done)
- *    Import map style from JSON    (Needs to happen) (Done!)
- *    Improve above with more specific styling
+ *    Improve with more specific styling
 */
 
 const MyMapComponent = compose(

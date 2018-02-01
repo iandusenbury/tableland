@@ -9,17 +9,20 @@ import theme from './assets/react-toolbox/theme.js';
 import ThemeProvider from 'react-toolbox/lib/ThemeProvider';
 import MUIThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
+// import material-ui theme
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import theme from 'material-ui/styles/getMuiTheme'
+
+
 const target = document.querySelector('#root')
 
 render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <div>
-        <MUIThemeProvider>
-        <ThemeProvider theme={theme}>
+        <MuiThemeProvider theme={theme}>
           <App />
-        </ThemeProvider>
-        </MUIThemeProvider>
+        </MuiThemeProvider>
       </div>
     </ConnectedRouter>
   </Provider>,

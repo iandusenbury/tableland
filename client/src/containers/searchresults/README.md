@@ -13,5 +13,5 @@
   * console logging whenever you click on "View Profile"
 
 ## Screenshots
-* ![Picture of Desktop](https://github.com/iandusenbury/tableland/blob/features/search_result_skeleton_103/client/src/containers/searchresults/Screenshots/results-demo-1.png)
-* ![Picture of Mobile](https://github.com/iandusenbury/tableland/blob/features/search_result_skeleton_103/client/src/containers/searchresults/Screenshots/results-demo-2.png)
+* ![Picture of Desktop](https://github.com/iandusenbury/tableland/blob/features/search_result_skeleton_103/client/src/containers/searchresults/Screenshots/results-final-demo-1.png)
+* ![Picture of Mobile](https://github.com/iandusenbury/tableland/blob/features/search_result_skeleton_103/client/src/containers/searchresults/Screenshots/results-final-demo-2.png)

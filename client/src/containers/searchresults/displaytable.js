@@ -1,50 +1,62 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import {selectUser} from '../../constants/actionTypes'
-import Avatar from 'react-toolbox/lib/avatar/Avatar'
-import {Table, TableCell, TableRow} from 'react-toolbox/lib/table'
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+  Avatar,
+  FlatButton,
+} from 'material-ui'
 
-class DisplayTable extends React.Component {
-  render() {
-    return (
-      <Table selectable={false}>
-      {
-        this.props.users.map((user) => {
-          return (
-            <TableRow className='table-row' key={user.id}>
-              <TableCell className='table-cell'>
-                <div className='table-name'>
-                  <h4>{ user.first_name } { user.last_name }</h4>
-                </div>
-                <div className='table-icon'>
-                  <Avatar style={{height: '72px', width: '72px'}} image={require('./portrait.png')} />
-                  <p onClick={() => {this.props.selectUser(user)}}>View profile</p>
-                </div>
-                <div className='table-about'>
-                  <ul>
-                    <li>Works at: { user.org_name }</li>
+const DisplayTable = props => {
+  return (
+    <Table selectable={false}>
+      <TableBody displayRowCheckbox={false} stripedRows>
+        {
+          props.users.map((user) => {
+            const isStriped = (index) => {
+              if (index % 2) return '#8195b1'
+              return 'white'
+            }
+            const isStripedButton = (index) => {
+              if (!(index % 2))
+              return '#f8f8f8'
+            }
+
+            return (
+              <TableRow style={{backgroundColor: isStriped(user.id)}} key={user.id}>
+                <TableRowColumn className='table-cell'>
+                  <div className='table-name' style={{borderBottomColor: isStriped(user.id+1)}}>
+                    <h2>{ user.first_name } { user.last_name }</h2>
+                  </div>
+                  <div className='table-icon' style={{borderRightColor: isStriped(user.id+1)}}>
+                    <div style={{paddingLeft: '12px'}}>
+                      <Avatar size={60} src={require('./portrait.png')} />
+                    </div>
+                    <FlatButton hoverColor={isStripedButton(user.id+1)} style={{float: 'left'}}>View profile</FlatButton>
+                  </div>
+                  <div className='table-about'>
+                    <ul>
+                      <li>Works at: { user.org_name }</li>
+                    </ul>
+                  </div>
+                  <ul className='table-contact'>
+                    <li>LinkedIn: { user.linkedin_id }</li>
+                    <li>Contact: { user.contact_url }</li>
                   </ul>
-                </div>
-                <ul className='table-contact'>
-                  <li>LinkedIn: { user.linkedin_id }</li>
-                  <li>Contact: { user.contact_url }</li>
-                </ul>
-              </TableCell>
-            </TableRow>
-          )
-        })
-      }
-      </Table>
-    );
-  }
+                </TableRowColumn>
+              </TableRow>
+            )
+          })
+        }
+      </TableBody>
+    </Table>
+  );
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  selectUser: selectUser
-}, dispatch)
-
 export default connect(
-  null,
-  mapDispatchToProps,
 )(DisplayTable)

@@ -16,7 +16,6 @@ import {
 
 /*
  * TODO:
- *    Put Search bar in Well or something to make it stand out more (Done)
  *    Find out how to stretch across whole screen
 */
 

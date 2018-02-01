@@ -1,44 +1,21 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import {
-  Input,
-  Table,
-  TableHeader,
-  TableHeaderColumn,
-  TableBody,
-  TableRow,
-  TableRowColumn,
-  FlatButton,
-  RaisedButton,
-  AutoComplete,
-} from 'material-ui'
-
-import './style.css'
+import Input from 'react-toolbox/lib/input/Input'
+import { Table, TableHead, TableRow, TableCell } from 'react-toolbox/lib/table'
+import Button from 'react-toolbox/lib/button/Button'
+import AutoComplete from 'material-ui/AutoComplete'
+require('./style.css')
 
 const Users = (props) => {
   let button1
   let button2
 
   if(props.button1) {
-    button1 = (
-      <TableRowColumn>
-        <RaisedButton
-          backgroundColor='#bed62f'
-          label={props.button1}
-        />
-      </TableRowColumn>
-    )
+    button1 = <TableCell><Button primary raised label={props.button1}></Button></TableCell>
   }
   if(props.button2) {
-    button2 = (
-      <TableRowColumn>
-        <FlatButton
-          style={{color: 'red'}}
-          label={props.button2}
-        />
-      </TableRowColumn>
-    )
+    button2 = <TableCell><Button raised label={props.button2}></Button></TableCell>
   }
 
   return (
@@ -60,40 +37,24 @@ const Users = (props) => {
         />
       </div>
       <Table selectable={false}>
-        <TableHeader
-          displaySelectAll={false}
-          adjustForCheckbox={false}
-        >
-          <TableRow>
-            <TableHeaderColumn>Name</TableHeaderColumn>
-            <TableHeaderColumn>ID</TableHeaderColumn>
-            <TableHeaderColumn>Created On</TableHeaderColumn>
-            <TableHeaderColumn />
-            <TableHeaderColumn />
-            <TableHeaderColumn />
-          </TableRow>
-        </TableHeader>
-        <TableBody displayRowCheckbox={false}>
-          {
-            props.users.map((user) => {
-              return (
-                <TableRow key={user.id}>
-                  <TableRowColumn>{user.first_name} {user.last_name}</TableRowColumn>
-                  <TableRowColumn>{user.linkedin_id}</TableRowColumn>
-                  <TableRowColumn>Jun 15, 1988</TableRowColumn>
-                  <TableRowColumn>
-                    <RaisedButton
-                      backgroundColor='#8195b1'
-                      label='View'
-                    />
-                  </TableRowColumn>
-                  {button1}
-                  {button2}
-                </TableRow>
-              )
-            })
-          }
-        </TableBody>
+        <TableHead>
+          <TableCell>Name</TableCell>
+          <TableCell>ID</TableCell>
+          <TableCell>Created On</TableCell>
+        </TableHead>
+        { props.users.map((user) => {
+            return (
+              <TableRow key={user.id}>
+                <TableCell>{user.first_name} {user.last_name}</TableCell>
+                <TableCell>{user.linkedin_id}</TableCell>
+                <TableCell>Jun 15, 1988</TableCell>
+                <TableCell><Button primary label="View"></Button></TableCell>
+                {button1}
+                {button2}
+              </TableRow>
+            )
+          })
+        }
       </Table>
     </div>
   )

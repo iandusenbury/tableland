@@ -1,8 +1,6 @@
-
-export const selectUser = (user) => {
-  console.log('You clicked on: ', user.first_name, user.last_name);
-  return {
-    type: 'USER_SELECTED',
-    payload: user
-  }
+export default {
+  MESSAGE_SUCCESS: 'MESSAGE_SUCCESS',
+  REQUEST_EXAMPLE: 'REQUEST_EXAMPLE',
+  RECIEVE_EXAMPLE: 'RECIEVE_EXAMPLE',
+  FAILURE_EXAMPLE: 'FAILURE_EXAMPLE'
 }

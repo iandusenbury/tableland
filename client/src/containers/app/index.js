@@ -1,21 +1,40 @@
-import React from 'react';
-import { Route, Link } from 'react-router-dom'
+import React, { Component } from 'react'
+import { Route } from 'react-router-dom'
 import Home from '../home'
 import About from '../about'
-import searchresults from '../searchresults'
+import Navbar from '../navbar'
 
-const App = () => (
-  <div>
-      <Link to="/">Home</Link>
-      <Link to="/about-us">About</Link>
-      <Link to="/results">Search Results</Link>
 
-    <main>
-      <Route exact path="/" component={Home} />
-      <Route exact path="/about-us" component={About} />
-      <Route exact path="/results" component={searchresults} />
-    </main>
-  </div>
-)
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
+import { fetchExample } from '../../actions'
 
-export default App
+class App extends Component {
+  componentWillMount() {
+    const { fetchExample } = this.props
+
+    fetchExample()
+  }
+
+  render() {
+    return (
+      <div>
+        <Navbar />
+        <main>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/about-us" component={About} />
+        </main>
+      </div>
+    )
+  }
+}
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  fetchExample
+}, dispatch)
+
+export default withRouter(connect(
+  null,
+  mapDispatchToProps
+)(App))

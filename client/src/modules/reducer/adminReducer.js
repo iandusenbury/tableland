@@ -71,7 +71,7 @@ const userTables = [
 
 const initialState = {
   tables: userTables,
-  currentTable: userTables[2],
+  currentTable: userTables[0],
   isAdmin: true,
 }
 

@@ -8,22 +8,11 @@ h1 {
 
 h2 {
   padding-left: 64px;
-  padding-top: 40px;
   font-family: sans-serif;
 }
 
 .search-filter {
   padding-left: 22px;
-}
-
-.table-list {
-  grid-area: list;
-  float: right;
-}
-
-.menu-bar {
-  grid-area: menu;
-  float: left;
 }
 
 .table-section {
@@ -35,4 +24,15 @@ h2 {
   grid-template-columns: 1fr 9fr;
   grid-template-areas:
     'menu list';
+}
+
+.table-list {
+  grid-area: list;
+  float: right;
+  /* margin-left: -12%; // has weird spacing issues when menu bar is not rendered */
+}
+
+.menu-bar {
+  grid-area: menu;
+  float: left;
 }

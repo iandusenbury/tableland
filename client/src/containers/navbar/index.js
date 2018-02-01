@@ -10,8 +10,15 @@ import {
   Divider,
   TextField,
   Toolbar,
-  ToolbarGroup
+  ToolbarGroup,
+  Chip
 } from 'material-ui'
+
+/*
+ * TODO:
+ *    Put Search bar in Well or something to make it stand out more (Done)
+ *    Find out how to stretch across whole screen
+*/
 
 import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/menu'
 // figure out how to get a MESA icon
@@ -34,7 +41,7 @@ import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/menu'
 */
 export default () => (
   <header>
-    <Toolbar>
+    <Toolbar style={{ backgroundColor: "#ea4e46" }}>
       <ToolbarGroup>
         <FlatButton 
           containerElement={<Link to="/" />}
@@ -42,8 +49,11 @@ export default () => (
 
       </ToolbarGroup>
       <ToolbarGroup>
-        <TextField hintText="Search" />
-        <RaisedButton label="Search" />
+        <Chip
+          backgroundColor="pink" >
+          <TextField hintText="Search" />
+        </Chip>
+          <RaisedButton label="Search" />
         <IconMenu iconButtonElement={
             <IconButton touch={true}>
               <NavigationExpandMoreIcon />

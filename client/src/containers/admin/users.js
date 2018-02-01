@@ -1,8 +1,6 @@
-import React from 'react'
-import { bindActionCreators } from 'redux'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
-  Input,
   Table,
   TableHeader,
   TableHeaderColumn,
@@ -16,87 +14,114 @@ import {
 
 import './style.css'
 
-const Users = (props) => {
-  let button1
-  let button2
+//const Users = (props) => {
+class Users extends Component {
+  constructor(props) {
+    super(props)
 
-  if(props.button1) {
-    button1 = (
-      <TableRowColumn>
-        <RaisedButton
-          backgroundColor='#bed62f'
-          label={props.button1}
-        />
-      </TableRowColumn>
-    )
-  }
-  if(props.button2) {
-    button2 = (
-      <TableRowColumn>
-        <FlatButton
-          style={{color: 'red'}}
-          label={props.button2}
-        />
-      </TableRowColumn>
-    )
+    this.renderUserRows = this.renderUserRows.bind(this)
   }
 
-  return (
-    <div className='table-list'>
-      <h2>{props.title}</h2>
-      <div className='search-filter'>
-        <AutoComplete
-          hintText='Search'
-          dataSource={
-            props.users.map((user) =>
-            {
-              return(user.linkedin_id)
-            })
-          }
-          fullWidth
-          maxSearchResults={4}
-          filter={AutoComplete.fuzzyFilter}
-          onNewRequest={{/*Insert Action here*/}}
-        />
+  renderUserRows() {
+    const {
+      users,
+      button1,
+      button2,
+    } = this.props
+
+    const userRows = users.map((user) => {
+      const {
+        id,
+        firstName,
+        lastName,
+        linkedinId,
+      } = user
+
+      const rowButton1 = (
+        <TableRowColumn>
+          <RaisedButton
+            backgroundColor='#bed62f'
+            label={button1}
+          />
+        </TableRowColumn>
+      )
+      const rowButton2 = (
+        <TableRowColumn>
+          <FlatButton
+            style={{color: 'red' /* Override text color inside FlatButton */ }}
+            label={button2}
+          />
+        </TableRowColumn>
+      )
+
+      return (
+        <TableRow key={id}>
+          <TableRowColumn>{firstName} {lastName}</TableRowColumn>
+          <TableRowColumn>{linkedinId}</TableRowColumn>
+          <TableRowColumn>Jun 15, 1988</TableRowColumn>
+          <TableRowColumn>
+            <RaisedButton
+              backgroundColor='#8195b1'
+              label='View'
+            />
+          </TableRowColumn>
+          { rowButton1 }
+          { rowButton2 }
+        </TableRow>
+      )
+    })
+
+    return userRows
+  }
+
+  render() {
+    const {
+      title,
+      users,
+    } = this.props
+
+    const autoCompleteBank = users.map((user) => {
+      return(user.linkedinId)
+    })
+
+    return (
+      <div className='table-list'>
+        <h2>{ title }</h2>
+        <div className='search-filter'>
+          <AutoComplete
+            hintText='Search'
+            dataSource={autoCompleteBank}
+            fullWidth
+            maxSearchResults={4}
+            filter={AutoComplete.fuzzyFilter}
+            onNewRequest={{/*Insert Action here*/}}
+          />
+        </div>
+        <div className='table-list-entries'>
+          <Table selectable={false}>
+            <TableHeader
+              displaySelectAll={false}
+              adjustForCheckbox={false}
+            >
+              <TableRow>
+                <TableHeaderColumn>Name</TableHeaderColumn>
+                <TableHeaderColumn>ID</TableHeaderColumn>
+                <TableHeaderColumn>Created On</TableHeaderColumn>
+                <TableHeaderColumn />
+                <TableHeaderColumn />
+                <TableHeaderColumn />
+              </TableRow>
+            </TableHeader>
+            <TableBody displayRowCheckbox={false}>
+              {
+                this.renderUserRows()
+              }
+            </TableBody>
+          </Table>
+        </div>
       </div>
-      <Table selectable={false}>
-        <TableHeader
-          displaySelectAll={false}
-          adjustForCheckbox={false}
-        >
-          <TableRow>
-            <TableHeaderColumn>Name</TableHeaderColumn>
-            <TableHeaderColumn>ID</TableHeaderColumn>
-            <TableHeaderColumn>Created On</TableHeaderColumn>
-            <TableHeaderColumn />
-            <TableHeaderColumn />
-            <TableHeaderColumn />
-          </TableRow>
-        </TableHeader>
-        <TableBody displayRowCheckbox={false}>
-          {
-            props.users.map((user) => {
-              return (
-                <TableRow key={user.id}>
-                  <TableRowColumn>{user.first_name} {user.last_name}</TableRowColumn>
-                  <TableRowColumn>{user.linkedin_id}</TableRowColumn>
-                  <TableRowColumn>Jun 15, 1988</TableRowColumn>
-                  <TableRowColumn>
-                    <RaisedButton
-                      backgroundColor='#8195b1'
-                      label='View'
-                    />
-                  </TableRowColumn>
-                  {button1}
-                  {button2}
-                </TableRow>
-              )
-            })
-          }
-        </TableBody>
-      </Table>
-    </div>
-  )
+    )
+  }
 }
 
 export default connect(

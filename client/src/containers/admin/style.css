@@ -11,28 +11,53 @@ h2 {
   font-family: sans-serif;
 }
 
-.search-filter {
-  padding-left: 22px;
-}
+/* admin page sections */
 
-.table-section {
-  padding-left: 2%;
-  padding-right: 2%;
-  max-height: 720px;
-  overflow-y: scroll;
+.admin-section {
+  background-color: #bed62f;
+  height: 720px;
   display: grid;
   grid-template-columns: 1fr 9fr;
   grid-template-areas:
     'menu list';
 }
 
+.non-admin-section {
+  background-color: #bed62f;
+  height: 720px;
+  padding-left: 20px;
+}
+
+/* tables */
+
+.search-filter {
+  padding-left: 26px;
+  background-color: #e8e8e8;
+}
+
 .table-list {
   grid-area: list;
+  height: 720px;
   float: right;
-  /* margin-left: -12%; // has weird spacing issues when menu bar is not rendered */
+  padding-right: 20px;
 }
+
+.table-list-entries {
+  overflow-y: scroll;
+  margin-bottom: 20px;
+}
+
+/* menu sidebar */
 
 .menu-bar {
   grid-area: menu;
   float: left;
+  height: 680px;
+  margin: 10px;
+}
+
+/* DUMMY TESTING - Demonstrates the 2 different views */
+
+.test-buttons{
+  margin: 24px;
 }

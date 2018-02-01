@@ -1,3 +1,23 @@
+/* MESA Colors
+  Quantam Orange          (ff9e15)
+  Thermal Red             (ea4e46)
+  Atomic Green            (bed62f)
+  Wave Blue               (8195b1)
+  Raw Umber               (715558)
+  Sand                    (e7e0d7)
+*/
+
+/* color variables */
+
+:root {
+  --quantum-orange: #ff9e15;
+  --thermal-red: #ea4e46;
+  --atomic-green: #bed62f;
+  --wave-blue: #8195b1;
+  --raw-umber: #715558;
+  --sand: #e7e0d7;
+}
+
 /* search page */
 
 .search-header {
@@ -29,7 +49,6 @@
   min-height: 40px;
   grid-area: name;
   border-bottom-style: solid;
-  border-bottom-color: #f8f8f8;
   margin-bottom: 0px;
   padding-left: 5px;
 }
@@ -41,7 +60,14 @@
   padding-right: 25px;
   grid-area: icon;
   border-right-style: solid;
-  border-right-color: #f8f8f8;
+}
+
+.table-avatar {
+  padding-left: 12px;
+}
+
+.table-flatbutton {
+  float: left;
 }
 
 .table-about {
@@ -65,8 +91,26 @@ li {
 
 .back-to-top {
   margin: 20px 0px 10px 0px;
-  font-size: 18px;
+  font-size: 16px;
   font-family: sans-serif;
+}
+
+.table-row-stripe:nth-child(even) {
+  background-color: white;
+}
+
+.table-row-stripe:nth-child(odd) {
+  background-color: var(--wave-blue);
+}
+
+.table-row-stripe:nth-child(even) .table-border {
+  border-bottom-color: var(--wave-blue);
+  border-right-color: var(--wave-blue);
+}
+
+.table-row-stripe:nth-child(odd) .table-border {
+  border-bottom-color: white;
+  border-right-color: white;
 }
 
 @media only screen and (max-width: 700px) {
@@ -103,6 +147,7 @@ li {
     padding-left: 8px;
     padding-top: 4px;
   }
+
   li {
     font-size: 10px;
   }

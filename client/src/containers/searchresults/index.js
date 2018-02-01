@@ -24,7 +24,12 @@ const searchResults = props => {
           <DisplayTable users={dummyList} />
         </div>
         <div className='back-to-top'>
-          <FlatButton href='#top' flat>{'Return to top of results'}</FlatButton>
+          <FlatButton hoverColor={'#bed62f'}
+            href='#top'
+            fullWidth
+          >
+            Return to top of results
+          </FlatButton>
         </div>
       </div>
     </div>

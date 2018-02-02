@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eee96e68-2a2a-437e-b52e-918a1353ab45" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/containers/edit/EditPersonal.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/containers/edit/styles.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/containers/edit/EditProfessional.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/client/src/containers/edit/education.js" afterPath="$PROJECT_DIR$/client/src/containers/edit/EditEducation.js" />
+      <change beforePath="$PROJECT_DIR$/client/src/containers/edit/EditEducation.js" afterPath="$PROJECT_DIR$/client/src/containers/edit/EditEducation.js" />
       <change beforePath="$PROJECT_DIR$/client/src/containers/edit/index.js" afterPath="$PROJECT_DIR$/client/src/containers/edit/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -43,8 +42,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/containers/edit/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="38" column="9" lean-forward="true" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
+            <state relative-caret-position="585">
+              <caret line="39" column="9" lean-forward="true" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#130#155#0" expanded="true" />
@@ -65,14 +64,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EditEducation.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EditEducation.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/containers/edit/EditEducation.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="530">
-              <caret line="107" column="5" lean-forward="true" selection-start-line="107" selection-start-column="5" selection-end-line="107" selection-end-column="5" />
+            <state relative-caret-position="370">
+              <caret line="92" column="26" lean-forward="true" selection-start-line="92" selection-start-column="26" selection-end-line="92" selection-end-column="26" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EditProfessional.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/src/containers/edit/EditProfessional.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="29" lean-forward="false" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -132,10 +141,11 @@
         <option value="$PROJECT_DIR$/client/src/containers/app/index.js" />
         <option value="$PROJECT_DIR$/client/src/containers/edit/personal_edit.js" />
         <option value="$PROJECT_DIR$/client/src/containers/edit/PersonalEdit.js" />
-        <option value="$PROJECT_DIR$/client/src/containers/edit/index.js" />
         <option value="$PROJECT_DIR$/client/src/containers/edit/main.css" />
-        <option value="$PROJECT_DIR$/client/src/containers/edit/EditEducation.js" />
         <option value="$PROJECT_DIR$/client/src/containers/edit/styles.js" />
+        <option value="$PROJECT_DIR$/client/src/containers/edit/index.js" />
+        <option value="$PROJECT_DIR$/client/src/containers/edit/EditEducation.js" />
+        <option value="$PROJECT_DIR$/client/src/containers/edit/EditProfessional.js" />
       </list>
     </option>
   </component>
@@ -265,12 +275,12 @@
       <workItem from="1516950831638" duration="1763000" />
       <workItem from="1516996716650" duration="10508000" />
       <workItem from="1517089256124" duration="24789000" />
-      <workItem from="1517551738750" duration="5127000" />
+      <workItem from="1517551738750" duration="6208000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42187000" />
+    <option name="totallyTimeSpent" value="43268000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -549,17 +559,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/containers/edit/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="38" column="9" lean-forward="true" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#130#155#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/containers/edit/main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="464">
@@ -588,11 +587,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/containers/edit/EditEducation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="530">
-          <caret line="107" column="5" lean-forward="true" selection-start-line="107" selection-start-column="5" selection-end-line="107" selection-end-column="5" />
+        <state relative-caret-position="370">
+          <caret line="92" column="26" lean-forward="true" selection-start-line="92" selection-start-column="26" selection-end-line="92" selection-end-column="26" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/containers/edit/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="39" column="9" lean-forward="true" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#130#155#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/containers/edit/EditProfessional.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="29" lean-forward="false" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>

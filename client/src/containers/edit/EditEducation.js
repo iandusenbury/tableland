@@ -19,7 +19,7 @@ class EditEducation extends Component {
                 <div className='fieldsWrapper'>
                     <div>
                         <SelectField
-                            floatingLabelText='Select Type of Organization'
+                            floatingLabelText='Select Category of Organization'
                             underlineStyle={style.textFieldUnderline}
                             floatingLabelStyle={style.textFloating}
                             hintStyle={style.textHint}
@@ -87,7 +87,8 @@ class EditEducation extends Component {
                             underlineStyle={style.textFieldUnderline}
                             floatingLabelStyle={style.textFloating}
                             floatingLabelFocusStyle={style.textFloating}
-                            floatingLabelText='Award/Certificate Received'
+                            floatingLabelText='Awards/Certificates Received'
+                            multiLine={true}
                             hintStyle={style.textHint}
                         />
                     <div>

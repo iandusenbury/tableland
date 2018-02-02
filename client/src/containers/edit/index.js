@@ -15,6 +15,7 @@ import AppBar from 'material-ui/AppBar'
 import IconButton from 'material-ui/IconButton'
 import Home from 'material-ui/svg-icons/action/home'
 import EditPersonal from './EditPersonal'
+import EditProfessional from './EditProfessional'
 import EditEducation from './EditEducation'
 import { style } from "./styles";
 
@@ -34,7 +35,7 @@ class MainEditPage extends Component {
                         </Menu>
                     </Paper>
                 </div>
-                <EditEducation/>
+                <EditProfessional/>
             </div>
         )
 

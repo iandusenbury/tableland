@@ -38,19 +38,23 @@
 }
 
 .menuWrapper > div:nth-child(odd) {
-    background: transparent;
+    /*background: transparent;*/
+    background: cadetblue;
 }
  .menuWrapper > div:nth-child(even){
-     background: transparent;
+     /*background: transparent;*/
+     background: pink;
  }
 
 .fieldsWrapper {
+    background-color: brown;
     display: grid;
     grid-template-columns: repeat(2,.70fr);
     grid-auto-rows: 120px;
 }
 
 .fieldsWrapper > div{
+    border: solid 1px black;
     margin-top: 2%;
     margin-bottom: 2%;
 }

@@ -1,0 +1,16 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+natsumi_intel:
+  start_date: 2017-01-26 05:41:36
+  end_date: 2018-01-26 05:41:36
+  title: Engineer
+  user: natsumi
+  organization: intel
+
+evan_robotics:
+  start_date: 2017-01-26 05:41:36
+  end_date: 2018-01-26 05:41:36
+  title: Participant
+  award: First Place!
+  user: evan
+  program: robotics

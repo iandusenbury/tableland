@@ -1,19 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user_id: 1
-  organization_id: 1
-  program_id: 1
-  start_date: 2018-01-26 05:41:36
+natsumi_intel:
+  start_date: 2017-01-26 05:41:36
   end_date: 2018-01-26 05:41:36
-  title: MyString
-  award: MyString
+  title: Engineer
+  user: natsumi
+  organization: intel
 
-two:
-  user_id: 1
-  organization_id: 1
-  program_id: 1
-  start_date: 2018-01-26 05:41:36
+evan_robotics:
+  start_date: 2017-01-26 05:41:36
   end_date: 2018-01-26 05:41:36
-  title: MyString
-  award: MyString
+  title: Participant
+  award: First Place!
+  user: evan
+  program: robotics

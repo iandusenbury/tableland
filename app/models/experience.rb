@@ -6,4 +6,5 @@ class Experience < ApplicationRecord
 
   # Validations
   validates :user_id, :start_date, :title, presence: true
+  validates :program_id, absence: true, if: :organization_id?
 end

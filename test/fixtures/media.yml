@@ -1,15 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  mediable_id: 1
-  mediable_type: MyString
-  category: MyString
-  description: MyText
-  url: MyString
+video:
+  category: video
+  description: awesome vid
+  url: awesomevid.com
+  mediable: natsumi (User)
 
-two:
-  mediable_id: 1
-  mediable_type: MyString
-  category: MyString
-  description: MyText
-  url: MyString
+image:
+  category: image
+  description: pretty pic
+  url: prettypics.org
+  mediable: intel (Organization)
+
+video2:
+  category: video
+  description: cool vid
+  url: coolvid.com
+  mediable: robotics (Program)

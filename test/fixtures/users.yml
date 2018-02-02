@@ -1,17 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  first_name: MyString
-  last_name: MyString
-  linkedin_id: MyString
-  contact_url: MyString
-  visible: false
-  role: MyString
+natsumi:
+  first_name: Natsumi
+  last_name: Hirata
+  linkedin_id: 123
+  contact_url: email@example.com
+  visible: true
+  role: admin
 
-two:
-  first_name: MyString
-  last_name: MyString
-  linkedin_id: MyString
-  contact_url: MyString
+evan:
+  first_name: Evan
+  last_name: White
+  linkedin_id: 456
+  contact_url: evan@example.com
   visible: false
-  role: MyString
+  role: standard

@@ -1,13 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  description: MyText
-  url: MyString
+robotics:
+  name: Robotics Club
+  description: Build some bots
+  url: robots.org
+  visible: true
+
+rails:
+  name: Rails Bootcamp
+  description: Learn you some RoR
+  url: railsboot.com
   visible: false
 
-two:
-  name: MyString
-  description: MyText
-  url: MyString
-  visible: false
+science:
+  name: Science Lab
+  description: Blow things up
+  url: scilab.com
+  visible: true

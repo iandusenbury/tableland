@@ -1,0 +1,42 @@
+.menuWrapper {
+    display: grid;
+    margin-top: 9%;
+    margin-left: .5%;
+    margin-right: .5%;
+    width: 99%;
+    height: 80vh;
+    grid-template-columns: .5fr 2fr;
+    grid-column-gap: 1.5%;
+}
+
+.menuWrapper > div:nth-child(odd) {
+    background: transparent;
+}
+ .menuWrapper > div:nth-child(even){
+     background: transparent;
+ }
+
+.fieldsWrapper {
+    background: transparent;
+    display: grid;
+    grid-template-columns: repeat(2,.70fr);
+    grid-auto-rows: 120px;
+}
+
+.fieldsWrapper > div{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.avatar {
+    margin-left: 10%;
+}
+
+
+
+
+
+
+
+
+

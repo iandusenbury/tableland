@@ -1,16 +1,16 @@
-import React from 'react'
-import { Component } from 'react'
+import React, { Component } from 'react'
+import {
+ MenuItem,
+ TextField,
+ SelectField,
+ Avatar,
+ RaisedButton
+} from 'material-ui'
 import './main.css'
-import MenuItem from 'material-ui/MenuItem'
 import Person from 'material-ui/svg-icons/social/person'
-import TextField from 'material-ui/TextField'
 import Save from 'material-ui/svg-icons/content/save'
-import SelectField from 'material-ui/SelectField'
-import Avatar from 'material-ui/Avatar'
-import RaisedButton from 'material-ui/RaisedButton'
 import { style }from './styles'
-
-
+import './main.css'
 
 
 

@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
+import React, { Component } from 'react';
+import { Route, Link } from 'react-router-dom'
 import Home from '../home'
 import About from '../about'
 import Navbar from '../navbar'

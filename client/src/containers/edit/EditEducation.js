@@ -1,14 +1,15 @@
-import React from 'react'
-import {Component} from 'react'
-import {style} from "./styles";
-import './main.css'
-import MenuItem from 'material-ui/MenuItem'
-import TextField from 'material-ui/TextField'
-import SelectField from 'material-ui/SelectField'
-import DatePicker from 'material-ui/DatePicker'
-import {FloatingActionButton, RaisedButton} from "material-ui";
+import React, {Component} from 'react'
+import {
+ MenuItem,
+ TextField,
+ SelectField,
+ DatePicker,
+ RaisedButton
+} from 'material-ui'
 import Save from 'material-ui/svg-icons/content/save'
 import ContentAdd from 'material-ui/svg-icons/content/add'
+import {style} from "./styles";
+import './main.css'
 
 
 class EditEducation extends Component {

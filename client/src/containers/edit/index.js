@@ -1,23 +1,26 @@
 /* This file is the main edit page, which is
 * the page that users will see as soon as they click the
 * edit page from the menu*/
-import React from 'react'
-import { Component } from 'react'
-import Paper from 'material-ui/Paper'
+import React, { Component } from 'react'
+import
+{ Paper,
+  Menu,
+  MenuItem,
+  Divider,
+  AppBar,
+  IconButton
+} from 'material-ui'
 import './main.css'
-import Menu from 'material-ui/Menu'
-import MenuItem from 'material-ui/MenuItem'
 import Person from 'material-ui/svg-icons/social/person'
-import Divider from 'material-ui/Divider'
 import School from 'material-ui/svg-icons/social/school'
 import Professional from 'material-ui/svg-icons/action/work'
-import AppBar from 'material-ui/AppBar'
-import IconButton from 'material-ui/IconButton'
 import Home from 'material-ui/svg-icons/action/home'
 import EditPersonal from './EditPersonal'
 import EditProfessional from './EditProfessional'
 import EditEducation from './EditEducation'
 import { style } from "./styles";
+import './main.css'
+
 
 class MainEditPage extends Component {
     render() {
@@ -35,7 +38,7 @@ class MainEditPage extends Component {
                         </Menu>
                     </Paper>
                 </div>
-                <EditProfessional/>
+                <EditPersonal/>
             </div>
         )
 

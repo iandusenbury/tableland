@@ -14,6 +14,7 @@ import {
 } from 'material-ui'
 
 import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/menu'
+
 // figure out how to get a MESA icon
 //import MESAIcon from 'material-ui/svg-icons/custom/MESAIcon.svg'
 
@@ -60,7 +61,7 @@ export default () => (
             primaryText="View Profile" />
           <MenuItem 
             containerElement={<Link to="/" />}
-            value="edit_profile" 
+            value="edit_profile"
             primaryText="Edit Profile" />
           <MenuItem 
             containerElement={<Link to="/" />}

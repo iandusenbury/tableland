@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ProgramsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @program = programs(:one)
+    @program = programs(:robotics)
   end
 
   test "should get index" do

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ExperiencesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @experience = experiences(:one)
+    @experience = experiences(:natsumi_intel)
   end
 
   test "should get index" do

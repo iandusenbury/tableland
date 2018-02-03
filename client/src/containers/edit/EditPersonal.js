@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import {
  MenuItem,
- TextField,
  SelectField,
  Avatar,
  RaisedButton
 } from 'material-ui'
+import StyledTextField from '../../widgets/StyledTextField'
 import './main.css'
 import Person from 'material-ui/svg-icons/social/person'
 import Save from 'material-ui/svg-icons/content/save'
-import { style }from './styles'
+import {style} from "../../styles";
 import './main.css'
 
 
@@ -24,40 +24,16 @@ class EditPersonal extends Component{
                     <Avatar icon={<Person/>} size={120} style={style.avatarIcon}/>
                 </div>
                 <div>
-                    <TextField
-                        underlineStyle={style.textFieldUnderline}
-                        floatingLabelStyle={style.textFloating}
-                        floatingLabelFocusStyle={style.textFloating}
-                        floatingLabelText='Job Title'
-                        hintStyle={style.textHint}
-                    />
+                    <StyledTextField text='Job Title'/>
                 </div>
                 <div>
-                    <TextField
-                        underlineStyle={style.textFieldUnderline}
-                        floatingLabelStyle={style.textFloating}
-                        floatingLabelFocusStyle={style.textFloating}
-                        floatingLabelText='First Name'
-                        hintStyle={style.textHint}
-                    />
+                    <StyledTextField text='First Name'/>
                 </div>
                 <div>
-                    <TextField
-                        underlineStyle={style.textFieldUnderline}
-                        floatingLabelStyle={style.textFloating}
-                        floatingLabelFocusStyle={style.textFloating}
-                        floatingLabelText='LinkedIn User ID'
-                        hintStyle={style.textHint}
-                    />
+                    <StyledTextField text='LinkedIn User ID'/>
                 </div>
                 <div>
-                    <TextField
-                        underlineStyle={style.textFieldUnderline}
-                        floatingLabelStyle={style.textFloating}
-                        floatingLabelFocusStyle={style.textFloating}
-                        floatingLabelText='Last Name'
-                        hintStyle={style.textHint}
-                    />
+                    <StyledTextField text='Last Name'/>
                 </div>
                 <div>
                     <SelectField
@@ -75,13 +51,7 @@ class EditPersonal extends Component{
                     </SelectField>
                 </div>
                 <div>
-                    <TextField
-                        underlineStyle={style.textFieldUnderline}
-                        floatingLabelStyle={style.textFloating}
-                        floatingLabelFocusStyle={style.textFloating}
-                        floatingLabelText='Email'
-                        hintStyle={style.textHint}
-                    />
+                    <StyledTextField text='Email'/>
                 </div>
                 <div>
                     <SelectField
@@ -97,13 +67,7 @@ class EditPersonal extends Component{
                     </SelectField>
                 </div>
                 <div>
-                    <TextField
-                        underlineStyle={style.textFieldUnderline}
-                        floatingLabelStyle={style.textFloating}
-                        floatingLabelFocusStyle={style.textFloating}
-                        floatingLabelText='Phone (Optional)'
-                        hintStyle={style.textHint}
-                    />
+                    <StyledTextField text='Phone (Optional)'/>
                 </div>
                 <div>
                     <RaisedButton

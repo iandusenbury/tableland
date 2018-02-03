@@ -8,7 +8,7 @@ import {
 } from 'material-ui'
 import Save from 'material-ui/svg-icons/content/save'
 import ContentAdd from 'material-ui/svg-icons/content/add'
-import {style} from "./styles";
+import {style} from "../../styles";
 import './main.css'
 
 

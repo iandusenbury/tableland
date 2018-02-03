@@ -4,6 +4,7 @@ import Home from '../home'
 import About from '../about'
 import Navbar from '../navbar'
 import Admin from '../admin'
+import SearchResults from '../searchresults'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -25,6 +26,7 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route exact path="/about-us" component={About} />
           <Route exact path="/admin" component={Admin} />
+          <Route exact path="/results" component={SearchResults} />
         </main>
       </div>
     )

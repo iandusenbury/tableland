@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+intel:
+  name: Intel
+  description: Processor chips
+  url: intel.com
+  visible: true
+  category: company
+  address_line_1: 12345
+  address_line_2: NW Drive St.
+  address_line_3: STE 123
+  city: Portland
+  state: OR
+  postal_code: 97203
+  country: USA
+
+mesa:
+  name: MESA
+  description: non-profit
+  url: mesa.org
+  visible: false
+  category: organization
+  address_line_1: 6789
+  address_line_2: SE Street Ave.
+  address_line_3: APT 2
+  city: Portland
+  state: OR
+  postal_code: 22345
+  country: USA
+
+nike:
+  name: Nike
+  description: some athletic place
+  url: mynikes.example
+  visible: true
+  category: organization
+  address_line_1: 1011
+  address_line_2: SE Road Ave.
+  address_line_3: Unit 5
+  city: Portland
+  state: OR
+  postal_code: 22323
+  country: USA

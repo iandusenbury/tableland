@@ -6,6 +6,8 @@ import {
   adminChangeTableTo,
   adminChangeAdminTo,
 } from '../../actions'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
 import {
   Paper,
@@ -15,7 +17,15 @@ import {
 
 import './style.css'
 
-//const AdminPage = props => {
+const muiTheme = getMuiTheme({
+  palette: {
+    primary1Color: '#bed62f',
+  },
+  menuItem: {
+    hoverColor: '#bed62f'
+  }
+});
+
 class AdminPage extends Component {
   constructor(props) {
     super(props)
@@ -37,24 +47,25 @@ class AdminPage extends Component {
         const {
           title,
           id,
+          buttonIcon,
         } = table
 
         return (
           <MenuItem
+            className='menu-bar-item'
             primaryText={title}
             onClick={() => adminChangeTableTo(id)}
+            leftIcon={buttonIcon}
           />
         )
       })
 
       return (
-        <div className='menu-bar'>
-          <Paper className='menu-bar' zDepth={1}>
-            <Menu>
-              { adminMenu }
-            </Menu>
-          </Paper>
-        </div>
+        <Paper className='menu-bar' zDepth={2}>
+          <Menu>
+            { adminMenu }
+          </Menu>
+        </Paper>
       )
     }
   }
@@ -115,14 +126,14 @@ class AdminPage extends Component {
     const { adminChangeAdminTo } = this.props
 
     return (
-      <div>
+      <MuiThemeProvider muiTheme={muiTheme}>
         <h1>Admin Page</h1>
           { this.renderAdminSection() }
         <div className='test-buttons'>
           <button onClick={() => adminChangeAdminTo(true)}>TEST: Switch to Admin View</button>
           <button onClick={() => adminChangeAdminTo(false)}>TEST: Switch to Non Admin View</button>
         </div>
-      </div>
+      </MuiThemeProvider>
     )
   }
 }

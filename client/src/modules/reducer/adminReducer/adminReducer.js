@@ -19,7 +19,7 @@ export default createReducer(initialState, handlers)
 
 function adminChangeTable(state, { payload }) {
   const { index } = payload
-  const { currentTable, tables } = state
+  const { tables } = state
 
   return {
     ...state,
@@ -29,7 +29,7 @@ function adminChangeTable(state, { payload }) {
 
 function adminChangeAdmin(state, { payload }) {
   const { changeTo } = payload
-  const { isAdmin, currentTable, tables } = state
+  const { tables } = state
 
   return {
     ...state,

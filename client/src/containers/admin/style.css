@@ -1,3 +1,14 @@
+/*
+  MESA Colors
+
+  Quantam Orange          (ff9e15)
+  Thermal Red             (ea4e46)
+  Atomic Green            (bed62f)
+  Wave Blue               (8195b1)
+  Raw Umber               (715558)
+  Sand                    (e7e0d7)
+*/
+
 /* page sections */
 
 h1 {
@@ -14,17 +25,15 @@ h2 {
 /* admin page sections */
 
 .admin-section {
-  background-color: #bed62f;
-  height: 720px;
+  height: 100%;
   display: grid;
-  grid-template-columns: 1fr 9fr;
+  grid-template-columns: 1fr 11fr;
   grid-template-areas:
     'menu list';
 }
 
 .non-admin-section {
-  background-color: #bed62f;
-  height: 720px;
+  height: 100%;
   padding-left: 20px;
 }
 
@@ -32,17 +41,17 @@ h2 {
 
 .search-filter {
   padding-left: 26px;
-  background-color: #e8e8e8;
 }
 
 .table-list {
   grid-area: list;
-  height: 720px;
+  height: 100%;
   float: right;
   padding-right: 20px;
 }
 
 .table-list-entries {
+  max-height: 480px;
   overflow-y: scroll;
   margin-bottom: 20px;
 }
@@ -52,8 +61,36 @@ h2 {
 .menu-bar {
   grid-area: menu;
   float: left;
-  height: 680px;
+  height: 95.5%;
   margin: 10px;
+}
+
+.menu-bar-item {
+  width: 100%;
+}
+
+@media only screen and (max-width: 700px) {
+  .menu-bar {
+    height: 90%;
+    width: 90%;
+    float: none;
+  }
+
+  .menu-bar-item {
+    width: 90%;
+  }
+
+  .table-list {
+    width: 100%;
+    float: none;
+  }
+  .admin-section {
+    grid-template-columns: 1fr;
+    grid-template-rows: 5% auto;
+    grid-template-areas:
+      'menu'
+      'list';
+  }
 }
 
 /* DUMMY TESTING - Demonstrates the 2 different views */

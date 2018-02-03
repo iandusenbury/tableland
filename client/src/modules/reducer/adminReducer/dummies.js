@@ -1,3 +1,8 @@
+import React from 'react'
+import Add from 'material-ui/svg-icons/content/add'
+import Block from 'material-ui/svg-icons/content/block'
+import SwapVert from 'material-ui/svg-icons/action/swap-vert'
+
 const dummyList = [
   {
     id: 1,
@@ -54,6 +59,7 @@ export const userTables = [
     list: dummyList,
     button1: 'Approve',
     button2: 'Deny',
+    buttonIcon: <Add />,
   },
   {
     id: 1,
@@ -61,6 +67,7 @@ export const userTables = [
     list: dummyList,
     button1: 'Block',
     button2: 'Unblock',
+    buttonIcon: <Block />,
   },
   {
     id: 2,
@@ -68,5 +75,6 @@ export const userTables = [
     list: dummyList,
     button1: 'Elevate',
     button2: 'Remove',
+    buttonIcon: <SwapVert />,
   },
 ]

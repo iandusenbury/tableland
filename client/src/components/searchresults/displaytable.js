@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
 import {
   Table,
   TableBody,
@@ -83,5 +81,4 @@ class DisplayTable extends Component {
   }
 }
 
-export default connect(
-)(DisplayTable)
+export default DisplayTable

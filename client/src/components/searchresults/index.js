@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React from 'react'
 import DisplayTable from './displaytable'
 import {
   FlatButton,
@@ -36,5 +35,4 @@ const searchResults = props => {
   )
 }
 
-export default connect(
-)(searchResults)
+export default searchResults

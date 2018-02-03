@@ -1,0 +1,154 @@
+/* MESA Colors
+  Quantam Orange          (ff9e15)
+  Thermal Red             (ea4e46)
+  Atomic Green            (bed62f)
+  Wave Blue               (8195b1)
+  Raw Umber               (715558)
+  Sand                    (e7e0d7)
+*/
+
+/* color variables */
+
+:root {
+  --quantum-orange: #ff9e15;
+  --thermal-red: #ea4e46;
+  --atomic-green: #bed62f;
+  --wave-blue: #8195b1;
+  --raw-umber: #715558;
+  --sand: #e7e0d7;
+}
+
+/* search page */
+
+.search-header {
+  padding-left: 0px;
+  text-align: center;
+  padding-bottom: 16px;
+  font-family: sans-serif;
+}
+
+.search-box {
+  margin: 0 5%;
+}
+
+/* table of list of results */
+
+.table-cell {
+  padding-bottom: 15px;
+  min-height: 130px;
+  display: grid;
+  grid-template-columns: 1fr 3fr 4fr;
+  grid-template-rows: 25% auto;
+  grid-template-areas:
+    'name name  name   '
+    'icon about contact'
+    'icon about contact';
+}
+
+.table-name {
+  min-height: 40px;
+  grid-area: name;
+  border-bottom-style: solid;
+  margin-bottom: 0px;
+  padding-left: 5px;
+}
+
+.table-icon {
+  margin-top: 10px;
+  padding-top: 8px;
+  padding-left: 10px;
+  padding-right: 25px;
+  grid-area: icon;
+  border-right-style: solid;
+}
+
+.table-avatar {
+  padding-left: 12px;
+}
+
+.table-flatbutton {
+  float: left;
+}
+
+.table-about {
+  grid-area: about;
+  padding-left: 5px;
+  max-height: 140px;
+}
+
+.table-contact{
+  grid-area: contact;
+  padding-left: 40px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  font-size: 14px;
+}
+
+.back-to-top {
+  margin: 20px 0px 10px 0px;
+  font-size: 16px;
+  font-family: sans-serif;
+}
+
+.table-row-stripe:nth-child(even) {
+  background-color: white;
+}
+
+.table-row-stripe:nth-child(odd) {
+  background-color: var(--wave-blue);
+}
+
+.table-row-stripe:nth-child(even) .table-border {
+  border-bottom-color: var(--wave-blue);
+  border-right-color: var(--wave-blue);
+}
+
+.table-row-stripe:nth-child(odd) .table-border {
+  border-bottom-color: white;
+  border-right-color: white;
+}
+
+@media only screen and (max-width: 700px) {
+  .search-box {
+    margin: 0 8px;
+  }
+
+  .table-cell {
+    grid-template-areas:
+      'name name    name   '
+      'icon about   about  '
+      'icon contact contact';
+  }
+
+  .table-icon {
+    padding-left: 0px;
+    padding-right: 16px;
+  }
+
+  .table-contact {
+    padding-left: 8px;
+  }
+
+  .table-about {
+    padding-left: 0;
+  }
+
+  .back-to-top {
+    margin: 10px 0px 5px 0px;
+    font-size: 14px;
+  }
+
+  ul {
+    padding-left: 8px;
+    padding-top: 4px;
+  }
+
+  li {
+    font-size: 10px;
+  }
+}

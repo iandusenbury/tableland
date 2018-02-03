@@ -49,7 +49,7 @@ export default () => (
       </ToolbarGroup>
       <ToolbarGroup>
         <Chip
-          backgroundColor="pink" >
+          backgroundColor="#ffc0cb" >
           <TextField hintText="Search" />
         </Chip>
           <RaisedButton label="Search" />

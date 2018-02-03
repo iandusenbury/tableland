@@ -14,7 +14,7 @@ import './main.css'
 
 
 
-class PersonalEdit extends Component{
+class EditPersonal extends Component{
 
 
     render() {
@@ -106,10 +106,12 @@ class PersonalEdit extends Component{
                     />
                 </div>
                 <div>
-                    <RaisedButton label='Save & Done' primary={true} icon={<Save/>}
-                                  labelPosition='before'
-                                  style={style.button}
-                                  buttonStyle={style.buttonStyle}
+                    <RaisedButton
+                        label='Save & Done'
+                        primary={true} icon={<Save/>}
+                        labelPosition='before'
+                        style={style.button}
+                        buttonStyle={style.buttonStyle}
                     />
                 </div>
             </div>
@@ -120,4 +122,4 @@ class PersonalEdit extends Component{
 }
 
 
-export default PersonalEdit;
+export default EditPersonal;

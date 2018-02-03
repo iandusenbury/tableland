@@ -28,13 +28,25 @@ class MainEditPage extends Component {
             <div className='menuWrapper'>
                 <div>
                     <Paper style={style.paper} zDepth={3}>
-                        <AppBar iconElementLeft={<IconButton><Home/></IconButton>} title={<span style={style.title}>Menu</span>}/>
+                        <AppBar
+                            iconElementLeft={<IconButton><Home/></IconButton>}
+                            title={<span style={style.title}>Menu</span>}
+                        />
                         <Menu style={style.menu}>
-                            <MenuItem primaryText='Personal' rightIcon={<Person className={style.rightIcon}/>}/>
+                            <MenuItem
+                                primaryText='Personal'
+                                rightIcon={<Person className={style.rightIcon}/>}
+                            />
                             <Divider style={style.divider}/>
-                            <MenuItem primaryText='Education' rightIcon={<School className={style.rightIcon}/>}/>
+                            <MenuItem
+                                primaryText='Education'
+                                rightIcon={<School className={style.rightIcon}/>}
+                            />
                             <Divider style={style.divider}/>
-                            <MenuItem primaryText='Professional' rightIcon={<Professional className={style.rightIcon}/>}/>
+                            <MenuItem
+                                primaryText='Professional'
+                                rightIcon={<Professional className={style.rightIcon}/>}
+                            />
                         </Menu>
                     </Paper>
                 </div>

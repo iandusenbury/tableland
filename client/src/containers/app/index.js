@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import Home from '../home'
 import About from '../about'
 import Navbar from '../navbar'
@@ -11,15 +11,12 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { fetchExample } from '../../actions'
 
-
-
 class App extends Component {
   componentWillMount() {
     const { fetchExample } = this.props
 
     fetchExample()
   }
-
 
   render() {
     return (

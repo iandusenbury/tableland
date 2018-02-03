@@ -73,15 +73,17 @@ class EditProfessional extends Component {
                     />
                 </div>
                 <div>
-                    <RaisedButton label='Save & Done' primary={true} icon={<Save/>}
-                                  labelPosition='before'
-                                  style={style.button}
-                                  buttonStyle={style.buttonStyle}
+                    <RaisedButton
+                        label='Save & Done' primary={true} icon={<Save/>}
+                        labelPosition='before'
+                        style={style.button}
+                        buttonStyle={style.buttonStyle}
                     />
-                    <RaisedButton label='Add More' primary={true} icon={<ContentAdd/>}
-                                  labelPosition='before'
-                                  style={style.addButton}
-                                  buttonStyle={style.buttonStyle}
+                    <RaisedButton
+                        label='Add More' primary={true} icon={<ContentAdd/>}
+                        labelPosition='before'
+                        style={style.addButton}
+                        buttonStyle={style.buttonStyle}
                     />
                 </div>
             </div>

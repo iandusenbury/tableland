@@ -7,7 +7,6 @@ const StyledTextField = (props) => {
     const { text } = props;
 
     return (
-        <div>
             <TextField
                 underlineStyle={style.textFieldUnderline}
                 floatingLabelStyle={style.textFloating}
@@ -15,8 +14,7 @@ const StyledTextField = (props) => {
                 hintStyle={style.textHint}
                 floatingLabelText={text}
             />
-        </div>
-    )
+        )
 }
 
 export default StyledTextField;

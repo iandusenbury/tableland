@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import {
  MenuItem,
- SelectField,
  Avatar,
  RaisedButton
 } from 'material-ui'
 import StyledTextField from '../../widgets/StyledTextField'
+import StyledSelectField from '../../widgets/StyledSelectField'
+import SaveButton from '../../widgets/SaveButton'
 import './main.css'
 import Person from 'material-ui/svg-icons/social/person'
-import Save from 'material-ui/svg-icons/content/save'
 import {style} from "../../styles";
 import './main.css'
 
@@ -36,47 +36,27 @@ class EditPersonal extends Component{
                     <StyledTextField text='Last Name'/>
                 </div>
                 <div>
-                    <SelectField
-                        floatingLabelText='STEM Field'
-                        underlineStyle={style.textFieldUnderline}
-                        floatingLabelStyle={style.textFloating}
-                        hintStyle={style.textHint}
-                        menuItemStyle={style.textHint}
-                        value={null}
-                    >
+                    <StyledSelectField text='STEM Field'>
                         <MenuItem primaryText='Science'/>
                         <MenuItem primaryText='Technology'/>
                         <MenuItem primaryText='Engineering'/>
                         <MenuItem primaryText='Mathematics'/>
-                    </SelectField>
+                    </StyledSelectField>
                 </div>
                 <div>
                     <StyledTextField text='Email'/>
                 </div>
                 <div>
-                    <SelectField
-                        floatingLabelText='Private Profile?'
-                        underlineStyle={style.textFieldUnderline}
-                        floatingLabelStyle={style.textFloating}
-                        hintStyle={style.textHint}
-                        menuItemStyle={style.textHint}
-                        value={null}
-                    >
+                    <StyledSelectField text='Private Profile?'>
                         <MenuItem primaryText='Yes'/>
                         <MenuItem primaryText='No'/>
-                    </SelectField>
+                    </StyledSelectField>
                 </div>
                 <div>
                     <StyledTextField text='Phone (Optional)'/>
                 </div>
                 <div>
-                    <RaisedButton
-                        label='Save & Done'
-                        primary={true} icon={<Save/>}
-                        labelPosition='before'
-                        style={style.button}
-                        buttonStyle={style.buttonStyle}
-                    />
+                    <SaveButton/>
                 </div>
             </div>
         )

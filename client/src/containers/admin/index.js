@@ -55,7 +55,7 @@ class AdminPage extends Component {
             className='menu-bar-item'
             primaryText={title}
             onClick={() => adminChangeTableTo(id)}
-            leftIcon={buttonIcon}
+            rightIcon={buttonIcon}
           />
         )
       })

@@ -1,11 +1,10 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import { compose, withProps } from 'recompose'
 import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  Marker
+  //Marker
 } from 'react-google-maps'
 import mapStyle from './style.json'
 

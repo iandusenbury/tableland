@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import Map from '../map'
 
 const Home = props => {
-  const { changePage, message } = props
+  //const { changePage, message } = props
 
   return (
     <div>

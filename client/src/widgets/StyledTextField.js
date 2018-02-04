@@ -1,10 +1,10 @@
 import React from 'react'
 import TextField from 'material-ui/TextField'
-
 import {style} from "../styles"
 
-const StyledTextField = (props) => {
-    const { text } = props;
+export const StyledTextField = (props) => {
+    const { text, multiLine } = props;
+    const isMultiLine = multiLine ? true : false ;
 
     return (
             <TextField
@@ -12,9 +12,8 @@ const StyledTextField = (props) => {
                 floatingLabelStyle={style.textFloating}
                 floatingLabelFocusStyle={style.textFloating}
                 hintStyle={style.textHint}
+                multiLine={isMultiLine}
                 floatingLabelText={text}
             />
         )
 }
-
-export default StyledTextField;

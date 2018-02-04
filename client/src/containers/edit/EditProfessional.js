@@ -1,13 +1,8 @@
 import React, { Component } from 'react'
-import
-{
-    TextField,
-    DatePicker,
-    RaisedButton,
-} from 'material-ui'
-import Save from 'material-ui/svg-icons/content/save'
-import ContentAdd from 'material-ui/svg-icons/content/add'
-import {style} from "../../styles";
+import { DatePicker } from 'material-ui'
+import { StyledTextField } from "../../widgets/StyledTextField";
+import { SaveButton } from "../../widgets/SaveButton";
+import { AddButton } from "../../widgets/AddButton";
 import './main.css'
 
 
@@ -20,41 +15,16 @@ class EditProfessional extends Component {
         return(
             <div className='fieldsWrapper'>
                 <div>
-                    <TextField
-                        underlineStyle={style.textFieldUnderline}
-                        floatingLabelStyle={style.textFloating}
-                        floatingLabelFocusStyle={style.textFloating}
-                        floatingLabelText='Name of Organization'
-                        hintStyle={style.textHint}
-                    />
+                    <StyledTextField text='Name of Organization'/>
                 </div>
                 <div>
-                    <TextField
-                        underlineStyle={style.textFieldUnderline}
-                        floatingLabelStyle={style.textFloating}
-                        floatingLabelFocusStyle={style.textFloating}
-                        floatingLabelText='Position or Title'
-                        hintStyle={style.textHint}
-                    />
+                    <StyledTextField text='Position or Title'/>
                 </div>
                 <div>
-                    <TextField
-                        underlineStyle={style.textFieldUnderline}
-                        floatingLabelStyle={style.textFloating}
-                        floatingLabelFocusStyle={style.textFloating}
-                        floatingLabelText='Short Description'
-                        multiLine={true}
-                        hintStyle={style.textHint}
-                    />
+                    <StyledTextField text='Short Description' multiLine={true}/>
                 </div>
                 <div>
-                    <TextField
-                        underlineStyle={style.textFieldUnderline}
-                        floatingLabelStyle={style.textFloating}
-                        floatingLabelFocusStyle={style.textFloating}
-                        floatingLabelText='Location of Organization'
-                        hintStyle={style.textHint}
-                    />
+                    <StyledTextField text='Location of Organization'/>
                 </div>
                 <div>
                     <DatePicker hintText="Start Date" mode="landscape"/>
@@ -63,28 +33,11 @@ class EditProfessional extends Component {
                     <DatePicker hintText="End Date" mode="landscape"/>
                 </div>
                 <div>
-                    <TextField
-                        underlineStyle={style.textFieldUnderline}
-                        floatingLabelStyle={style.textFloating}
-                        floatingLabelFocusStyle={style.textFloating}
-                        floatingLabelText='Awards/Accomplishments'
-                        multiLine={true}
-                        hintStyle={style.textHint}
-                    />
+                    <StyledTextField text='Awards/Accomplishments' multiLine={true}/>
                 </div>
                 <div>
-                    <RaisedButton
-                        label='Save & Done' primary={true} icon={<Save/>}
-                        labelPosition='before'
-                        style={style.button}
-                        buttonStyle={style.buttonStyle}
-                    />
-                    <RaisedButton
-                        label='Add More' primary={true} icon={<ContentAdd/>}
-                        labelPosition='before'
-                        style={style.addButton}
-                        buttonStyle={style.buttonStyle}
-                    />
+                    <SaveButton/>
+                    <AddButton/>
                 </div>
             </div>
         )

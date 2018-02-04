@@ -3,7 +3,7 @@ import SelectField from 'material-ui/SelectField'
 
 import {style} from "../styles"
 
-const StyledSelectField = (props) => {
+export const StyledSelectField = (props) => {
     const { text, children } = props;
 
     return (
@@ -19,5 +19,3 @@ const StyledSelectField = (props) => {
         </SelectField>
     )
 }
-
-export default StyledSelectField;

@@ -2,16 +2,13 @@ import React, { Component } from 'react'
 import {
  MenuItem,
  Avatar,
- RaisedButton
 } from 'material-ui'
-import StyledTextField from '../../widgets/StyledTextField'
-import StyledSelectField from '../../widgets/StyledSelectField'
-import SaveButton from '../../widgets/SaveButton'
-import './main.css'
+import { StyledTextField } from '../../widgets/StyledTextField'
+import { StyledSelectField } from '../../widgets/StyledSelectField'
+import { SaveButton } from '../../widgets/SaveButton'
 import Person from 'material-ui/svg-icons/social/person'
 import {style} from "../../styles";
 import './main.css'
-
 
 
 class EditPersonal extends Component{

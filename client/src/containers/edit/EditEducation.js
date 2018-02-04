@@ -1,14 +1,13 @@
 import React, {Component} from 'react'
 import {
  MenuItem,
- TextField,
- SelectField,
  DatePicker,
- RaisedButton
 } from 'material-ui'
-import Save from 'material-ui/svg-icons/content/save'
-import ContentAdd from 'material-ui/svg-icons/content/add'
-import {style} from "../../styles";
+
+import { AddButton } from '../../widgets/AddButton'
+import { StyledTextField } from '../../widgets/StyledTextField'
+import { StyledSelectField } from '../../widgets/StyledSelectField'
+import { SaveButton } from '../../widgets/SaveButton'
 import './main.css'
 
 
@@ -19,46 +18,21 @@ class EditEducation extends Component {
             return(
                 <div className='fieldsWrapper'>
                     <div>
-                        <SelectField
-                            floatingLabelText='Select Category of Organization'
-                            underlineStyle={style.textFieldUnderline}
-                            floatingLabelStyle={style.textFloating}
-                            hintStyle={style.textHint}
-                            menuItemStyle={style.textHint}
-                            value={null}
-                        >
+                        <StyledSelectField text='Category of Organization'>
                             <MenuItem primaryText='School'/>
                             <MenuItem primaryText='Club'/>
                             <MenuItem primaryText='Program'/>
                             <MenuItem primaryText='Team'/>
-                        </SelectField>
+                        </StyledSelectField>
                     </div>
                     <div>
-                        <TextField
-                            underlineStyle={style.textFieldUnderline}
-                            floatingLabelStyle={style.textFloating}
-                            floatingLabelFocusStyle={style.textFloating}
-                            floatingLabelText='Name of Organization'
-                            hintStyle={style.textHint}
-                        />
+                        <StyledTextField text='Name of Organization'/>
                     </div>
                     <div>
-                        <TextField
-                            underlineStyle={style.textFieldUnderline}
-                            floatingLabelStyle={style.textFloating}
-                            floatingLabelFocusStyle={style.textFloating}
-                            floatingLabelText='Short Description'
-                            hintStyle={style.textHint}
-                        />
+                        <StyledTextField text='Short Description' multiLine={true}/>
                     </div>
                     <div>
-                        <TextField
-                            underlineStyle={style.textFieldUnderline}
-                            floatingLabelStyle={style.textFloating}
-                            floatingLabelFocusStyle={style.textFloating}
-                            floatingLabelText='Position or Title'
-                            hintStyle={style.textHint}
-                        />
+                        <StyledTextField text='Position or Title'/>
                     </div>
                     <div>
                         <DatePicker hintText="Start Date" mode="landscape"/>
@@ -67,42 +41,15 @@ class EditEducation extends Component {
                         <DatePicker hintText="End Date" mode="landscape"/>
                     </div>
                     <div>
-                        <TextField
-                            underlineStyle={style.textFieldUnderline}
-                            floatingLabelStyle={style.textFloating}
-                            floatingLabelFocusStyle={style.textFloating}
-                            floatingLabelText='Organization Email'
-                            hintStyle={style.textHint}
-                        />
+                        <StyledTextField text='Organization Email'/>
                     </div>
                     <div>
-                        <TextField
-                            underlineStyle={style.textFieldUnderline}
-                            floatingLabelStyle={style.textFloating}
-                            floatingLabelFocusStyle={style.textFloating}
-                            floatingLabelText='Location of Organization'
-                            hintStyle={style.textHint}
-                        />
+                        <StyledTextField text='Location of Organization'/>
                     </div>
-                        <TextField
-                            underlineStyle={style.textFieldUnderline}
-                            floatingLabelStyle={style.textFloating}
-                            floatingLabelFocusStyle={style.textFloating}
-                            floatingLabelText='Awards/Certificates Received'
-                            multiLine={true}
-                            hintStyle={style.textHint}
-                        />
+                        <StyledTextField text='Awards/Certificates Received' multiLine={true}/>
                     <div>
-                        <RaisedButton label='Save & Done' primary={true} icon={<Save/>}
-                                      labelPosition='before'
-                                      style={style.button}
-                                      buttonStyle={style.buttonStyle}
-                        />
-                        <RaisedButton label='Add More' primary={true} icon={<ContentAdd/>}
-                                      labelPosition='before'
-                                      style={style.addButton}
-                                      buttonStyle={style.buttonStyle}
-                        />
+                        <SaveButton/>
+                        <AddButton/>
                     </div>
                 </div>
             )

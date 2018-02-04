@@ -1,17 +1,15 @@
 import React from 'react'
 import RaisedButton from 'material-ui/RaisedButton'
-import Save from 'material-ui/svg-icons/content/save'
-
+import ContentAdd from 'material-ui/svg-icons/content/add'
 import {style} from "../styles"
 
-export const SaveButton = () => {
+export const AddButton = () => {
 
     return (
         <RaisedButton
-            label='Save & Done'
-            primary={true} icon={<Save/>}
+            label='Add More' primary={true} icon={<ContentAdd/>}
             labelPosition='before'
-            style={style.button}
+            style={style.addButton}
             buttonStyle={style.buttonStyle}
         />
     )

@@ -50,7 +50,7 @@ class MainEditPage extends Component {
                         </Menu>
                     </Paper>
                 </div>
-                <EditPersonal/>
+                <EditProfessional/>
             </div>
         )
 

@@ -13,8 +13,8 @@
 
 ## Screenshots
 * Picture of JSON Payload
-![Picture of JSON Payload](https://github.com/iandusenbury/tableland/blob/features/playground/mballeza_API_demo/client/src/containers/Screenshots/JSON-data.png)
+![Picture of JSON Payload](https://github.com/iandusenbury/tableland/blob/playground/mballeza_API_demo/client/src/containers/dummyUsers/Screenshots/JSON-data.png)
 * Picture of rails migrate and seed
-![Picture of rails migrate and seed](https://github.com/iandusenbury/tableland/blob/features/playground/mballeza_API_demo/client/src/containers/Screenshots/rails-migrate-and-seed.png)
+![Picture of rails migrate and seed](https://github.com/iandusenbury/tableland/blob/playground/mballeza_API_demo/client/src/containers/dummyUsers/Screenshots/rails-migrate-and-seed.png)
 * Picture of rails server with receiving the GET request
-![Picture of rails server with receiving the GET request](https://github.com/iandusenbury/tableland/blob/features/playground/mballeza_API_demo/client/src/containers/Screenshots/start-server-and-receive-get-request.png)
+![Picture of rails server with receiving the GET request](https://github.com/iandusenbury/tableland/blob/playground/mballeza_API_demo/client/src/containers/dummyUsers/Screenshots/start-server-and-receive-get-request.png)

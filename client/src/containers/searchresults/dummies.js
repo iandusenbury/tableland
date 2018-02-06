@@ -1,5 +1,4 @@
-
-export const dummyList = [
+const dummyList = [
   {
     id: 1,
     firstName: 'First',
@@ -7,7 +6,7 @@ export const dummyList = [
     title: 'Employee',
     orgName: 'My organization',
     linkedinId: 'flast',
-    contactUrl: 'mywebsite@url.com',
+    contactUrl: 'mywebsite@url.com'
   },
   {
     id: 2,
@@ -16,7 +15,7 @@ export const dummyList = [
     title: 'Scare Floor Technician',
     orgName: 'Monsters Inc.',
     linkedinId: 'mwazowski',
-    contactUrl: 'mwaz@monsters.inc',
+    contactUrl: 'mwaz@monsters.inc'
   },
   {
     id: 3,
@@ -25,7 +24,7 @@ export const dummyList = [
     title: 'Funny Man',
     orgName: 'British Comedy',
     linkedinId: 'mmmmmm',
-    contactUrl: 'mrbean@funny.org',
+    contactUrl: 'mrbean@funny.org'
   },
   {
     id: 4,
@@ -34,7 +33,7 @@ export const dummyList = [
     title: 'Composer',
     orgName: 'Composers International',
     linkedinId: 'hshore',
-    contactUrl: 'howard@shore.com',
+    contactUrl: 'howard@shore.com'
   },
   {
     id: 5,
@@ -43,7 +42,8 @@ export const dummyList = [
     title: 'The Emperor',
     orgName: 'My Kingdom',
     linkedinId: 'AlmightyEmperorKuzco',
-    contactUrl: 'king@snailmail.gov',
-  },
-
+    contactUrl: 'king@snailmail.gov'
+  }
 ]
+
+export default dummyList

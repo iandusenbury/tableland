@@ -8,14 +8,10 @@ import rootReducer from './reducer'
 export const history = createHistory()
 
 const enhancers = []
-const middleware = [
-  apiMiddleware,
-  thunk,
-  routerMiddleware(history)
-]
+const middleware = [apiMiddleware, thunk, routerMiddleware(history)]
 
 if (process.env.NODE_ENV === 'development') {
-  const devToolsExtension = window.devToolsExtension
+  const { devToolsExtension } = window
 
   if (typeof devToolsExtension === 'function') {
     enhancers.push(devToolsExtension())
@@ -24,10 +20,7 @@ if (process.env.NODE_ENV === 'development') {
 
 const store = createStore(
   rootReducer,
-  compose(
-    applyMiddleware(...middleware),
-    ...enhancers
-  )
+  compose(applyMiddleware(...middleware), ...enhancers)
 )
 
 export default store

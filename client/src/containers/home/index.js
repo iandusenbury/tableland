@@ -2,6 +2,7 @@ import React from 'react'
 import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 const Home = props => {
   const { changePage, message } = props
@@ -15,17 +16,21 @@ const Home = props => {
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    message: state.app.example.message
-  }
+Home.propTypes = {
+  changePage: PropTypes.func.isRequired,
+  message: PropTypes.string.isRequired
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  changePage: () => push('/about-us')
-}, dispatch)
+const mapStateToProps = state => ({
+  message: state.app.example.message
+})
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Home)
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      changePage: () => push('/about-us')
+    },
+    dispatch
+  )
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

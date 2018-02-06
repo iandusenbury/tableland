@@ -6,9 +6,9 @@
 
 ## Frontend
 * Added this new folder, which is the same as the Search Results page, only slightly modified which data is displayed.
-* New action: fetchDummyUsersExample(), view ![here](https://github.com/iandusenbury/tableland/blob/features/playground/mballeza_API_demo/client/src/actions/index.js).
+* New action: fetchDummyUsersExample(), view ![here](https://github.com/iandusenbury/tableland/blob/playground/mballeza_API_demo/client/src/actions/index.js).
   * This is the same as the fetchExample(), only the endpoint is different ('/dummies').
-* New reducer: dummyUsers, view ![here](https://github.com/iandusenbury/tableland/blob/features/playground/mballeza_API_demo/client/src/modules/reducer/dummyUsers.js).
+* New reducer: dummyUsers, view ![here](https://github.com/iandusenbury/tableland/blob/playground/mballeza_API_demo/client/src/modules/reducer/dummyUsers.js).
   * This is the same as the example reducer, only the state is an array of users.
 
 ## Screenshots

@@ -14,9 +14,9 @@ const dummySearchKey = '"searchkey"';
 
 class DummyUsers extends Component {
   componentWillMount() {
-    const { fetchDummyUsersExample } = this.props
+    const { fetchDummyUsersExample } = this.props // <----- Extract action from props
 
-    fetchDummyUsersExample()
+    fetchDummyUsersExample() // <----- Dispatches action to callApi
   }
 
   render() {
@@ -31,7 +31,7 @@ class DummyUsers extends Component {
         </div>
         <div className='search-box'>
           <div className='search-box-list'>
-            <DisplayDummyTable users={users} />
+            <DisplayDummyTable users={users} /> {/* <----- Pass users array as props*/}
           </div>
           <div className='back-to-top'>
             <FlatButton hoverColor={'#bed62f'}
@@ -49,7 +49,7 @@ class DummyUsers extends Component {
 
 const mapStateToProps = state => {
   return {
-    users: state.app.dummyUsers.users
+    users: state.app.dummyUsers.users   // <----- Initially empty array before call to fetchDummyUsersExample()
   }
 }
 

@@ -18,7 +18,7 @@ class DisplayDummyTable extends Component {
   }
 
   renderTableRows() {
-    const { users } = this.props
+    const { users } = this.props  // Extract users array from props
 
     const tableRows = users.map((user) => {
       const {
@@ -27,7 +27,7 @@ class DisplayDummyTable extends Component {
         lastName,
         email,
         currentOccupation,
-      } = user
+      } = user                // Extract information from each user
 
       return (
         <TableRow

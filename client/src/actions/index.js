@@ -19,3 +19,21 @@ export function fetchExample() {
     ))
   }
 }
+
+export function fetchDummyUsersExample() {
+  const callDescriptor = {
+    endpoint: `/dummies`,
+    types: [
+      ActionTypes.REQUEST_EXAMPLE,
+      ActionTypes.RECIEVE_EXAMPLE,
+      ActionTypes.FAILURE_EXAMPLE
+    ]
+  }
+
+  return dispatch => {
+    return dispatch(callApi(
+      callDescriptor,
+      /* { onSuccess: optionalCallbackFunction } */
+    ))
+  }
+}

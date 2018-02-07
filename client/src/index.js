@@ -12,11 +12,23 @@ import theme from 'material-ui/styles/getMuiTheme'
 
 const target = document.querySelector('#root')
 
+const muiTheme = theme({
+  palette: {
+    backgroundColor:  '#ffc0cb',
+    quantumOrange:    '#ff9e15',
+    thermalRed:       '#ea4e46',
+    atomicGreen:      '#bed62f',
+    waveBlue:         '#8195b1',
+    rawUmber:         '#715558',
+    sand:             '#e7e0d7'
+  }
+});
+
 render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <div>
-        <MuiThemeProvider theme={theme}>
+        <MuiThemeProvider muiTheme={muiTheme}>
           <App />
         </MuiThemeProvider>
       </div>

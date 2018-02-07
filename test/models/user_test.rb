@@ -45,6 +45,22 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  test "should not become associated with both an organization and program through a single experience" do
+    organization = organizations(:nike)
+    if organization.nil? # if the fixtures are modified, this is a fail safe
+      organization = Organization.create!(name:"Nike", visible:true, address_line_1:"392", address_line_2:"SE Road Ave.", city:"Portland", country:"USA")
+    end
+
+    program = programs(:science)
+    if program.nil? # if the fixtures are modified, this is a fail safe
+      program = Program.create!(name:"Science Lab", visible:true)
+    end
+
+    assert_raises ActiveRecord::RecordInvalid do
+      @user.experiences.create!(organization_id:organization.id, program_id:program.id, start_date:Time.now, title:"Wrong")
+    end
+  end
+
   test "upon destroy, should have its associated experiences destroyed" do
     if @user.experiences.empty? # if the fixtures are modified, this is a fail safe
       program = Program.create!(name:"Science Lab", visible:true)
@@ -58,6 +74,44 @@ class UserTest < ActiveSupport::TestCase
     end
 
     assert @user.experiences.empty?, "Destroying the user did not dissociate their experiences"
+  end
+
+  test "should be allowed to associate with just an organization through one permission" do
+    organization = organizations(:nike)
+    if organization.nil? # if the fixtures are modified, this is a fail safe
+      organization = Organization.create!(name:"Nike", visible:true, address_line_1:"392", address_line_2:"SE Road Ave.", city:"Portland", country:"USA")
+    end
+
+    assert_difference 'Permission.count', 1, "Association between user and organization through permissions failed" do
+      @user.org_edits << organization
+    end
+  end
+
+  test "should be allowed to associate with just a program through one permission" do
+    program = programs(:science)
+    if program.nil? # if the fixtures are modified, this is a fail safe
+      program = Program.create!(name:"Science Lab", visible:true)
+    end
+
+    assert_difference 'Permission.count', 1, "Association between user and organization through permissions failed" do
+      @user.prog_edits << program
+    end
+  end
+
+  test "should not become associated with both an organization and program through a single permission" do
+    organization = organizations(:nike)
+    if organization.nil? # if the fixtures are modified, this is a fail safe
+      organization = Organization.create!(name:"Nike", visible:true, address_line_1:"392", address_line_2:"SE Road Ave.", city:"Portland", country:"USA")
+    end
+
+    program = programs(:science)
+    if program.nil? # if the fixtures are modified, this is a fail safe
+      program = Program.create!(name:"Science Lab", visible:true)
+    end
+
+    assert_raises ActiveRecord::RecordInvalid do
+      @user.permissions.create!(organization_id:organization.id, program_id:program.id)
+    end
   end
 
 end

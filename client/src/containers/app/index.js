@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom'
 import Home from '../home'
 import About from '../about'
 import Navbar from '../navbar'
+import Admin from '../admin'
 import SearchResults from '../searchresults'
 
 import { bindActionCreators } from 'redux'
@@ -24,6 +25,7 @@ class App extends Component {
         <main>
           <Route exact path="/" component={Home} />
           <Route exact path="/about-us" component={About} />
+          <Route exact path="/admin" component={Admin} />
           <Route exact path="/results" component={SearchResults} />
         </main>
       </div>

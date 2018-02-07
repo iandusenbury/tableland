@@ -1,16 +1,19 @@
 import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
+import { Route, withRouter } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
 import Home from '../home'
 import About from '../about'
 import Navbar from '../navbar'
 import Admin from '../admin'
 import SearchResults from '../searchresults'
 
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
 import { fetchExample } from '../../actions'
 
+// TODO: remove this when merge in components
+/* eslint-disable no-shadow */
 class App extends Component {
   componentWillMount() {
     const { fetchExample } = this.props
@@ -33,11 +36,16 @@ class App extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  fetchExample
-}, dispatch)
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      fetchExample
+    },
+    dispatch
+  )
 
-export default withRouter(connect(
-  null,
-  mapDispatchToProps
-)(App))
+App.propTypes = {
+  fetchExample: PropTypes.func.isRequired
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(App))

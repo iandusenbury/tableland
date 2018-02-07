@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180127013822) do
+ActiveRecord::Schema.define(version: 20180207061522) do
 
   create_table "experiences", force: :cascade do |t|
     t.integer "user_id"
@@ -53,6 +53,17 @@ ActiveRecord::Schema.define(version: 20180127013822) do
     t.string "country"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "permissions", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "organization_id"
+    t.integer "program_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_permissions_on_organization_id"
+    t.index ["program_id"], name: "index_permissions_on_program_id"
+    t.index ["user_id"], name: "index_permissions_on_user_id"
   end
 
   create_table "programs", force: :cascade do |t|

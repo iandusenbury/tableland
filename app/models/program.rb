@@ -7,10 +7,11 @@ class Program < ApplicationRecord
   has_many :organizations, through: :sponsors
 
   has_many :media, as: :mediable, dependent: :destroy
-  
+
   has_many :permissions, dependent: :destroy
   has_many :admins, through: :permissions, source: :user
 
   # Validations
-  validates :name, :visible, presence: true
+  validates :name, presence: true
+  validates :visible, inclusion: { in: [true, false] }
 end

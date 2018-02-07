@@ -12,5 +12,6 @@ class Organization < ApplicationRecord
   has_many :admins, through: :permissions, source: :user
 
   # Validations
-  validates :name, :visible, :address_line_1, :address_line_2, :city, :country, presence: true
+  validates :name, :address_line_1, :address_line_2, :city, :country, presence: true
+  validates :visible, inclusion: { in: [true, false] }
 end

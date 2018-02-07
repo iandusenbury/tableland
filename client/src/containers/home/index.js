@@ -3,15 +3,14 @@ import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import Map from '../map'
 
 const Home = props => {
-  const { changePage, message } = props
+  //const { changePage, message } = props
 
   return (
     <div>
-      <h1>Home</h1>
-      <p>{message}</p>
-      <button onClick={() => changePage()}>Go to about page via redux</button>
+      <Map />
     </div>
   )
 }

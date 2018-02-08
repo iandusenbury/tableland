@@ -64,7 +64,7 @@ export default () => (
             primaryText="Edit Profile"
           />
           <MenuItem
-            containerElement={<Link to="/" />}
+            containerElement={<Link to="/admin" />}
             value="admin_page"
             primaryText="Admin Page"
           />

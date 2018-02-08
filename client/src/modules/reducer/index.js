@@ -5,5 +5,5 @@ import adminPage from './adminReducer/adminReducer'
 
 export default combineReducers({
   example,
-  adminPage,
+  adminPage
 })

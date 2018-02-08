@@ -3,7 +3,7 @@ import Add from 'material-ui/svg-icons/content/add'
 import Block from 'material-ui/svg-icons/content/block'
 import SwapVert from 'material-ui/svg-icons/action/swap-vert'
 
-const dummyList = [
+export const dummyList = [
   {
     id: 1,
     firstName: 'First',
@@ -11,7 +11,7 @@ const dummyList = [
     title: 'Employee',
     orgName: 'My organization',
     linkedinId: 'flast',
-    contactUrl: 'mywebsite@url.com',
+    contactUrl: 'mywebsite@url.com'
   },
   {
     id: 2,
@@ -20,7 +20,7 @@ const dummyList = [
     title: 'Scare Floor Technician',
     orgName: 'Monsters Inc.',
     linkedinId: 'mwazowski',
-    contactUrl: 'mwaz@monsters.inc',
+    contactUrl: 'mwaz@monsters.inc'
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ const dummyList = [
     title: 'Funny Man',
     orgName: 'British Comedy',
     linkedinId: 'mmmmmm',
-    contactUrl: 'mrbean@funny.org',
+    contactUrl: 'mrbean@funny.org'
   },
   {
     id: 4,
@@ -38,7 +38,7 @@ const dummyList = [
     title: 'Composer',
     orgName: 'Composers International',
     linkedinId: 'hshore',
-    contactUrl: 'howard@shore.com',
+    contactUrl: 'howard@shore.com'
   },
   {
     id: 5,
@@ -47,9 +47,8 @@ const dummyList = [
     title: 'The Emperor',
     orgName: 'My Kingdom',
     linkedinId: 'AlmightyEmperorKuzco',
-    contactUrl: 'king@snailmail.gov',
-  },
-
+    contactUrl: 'king@snailmail.gov'
+  }
 ]
 
 export const userTables = [
@@ -59,7 +58,7 @@ export const userTables = [
     list: dummyList,
     button1: 'Approve',
     button2: 'Deny',
-    buttonIcon: <Add />,
+    buttonIcon: <Add />
   },
   {
     id: 1,
@@ -67,7 +66,7 @@ export const userTables = [
     list: dummyList,
     button1: 'Block',
     button2: 'Unblock',
-    buttonIcon: <Block />,
+    buttonIcon: <Block />
   },
   {
     id: 2,
@@ -75,6 +74,6 @@ export const userTables = [
     list: dummyList,
     button1: 'Elevate',
     button2: 'Remove',
-    buttonIcon: <SwapVert />,
-  },
+    buttonIcon: <SwapVert />
+  }
 ]

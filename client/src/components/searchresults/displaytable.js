@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+
 import {
   Table,
   TableBody,
@@ -82,4 +82,4 @@ DisplayTable.propTypes = {
   users: PropTypes.element.isRequired
 }
 
-export default connect()(DisplayTable)
+export default DisplayTable

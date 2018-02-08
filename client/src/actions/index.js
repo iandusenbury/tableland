@@ -24,8 +24,8 @@ export function adminChangeTableTo(index) {
   return {
     type: ActionTypes.ADMIN_CHANGE_TABLE,
     payload: {
-      index,
-    },
+      index
+    }
   }
 }
 
@@ -33,7 +33,7 @@ export function adminChangeAdminTo(changeTo) {
   return {
     type: ActionTypes.ADMIN_CHANGE_ADMIN,
     payload: {
-      changeTo,
-    },
+      changeTo
+    }
   }
 }

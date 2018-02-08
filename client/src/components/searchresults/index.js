@@ -1,7 +1,6 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { FlatButton } from 'material-ui'
-import DisplayTable from './displaytable'
+import DisplayTable from './displayTable'
 
 /* dummies */
 import dummyList from './dummies'
@@ -29,4 +28,4 @@ const searchResults = () => (
   </div>
 )
 
-export default connect()(searchResults)
+export default searchResults

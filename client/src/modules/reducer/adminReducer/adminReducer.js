@@ -5,14 +5,14 @@ import { userTables } from './dummies'
 const initialState = {
   tables: userTables,
   currentTable: userTables[0],
-  isAdmin: true,
+  isAdmin: true
 }
 
 const handlers = {
   // Pattern:
   // [ActionTypes.ACTION_NAME]: actionFunction
   [ActionTypes.ADMIN_CHANGE_TABLE]: adminChangeTable,
-  [ActionTypes.ADMIN_CHANGE_ADMIN]: adminChangeAdmin,
+  [ActionTypes.ADMIN_CHANGE_ADMIN]: adminChangeAdmin
 }
 
 export default createReducer(initialState, handlers)
@@ -23,7 +23,7 @@ function adminChangeTable(state, { payload }) {
 
   return {
     ...state,
-    currentTable: tables[index],
+    currentTable: tables[index]
   }
 }
 
@@ -34,6 +34,6 @@ function adminChangeAdmin(state, { payload }) {
   return {
     ...state,
     currentTable: tables[0],
-    isAdmin: changeTo,
+    isAdmin: changeTo
   }
 }

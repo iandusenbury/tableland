@@ -1,40 +1,16 @@
+/*  created linting errors
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
-import Home from '../home'
-import About from '../about'
+import Home from '../../components/home'
+import About from '../../components/about'
 import Navbar from '../../components/navbar'
 
 
 import { bindActionCreators } from 'redux'
+*/
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
-import { fetchExample } from '../../actions'
+import { withRouter } from 'react-router-dom'
 
-class App extends Component {
-  componentWillMount() {
-    const { fetchExample } = this.props
+import App from '../../components/app'
 
-    fetchExample()
-  }
-
-  render() {
-    return (
-      <div>
-        <Navbar />
-        <main>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/about-us" component={About} />
-        </main>
-      </div>
-    )
-  }
-}
-
-const mapDispatchToProps = dispatch => bindActionCreators({
-  fetchExample
-}, dispatch)
-
-export default withRouter(connect(
-  null,
-  mapDispatchToProps
-)(App))
+export default withRouter(connect()(App))

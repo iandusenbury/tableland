@@ -15,7 +15,7 @@ import {
 } from 'material-ui'
 import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/menu'
 import muiThemeable from 'material-ui/styles/muiThemeable'
-import './style.css'
+import { style } from '../../constants/styles/styles.js'
 
 /*
  * TODO:
@@ -23,7 +23,7 @@ import './style.css'
 */
 
 // figure out how to get a MESA icon
-//import MESAIcon from 'material-ui/svg-icons/custom/MESAIcon.svg'
+// import MESAIcon from 'material-ui/svg-icons/custom/MESAIcon.svg'
 
 // layout should be
 /*
@@ -41,18 +41,15 @@ import './style.css'
    "About"
 */
 //export default () => (
-const navbar = (props) => (
+const navbar = () => (
   <header>
-    <Toolbar>
+    <Toolbar style={style.toolbar}>
       <ToolbarGroup>
-        <FlatButton 
-          containerElement={<Link to="/" />}
-          label="MESA" />
-
+        <FlatButton containerElement={<Link to="/" />} label="MESA" />
       </ToolbarGroup>
       <ToolbarGroup>
         <Chip
-          style={{ backgroundColor: props.muiTheme.palette.backgroundColor }} >
+          style={ style.chip } >
           <TextField hintText="Search" />
         </Chip>
           <RaisedButton label="Search" />
@@ -60,33 +57,39 @@ const navbar = (props) => (
             <IconButton touch={true}>
               <NavigationExpandMoreIcon />
             </IconButton>
-        }>
-          <MenuItem 
+          }>
+          <MenuItem
             containerElement={<Link to="/" />}
-            value="sign_in" 
-            primaryText="Sign In" />
+            value="sign_in"
+            primaryText="Sign In"
+          />
           <Divider />
-          <MenuItem 
+          <MenuItem
             containerElement={<Link to="/" />}
-            value="view_profile" 
-            primaryText="View Profile" />
-          <MenuItem 
+            value="view_profile"
+            primaryText="View Profile"
+          />
+          <MenuItem
             containerElement={<Link to="/" />}
-            value="edit_profile" 
-            primaryText="Edit Profile" />
-          <MenuItem 
-            containerElement={<Link to="/" />}
-            value="admin_page" 
-            primaryText="Admin Page" />
+            value="edit_profile"
+            primaryText="Edit Profile"
+          />
+          <MenuItem
+            containerElement={<Link to="/admin" />}
+            value="admin_page"
+            primaryText="Admin Page"
+          />
           <Divider />
-          <MenuItem 
+          <MenuItem
             containerElement={<Link to="/" />}
-            value="sign_out" 
-            primaryText="Sign Out" />
-          <MenuItem 
+            value="sign_out"
+            primaryText="Sign Out"
+          />
+          <MenuItem
             containerElement={<Link to="/about-us" />}
-            value="about" 
-            primaryText="About" />
+            value="about"
+            primaryText="About"
+          />
         </IconMenu>
       </ToolbarGroup>
     </Toolbar>

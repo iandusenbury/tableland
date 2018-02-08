@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+mesa_robot:
+  organization: mesa
+  program: robotics
+
+intel_rails:
+  organization: intel
+  program: rails

@@ -1,7 +1,8 @@
 import ActionTypes from '../constants/actionTypes'
-import { callApi } from '../utils/api'
+import callApi from '../utils/api'
 
 // action creators
+/* eslint-disable import/prefer-default-export */
 export function fetchExample() {
   const callDescriptor = {
     endpoint: `/api/v1/example`,
@@ -13,9 +14,26 @@ export function fetchExample() {
   }
 
   return dispatch => {
-    return dispatch(callApi(
-      callDescriptor,
-      /* { onSuccess: optionalCallbackFunction } */
-    ))
+    dispatch(
+      callApi(callDescriptor /* , { onSuccess: oprtionalSuccessCallback } */)
+    )
+  }
+}
+
+export function adminChangeTableTo(index) {
+  return {
+    type: ActionTypes.ADMIN_CHANGE_TABLE,
+    payload: {
+      index
+    }
+  }
+}
+
+export function adminChangeAdminTo(changeTo) {
+  return {
+    type: ActionTypes.ADMIN_CHANGE_ADMIN,
+    payload: {
+      changeTo
+    }
   }
 }

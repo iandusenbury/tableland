@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import Home from '../home'
 import About from '../about'
-import Navbar from '../navbar'
+import Navbar from '../../components/navbar'
 
 
 import { bindActionCreators } from 'redux'

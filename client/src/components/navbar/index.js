@@ -15,6 +15,7 @@ import {
 } from 'material-ui'
 import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/menu'
 import muiThemeable from 'material-ui/styles/muiThemeable'
+import './style.css'
 
 /*
  * TODO:
@@ -42,7 +43,7 @@ import muiThemeable from 'material-ui/styles/muiThemeable'
 //export default () => (
 const navbar = (props) => (
   <header>
-    <Toolbar style={{ backgroundColor: props.muiTheme.palette.thermalRed }}>
+    <Toolbar>
       <ToolbarGroup>
         <FlatButton 
           containerElement={<Link to="/" />}

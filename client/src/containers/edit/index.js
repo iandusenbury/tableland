@@ -16,8 +16,8 @@ import School from 'material-ui/svg-icons/social/school'
 import Professional from 'material-ui/svg-icons/action/work'
 import Home from 'material-ui/svg-icons/action/home'
 import EditPersonal from './EditPersonal'
-import EditProfessional from './EditProfessional'
-import EditEducation from './EditEducation'
+//import EditProfessional from './EditProfessional'
+//import EditEducation from './EditEducation'
 import {style} from "../../styles";
 import './main.css'
 

@@ -10,23 +10,12 @@ import Enzyme, { mount } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 
 import ConnectedApp from '../components/app'
-import ConnectedAdminPage from '../containers/admin'
-import ConnectedHome from '../components/home'
-import ConnectedAbout from '../components/about'
-import ConnectedSearchResults from '../components/searchResults'
 
 import store, { history } from '../base/store'
 
+import { routePathToComponent } from '../constants/routing'
+
 Enzyme.configure({ adapter: new Adapter() })
-
-// Expected Results //
-
-const expectedRoutes = [
-  { path: '/', component: ConnectedHome },
-  { path: '/about-us', component: ConnectedAbout },
-  { path: '/admin', component: ConnectedAdminPage },
-  { path: '/results', component: ConnectedSearchResults }
-]
 
 //  Test Suite  //
 
@@ -49,6 +38,7 @@ describe('routing to correct components', () => {
 
   it('renders correct routes', () => {
     mountComponent(ConnectedApp)
+    const expectedRoutes = routePathToComponent
 
     /* eslint no-param-reassign: ["error", { "props": false }] */
     const pathMap = wrapper.find(Route).reduce((map, route) => {

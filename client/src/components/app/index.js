@@ -1,19 +1,34 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import Admin from '../../containers/admin'
-import About from '../about'
-import Home from '../home'
 import Navbar from '../navbar'
-import SearchResults from '../searchResults'
+import { routePathToComponent } from '../../constants/routing'
+
+const routes = routePathToComponent
 
 const App = () => (
   <div>
     <Navbar />
     <main>
-      <Route exact path="/" component={Home} />
-      <Route exact path="/about-us" component={About} />
-      <Route exact path="/results" component={SearchResults} />
-      <Route exact path="/admin" component={Admin} />
+      <Route
+        exact
+        path={routes['.Home'].path}
+        component={routes['.Home'].component}
+      />
+      <Route
+        exact
+        path={routes['.About'].path}
+        component={routes['.About'].component}
+      />
+      <Route
+        exact
+        path={routes['.AdminPage'].path}
+        component={routes['.AdminPage'].component}
+      />
+      <Route
+        exact
+        path={routes['.SearchResults'].path}
+        component={routes['.SearchResults'].component}
+      />
     </main>
   </div>
 )

@@ -2,6 +2,7 @@ import React from 'react'
 import Add from 'material-ui/svg-icons/content/add'
 import Block from 'material-ui/svg-icons/content/block'
 import SwapVert from 'material-ui/svg-icons/action/swap-vert'
+import Domain from 'material-ui/svg-icons/social/domain'
 
 export const dummyList = [
   {
@@ -75,5 +76,13 @@ export const userTables = [
     button1: 'Elevate',
     button2: 'Remove',
     buttonIcon: <SwapVert />
+  },
+  {
+    id: 3,
+    title: 'Edit Organizations',
+    list: dummyList,
+    button1: 'Button 1',
+    button2: 'Button 2',
+    buttonIcon: <Domain />
   }
 ]

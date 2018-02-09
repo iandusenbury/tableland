@@ -53,19 +53,13 @@ export default class AdminPage extends Component {
   }
 
   renderAdminList() {
-    const { currentTable, isAdmin, adminChangeTableTo } = this.props
+    const { currentTable } = this.props
 
     const { title, list, button1, button2 } = currentTable
 
-    const adminList = () => {
-      if (!isAdmin) {
-        adminChangeTableTo(2) // Hack, for now. This wont get rerendered if non-admin.
-      }
-
-      return (
-        <Users title={title} users={list} button1={button1} button2={button2} />
-      )
-    }
+    const adminList = () => (
+      <Users title={title} users={list} button1={button1} button2={button2} />
+    )
 
     return adminList()
   }

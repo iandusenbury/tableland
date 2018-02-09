@@ -2,10 +2,19 @@ import createReducer from '../../../utils/createReducer'
 import ActionTypes from '../../../constants/actionTypes'
 import { userTables } from './dummies'
 
+const initialAdminState = {
+  index: 0,
+  isAdmin: true
+}
+const initialNonAdminState = {
+  index: 2,
+  isAdmin: false
+}
+
 const initialState = {
   tables: userTables,
-  currentTable: userTables[0],
-  isAdmin: true
+  currentTable: userTables[initialNonAdminState.index],
+  isAdmin: initialNonAdminState.isAdmin
 }
 
 const handlers = {
@@ -30,10 +39,11 @@ function adminChangeTable(state, { payload }) {
 function adminChangeAdmin(state, { payload }) {
   const { changeTo } = payload
   const { tables } = state
+  const index = changeTo ? initialAdminState.index : initialNonAdminState.index
 
   return {
     ...state,
-    currentTable: tables[0],
+    currentTable: tables[index],
     isAdmin: changeTo
   }
 }

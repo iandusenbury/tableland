@@ -9,7 +9,3 @@
   * Education (What degree, etc)
   * Button that takes you to Home
 
-
-* TODO
-  * Add your page in the navbar app
-  * Add yourself to modules/reducers/index.js

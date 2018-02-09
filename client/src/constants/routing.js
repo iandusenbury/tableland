@@ -3,30 +3,28 @@ import ConnectedHome from '../components/home'
 import ConnectedAbout from '../components/about'
 import ConnectedSearchResults from '../components/searchResults'
 
-const setupRoutes = () => {
-  const routes = []
-
-  routes['.Home'] = {
+export const routePathToComponent = [
+  {
+    name: 'Home',
     path: '/',
     component: ConnectedHome
-  }
-  routes['.About'] = {
+  },
+  {
+    name: 'About',
     path: '/about-us',
     component: ConnectedAbout
-  }
-  routes['.AdminPage'] = {
+  },
+  {
+    name: 'AdminPage',
     path: '/admin',
     component: ConnectedAdminPage
-  }
-  routes['.SearchResults'] = {
+  },
+  {
+    name: 'SearchResults',
     path: '/results',
     component: ConnectedSearchResults
   }
-
-  return routes
-}
-
-export const routePathToComponent = setupRoutes()
+]
 
 export default {
   routePathToComponent

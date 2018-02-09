@@ -5,6 +5,7 @@ import About from '../about'
 import Home from '../home'
 import Navbar from '../navbar'
 import SearchResults from '../searchResults'
+import ProfileView from '../profileView'
 
 const App = () => (
   <div>
@@ -14,6 +15,7 @@ const App = () => (
       <Route exact path="/about-us" component={About} />
       <Route exact path="/results" component={SearchResults} />
       <Route exact path="/admin" component={Admin} />
+      <Route exact path="/profile" component={ProfileView} />
     </main>
   </div>
 )

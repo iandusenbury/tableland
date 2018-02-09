@@ -9,11 +9,11 @@ import theme from 'material-ui/styles/getMuiTheme'
 import Enzyme, { mount } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 
-import ConnectedApp from '../components/app'
+import ConnectedApp from '../../components/app'
 
-import store, { history } from '../base/store'
+import store, { history } from '../../base/store'
 
-import { routePathToComponent } from '../constants/routing'
+import { routePathToComponent } from '../../constants/routing'
 
 Enzyme.configure({ adapter: new Adapter() })
 

@@ -1,6 +1,13 @@
 class User < ApplicationRecord
   acts_as_token_authenticatable
 
+  enum role: [:user, :admin, :super_admin]
+  after_initialize :set_default_role, :if => :new_record?
+
+  def set_default_role
+    self.role ||= :user
+  end
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -17,6 +24,6 @@ class User < ApplicationRecord
   has_many :prog_edits, through: :permissions, source: :program
 
   # Validations
-  validates :first_name, :last_name, :linkedin_id, :contact_url, :role, presence: true
+  validates :first_name, :last_name, :linkedin_id, :contact_url, presence: true
   validates :visible, inclusion: { in: [true, false] }
 end

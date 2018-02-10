@@ -1,5 +1,6 @@
 class ProgramsController < ApplicationController
   before_action :set_program, only: [:show, :update, :destroy]
+  before_action :admin_only, only: [:update, :destroy]
 
   # GET /programs
   # GET /programs.json

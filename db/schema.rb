@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180209025018) do
+ActiveRecord::Schema.define(version: 20180210023446) do
 
   create_table "experiences", force: :cascade do |t|
     t.integer "user_id"
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 20180209025018) do
     t.string "linkedin_id"
     t.string "contact_url"
     t.boolean "visible"
-    t.string "role"
+    t.integer "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false

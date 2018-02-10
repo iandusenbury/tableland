@@ -36,6 +36,42 @@ describe('routing to correct components', () => {
     )
   }
 
+  it('route object names are not undefined or empty', () => {
+    const routes = routePathToComponent
+
+    routes.forEach(route => {
+      expect(route.name).not.toBe(undefined)
+      expect(route.name).not.toBe('')
+    })
+  })
+
+  it('routes object names are unique', () => {
+    const routes = routePathToComponent
+
+    const routeKeys = routes.map(route => route.name)
+    const isDuplicate = routeKeys.some(
+      (item, idx) => routeKeys.indexOf(item) !== idx
+    )
+    expect(isDuplicate).toEqual(false)
+  })
+
+  it('routes are not undefined or empty', () => {
+    const routes = routePathToComponent
+
+    routes.forEach(route => {
+      expect(route.path).not.toBe(undefined)
+      expect(route.path).not.toBe('')
+    })
+  })
+
+  it('components are not undefined', () => {
+    const routes = routePathToComponent
+
+    routes.forEach(route => {
+      expect(route.component).not.toBe(undefined)
+    })
+  })
+
   it('renders correct routes', () => {
     mountComponent(ConnectedApp)
     const expectedRoutes = routePathToComponent

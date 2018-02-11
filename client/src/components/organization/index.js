@@ -1,14 +1,8 @@
 import React from 'react'
 import {
   Card,
-  CardHeader,
-  CardText,
   CardMedia,
   CardTitle,
-  TextField,
-  List,
-  ListItem,
-  Subheader,
   Divider,
   Table,
   TableHeader,

@@ -5,63 +5,88 @@ import {
   CardText,
   CardMedia,
   CardTitle,
-  SelectField,
-  TextField
+  TextField,
+  List,
+  ListItem,
+  Subheader,
+  Divider,
+  Table,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+  TableBody,
 } from 'material-ui'
+import './style.css'
 /*
-import { StyledTextField } from '../../widgets/StyledTextField'
-import { StyledSelectField } from '../../widgets/StyledSelectField'
-import { SaveButton } from '../../widgets/SaveButton'
+  Employees should be listed as
+  [icon/photo]  [name]  [position]
 */
 
-export default () => (
-    <div className="fieldsWrapper">
-      <div>
-        <Card>
-          <CardHeader
-            id="org_name"
-            title="Organization Name"
-            subtitle="we can put a subtitle here, maybe address?"
-            avatar=""
-          />
-          <CardMedia
-            overlay={
-              <CardTitle 
-                title="Organization name here?" 
-                subtitle="optional subtitle" 
-              />
-            }
-          />
-          <CardText id="description">
-            Description goes here
-          </CardText>
-          <div className="photo here">
-          </div>
-          <div>
-            <TextField floatingLabelText="Organization Name" id="org_name" />
-          </div>
-          <div>
-            <TextField floatingLabelText="Description" id="description" multiLine={true} />
-          </div>
-          <div>
-            <TextField floatingLabelText="URL" id="org_url" />
-          </div>
-          <div>
-            <TextField floatingLabelText="Address" id="org_address_line_1" />
-          </div>
-          <div>
-            <TextField floatingLabelText="City" id="org_cityy" />
-          </div>
-          <div>
-            <TextField floatingLabelText="State" id="org_state" />
-          </div>
-          <div>
-            <TextField floatingLabelText="Postal Code" id="org_zip" />
-          </div>
-          <div>
-            <TextField floatingLabelText="Country" id="org_country" />
-          </div>
-        </Card>
+export default (props) => (
+  <div className="mainDiv">
+    <div className="image">
+      <Card>
+        <CardMedia
+          overlay={
+            <CardTitle 
+              id="org_name" 
+              title="Organization name here" 
+            />}
+        >
+          <img src={require('./sample.jpg')} alt="" />
+        </CardMedia>
+      </Card>
+    </div>
+    <div className="text">
+      <div className="name">
+        <p>
+          Organization Name
+        </p>
+        <Divider />
+      </div>
+      <div className="address">
+        <p>
+          123 company rd
+        </p>
+      </div>
+      <div className="url">
+        <p>
+          url
+        </p>
+        <Divider />
+      </div>
+      <div className="description">
+        <p>
+          Description
+        </p>
+        <Divider />
+      </div>
+      <div className="employees">
+        <Table>
+          <TableHeader 
+            adjustForCheckbox={false}
+            displaySelectAll={false}
+          >
+            <TableRow>
+              <TableHeaderColumn>Employee</TableHeaderColumn>
+              <TableHeaderColumn>Job Title</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody
+            displayRowCheckbox={false}
+          >
+            <TableRow>
+              <TableRowColumn>
+                [icon] Fred Henderson
+              </TableRowColumn>
+              <TableRowColumn>
+                Engineer
+              </TableRowColumn>
+            </TableRow>
+          </TableBody>
+        </Table>
       </div>
     </div>
+  </div>
 )

@@ -1,0 +1,65 @@
+.mainDiv {
+  width: 100%;
+  height: 92.4vh;
+  background-color: white;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-areas: "image text";
+}
+
+.image {
+  grid-area: image;
+  border: solid 5px black;
+  overflow: hidden;
+}
+
+.text {
+  grid-area: text;
+  border: solid 5px black;
+}
+
+.name {
+  height: auto;
+  width: auto;
+  margin: 2%;
+  font-size: 36px;
+}
+
+.url {
+  height: auto;
+  width: auto;
+  margin: 2%;
+}
+
+.address {
+  height: auto;
+  width: auto;
+  margin: 2%;
+}
+
+.description {
+  height: auto;
+  width: auto;
+  margin: 2%;
+}
+
+.employees {
+  height: auto;
+  width: auto;
+  margin: 2%;
+}
+
+p {
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+img {
+  padding: 0;
+  display: block;
+  margin: 0 auto;
+  height: 92.4vh;
+  width: 100%;
+}

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions, only: [:create, :destroy]
 
-  devise_for :users, skip: [:sessions, :registrations, :passwords]
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }, skip: [:sessions, :registrations, :passwords]
 
   namespace :api do
     namespace :v1 do

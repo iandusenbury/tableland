@@ -1,0 +1,148 @@
+.wholeTabTop {
+    grid-area: tab;
+    width: 50%;
+    height: 22px;
+    top: 0px;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+    opacity: 0.5;
+    z-index: 10;
+}
+
+.wholeTabTop:hover {
+    height: 32px;
+    opacity: 0.75;
+}
+
+.wholeTabTop:hover > .topTab {
+  visibility: visible;
+  height: 10px;
+}
+
+.wholeTabTop:hover > .stubTabTop > p {
+  visibility: visible;
+}
+
+.wholeTabTop:hover .arrowTop {
+  visibility: hidden;
+}
+
+.topTab {
+  width: 50%;
+  height: 0px;
+  background-color: black;
+  visibility: hidden;
+  margin: auto;
+}
+
+.stubTabTop
+{
+    height: 22px;
+    width: 50%;
+    border-radius: 0px 0px 40px 40px;
+    background-color: black;
+    position: relative;
+    margin: auto;
+}
+
+.stubTabTop > p {
+  text-align: center;
+  color: white;
+  cursor: pointer;
+  margin: 0;
+  position: relative;
+  top: -2px;
+  visibility: hidden;
+}
+
+.arrowTop
+{
+  border-color: white transparent transparent transparent;
+  margin: auto;
+  border-style: solid;
+  border-width: 8px;
+  height:0;
+  width:0;
+  position:absolute;
+  bottom:0px;
+  right: 0px;
+  left: 0px;
+  top: 10px;
+  visibility: visible;
+}
+
+.wholeTabBottom {
+    grid-area: btab;
+    width: 50%;
+    height: 22px;
+    top: -22px;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+    opacity: 0.5;
+    z-index: 10;
+}
+
+.wholeTabBottom:hover {
+    height: 32px;
+    opacity: 0.75;
+    top: -32px;
+}
+
+.wholeTabBottom:hover > .bottomTab {
+  visibility: visible;
+  height: 10px;
+}
+
+.wholeTabBottom:hover > .stubTabBottom > p {
+  visibility: visible;
+}
+
+.wholeTabBottom:hover .arrowBottom {
+  visibility: hidden;
+}
+
+.bottomTab {
+  width: 50%;
+  height: 0px;
+  background-color: black;
+  visibility: hidden;
+  margin: auto;
+}
+
+.stubTabBottom
+{
+    height: 22px;
+    width: 50%;
+    border-radius: 40px 40px 0px 0px;
+    background-color: black;
+    position: relative;
+    margin: auto;
+}
+
+.stubTabBottom > p {
+  text-align: center;
+  color: white;
+  cursor: pointer;
+  margin: 0;
+  position: relative;
+  top: 6px;
+  visibility: hidden;
+}
+
+.arrowBottom
+{
+  border-color: transparent transparent white transparent;
+  margin: auto;
+  border-style: solid;
+  border-width: 8px;
+  height:0;
+  width:0;
+  position:absolute;
+  bottom:0px;
+  right: 0px;
+  left: 0px;
+  top: -8px;
+  visibility: visible;
+}

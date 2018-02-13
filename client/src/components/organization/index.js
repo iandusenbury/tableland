@@ -11,6 +11,8 @@ import {
   TableRowColumn,
   TableBody,
 } from 'material-ui'
+import TopTab from '../../constants/tabs/tabViewMap'
+import BottomTab from '../../constants/tabs/tabViewProfile'
 import './style.css'
 /*
   Employees should be listed as
@@ -19,13 +21,14 @@ import './style.css'
 
 export default (props) => (
   <div className="mainDiv">
+    <TopTab className="tab" />
     <div className="image">
       <Card>
         <CardMedia
           overlay={
-            <CardTitle 
-              id="org_name" 
-              title="Organization name here" 
+            <CardTitle
+              id="org_name"
+              title="Organization name here"
             />}
         >
           <img src={require('./sample.jpg')} alt="" />
@@ -58,7 +61,7 @@ export default (props) => (
       </div>
       <div className="employees">
         <Table>
-          <TableHeader 
+          <TableHeader
             adjustForCheckbox={false}
             displaySelectAll={false}
           >

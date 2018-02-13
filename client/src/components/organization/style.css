@@ -4,13 +4,22 @@
   background-color: white;
   display: grid;
   grid-template-columns: 50% 50%;
-  grid-template-areas: "image text";
+  grid-template-rows: 0% auto;
+  grid-template-areas:
+    "tab   tab "
+    "image text"
+    ;
+}
+
+img {
+  object-fit:cover;
 }
 
 .image {
   grid-area: image;
   border: solid 5px black;
   overflow: hidden;
+  height: 92.4vh;
 }
 
 .text {
@@ -23,6 +32,7 @@
   width: auto;
   margin: 2%;
   font-size: 36px;
+  margin-top: 36px;
 }
 
 .url {
@@ -62,4 +72,8 @@ img {
   margin: 0 auto;
   height: 92.4vh;
   width: 100%;
+}
+
+.topTab {
+  grid-area: tab;
 }

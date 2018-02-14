@@ -52,14 +52,16 @@ export default props => (
         </div>
         <div className="url">
           <LanguageIcon style={ViewStyles.orgUrlIcon} />
-          <p style={ViewStyles.orgUrlp}>url</p>
+          <div style={ViewStyles.orgUrlp}>
+            <p>url</p>
+          </div>
         </div>
       </div>
       <div className="description">
         <Divider />
         <p>Description</p>
         {hasVideo && (
-          <div>
+          <div style={ViewStyles.orgVideoDiv}>
             <video style={ViewStyles.orgVideoTag} />
           </div>
         )}

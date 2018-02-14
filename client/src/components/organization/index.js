@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 import {
   Card,
   CardMedia,
@@ -11,18 +11,20 @@ import {
   TableRowColumn,
   TableBody,
   Avatar
-} from "material-ui";
+} from 'material-ui'
 import BusinessIcon from 'material-ui/svg-icons/communication/business'
 import LanguageIcon from 'material-ui/svg-icons/action/language'
-import TopTab from "../../constants/tabs/tabViewMap"
-import "./style.css"
-import ViewStyles from "../../constants/viewStyles"
+import TopTab from '../../constants/tabs/tabViewMap'
+import './style.css'
+import ViewStyles from '../../constants/viewStyles'
 /*
   Employees should be listed as
   [icon/photo]  [name]  [position]
 */
 
 const hasVideo = true
+const portraitImg = require('./portrait.png')
+const sampleImg = require('./sample.jpg')
 
 export default props => (
   <div className="mainDiv">
@@ -30,9 +32,8 @@ export default props => (
     <div className="image">
       <Card>
         <CardMedia
-          overlay={<CardTitle id="org_name" title="Organization name here" />}
-        >
-          <img src={require("./sample.jpg")} alt="" />
+          overlay={<CardTitle id="org_name" title="Organization name here" />}>
+          <img src={sampleImg} alt="" />
         </CardMedia>
       </Card>
     </div>
@@ -51,39 +52,34 @@ export default props => (
         </div>
         <div className="url">
           <LanguageIcon style={ViewStyles.orgUrlIcon} />
-          <p style={{ marginTop: '2px' }}>url</p>
+          <p style={ViewStyles.orgUrlp}>url</p>
         </div>
       </div>
       <div className="description">
         <Divider />
         <p>Description</p>
-        {hasVideo &&
+        {hasVideo && (
           <div>
-            <video style={{marginLeft: '10px', backgroundColor: 'gray'}} />
+            <video style={ViewStyles.orgVideoTag} />
           </div>
-        }
+        )}
         <Divider />
       </div>
       <div className="employees">
         <Table>
           <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
             <TableRow>
-              <TableHeaderColumn style={{width: '10px'}} />
+              <TableHeaderColumn style={ViewStyles.orgTableHeaderCol} />
               <TableHeaderColumn>Employee</TableHeaderColumn>
               <TableHeaderColumn>Job Title</TableHeaderColumn>
             </TableRow>
           </TableHeader>
-          <TableBody showRowHover={true} displayRowCheckbox={false}>
-            <TableRow className="tableRow" hoverable={true}>
-              <TableRowColumn style={{backgroundColor: 'gray', width: '9px'}}>
-                <Avatar
-                  size={32}
-                  src={require("./portrait.png")}
-                />
+          <TableBody showRowHover displayRowCheckbox={false}>
+            <TableRow className="tableRow" hoverable>
+              <TableRowColumn style={ViewStyles.orgTableRowColAvatar}>
+                <Avatar size={32} src={portraitImg} />
               </TableRowColumn>
-              <TableRowColumn>
-                Fred Henderson
-              </TableRowColumn>
+              <TableRowColumn>Fred Henderson</TableRowColumn>
               <TableRowColumn>Engineer</TableRowColumn>
             </TableRow>
           </TableBody>

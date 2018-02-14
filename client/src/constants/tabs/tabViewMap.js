@@ -5,8 +5,9 @@ export default () => (
   <div className="wholeTabTop">
     <div className="topTab" />
     <div className="stubTabTop">
+      <div className="topTabArrow1" />
+      <div className="topTabArrow2" />
       <p>View Map</p>
     </div>
-    <div className="arrowTop" />
   </div>
 )

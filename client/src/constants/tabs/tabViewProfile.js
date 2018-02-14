@@ -4,9 +4,9 @@ import './style.css'
 export default () => (
   <div className="wholeTabBottom">
     <div className="stubTabBottom">
+      <div className="bottomTabArrow1" />
+      <div className="bottomTabArrow2" />
       <p>View Profile</p>
     </div>
-    <div className="bottomTab" />
-    <div className="arrowBottom" />
   </div>
 )

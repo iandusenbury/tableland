@@ -1,15 +1,15 @@
 .wholeTabTop {
     grid-area: tab;
     width: 50%;
-    height: 22px;
+    height: 28px;
     top: 0px;
     margin: auto;
     position: relative;
     overflow: hidden;
-    opacity: 0.5;
+    opacity: 0.75;
     z-index: 10;
 }
-
+/*
 .wholeTabTop:hover {
     height: 32px;
     opacity: 0.75;
@@ -26,7 +26,7 @@
 
 .wholeTabTop:hover .arrowTop {
   visibility: hidden;
-}
+} */
 
 .topTab {
   width: 50%;
@@ -38,7 +38,7 @@
 
 .stubTabTop
 {
-    height: 22px;
+    height: 28px;
     width: 50%;
     border-radius: 0px 0px 40px 40px;
     background-color: black;
@@ -52,8 +52,8 @@
   cursor: pointer;
   margin: 0;
   position: relative;
-  top: -2px;
-  visibility: hidden;
+  top: 5px;
+  visibility: visible;
 }
 
 .arrowTop
@@ -70,6 +70,34 @@
   left: 0px;
   top: 10px;
   visibility: visible;
+}
+
+.topTabArrow2
+{
+  border-color: black transparent transparent black;
+  border-style: solid;
+  border-width: 23px 23px 23px 23px;
+  height:0;
+  width:0;
+  position:absolute;
+  bottom:0px;
+  top: -22px;
+  right:-35px;
+  visibility: hidden;
+}
+
+.topTabArrow1
+{
+  border-color: black black transparent transparent;
+  border-style: solid;
+  border-width: 23px 23px 23px 23px;
+  height:0;
+  width:0;
+  position:absolute;
+  bottom:0px;
+  top: -22px;
+  left:-35px;
+  visibility: hidden;
 }
 
 .wholeTabBottom {

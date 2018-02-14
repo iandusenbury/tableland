@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 import {
   Card,
   CardMedia,
@@ -10,76 +10,81 @@ import {
   TableRow,
   TableRowColumn,
   TableBody,
-} from 'material-ui'
-import TopTab from '../../constants/tabs/tabViewMap'
-import BottomTab from '../../constants/tabs/tabViewProfile'
-import './style.css'
+  Avatar
+} from "material-ui";
+import BusinessIcon from 'material-ui/svg-icons/communication/business'
+import LanguageIcon from 'material-ui/svg-icons/action/language'
+import TopTab from "../../constants/tabs/tabViewMap"
+import "./style.css"
+import ViewStyles from "../../constants/viewStyles"
 /*
   Employees should be listed as
   [icon/photo]  [name]  [position]
 */
 
-export default (props) => (
+const hasVideo = true
+
+export default props => (
   <div className="mainDiv">
     <TopTab className="tab" />
     <div className="image">
       <Card>
         <CardMedia
-          overlay={
-            <CardTitle
-              id="org_name"
-              title="Organization name here"
-            />}
+          overlay={<CardTitle id="org_name" title="Organization name here" />}
         >
-          <img src={require('./sample.jpg')} alt="" />
+          <img src={require("./sample.jpg")} alt="" />
         </CardMedia>
       </Card>
     </div>
     <div className="text">
       <div className="name">
-        <p>
-          Organization Name
-        </p>
+        <p>Organization Name</p>
         <Divider />
       </div>
-      <div className="address">
-        <p>
-          123 company rd
-        </p>
-      </div>
-      <div className="url">
-        <p>
-          url
-        </p>
-        <Divider />
+      <div className="contact">
+        <div className="address">
+          <BusinessIcon style={ViewStyles.orgBusinessIcon} />
+          <div>
+            <p>123 company rd</p>
+            <p>Portland, OR 97006</p>
+          </div>
+        </div>
+        <div className="url">
+          <LanguageIcon style={ViewStyles.orgUrlIcon} />
+          <p style={{ marginTop: '2px' }}>url</p>
+        </div>
       </div>
       <div className="description">
-        <p>
-          Description
-        </p>
+        <Divider />
+        <p>Description</p>
+        {hasVideo &&
+          <div>
+            <video style={{marginLeft: '10px', backgroundColor: 'gray'}} />
+          </div>
+        }
         <Divider />
       </div>
       <div className="employees">
         <Table>
-          <TableHeader
-            adjustForCheckbox={false}
-            displaySelectAll={false}
-          >
+          <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
             <TableRow>
+              <TableHeaderColumn style={{width: '10px'}} />
               <TableHeaderColumn>Employee</TableHeaderColumn>
               <TableHeaderColumn>Job Title</TableHeaderColumn>
             </TableRow>
           </TableHeader>
-          <TableBody
-            displayRowCheckbox={false}
-          >
-            <TableRow>
-              <TableRowColumn>
-                [icon] Fred Henderson
+          <TableBody showRowHover={true} displayRowCheckbox={false}>
+            <TableRow className="tableRow" hoverable={true}>
+              <TableRowColumn style={{backgroundColor: 'gray', width: '9px'}}>
+                <Avatar
+                  size={32}
+                  src={require("./portrait.png")}
+                />
               </TableRowColumn>
               <TableRowColumn>
-                Engineer
+                Fred Henderson
               </TableRowColumn>
+              <TableRowColumn>Engineer</TableRowColumn>
             </TableRow>
           </TableBody>
         </Table>

@@ -2,25 +2,36 @@ class User < ApplicationRecord
   acts_as_token_authenticatable
 
   enum role: [:user, :admin, :super_admin]
-  after_initialize :set_default_role, :if => :new_record?
+  after_initialize :set_default_attributes, :if => :new_record?
 
-  def set_default_role
+  def set_default_attributes
     self.role ||= :user
+    self.visible ||= true
   end
 
   def self.from_omniauth(auth)
-    # TODO: modify to proper schema for user
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      logger.debug "User email: "
-      logger.debug user.email
-      user.password = Devise.friendly_token[0,20]
-      user.name = auth.info.name   # assuming the user model has a name
-      user.image = auth.info.image # assuming the user model has an image
-      # If you are using confirmable and the provider(s) you use validate emails,
-      # uncomment the line below to skip the confirmation emails.
-      # user.skip_confirmation!
+    @user = where(provider: auth.provider, uid: auth.uid)
+
+    return @user if @user.present?
+
+    User.transaction do
+      @user = User.create!(
+        provider: auth.provider,
+        uid: auth.uid,
+        email: auth.info.email,
+        first_name: auth.info.first_name,
+        last_name: auth.info.last_name,
+        contact_url: auth.info.urls.public_profile,
+        password: Devise.friendly_token[0,20]
+      )
+      @user.media.create!(
+        url: auth.info.image,
+        category: 'image',
+        description: 'LinkedIn profile photo'
+      )
     end
+
+    @user
   end
 
   # Include default devise modules. Others available are:
@@ -40,7 +51,9 @@ class User < ApplicationRecord
   has_many :org_edits, through: :permissions, source: :organization
   has_many :prog_edits, through: :permissions, source: :program
 
+  accepts_nested_attributes_for :media, allow_destroy: true
+
   # Validations
-  validates :first_name, :last_name, :linkedin_id, :contact_url, presence: true
-  validates :visible, inclusion: { in: [true, false] }
+  validates :first_name, :last_name, :contact_url, presence: true
+  # validates :visible, inclusion: { in: [true, false] }
 end

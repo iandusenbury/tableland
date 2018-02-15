@@ -22,7 +22,7 @@ import { orgPage } from '../../constants/viewStyles'
   [icon/photo]  [name]  [position]
 */
 
-const hasVideo = true
+const hasVideo = true // this will be passed as props
 const portraitImg = require('./portrait.png')
 const sampleImg = require('./sample.jpg')
 
@@ -39,7 +39,7 @@ export default props => (
     </div>
     <div className="text">
       <div className="name">
-        <p>Organization Name</p>
+        <h3>Organization Name</h3>
         <Divider />
       </div>
       <div className="contact">
@@ -64,7 +64,7 @@ export default props => (
         <p>Description</p>
         {hasVideo && (
           <div>
-            <video />
+            <video /> {/* placeholder, has linting error here */}
           </div>
         )}
         <Divider />

@@ -6,8 +6,8 @@
   grid-template-columns: 50% 50%;
   grid-template-rows: 0% auto;
   grid-template-areas:
-    "tab   tab "
-    "image text"
+    'tab   tab '
+    'image text'
     ;
 }
 
@@ -30,10 +30,8 @@ img {
 .name {
   height: auto;
   width: auto;
-  margin: 2%;
+  margin: 28px 23px 0px;
   font-size: 36px;
-  margin-top: 28px;
-  margin-left: 23px;
 }
 
 .contact {
@@ -42,14 +40,14 @@ img {
   grid-template-rows: 50% 50%;
   grid-template-areas:
     'address'
-    'url'
-  ;
+    'url    '
+    ;
 }
 
 .url {
   height: auto;
   width: auto;
-  margin: 2%;
+  margin: 18px 18px 0px;
   grid-area: url;
   display: inline-flex;
   vertical-align: middle;
@@ -63,7 +61,7 @@ img {
 .address {
   height: auto;
   width: auto;
-  margin: 2%;
+  margin: 18px 18px 0px;
   grid-area: address;
   display: inline-flex;
   vertical-align: middle;
@@ -76,17 +74,24 @@ img {
 .description {
   height: auto;
   width: auto;
-  margin: 2%;
-  margin-left: 23px;
+  margin: 18px 21px 0px;
+}
+
+.description p {
+  margin-left: 21px;
 }
 
 .description div {
-  margin-left: 10px;
+  margin-left: 21px;
+  margin-bottom: 18px;
 }
 
 .description div video {
   margin-left: 0px;
-  margin-bottom: 10px;
+  margin-top: 0px;
+  width: 33vw !important;
+  height: auto !important;
+  background-size: cover;
   background-color: gray;
 }
 
@@ -96,8 +101,8 @@ img {
   margin: 2%;
 }
 
-p {
-  margin-left: 2%;
+h3 {
+  margin-left: 18px;
   margin-right: 2%;
   margin-top: 2%;
   margin-bottom: 2%;

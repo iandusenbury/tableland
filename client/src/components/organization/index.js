@@ -16,7 +16,7 @@ import BusinessIcon from 'material-ui/svg-icons/communication/business'
 import LanguageIcon from 'material-ui/svg-icons/action/language'
 import TopTab from '../../constants/tabs/tabViewMap'
 import './style.css'
-import ViewStyles from '../../constants/viewStyles'
+import { orgPage } from '../../constants/viewStyles'
 /*
   Employees should be listed as
   [icon/photo]  [name]  [position]
@@ -44,16 +44,18 @@ export default props => (
       </div>
       <div className="contact">
         <div className="address">
-          <BusinessIcon style={ViewStyles.orgBusinessIcon} />
+          <BusinessIcon style={orgPage.businessIcon} />
           <div>
             <p>123 company rd</p>
             <p>Portland, OR 97006</p>
           </div>
         </div>
         <div className="url">
-          <LanguageIcon style={ViewStyles.orgUrlIcon} />
-          <div style={ViewStyles.orgUrlp}>
-            <p>url</p>
+          <div>
+            <LanguageIcon style={orgPage.urlIcon} />
+          </div>
+          <div>
+            <p>organizationurl.org/about</p>
           </div>
         </div>
       </div>
@@ -61,8 +63,8 @@ export default props => (
         <Divider />
         <p>Description</p>
         {hasVideo && (
-          <div style={ViewStyles.orgVideoDiv}>
-            <video style={ViewStyles.orgVideoTag} />
+          <div>
+            <video />
           </div>
         )}
         <Divider />
@@ -71,14 +73,14 @@ export default props => (
         <Table>
           <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
             <TableRow>
-              <TableHeaderColumn style={ViewStyles.orgTableHeaderCol} />
+              <TableHeaderColumn style={orgPage.tableHeaderCol} />
               <TableHeaderColumn>Employee</TableHeaderColumn>
               <TableHeaderColumn>Job Title</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody showRowHover displayRowCheckbox={false}>
             <TableRow className="tableRow" hoverable>
-              <TableRowColumn style={ViewStyles.orgTableRowColAvatar}>
+              <TableRowColumn style={orgPage.tableRowColAvatar}>
                 <Avatar size={32} src={portraitImg} />
               </TableRowColumn>
               <TableRowColumn>Fred Henderson</TableRowColumn>

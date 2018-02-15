@@ -1,30 +1,25 @@
-const style = {
-  orgBusinessIcon: {
+export const orgPage = {
+  businessIcon: {
     marginRight: '18px',
     marginLeft: '22px'
   },
-  orgUrlIcon: {
-    marginRight: '20px',
+  urlIcon: {
+    marginRight: '18px',
     marginLeft: '22px'
   },
-  orgUrlp: {
-    marginTop: '2px'
-  },
-  orgVideoDiv: {
-    marginLeft: '10px',
-    backgroundColor: 'blue'
-  },
-  orgVideoTag: {
-    marginLeft: '0px',
-    backgroundColor: 'gray',
-    marginBottom: '10px'
-  },
-  orgTableHeaderCol: {
+  tableHeaderCol: {
     width: '10px'
   },
-  orgTableRowColAvatar: {
+  tableRowColAvatar: {
     width: '9px'
   }
 }
 
-export default style
+export const profPage = {}
+
+export default {
+  styles: {
+    orgPage,
+    profPage
+  }
+}

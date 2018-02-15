@@ -23,7 +23,8 @@ img {
 
 .text {
   grid-area: text;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .name {
@@ -54,6 +55,11 @@ img {
   vertical-align: middle;
 }
 
+.url p {
+  margin: 0px;
+  margin-top: 2px;
+}
+
 .address {
   height: auto;
   width: auto;
@@ -63,11 +69,25 @@ img {
   vertical-align: middle;
 }
 
+.address p {
+  margin: 0px;
+}
+
 .description {
   height: auto;
   width: auto;
   margin: 2%;
   margin-left: 23px;
+}
+
+.description div {
+  margin-left: 10px;
+}
+
+.description div video {
+  margin-left: 0px;
+  margin-bottom: 10px;
+  background-color: gray;
 }
 
 .employees {

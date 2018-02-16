@@ -2,6 +2,7 @@ import ConnectedAdminPage from '../containers/admin'
 import ConnectedHome from '../components/home'
 import ConnectedAbout from '../components/about'
 import ConnectedSearchResults from '../components/searchResults'
+import OrgPage from '../components/organization'
 
 export const routePathToComponent = [
   {
@@ -23,6 +24,11 @@ export const routePathToComponent = [
     name: 'SearchResults',
     path: '/results',
     component: ConnectedSearchResults
+  },
+  {
+    name: 'OrganizationPage',
+    path: '/organization',
+    component: OrgPage
   }
 ]
 

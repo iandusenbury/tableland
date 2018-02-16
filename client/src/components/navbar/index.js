@@ -40,7 +40,6 @@ import { style } from '../../constants/styles/styles.js'
    "Sign Out"
    "About"
 */
-//export default () => (
 const navbar = () => (
   <header>
     <Toolbar style={style.toolbar}>

@@ -8,7 +8,6 @@ import App from './containers/app'
 
 // import material-ui theme
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import './constants/styles/styles.js'
 
 const target = document.querySelector('#root')
 

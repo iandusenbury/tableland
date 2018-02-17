@@ -5,11 +5,13 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+    render json: @users, include: 'media', status: :ok
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    render json: @user, include: 'media,experiences.program.media,experiences.organization', status: :ok
   end
 
   # POST /users
@@ -18,7 +20,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      render :show, status: :created, location: @user
+      render json: @user, include: 'media', status: :created
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -28,7 +30,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     if @user.update(user_params)
-      render :show, status: :ok, location: @user
+      render json: @user, include: 'media', status: :ok
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -48,6 +50,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :linkedin_id, :contact_url, :visible, :role)
+      params.require(:user).permit(:first_name, :last_name, :description, :linkedin_id, :contact_url)
     end
 end

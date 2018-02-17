@@ -9,8 +9,8 @@ import {
 } from 'material-ui'
 import LanguageIcon from 'material-ui/svg-icons/action/language'
 import TopTab from '../../constants/tabs/tabViewMap'
-import './style.css'
 import { orgPage } from '../../constants/viewStyles'
+import './style.css'
 /*
   Employees should be listed as
   [icon/photo]  [name]  [position]
@@ -62,24 +62,22 @@ export default props => (
       <div className="employees">
         <List>
           <ListItem>
-            <h4>[Organization name] * [Job Title]</h4>
+            <h4>[Organization name] - [Job Title]</h4>
             <p>[start date] - [end date]</p>
             <p>[Award(s)]</p>
-            <List>
-              <ListItem>
-                <h4>[Program Name] * [Job Title]</h4>
-                <p>[start date] - [end date]</p>
-                <p>[Award(s)]</p>
-              </ListItem>
-            </List>
+            <ListItem>
+              <h4>[Program] - [Job Title]</h4>
+              <p>[Start Date] - [End Date]</p>
+              <p>[Award(s)]</p>
+            </ListItem>
+            <ListItem>
+              <h4>[Program] - [Job Title]</h4>
+              <p>[Start Date] - [End Date]</p>
+              <p>[Award(s)]</p>
+            </ListItem>
           </ListItem>
           <ListItem>
-            <h4>[Organization name] * [Job Title]</h4>
-            <p>[start date] - [end date]</p>
-            <p>[Award(s)]</p>
-          </ListItem>
-          <ListItem>
-            <h4>[Organization name] * [Job Title]</h4>
+            <h4>[Organization name] - [Job Title]</h4>
             <p>[start date] - [end date]</p>
             <p>[Award(s)]</p>
           </ListItem>

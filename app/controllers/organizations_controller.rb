@@ -5,11 +5,13 @@ class OrganizationsController < ApplicationController
   # GET /organizations.json
   def index
     @organizations = Organization.all
+    render json: @organizations, include: 'media', status: :ok
   end
 
   # GET /organizations/1
   # GET /organizations/1.json
   def show
+    render json: @organization, status: :ok
   end
 
   # POST /organizations
@@ -18,7 +20,7 @@ class OrganizationsController < ApplicationController
     @organization = Organization.new(organization_params)
 
     if @organization.save
-      render :show, status: :created, location: @organization
+      render json: @organization, status: :created
     else
       render json: @organization.errors, status: :unprocessable_entity
     end
@@ -28,7 +30,7 @@ class OrganizationsController < ApplicationController
   # PATCH/PUT /organizations/1.json
   def update
     if @organization.update(organization_params)
-      render :show, status: :ok, location: @organization
+      render json: @organization, status: :ok
     else
       render json: @organization.errors, status: :unprocessable_entity
     end

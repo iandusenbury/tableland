@@ -26,7 +26,7 @@ class UserTest < ActiveSupport::TestCase
   test "should be allowed to associate with just an organization through one experience" do
     organization = organizations(:nike)
     if organization.nil? # if the fixtures are modified, this is a fail safe
-      organization = Organization.create!(name:"Nike", visible:true, address_line_1:"392", address_line_2:"SE Road Ave.", city:"Portland", country:"USA")
+      organization = Organization.create!(name:"Nike", address_line_1:"392", address_line_2:"SE Road Ave.", city:"Portland", country:"USA")
     end
 
     assert_difference 'Experience.count', 1, "Association between user and organization through experiences failed" do
@@ -37,7 +37,7 @@ class UserTest < ActiveSupport::TestCase
   test "should be allowed to associate with just a program through one experience" do
     program = programs(:science)
     if program.nil? # if the fixtures are modified, this is a fail safe
-      program = Program.create!(name:"Science Lab", visible:true)
+      program = Program.create!(name:"Science Lab")
     end
 
     assert_difference 'Experience.count', 1, "Association between user and program through experiences failed" do
@@ -48,12 +48,12 @@ class UserTest < ActiveSupport::TestCase
   test "should not become associated with both an organization and program through a single experience" do
     organization = organizations(:nike)
     if organization.nil? # if the fixtures are modified, this is a fail safe
-      organization = Organization.create!(name:"Nike", visible:true, address_line_1:"392", address_line_2:"SE Road Ave.", city:"Portland", country:"USA")
+      organization = Organization.create!(name:"Nike", address_line_1:"392", address_line_2:"SE Road Ave.", city:"Portland", country:"USA")
     end
 
     program = programs(:science)
     if program.nil? # if the fixtures are modified, this is a fail safe
-      program = Program.create!(name:"Science Lab", visible:true)
+      program = Program.create!(name:"Science Lab")
     end
 
     assert_raises ActiveRecord::RecordInvalid do
@@ -63,7 +63,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "upon destroy, should have its associated experiences destroyed" do
     if @user.experiences.empty? # if the fixtures are modified, this is a fail safe
-      program = Program.create!(name:"Science Lab", visible:true)
+      program = Program.create!(name:"Science Lab")
       @user.experiences.create!(program_id:program.id, start_date:Time.now, title:"Scientist")
     end
     assert_not @user.experiences.empty?, "The user does not have any experiences before the destroy"
@@ -79,7 +79,7 @@ class UserTest < ActiveSupport::TestCase
   test "should be allowed to associate with just an organization through one permission" do
     organization = organizations(:nike)
     if organization.nil? # if the fixtures are modified, this is a fail safe
-      organization = Organization.create!(name:"Nike", visible:true, address_line_1:"392", address_line_2:"SE Road Ave.", city:"Portland", country:"USA")
+      organization = Organization.create!(name:"Nike", address_line_1:"392", address_line_2:"SE Road Ave.", city:"Portland", country:"USA")
     end
 
     assert_difference 'Permission.count', 1, "Association between user and organization through permissions failed" do
@@ -90,7 +90,7 @@ class UserTest < ActiveSupport::TestCase
   test "should be allowed to associate with just a program through one permission" do
     program = programs(:science)
     if program.nil? # if the fixtures are modified, this is a fail safe
-      program = Program.create!(name:"Science Lab", visible:true)
+      program = Program.create!(name:"Science Lab")
     end
 
     assert_difference 'Permission.count', 1, "Association between user and organization through permissions failed" do
@@ -101,12 +101,12 @@ class UserTest < ActiveSupport::TestCase
   test "should not become associated with both an organization and program through a single permission" do
     organization = organizations(:nike)
     if organization.nil? # if the fixtures are modified, this is a fail safe
-      organization = Organization.create!(name:"Nike", visible:true, address_line_1:"392", address_line_2:"SE Road Ave.", city:"Portland", country:"USA")
+      organization = Organization.create!(name:"Nike", address_line_1:"392", address_line_2:"SE Road Ave.", city:"Portland", country:"USA")
     end
 
     program = programs(:science)
     if program.nil? # if the fixtures are modified, this is a fail safe
-      program = Program.create!(name:"Science Lab", visible:true)
+      program = Program.create!(name:"Science Lab")
     end
 
     assert_raises ActiveRecord::RecordInvalid do

@@ -23,10 +23,10 @@ class ProgramTest < ActiveSupport::TestCase
     user = users(:natsumi)
     organization = organizations(:nike)
     if user.nil? # if the fixtures are modified, this is a fail safe
-      user = User.create!(first_name:"Natsumi", last_name:"Hirata", linkedin_id:123, contact_url:"example.example", visible:true, role:"admin")
+      user = User.create!(first_name:"Natsumi", last_name:"Hirata", linkedin_id:123, contact_url:"example.example")
     end
     if organization.nil? # same as above
-      organization = Organization.create!(name:"Nike", visible:true, address_line_1:"392", address_line_2:"SE Road Ave.", city:"Portland", country:"USA")
+      organization = Organization.create!(name:"Nike", address_line_1:"392", address_line_2:"SE Road Ave.", city:"Portland", country:"USA")
     end
 
     assert_raises ActiveRecord::RecordInvalid do
@@ -41,7 +41,7 @@ class ProgramTest < ActiveSupport::TestCase
     if @program.experiences.empty? # if the fixtures are modified, this is a fail safe
       user = users(:natsumi)
       if user.nil?
-        user = User.create!(first_name:"Natsumi", last_name:"Hirata", linkedin_id:123, contact_url:"example.example", visible:true, role:"admin")
+        user = User.create!(first_name:"Natsumi", last_name:"Hirata", linkedin_id:123, contact_url:"example.example")
       end
       user.experiences.create!(program_id:@program.id, start_date:Time.now, title:"Participant")
     end
@@ -57,7 +57,7 @@ class ProgramTest < ActiveSupport::TestCase
 
   test "upon destroy, should have its associated sponsors destroyed" do
     if @program.sponsors.empty? # if the fixtures are modified, this is a fail safe
-      @program.organizations.create!(name:"Nike", visible:true, address_line_1:"392", address_line_2:"SE Road Ave.", city:"Portland", country:"USA")
+      @program.organizations.create!(name:"Nike", address_line_1:"392", address_line_2:"SE Road Ave.", city:"Portland", country:"USA")
     end
     assert_not @program.sponsors.empty?, "The program is not associated with any organizations before the destroy"
     

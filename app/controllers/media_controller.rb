@@ -5,11 +5,13 @@ class MediaController < ApplicationController
   # GET /media.json
   def index
     @media = Medium.all
+    render json: @media, status: :ok
   end
 
   # GET /media/1
   # GET /media/1.json
   def show
+    render json: @medium, status: :ok
   end
 
   # POST /media
@@ -18,7 +20,7 @@ class MediaController < ApplicationController
     @medium = Medium.new(medium_params)
 
     if @medium.save
-      render :show, status: :created, location: @medium
+      render json: @medium, status: :created
     else
       render json: @medium.errors, status: :unprocessable_entity
     end
@@ -28,7 +30,7 @@ class MediaController < ApplicationController
   # PATCH/PUT /media/1.json
   def update
     if @medium.update(medium_params)
-      render :show, status: :ok, location: @medium
+      render json: @medium, status: :ok
     else
       render json: @medium.errors, status: :unprocessable_entity
     end

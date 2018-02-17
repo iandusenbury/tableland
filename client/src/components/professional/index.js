@@ -11,6 +11,8 @@ import LanguageIcon from 'material-ui/svg-icons/action/language'
 import TopTab from '../../constants/tabs/tabViewMap'
 import { orgPage } from '../../constants/viewStyles'
 import './style.css'
+import Group from 'material-ui/svg-icons/social/group'
+import Domain from 'material-ui/svg-icons/social/domain'
 /*
   Employees should be listed as
   [icon/photo]  [name]  [position]
@@ -61,22 +63,32 @@ export default props => (
       </div>
       <div className="employees">
         <List>
-          <ListItem>
+          <ListItem leftIcon={<Domain />}>
             <h4>[Organization name] - [Job Title]</h4>
             <p>[start date] - [end date]</p>
             <p>[Award(s)]</p>
-            <ListItem>
+            <ListItem leftIcon={<Group />}>
               <h4>[Program] - [Job Title]</h4>
               <p>[Start Date] - [End Date]</p>
               <p>[Award(s)]</p>
             </ListItem>
-            <ListItem>
+            <ListItem leftIcon={<Group />}>
               <h4>[Program] - [Job Title]</h4>
               <p>[Start Date] - [End Date]</p>
               <p>[Award(s)]</p>
             </ListItem>
           </ListItem>
-          <ListItem>
+          <ListItem leftIcon={<Domain />}>
+            <h4>[Organization name] - [Job Title]</h4>
+            <p>[start date] - [end date]</p>
+            <p>[Award(s)]</p>
+          </ListItem>
+          <ListItem leftIcon={<Domain />}>
+            <h4>[Organization name] - [Job Title]</h4>
+            <p>[start date] - [end date]</p>
+            <p>[Award(s)]</p>
+          </ListItem>
+          <ListItem leftIcon={<Domain />}>
             <h4>[Organization name] - [Job Title]</h4>
             <p>[start date] - [end date]</p>
             <p>[Award(s)]</p>

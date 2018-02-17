@@ -5,11 +5,13 @@ class ProgramsController < ApplicationController
   # GET /programs.json
   def index
     @programs = Program.all
+    render json: @programs, include: 'media', status: :ok
   end
 
   # GET /programs/1
   # GET /programs/1.json
   def show
+    render json: @program, status: :ok
   end
 
   # POST /programs
@@ -18,7 +20,7 @@ class ProgramsController < ApplicationController
     @program = Program.new(program_params)
 
     if @program.save
-      render :show, status: :created, location: @program
+      render json: @program, status: :created
     else
       render json: @program.errors, status: :unprocessable_entity
     end
@@ -28,7 +30,7 @@ class ProgramsController < ApplicationController
   # PATCH/PUT /programs/1.json
   def update
     if @program.update(program_params)
-      render :show, status: :ok, location: @program
+      render json: @program, status: :ok
     else
       render json: @program.errors, status: :unprocessable_entity
     end

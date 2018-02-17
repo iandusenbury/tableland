@@ -1,0 +1,152 @@
+.mainDiv {
+    width: 100%;
+    height: auto;
+    overflow-y: scroll;
+}
+
+.header {
+    width: 100%;
+    height: 16vh;
+    margin-top: .5%;
+    background-image: url("stemBackgroundImage.png");
+
+}
+
+.headerAvatar {
+    margin-left: 47%;
+}
+
+
+.mainGrid {
+    margin-top: 1%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-row-gap: 5%;
+    grid-template-areas: "personal" "media" "experience";
+}
+
+.personal {
+    height: 35vh;
+    margin-bottom: .75%;
+}
+
+.media {
+    height: 35vh;
+    margin-bottom: .75%;
+}
+
+
+.experience {
+    height: auto;
+    margin-bottom: .75%;
+}
+
+
+.sectionGrid {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-column-gap: 2%;
+    margin-right: 2%;
+}
+
+.sectionGrid > div:nth-child(even){
+    height: 35vh;
+}
+
+.sectionGrid > div:nth-child(odd){
+    height: 35vh;
+    border-right: 2px solid lightblue;
+}
+
+.grid {
+    margin-top: 1%;
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+
+
+.grid > div:nth-child(odd){
+    background: transparent;
+    height: 35vh;
+}
+
+.grid > div:nth-child(even){
+    background: transparent;
+}
+
+.fieldsGrid {
+    display: grid;
+    height: 35vh;
+    grid-template-columns: 1fr 1fr;
+}
+
+.fieldsGrid > div {
+    background: transparent;
+}
+
+
+p {
+    margin-top: 5%;
+    text-align: center;
+    font-size: xx-large;
+    font-family: Verdana;
+}
+
+.experiencesFields{
+    height: auto;
+}
+
+
+.mediaGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.mediaGrid > div {
+    background: transparent;
+    height: 35vh;
+}
+
+
+.video {
+    height:22vh;
+    width: auto;
+    display: inline-block;
+    border: solid 1px grey;
+    margin: 3%;
+}
+
+
+.image {
+    width: 300px;
+    height: 22vh;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+
+.avatar {
+    height: 150px;
+    width: 150px;
+    display: inline-block;
+    margin-left: 15%;
+    margin-top: 3%;
+}
+
+.changeButton {
+    height: auto;
+    width: auto;
+    display: inline-block;
+    margin-left: 4%;
+}
+
+.addVideo {
+    height: 40px;
+    width: 150px;
+    display: inline-block;
+    margin-left: 2%;
+}
+
+.generic {
+    height: auto;
+    width: auto;
+}

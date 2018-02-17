@@ -1,0 +1,25 @@
+.outerDiv {
+    display: grid;
+    height: auto;
+    grid-template-columns: .3333fr .3333fr .3333fr;
+}
+
+.outerDiv > div {
+    background: transparent;
+}
+
+.boxGrid {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-areas: "left" "right";
+    grid-column-gap: 2%;
+}
+
+.left {
+    height: auto;
+    border-right: 2px solid lightblue;
+}
+
+.right {
+    height: auto;
+}

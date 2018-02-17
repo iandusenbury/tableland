@@ -5,11 +5,13 @@ class ExperiencesController < ApplicationController
   # GET /experiences.json
   def index
     @experiences = Experience.all
+    render json: @experiences, status: :ok
   end
 
   # GET /experiences/1
   # GET /experiences/1.json
   def show
+    render json: @experience, status: :ok
   end
 
   # POST /experiences
@@ -18,7 +20,7 @@ class ExperiencesController < ApplicationController
     @experience = Experience.new(experience_params)
 
     if @experience.save
-      render :show, status: :created, location: @experience
+      render json: @experience, status: :created
     else
       render json: @experience.errors, status: :unprocessable_entity
     end
@@ -28,7 +30,7 @@ class ExperiencesController < ApplicationController
   # PATCH/PUT /experiences/1.json
   def update
     if @experience.update(experience_params)
-      render :show, status: :ok, location: @experience
+      render json: @experience, status: :ok
     else
       render json: @experience.errors, status: :unprocessable_entity
     end

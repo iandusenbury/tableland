@@ -26,7 +26,7 @@ def create_organizations(num_orgs)
                         description:    Faker::Lorem.paragraph,
                         url:            Faker::Internet.url,
                         visible:        Faker::Boolean.boolean(0.8),
-                        category:       Faker::Lorem.word,
+                        category:       ["institution", "company", "organization"].sample,
                         address_line_1: Faker::Address.street_address,
                         address_line_2: Faker::Address.secondary_address,
                         city:           Faker::Address.city,
@@ -48,27 +48,52 @@ def create_programs(num_programs)
   end
 end
 
-def create_experiences() 
+def create_experiences()
+  org_recs_per_user =  { :MIN => 1, :MAX => 5 }
+  prog_recs_per_user = { :MIN => 0, :MAX => 2 }
+
   for i in 1..NUM_USERS do
-    # randomly create an experience record for either program or organization
-    # 1) 
-    if Faker::Boolean.boolean
-      Program.create( 
-                     user_id:         i,
-                     organization_id: Faker::Number.between(1, NUM_ORGS),
-                     start_date:      Faker::,
-                     end_date:        Faker::,
-                     title:           Faker::,
-                     award:           Faker::,
-      )
-    else
-      Program.create( 
-                     user_id:         i,
-                     program_id:      Faker::,
-                     start_date:      Faker::,
-                     end_date:        Faker::,
-                     title:           Faker::,
-                     award:           Faker::,
+    # randomly create an 'organization' experience record for each user
+    min_recs = org_recs_per_user[:MIN]
+    max_recs = Faker::Number.between(org_recs_per_user[:MIN], org_recs_per_user[:MAX])
+    
+    for j in 0..(max_recs - min_recs) do
+      if j == 0
+        # this is the most recent experience
+        Experience.create( 
+                          user_id:         i,
+                          organization_id: Faker::Number.between(1, NUM_ORGS),
+                          start_date:      1.year.ago,
+                          end_date:        nil,
+                          title:           Faker::Company.profession,
+                          award:           Faker::Educator.course,
+                          primary:         true
+                         )
+      else
+        Experience.create( 
+                          user_id:         i,
+                          organization_id: Faker::Number.between(1, NUM_ORGS),
+                          start_date:      (j * 2).years.ago,
+                          end_date:        j.years.ago,
+                          title:           Faker::Company.profession,
+                          award:           Faker::Educator.course,
+                          primary:         false
+                         )
+      end
+    end
+
+    # randomly create a 'program' experience record for each user
+    min_recs = prog_recs_per_user[:MIN]
+    max_recs = Faker::Number.between(prog_recs_per_user[:MIN], prog_recs_per_user[:MAX])
+    
+    for j in 0..(max_recs - min_recs) do
+      Experience.create( 
+                        user_id:         i,
+                        program_id:      Faker::Number.between(1, NUM_PROGS),
+                        start_date:      (j*2).years.ago,
+                        end_date:        j.years.ago,
+                        title:           "Member",
+                        primary:         false
       )
     end
   end
@@ -77,3 +102,4 @@ end
 create_users(NUM_USERS)
 create_organizations(NUM_ORGS)
 create_programs(NUM_PROGS)
+create_experiences()

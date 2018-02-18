@@ -25,7 +25,7 @@ module Api::V1
       object.programs.where(id: primary_program).pluck(:name).first if primary_program.present?
     end
     def link
-      view_context.api_v1_user_url(object)
+      view_context.v1_user_url(object)
     end
 
     # Available associations

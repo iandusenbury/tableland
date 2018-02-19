@@ -184,7 +184,7 @@ def create_media()
       mediable_type:  "Program",
       category:       "video",
       description:    Faker::Lorem.sentence,
-      url:            "https://www.youtube.com/watch?v=ksBE53CIT8E"
+      url:            "https://www.youtube.com/watch?v=VPVJzi7Ta9w"
     )
   end
 end

@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   resources :programs
   resources :organizations
   resources :users
-  resources :sessions, only: [:create, :destroy]
+
+  get 'user', to: 'users#current'
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }, skip: [:sessions, :registrations, :passwords]
 

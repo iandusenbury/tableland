@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom'
 import Admin from '../../containers/admin'
 import About from '../about'
 import Home from '../home'
-import Navbar from '../navbar'
+import Navbar from '../../containers/navbar'
 import SearchResults from '../searchResults'
 
 const App = () => (

@@ -25,6 +25,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'simple_token_authentication', '~> 1.0' # see semver.org
 gem 'omniauth-linkedin-oauth2'
+gem 'rack-cors', :require => 'rack/cors'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -169,6 +169,24 @@ def create_media()
       url:            "https://www.youtube.com/watch?v=ksBE53CIT8E"
     )
   end
+
+  for i in 1..NUM_PROGS do
+    Medium.create(
+      mediable_id:    i,
+      mediable_type:  "Program",
+      category:       "image",
+      description:    Faker::Lorem.sentence,
+      url:            Faker::LoremPixel.image
+    )
+
+    Medium.create(
+      mediable_id:    i,
+      mediable_type:  "Program",
+      category:       "video",
+      description:    Faker::Lorem.sentence,
+      url:            "https://www.youtube.com/watch?v=ksBE53CIT8E"
+    )
+  end
 end
 
 

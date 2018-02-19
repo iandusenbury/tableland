@@ -6,8 +6,8 @@ NUM_ORGS  = 50
 NUM_PROGS = 20
 
 
-def create_users(num_users)
-  for i in 1..num_users do
+def create_users()
+  for i in 1..NUM_USERS do
     User.create( 
       first_name:   Faker::Name.first_name, 
       last_name:    Faker::Name.last_name,
@@ -21,8 +21,8 @@ def create_users(num_users)
 end
 
 
-def create_organizations(num_orgs)
-  for i in 1..num_orgs do
+def create_organizations()
+  for i in 1..NUM_ORGS do
     Organization.create( 
       name:           Faker::Company.name, 
       description:    Faker::Lorem.paragraph,
@@ -40,8 +40,8 @@ def create_organizations(num_orgs)
 end
 
 
-def create_programs(num_programs)
-  for i in 1..num_programs do
+def create_programs()
+  for i in 1..NUM_PROGS do
     Program.create( 
       name:        "#{Faker::Lorem.word.capitalize} Club",
       description: Faker::Lorem.paragraph,
@@ -172,9 +172,9 @@ def create_media()
 end
 
 
-create_users(NUM_USERS)
-create_organizations(NUM_ORGS)
-create_programs(NUM_PROGS)
+create_users()
+create_organizations()
+create_programs()
 create_experiences()
 create_sponsors()
 create_media()

@@ -4,7 +4,7 @@ import {Paper,
         IconButton
 }from 'material-ui'
 import {StyledTextField} from "../../widgets/StyledTextField";
-import './styles.css'
+import './edit.css'
 import {style} from "../../widgets/styles";
 import Person from 'material-ui/svg-icons/social/person'
 

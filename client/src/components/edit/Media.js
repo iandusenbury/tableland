@@ -5,7 +5,7 @@ import {
     IconButton,
     Avatar
 }from 'material-ui'
-import './styles.css'
+import './edit.css'
 import {style} from "../../widgets/styles";
 import Photo from 'material-ui/svg-icons/image/add-a-photo'
 import Person from 'material-ui/svg-icons/social/person'

@@ -3,6 +3,7 @@ import {
   Card,
   CardMedia,
   Divider,
+  Paper,
   List,
   ListItem,
   Avatar
@@ -13,28 +14,30 @@ import { orgPage } from '../../constants/viewStyles'
 import './style.css'
 import Group from 'material-ui/svg-icons/social/group'
 import Domain from 'material-ui/svg-icons/social/domain'
-/*
-  Employees should be listed as
-  [icon/photo]  [name]  [position]
-*/
 
 const hasVideo = true // this will be passed as props
 const portraitImg = require('./portrait.png')
 const sampleImg = require('./sample.jpg')
 
+// working job title
+// <h1 style={{ backgroundColor: 'rgba(129,149,177,0.75)', position: 'relative', top: '68vh', bottom: '0', width: '65%', margin: 'auto' }}>[Job Title] at [Organization]</h1>
+
 export default props => (
   <div className="mainDiv">
     <TopTab className="tab" />
     <div className="image">
-    <Card>
-      <CardMedia
-        overlay={
-          <div style={{height: '92vh', width: '100%'}}>
-            <Avatar style={{position: 'absolute', top: '0', left: '0', right: '0', bottom: '0', margin: 'auto'}} size={200} src={portraitImg} />
-          </div>}>
-        <img src={sampleImg} alt="" />
-      </CardMedia>
-    </Card>
+      <Card>
+        <CardMedia
+          overlay={
+            <div style={{height: '92vh', width: '100%'}}>
+              <Avatar style={{position: 'absolute', top: '0', left: '0', right: '0', bottom: '0', margin: 'auto'}} size={200} src={portraitImg} />
+              <Paper style={{ backgroundColor: 'rgba(129,149,177,0.75)', position: 'relative', top: '65vh', bottom: '0', width: '65%', margin: 'auto' }} zDepth={5}>
+                <h1 style={{color: 'black'}}>[Job Title] at [Organization]</h1>
+              </Paper>
+            </div>}>
+          <img src={sampleImg} alt="" />
+        </CardMedia>
+      </Card>
     </div>
     <div className="text">
       <div className="name">

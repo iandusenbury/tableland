@@ -7,7 +7,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def linkedin
     # You need to implement the method below in your model (e.g. app/models/user.rb)
-    @user = User.from_omniauth(auth_hash).first
+    @user = User.from_omniauth(auth_hash)
 
     render json: @user
 

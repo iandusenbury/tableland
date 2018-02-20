@@ -10,7 +10,7 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
-    @user = where(provider: auth.provider, uid: auth.uid)
+    @user = where(provider: auth.provider, uid: auth.uid).first
 
     return @user if @user.present?
 

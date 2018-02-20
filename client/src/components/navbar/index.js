@@ -10,16 +10,24 @@ import {
   Divider,
   TextField,
   Toolbar,
-  ToolbarGroup
+  ToolbarGroup,
+  Chip
 } from 'material-ui'
-
 import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/menu'
+import muiThemeable from 'material-ui/styles/muiThemeable'
+import { style } from '../../constants/styles/styles.js'
+
+/*
+ * TODO:
+ *    Find out how to stretch across whole screen
+*/
+
 // figure out how to get a MESA icon
 // import MESAIcon from 'material-ui/svg-icons/custom/MESAIcon.svg'
 
 // layout should be
 /*
-   M(icon/link) [Search Bar] [Submit Button] [Hamburger Menu]
+   MESA(icon/link) [Search Bar] [Submit Button] [Hamburger Menu]
 
    [Hamburger Menu] (if not signed in)
    "Sign In"
@@ -32,18 +40,20 @@ import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/menu'
    "Sign Out"
    "About"
 */
-export default () => (
+const navbar = () => (
   <header>
-    <Toolbar>
+    <Toolbar style={style.toolbar}>
       <ToolbarGroup>
         <FlatButton containerElement={<Link to="/" />} label="MESA" />
       </ToolbarGroup>
       <ToolbarGroup>
-        <TextField hintText="Search" />
-        <RaisedButton label="Search" />
-        <IconMenu
-          iconButtonElement={
-            <IconButton touch>
+        <Chip
+          style={ style.chip } >
+          <TextField hintText="Search" />
+        </Chip>
+          <RaisedButton label="Search" />
+        <IconMenu iconButtonElement={
+            <IconButton touch={true}>
               <NavigationExpandMoreIcon />
             </IconButton>
           }>
@@ -84,3 +94,5 @@ export default () => (
     </Toolbar>
   </header>
 )
+
+export default muiThemeable()(navbar)

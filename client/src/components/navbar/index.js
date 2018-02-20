@@ -17,7 +17,7 @@ import PropTypes from 'prop-types'
 import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/menu'
 
 const Navbar = props => {
-  const { authorizeUser } = props
+  const { authorizeUser, fetchUser } = props
 
   return (
     <header>
@@ -38,6 +38,11 @@ const Navbar = props => {
               onClick={() => authorizeUser()}
               value="sign_in"
               primaryText="Sign In"
+            />
+            <MenuItem
+              onClick={() => fetchUser()}
+              value="fetch_user"
+              primaryText="Fetch User"
             />
             <Divider />
             <MenuItem
@@ -74,7 +79,8 @@ const Navbar = props => {
 }
 
 Navbar.propTypes = {
-  authorizeUser: PropTypes.func.isRequired
+  authorizeUser: PropTypes.func.isRequired,
+  fetchUser: PropTypes.func.isRequired
 }
 
 export default Navbar

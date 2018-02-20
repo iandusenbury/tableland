@@ -51,9 +51,6 @@ class User < ApplicationRecord
   has_many :org_edits, through: :permissions, source: :organization
   has_many :prog_edits, through: :permissions, source: :program
 
-  accepts_nested_attributes_for :media, allow_destroy: true
-
   # Validations
   validates :first_name, :last_name, :contact_url, presence: true
-  # validates :visible, inclusion: { in: [true, false] }
 end

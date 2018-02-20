@@ -31,7 +31,7 @@ export default props => (
           overlay={
             <div style={{height: '92vh', width: '100%'}}>
               <Avatar style={{position: 'absolute', top: '0', left: '0', right: '0', bottom: '0', margin: 'auto'}} size={200} src={portraitImg} />
-              <Paper style={{ backgroundColor: 'rgba(129,149,177,0.75)', position: 'relative', top: '65vh', bottom: '0', width: '65%', margin: 'auto' }} zDepth={5}>
+              <Paper style={{ backgroundColor: 'rgba(231,224,215,0.75)', position: 'relative', top: '65vh', bottom: '0', width: '65%', margin: 'auto' }} zDepth={5}>
                 <h1 style={{color: 'black'}}>[Job Title] at [Organization]</h1>
               </Paper>
             </div>}>

@@ -1,0 +1,199 @@
+.wholeTabTop {
+    grid-area: tab;
+    width: 50%;
+    height: 26px;
+    top: 0px;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+    opacity: 0.75;
+    z-index: 10;
+}
+/*
+.wholeTabTop:hover {
+    height: 32px;
+    opacity: 0.75;
+}
+
+.wholeTabTop:hover > .topTab {
+  visibility: visible;
+  height: 10px;
+}
+
+.wholeTabTop:hover > .stubTabTop > p {
+  visibility: visible;
+}
+
+.wholeTabTop:hover .arrowTop {
+  visibility: hidden;
+} */
+
+.topTab {
+  width: 50%;
+  height: 0px;
+  background-color: black;
+  visibility: hidden;
+  margin: auto;
+}
+
+.stubTabTop
+{
+    height: 26px;
+    width: 50%;
+    border-radius: 0px 0px 40px 40px;
+    background-color: black;
+    position: relative;
+    margin: auto;
+}
+
+.stubTabTop > p {
+  text-align: center;
+  color: white;
+  cursor: pointer;
+  margin: 0;
+  position: relative;
+  top: 4px;
+  visibility: visible;
+}
+
+.arrowTop
+{
+  border-color: white transparent transparent transparent;
+  margin: auto;
+  border-style: solid;
+  border-width: 8px;
+  height:0;
+  width:0;
+  position:absolute;
+  bottom:0px;
+  right: 0px;
+  left: 0px;
+  top: 10px;
+  visibility: visible;
+}
+
+.topTabArrow2
+{
+  border-color: black transparent transparent transparent;
+  border-style: solid;
+  border-width: 30px 30px 30px 30px;
+  height:0;
+  width:0;
+  position:absolute;
+  bottom:0px;
+  top: -9px;
+  right:-19px;
+}
+
+.topTabArrow1
+{
+  border-color: black transparent transparent transparent;
+  border-style: solid;
+  border-width: 30px 30px 30px 30px;
+  height:0;
+  width:0;
+  position:absolute;
+  bottom:0px;
+  top: -9px;
+  left:-19px;
+}
+
+.wholeTabBottom {
+    grid-area: btab;
+    width: 50%;
+    height: 26px;
+    top: -26px;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+    opacity: 0.75;
+    z-index: 10;
+}
+
+/* .wholeTabBottom:hover {
+    height: 32px;
+    opacity: 0.75;
+    top: -32px;
+}
+
+.wholeTabBottom:hover > .bottomTab {
+  visibility: visible;
+  height: 10px;
+}
+
+.wholeTabBottom:hover > .stubTabBottom > p {
+  visibility: visible;
+}
+
+.wholeTabBottom:hover .arrowBottom {
+  visibility: hidden;
+} */
+
+.bottomTab {
+  width: 50%;
+  height: 0px;
+  background-color: black;
+  visibility: hidden;
+  margin: auto;
+}
+
+.stubTabBottom
+{
+    height: 26px;
+    width: 50%;
+    border-radius: 40px 40px 0px 0px;
+    background-color: black;
+    position: relative;
+    margin: auto;
+}
+
+.stubTabBottom > p {
+  text-align: center;
+  color: white;
+  cursor: pointer;
+  margin: 0;
+  position: relative;
+  top: 4px;
+}
+
+.arrowBottom
+{
+  border-color: transparent transparent white transparent;
+  margin: auto;
+  border-style: solid;
+  border-width: 8px;
+  height:0;
+  width:0;
+  position:absolute;
+  bottom:0px;
+  right: 0px;
+  left: 0px;
+  top: -8px;
+  visibility: visible;
+}
+
+.bottomTabArrow2
+{
+  border-color: transparent transparent black transparent;
+  border-style: solid;
+  border-width: 30px 30px 30px 30px;
+  height:0;
+  width:0;
+  position:absolute;
+  top: -25px;
+  bottom: 0px;
+  right:-19px;
+}
+
+.bottomTabArrow1
+{
+  border-color: transparent transparent black transparent;
+  border-style: solid;
+  border-width: 30px 30px 30px 30px;
+  height:0;
+  width:0;
+  position:absolute;
+  top: -25px;
+  bottom: 0px;
+  left:-19px;
+}

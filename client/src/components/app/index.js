@@ -1,20 +1,21 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import Admin from '../../containers/admin'
-import About from '../about'
-import Home from '../home'
+
 import Navbar from '../../containers/navbar'
-import SearchResults from '../searchResults'
+import { routePathToComponent } from '../../constants/routing'
+
+const renderRoutes = () => {
+  const routes = routePathToComponent.map(route => {
+    const { name, path, component } = route
+    return <Route key={name} exact path={path} component={component} />
+  })
+  return routes
+}
 
 const App = () => (
   <div>
     <Navbar />
-    <main>
-      <Route exact path="/" component={Home} />
-      <Route exact path="/about-us" component={About} />
-      <Route exact path="/results" component={SearchResults} />
-      <Route exact path="/admin" component={Admin} />
-    </main>
+    <main>{renderRoutes()}</main>
   </div>
 )
 

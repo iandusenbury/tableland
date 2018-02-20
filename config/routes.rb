@@ -45,14 +45,14 @@ Rails.application.routes.draw do
             end
           end
 
-          # Super admins can see all orgs (optional), admins can update orgs, admins can destroy orgs
-          resources :organizations, only: [:index, :update, :destroy] do
+          # Super admins can see all orgs (optional), admins can update orgs
+          resources :organizations, only: [:index, :update] do
             # Admins can create media for orgs, update media for orgs, and destroy media for orgs
             resources :media, only: [:create, :update, :destroy]
           end
 
-          # Super admins can see all progs (optional), admins can update progs, admins can destroy progs
-          resources :programs, only: [:index, :update, :destroy] do
+          # Super admins can see all progs (optional), admins can update progs
+          resources :programs, only: [:index, :update] do
             # Admins can create media for progs, update media for progs, and destroy media for progs
             resources :media, only: [:create, :update, :destroy]
           end
@@ -78,8 +78,8 @@ Rails.application.routes.draw do
         # end
 
         # # Get all orgs (super_admin/optional), Get a specific organization with all their media, users, and programs, create a new organization,
-        # # Update an org (admins), destroy an org (admins)
-        # resources :organizations do
+        # # Update an org (admins)
+        # resources :organizations, except: :destroy do
         #   # Create programs for an organization
         #   resources :programs, only: :create
         #   # Create media for orgs (admins), update media for orgs (admins), and destroy media for orgs (admins)
@@ -87,8 +87,8 @@ Rails.application.routes.draw do
         # end
 
         # # Get all progs (super_admin/optional), Get a specific program with all their media, users, and parent organizations,
-        # # Update a prog (admins), destroy a prog (admins)
-        # resources :programs, only: [:index, :show, :update, :destroy] do
+        # # Update a prog (admins)
+        # resources :programs, only: [:index, :show, :update] do
         #     # Create media for progs (admins), update media for progs (admins), and destroy media for progs (admins)
         #     resources :media, only: [:create, :update, :destroy]
         # end

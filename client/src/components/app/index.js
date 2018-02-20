@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import Navbar from '../navbar'
+
+import Navbar from '../../containers/navbar'
 import { routePathToComponent } from '../../constants/routing'
 
 const renderRoutes = () => {

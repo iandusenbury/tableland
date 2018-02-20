@@ -1,11 +1,14 @@
 import { map, identity } from 'ramda'
 import { camelizeKeys, decamelizeKeys } from 'humps'
 import { RSAA, ApiError, getJSON } from 'redux-api-middleware'
+import Cookies from 'cookies-js'
 
 // identity used as a default function see http://ramdajs.com/docs/#identity
 const defaultCallback = { onSuccess: identity }
 
 export default function callApi(callDescriptor, callbacks = {}) {
+  const authEmail = Cookies.get('X-User-Email')
+  const authToken = Cookies.get('X-User-Token')
   const mergedCallbacks = { ...defaultCallback, callbacks }
   const {
     endpoint,
@@ -36,7 +39,12 @@ export default function callApi(callDescriptor, callbacks = {}) {
                   new ApiError(res.status, res.statusText, camelizeKeys(json))
               )
           }
-        ]
+        ],
+        headers: {
+          'X-User-Email': authEmail,
+          'X-User-Token': authToken,
+          'Content-Type': 'application/json'
+        }
       }
     }).then(
       response =>

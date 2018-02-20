@@ -26,7 +26,7 @@ const hasVideo = true // this will be passed as props
 const portraitImg = require('./portrait.png')
 const sampleImg = require('./sample.jpg')
 
-export default props => (
+export default () => (
   <div className="mainDiv">
     <TopTab className="tab" />
     <div className="image">
@@ -64,7 +64,9 @@ export default props => (
         <p>Description</p>
         {hasVideo && (
           <div>
-            <video /> {/* placeholder, has linting error here */}
+            {
+              // eslint-disable-next-line
+            } <video /> {/* TODO: fix linting error */}
           </div>
         )}
         <Divider />

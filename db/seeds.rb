@@ -11,11 +11,13 @@ def create_users()
     User.create( 
       first_name:   Faker::Name.first_name, 
       last_name:    Faker::Name.last_name,
-      linkedin_id:  Faker::Lorem.characters(10),
+      description:  Faker::Lorem.paragraph,
       contact_url:  Faker::Internet.url,
-      visible:      Faker::Boolean.boolean(0.8),
-      role:         :user,
-      description:  Faker::Lorem.paragraph
+      provider:     :linkedin,
+      linkedin_id:  Faker::Lorem.characters(10),
+      email:        Faker::Internet.safe_email,
+      uid:          Faker::Number.number(8),
+      password:     Faker::Internet.password(8)
     )
   end
 end

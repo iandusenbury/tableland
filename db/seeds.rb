@@ -11,10 +11,9 @@ def create_users()
     User.create( 
       first_name:   Faker::Name.first_name, 
       last_name:    Faker::Name.last_name,
-      description:  Faker::Lorem.paragraph,
+      description:  Faker::Dune.quote,
       contact_url:  Faker::Internet.url,
       provider:     :linkedin,
-      linkedin_id:  Faker::Lorem.characters(10),
       email:        Faker::Internet.safe_email,
       uid:          Faker::Number.number(8),
       password:     Faker::Internet.password(8)
@@ -27,7 +26,7 @@ def create_organizations()
   for i in 1..NUM_ORGS do
     Organization.create( 
       name:           Faker::Company.name, 
-      description:    Faker::Lorem.paragraph,
+      description:    Faker::HitchhikersGuideToTheGalaxy.quote,
       url:            Faker::Internet.url,
       visible:        Faker::Boolean.boolean(0.8),
       category:       ["institution", "company", "organization"].sample,
@@ -45,8 +44,8 @@ end
 def create_programs()
   for i in 1..NUM_PROGS do
     Program.create( 
-      name:        "#{Faker::Lorem.word.capitalize} Club",
-      description: Faker::Lorem.paragraph,
+      name:        "#{Faker::ProgrammingLanguage.name.capitalize} Club",
+      description: Faker::DrWho.quote,
       url:         Faker::Internet.url,
       visible:     Faker::Boolean.boolean(0.8)
     )
@@ -140,15 +139,15 @@ def create_media()
       mediable_id:    i,
       mediable_type:  "User",
       category:       "image",
-      description:    Faker::Lorem.sentence,
-      url:            Faker::LoremPixel.image
+      description:    Faker::Hipster.sentence,
+      url:            Faker::LoremPixel.image("100x100", false, 'people')
     )
     
     Medium.create(
       mediable_id:    i,
       mediable_type:  "User",
       category:       "video",
-      description:    Faker::Lorem.sentence,
+      description:    Faker::Company.catch_phrase,
       url:            "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
     )
   end
@@ -159,15 +158,15 @@ def create_media()
       mediable_id:    i,
       mediable_type:  "Organization",
       category:       "image",
-      description:    Faker::Lorem.sentence,
-      url:            Faker::LoremPixel.image
+      description:    Faker::Company.catch_phrase,
+      url:            Faker::LoremPixel.image("100x100", false, 'business')
     )
 
     Medium.create(
       mediable_id:    i,
       mediable_type:  "Organization",
       category:       "video",
-      description:    Faker::Lorem.sentence,
+      description:    Faker::Company.catch_phrase,
       url:            "https://www.youtube.com/watch?v=ksBE53CIT8E"
     )
   end
@@ -177,20 +176,31 @@ def create_media()
       mediable_id:    i,
       mediable_type:  "Program",
       category:       "image",
-      description:    Faker::Lorem.sentence,
-      url:            Faker::LoremPixel.image
+      description:    Faker::Company.catch_phrase,
+      url:            Faker::LoremPixel.image("100x100", false, 'technics')
     )
 
     Medium.create(
       mediable_id:    i,
       mediable_type:  "Program",
       category:       "video",
-      description:    Faker::Lorem.sentence,
+      description:    Faker::Company.catch_phrase,
       url:            "https://www.youtube.com/watch?v=VPVJzi7Ta9w"
     )
   end
 end
 
+User.create(
+      first_name:   'admin',
+      last_name:    'admin',
+      description:  'test super administrator',
+      role:         :super_admin,
+      contact_url:  'asdf.com',
+      provider:     :linkedin,
+      email:        'admin@example.com',
+      uid:          '1',
+      password:     'password'
+)
 
 create_users()
 create_organizations()

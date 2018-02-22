@@ -1,4 +1,4 @@
-.mainDiv {
+.professionalMainDiv {
   width: 100%;
   height: calc(100vh - 72px);
   background-color: white;
@@ -11,12 +11,12 @@
     ;
 }
 
-.avatarDiv {
+.professionalAvatarDiv {
   height: 92vh;
   width: 100%;
 }
 
-.avatarStyle {
+.professionalAvatarStyle {
   position: absolute;
   top: 0;
   left: 0; 
@@ -24,7 +24,8 @@
   bottom: 0;
   margin: auto;
 }
-.paperStyle {
+
+.professionalPaperStyle {
   background-color: rgba(231,224,215,0.75); 
   position: relative;
   top: 65vh; 
@@ -33,31 +34,31 @@
   margin: auto;
 }
 
-img {
+.professionalImg {
   object-fit:cover;
 }
 
-.image {
+.professionalImage {
   grid-area: image;
   overflow: hidden;
   height: calc(100vh - 72px);
 }
 
-.text {
+.professionalText {
   grid-area: text;
   overflow-y: scroll;
   overflow-x: hidden;
   height: calc(100vh - 72px);
 }
 
-.name {
+.professionalName {
   height: auto;
   width: auto;
   margin: 28px 23px 0px;
   font-size: 36px;
 }
 
-.contact {
+.professionalContact {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 50% 50%;
@@ -67,7 +68,7 @@ img {
     ;
 }
 
-.url {
+.professionalUrl {
   height: auto;
   width: auto;
   margin: 18px 18px 0px;
@@ -76,12 +77,12 @@ img {
   vertical-align: middle;
 }
 
-.url p {
+.professionalUrl p {
   margin: 0px;
   margin-top: 2px;
 }
 
-.address {
+.professionalAddress {
   height: auto;
   width: auto;
   margin: 18px 18px 0px;
@@ -90,26 +91,26 @@ img {
   vertical-align: middle;
 }
 
-.address p {
+.professionalAddress p {
   margin: 0px;
 }
 
-.description {
+.professionalDescription {
   height: auto;
   width: auto;
   margin: 18px 21px 0px;
 }
 
-.description p {
+.professionalDescription p {
   margin-left: 21px;
 }
 
-.description div {
+.professionalDescription div {
   margin-left: 21px;
   margin-bottom: 18px;
 }
 
-.description div video {
+.professionalDescription div video {
   margin-left: 0px;
   margin-top: 0px;
   width: 33vw !important;
@@ -118,34 +119,34 @@ img {
   background-color: gray;
 }
 
-.employees {
+.professionalExperiences {
   height: auto;
   width: auto;
   margin: 2%;
 }
 
-.employees p {
+.professionalExperiences p {
   margin-top: 2px;
   margin-bottom: 2px;
 }
 
-.employees h4 {
+.professionalExperiences h4 {
   margin-top: 2px;
   margin-bottom: 5px;
 }
 
-h1 {
+.professionalHeader1 {
   color: black;
 }
 
-h3 {
+.professionalHeader3 {
   margin-left: 18px;
   margin-right: 2%;
   margin-top: 2%;
   margin-bottom: 2%;
 }
 
-img {
+.professionalImg {
   padding: 0;
   display: block;
   margin: 0 auto;
@@ -153,10 +154,10 @@ img {
   width: 100%;
 }
 
-.topTab {
+.professionalTopTab {
   grid-area: tab;
 }
 
-.tableRow:hover {
+.professionalTableRow:hover {
   cursor: pointer;
 }

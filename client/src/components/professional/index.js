@@ -19,9 +19,6 @@ const hasVideo = true // this will be passed as props
 const portraitImg = require('./portrait.png')
 const sampleImg = require('./sample.jpg')
 
-// working job title
-// <h1 style={{ backgroundColor: 'rgba(129,149,177,0.75)', position: 'relative', top: '68vh', bottom: '0', width: '65%', margin: 'auto' }}>[Job Title] at [Organization]</h1>
-
 export default props => (
   <div className="mainDiv">
     <TopTab className="tab" />
@@ -29,10 +26,10 @@ export default props => (
       <Card>
         <CardMedia
           overlay={
-            <div style={{height: '92vh', width: '100%'}}>
-              <Avatar style={{position: 'absolute', top: '0', left: '0', right: '0', bottom: '0', margin: 'auto'}} size={200} src={portraitImg} />
-              <Paper style={{ backgroundColor: 'rgba(231,224,215,0.75)', position: 'relative', top: '65vh', bottom: '0', width: '65%', margin: 'auto' }} zDepth={5}>
-                <h1 style={{color: 'black'}}>[Job Title] at [Organization]</h1>
+            <div className="avatarDiv">
+              <Avatar className="avatarStyle" size={200} src={portraitImg} />
+              <Paper className="paperStyle" zDepth={5}>
+                <h1>[Job Title] at [Organization]</h1>
               </Paper>
             </div>}>
           <img src={sampleImg} alt="" />

@@ -11,6 +11,28 @@
     ;
 }
 
+.avatarDiv {
+  height: 92vh;
+  width: 100%;
+}
+
+.avatarStyle {
+  position: absolute;
+  top: 0;
+  left: 0; 
+  right: 0; 
+  bottom: 0;
+  margin: auto;
+}
+.paperStyle {
+  background-color: rgba(231,224,215,0.75); 
+  position: relative;
+  top: 65vh; 
+  bottom: 0;
+  width: 65%;
+  margin: auto;
+}
+
 img {
   object-fit:cover;
 }
@@ -110,6 +132,10 @@ img {
 .employees h4 {
   margin-top: 2px;
   margin-bottom: 5px;
+}
+
+h1 {
+  color: black;
 }
 
 h3 {

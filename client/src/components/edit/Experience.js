@@ -10,6 +10,7 @@ import './experience.css'
 import {style} from '../../widgets/styles'
 import {AddButton} from "../../widgets/AddButton";
 import Location from 'material-ui/svg-icons/communication/location-on'
+import {StyledPaper} from "../../widgets/StyledPaper";
 
 
 export const Experience = (props) => {
@@ -17,7 +18,7 @@ export const Experience = (props) => {
     const { type } = props;
     const name = "Name of " + type;
     return (
-        <Paper style={{display: 'inline-block', height: 'auto', width:'100%'}} zDepth={3}>
+        <StyledPaper>
             <div className="boxGrid">
                 <div className="left">
                     <AppBar
@@ -66,7 +67,7 @@ export const Experience = (props) => {
                     </div>
                 </div>
             </div>
-        </Paper>
+        </StyledPaper>
     )
 
 }

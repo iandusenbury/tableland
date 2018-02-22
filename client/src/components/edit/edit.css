@@ -18,6 +18,7 @@
 
 
 .mainGrid {
+    overflow: auto;
     margin-top: 1%;
     display: grid;
     grid-template-columns: 100%;
@@ -104,7 +105,7 @@ p {
 
 .mediaGrid > div {
     background: transparent;
-    height: 35vh;
+    height: auto;
 }
 
 

@@ -7,11 +7,12 @@ import {StyledTextField} from "../../widgets/StyledTextField";
 import './edit.css'
 import {style} from "../../widgets/styles";
 import Person from 'material-ui/svg-icons/social/person'
+import {StyledPaper} from "../../widgets/StyledPaper";
 
 export const Personal = (props) => {
 
     return(
-        <Paper style={{display: 'inline-block', height: '35vh', width:'100%'}} zDepth={3}>
+        <StyledPaper>
             <div className="sectionGrid">
                 <div>
                     <AppBar
@@ -34,6 +35,6 @@ export const Personal = (props) => {
                     </div>
                 </div>
             </div>
-        </Paper>
+        </StyledPaper>
     )
 }

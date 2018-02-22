@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-    Paper,
     AppBar,
     IconButton,
     Avatar
@@ -11,13 +10,14 @@ import Photo from 'material-ui/svg-icons/image/add-a-photo'
 import Person from 'material-ui/svg-icons/social/person'
 import {ChangeButton} from "../../widgets/ChangeButton";
 import {AddVideo} from "../../widgets/AddVideo";
+import {StyledPaper} from "../../widgets/StyledPaper";
 
 const videoPlayer = require('./VideoPlaceholder.jpg')
 
 export const Media = (props) => {
 
     return(
-        <Paper style={{display: 'inline-block', height: '35vh', width:'100%'}} zDepth={3}>
+        <StyledPaper>
             <div className="sectionGrid">
                 <div>
                     <AppBar
@@ -40,6 +40,6 @@ export const Media = (props) => {
                     </div>
                 </div>
             </div>
-        </Paper>
+        </StyledPaper>
     )
 }

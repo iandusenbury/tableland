@@ -1,16 +1,6 @@
 import {grey400, grey500} from "material-ui/styles/colors";
 
 export const style = {
-paper: {
-    display: 'inline-block',
-    color: grey400,
-    float: 'left',
-    marginLeft: '1%',
-    marginRight: '1%',
-    height: '80vh',
-    width: 224
-},
-
 divider: {
     width: 224
 },
@@ -38,7 +28,7 @@ title: {
 
 avatarIcon: {
       marginBottom: '70%',
-      marginTop: '1%'
+      marginTop: '2%'
 },
 
 button: {
@@ -50,7 +40,7 @@ buttonStyle: {
 },
 
 addButton: {
-    marginTop: '7%',
+    marginTop: '6%',
     display: 'center',
     width: '200px'
 },
@@ -70,5 +60,11 @@ addVideo: {
 
 datePicker: {
     marginTop: '7.8%'
+},
+
+paper: {
+    display: 'inline-block',
+    height: 'auto',
+    width:'100%'
 }
 };

@@ -2,7 +2,7 @@ import ConnectedAdminPage from '../containers/admin'
 import ConnectedHome from '../components/home'
 import ConnectedAbout from '../components/about'
 import ConnectedSearchResults from '../components/searchResults'
-import OrgPage from '../components/organization'
+import OrgPage from '../containers/organization'
 
 export const routePathToComponent = [
   {

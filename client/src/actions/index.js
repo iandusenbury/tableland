@@ -101,3 +101,23 @@ export function authorizeUser() {
     )
   }
 }
+
+/* Start of Organization profile view actions*/
+
+
+export function fetchOrgData() {
+    const callDescriptor = {
+        endpoint: `/orgProfile`,
+        types: [
+            ActionTypes.REQUEST_INITIAL_ORG_DATA,
+            ActionTypes.RECEIVE_INITIAL_ORG_DATA,
+            ActionTypes.FAILURE_INITIAL_ORG_DATA
+        ]
+    }
+
+    return dispatch => {
+        dispatch(
+            callApi(callDescriptor /* , { onSuccess: oprtionalSuccessCallback } */)
+        )
+    }
+}

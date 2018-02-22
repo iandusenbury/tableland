@@ -27,30 +27,30 @@ const portraitImg = require('./portrait.png')
 const sampleImg = require('./sample.jpg')
 
 export default () => (
-  <div className="mainDiv">
-    <TopTab className="tab" />
-    <div className="image">
+  <div className="organizationMainDiv">
+    <TopTab className="organizationTopTab" />
+    <div className="organizationImage">
       <Card>
         <CardMedia
           overlay={<CardTitle id="org_name" title="Organization name here" />}>
-          <img src={sampleImg} alt="" />
+          <img className="organizationImg" src={sampleImg} alt="" />
         </CardMedia>
       </Card>
     </div>
-    <div className="text">
-      <div className="name">
-        <h3>Organization Name</h3>
+    <div className="organizationText">
+      <div className="organizationName">
+        <h3 className="organizationHeader3">Organization Name</h3>
         <Divider />
       </div>
-      <div className="contact">
-        <div className="address">
+      <div className="organizationContact">
+        <div className="organizationAddress">
           <BusinessIcon style={orgPage.businessIcon} />
           <div>
             <p>123 company rd</p>
             <p>Portland, OR 97006</p>
           </div>
         </div>
-        <div className="url">
+        <div className="organizationUrl">
           <div>
             <LanguageIcon style={orgPage.urlIcon} />
           </div>
@@ -59,7 +59,7 @@ export default () => (
           </div>
         </div>
       </div>
-      <div className="description">
+      <div className="organizationDescription">
         <Divider />
         <p>Description</p>
         {hasVideo && (
@@ -71,7 +71,7 @@ export default () => (
         )}
         <Divider />
       </div>
-      <div className="employees">
+      <div className="organizationEmployees">
         <Table>
           <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
             <TableRow>
@@ -81,7 +81,7 @@ export default () => (
             </TableRow>
           </TableHeader>
           <TableBody showRowHover displayRowCheckbox={false}>
-            <TableRow className="tableRow" hoverable>
+            <TableRow className="organizationTableRow" hoverable>
               <TableRowColumn style={orgPage.tableRowColAvatar}>
                 <Avatar size={32} src={portraitImg} />
               </TableRowColumn>

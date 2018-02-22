@@ -20,29 +20,29 @@ const portraitImg = require('./portrait.png')
 const sampleImg = require('./sample.jpg')
 
 export default props => (
-  <div className="mainDiv">
-    <TopTab className="tab" />
-    <div className="image">
+  <div className='mainDiv'>
+    <TopTab className='tab' />
+    <div className='image'>
       <Card>
         <CardMedia
           overlay={
-            <div className="avatarDiv">
-              <Avatar className="avatarStyle" size={200} src={portraitImg} />
-              <Paper className="paperStyle" zDepth={5}>
+            <div className='avatarDiv'>
+              <Avatar className='avatarStyle' size={200} src={portraitImg} />
+              <Paper className='paperStyle' zDepth={5}>
                 <h1>[Job Title] at [Organization]</h1>
               </Paper>
             </div>}>
-          <img src={sampleImg} alt="" />
+          <img src={sampleImg} alt='' />
         </CardMedia>
       </Card>
     </div>
-    <div className="text">
-      <div className="name">
+    <div className='text'>
+      <div className='name'>
         <h3>[First Name] [Last Name]</h3>
         <Divider />
       </div>
-      <div className="contact">
-        <div className="url">
+      <div className='contact'>
+        <div className='url'>
           <div>
             <LanguageIcon style={orgPage.urlIcon} />
           </div>
@@ -51,7 +51,7 @@ export default props => (
           </div>
         </div>
       </div>
-      <div className="description">
+      <div className='description'>
         <Divider />
         <p>Description</p>
         {hasVideo && (
@@ -61,7 +61,7 @@ export default props => (
         )}
         <Divider />
       </div>
-      <div className="employees">
+      <div className='employees'>
         <List>
           <ListItem leftIcon={<Domain />}>
             <h4>[Organization name] - [Job Title]</h4>

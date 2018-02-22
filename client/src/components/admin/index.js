@@ -34,7 +34,7 @@ export default class AdminPage extends Component {
 
         return (
           <MenuItem
-            className="menu-bar-item"
+            className="admin-menu-bar-item"
             primaryText={title}
             onClick={() => adminChangeTableTo(id)}
             rightIcon={buttonIcon}
@@ -43,7 +43,7 @@ export default class AdminPage extends Component {
       })
 
       return (
-        <Paper className="menu-bar" zDepth={2}>
+        <Paper className="admin-menu-bar" zDepth={2}>
           <Menu>{adminMenu}</Menu>
         </Paper>
       )
@@ -95,7 +95,7 @@ export default class AdminPage extends Component {
 
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
-        <h1>Admin Page</h1>
+        <h1 className="admin-title">Admin Page</h1>
         {this.renderAdminSection()}
         <div className="test-buttons">
           <button onClick={() => adminChangeAdminTo(true)}>

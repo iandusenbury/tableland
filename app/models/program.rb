@@ -4,12 +4,9 @@ class Program < ApplicationRecord
 
   def self.search(term)
     fields_to_search = ['name', 'description', 'url']
-    clause = ApplicationController.build_like_clause(fields_to_search)
+    where_clause = fields_to_search.join(" LIKE :term OR ") + " LIKE :term "
 
-    search_results = []
-    search_results << Program.where(clause, term: "%#{term}%")
-
-    return search_results
+    return Program.where(where_clause, term: "%#{term}%").limit(15)
   end
 
   # Associations

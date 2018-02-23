@@ -8,7 +8,7 @@ import { StyledPaper } from '../../widgets/StyledPaper'
 
 export const Personal = props => (
   <StyledPaper>
-    <div className="sectionGrid">
+    <div className="EditSectionGrid">
       <div>
         <AppBar
           iconElementLeft={
@@ -20,7 +20,7 @@ export const Personal = props => (
           iconStyleLeft={style.appBar}
         />
       </div>
-      <div className="fieldsGrid">
+      <div className="EditFieldsGrid">
         <div>
           <StyledTextField text="First Name" />
         </div>

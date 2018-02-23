@@ -1,25 +1,25 @@
-.boxGrid {
+.EditBoxGrid {
     display: grid;
     grid-template-columns: 20% 80%;
     grid-template-areas: "left" "right";
     grid-column-gap: 2%;
 }
 
-.left {
+.EditLeft {
     height: auto;
     border-right: 2px solid lightblue;
 }
 
-.right {
+.EditRight {
     height: auto;
 }
 
-.outerDiv {
+.EditOuterDiv {
     display: grid;
     height: auto;
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-.outerDiv > div {
+.EditOuterDiv > div {
     background: transparent;
 }

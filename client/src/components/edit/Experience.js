@@ -13,8 +13,8 @@ export const Experience = props => {
   const name = `Name of ${type}`
   return (
     <StyledPaper>
-      <div className="boxGrid">
-        <div className="left">
+      <div className="EditBoxGrid">
+        <div className="EditLeft">
           <AppBar
             iconElementLeft={
               <IconButton>
@@ -25,8 +25,8 @@ export const Experience = props => {
             iconStyleLeft={style.appBar}
           />
         </div>
-        <div className="right">
-          <div className="outerDiv">
+        <div className="EditRight">
+          <div className="EditOuterDiv">
             <div>
               <StyledTextField text={name} />
             </div>

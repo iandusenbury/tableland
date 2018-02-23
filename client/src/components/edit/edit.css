@@ -1,10 +1,10 @@
-.primaryDiv {
+.EditPrimaryDiv {
     width: 100%;
     height: auto;
     overflow-y: scroll;
 }
 
-.header {
+.EditHeader {
     width: 100%;
     height: 16vh;
     margin-top: .5%;
@@ -12,12 +12,12 @@
 
 }
 
-.headerAvatar {
+.EditHeaderAvatar {
     margin-left: 47%;
 }
 
 
-.mainGrid {
+.EditMainGrid {
     overflow: auto;
     margin-top: 1%;
     display: grid;
@@ -26,68 +26,68 @@
     grid-template-areas: "personal" "media" "experience";
 }
 
-.personal {
+.EditPersonal {
     height: 35vh;
     margin-bottom: .75%;
 }
 
-.media {
+.EditMedia {
     height: 35vh;
     margin-bottom: .75%;
 }
 
 
-.experience {
+.EditExperience {
     height: auto;
     margin-bottom: .75%;
 }
 
 
-.sectionGrid {
+.EditSectionGrid {
     display: grid;
     grid-template-columns: 20% 80%;
     grid-column-gap: 2%;
     margin-right: 2%;
 }
 
-.sectionGrid > div:nth-child(even){
+.EditSectionGrid > div:nth-child(even){
     /*height: 35vh;*/
     height: auto;
 
 }
 
-.sectionGrid > div:nth-child(odd){
+.EditSectionGrid > div:nth-child(odd){
     height: 35vh;
     border-right: 2px solid lightblue;
 }
 
-.grid {
+.EditGrid {
     margin-top: 1%;
     display: grid;
     grid-template-columns: 20% 80%;
 }
 
 
-.grid > div:nth-child(odd){
+.EditGrid > div:nth-child(odd){
     background: transparent;
     height: 35vh;
 }
 
-.grid > div:nth-child(even){
+.EditGrid > div:nth-child(even){
     background: transparent;
 }
 
-.fieldsGrid {
+.EditFieldsGrid {
     display: grid;
     height: 35vh;
     grid-template-columns: 1fr 1fr;
 }
 
-.fieldsGrid > div {
+.EditFieldsGrid > div {
     background: transparent;
 }
 
-
+/* NOTE: come back to this later*/
 p {
     margin-top: 5%;
     text-align: center;
@@ -95,23 +95,23 @@ p {
     font-family: Verdana;
 }
 
-.experiencesFields{
+.EditExperiencesFields{
     height: auto;
 }
 
 
-.mediaGrid {
+.EditMediaGrid {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
-.mediaGrid > div {
+.EditMediaGrid > div {
     background: transparent;
     height: auto;
 }
 
 
-.video {
+.EditVideo {
     height:31vh;
     width: auto;
     display: inline-block;
@@ -120,14 +120,14 @@ p {
 }
 
 
-.image {
+.EditImage {
     width: 350px;
     height: 31vh;
     opacity: 0.5;
     filter: alpha(opacity=50);
 }
 
-.avatar {
+.EditAvatar {
     height: 150px;
     width: 150px;
     display: inline-block;
@@ -135,21 +135,21 @@ p {
     margin-top: 3%;
 }
 
-.changeButton {
+.EditChangeButton {
     height: auto;
     width: auto;
     display: inline-block;
     margin-left: 4%;
 }
 
-.addVideo {
+.EditAddVideo {
     height: 40px;
     width: 150px;
     display: inline-block;
     margin-left: 2%;
 }
 
-.generic {
+.EditGeneric {
     height: auto;
     width: auto;
 }

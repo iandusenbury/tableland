@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :organizations
   resources :users
 
+  get 'search', to: 'api_base#search'
   get 'user', to: 'users#current'
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }, skip: [:sessions, :registrations, :passwords]

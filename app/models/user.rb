@@ -9,6 +9,16 @@ class User < ApplicationRecord
     self.visible ||= true
   end
 
+  def self.search(term)
+    fields_to_search = ['first_name', 'last_name', 'description']
+    clause = ApplicationController.build_like_clause(fields_to_search)
+
+    search_results = []
+    search_results << User.where(clause, term: "%#{term}%")
+
+    return search_results
+  end
+
   def self.from_omniauth(auth)
     @user = where(provider: auth.provider, uid: auth.uid).first
 

@@ -6,6 +6,7 @@ import mapStyle from './style.json'
 /*
  * TODO:
  *    Improve with more specific styling
+ * Key: AIzaSyARRsWk_FbczyZ0RFU4STmiTxxYfnWmiBs
 */
 
 const GMap = withScriptjs(

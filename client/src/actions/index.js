@@ -1,6 +1,7 @@
 import ActionTypes from '../constants/actionTypes'
 import callApi from '../utils/api'
 import { authorizeOAuth } from './oauth'
+import RoadMap from '../utils/roadMap'
 
 // action creators
 /* eslint-disable import/prefer-default-export */
@@ -99,5 +100,17 @@ export function authorizeUser() {
         onSuccess
       })
     )
+  }
+}
+
+export function buildRoadMap() {
+  const { markers, polylines, bounds } = RoadMap()
+  return {
+    type: ActionTypes.GMAP_BUILD_MAP,
+    payload: {
+      markers,
+      polylines,
+      bounds
+    }
   }
 }

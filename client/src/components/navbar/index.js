@@ -67,6 +67,7 @@ const Navbar = props => {
                   containerElement={<Link to="/edit" />}
                   value="edit_profile"
                   primaryText="Edit Profile"
+            />
             <MenuItem
               containerElement={<Link to="/admin" />}
               value="admin_page"

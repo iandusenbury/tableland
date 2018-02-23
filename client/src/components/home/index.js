@@ -3,7 +3,7 @@ import BottomTab from '../../constants/tabs/tabViewProfile'
 import Map from '../map'
 
 const Home = () => (
-  <div>
+  <div style={{ height: 'calc(100vh - 72px)' }} >
     <Map />
     <BottomTab />
   </div>

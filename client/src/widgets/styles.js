@@ -1,70 +1,76 @@
-import {grey400, grey500} from "material-ui/styles/colors";
+import { grey400, grey500 } from 'material-ui/styles/colors'
 
 export const style = {
-divider: {
+  divider: {
     width: 224
-},
+  },
 
-rightIcon: {
+  rightIcon: {
     textAlign: 'center',
-    lineHeight: '24px',
-},
+    lineHeight: '24px'
+  },
 
-textHint: {
+  textHint: {
     color: grey500
-},
+  },
 
-textFieldUnderline: {
+  textFieldUnderline: {
     borderColor: grey400
-},
+  },
 
-textFloating: {
+  textFloating: {
     color: grey500
-},
+  },
 
-title: {
+  title: {
     cursor: 'pointer'
-},
+  },
 
-avatarIcon: {
-      marginBottom: '70%',
-      marginTop: '2%'
-},
+  avatarIcon: {
+    marginBottom: '70%',
+    marginTop: '2%'
+  },
 
-button: {
+  button: {
     marginTop: '5%'
-},
+  },
 
-buttonStyle: {
-    height: '40px',
-},
+  buttonStyle: {
+    height: '40px'
+  },
 
-addButton: {
-    marginTop: '6%',
+  addButton: {
+    marginTop: '5%',
     display: 'center',
-    width: '200px'
-},
+    width: '200px',
+    marginBottom: '2%'
+  },
 
-changeButton: {
+  changeButton: {
     display: 'center',
     width: '150px',
     marginLeft: '15%',
     marginTop: '9%'
-},
+  },
 
-addVideo: {
+  addVideo: {
     width: '200px',
     marginBottom: '28%',
     marginLeft: '13.5%'
-},
+  },
 
-datePicker: {
+  datePicker: {
     marginTop: '7.8%'
-},
+  },
 
-paper: {
+  paper: {
     display: 'inline-block',
     height: 'auto',
-    width:'100%'
+    width: '100%'
+  },
+
+  appBar: {
+    pointerEvents: 'none',
+    cursor: 'default'
+  }
 }
-};

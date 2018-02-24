@@ -40,7 +40,7 @@ export const routePathToComponent = [
   {
     name: 'EditProfile',
     path: '/edit',
-   component: ConnectedEditProfile
+    component: ConnectedEditProfile
   }
 ]
 

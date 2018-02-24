@@ -1,14 +1,13 @@
 import React from 'react'
 import Paper from 'material-ui/Paper'
-import {style} from './styles'
+import { style } from './styles'
 
-export const StyledPaper = (props) => {
+export const StyledPaper = props => {
+  const { children } = props
 
-    const {children} = props
-
-    return (
-        <Paper style={style.paper} zDepth={3}>
-            {children}
-        </Paper>
-    )
+  return (
+    <Paper style={style.paper} zDepth={3}>
+      {children}
+    </Paper>
+  )
 }

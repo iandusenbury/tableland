@@ -20,29 +20,36 @@ const portraitImg = require('./portrait.png')
 const sampleImg = require('./sample.jpg')
 
 export default props => (
-  <div className='professionalMainDiv'>
-    <TopTab className='professionalTopTab' />
-    <div className='professionalImage'>
+  <div className="professionalMainDiv">
+    <TopTab className="professionalTopTab" />
+    <div className="professionalImage">
       <Card>
         <CardMedia
           overlay={
-            <div className='professionalAvatarDiv'>
-              <Avatar className='professionalAvatarStyle' size={200} src={portraitImg} />
-              <Paper className='professionalPaperStyle' zDepth={5}>
-                <h1 className="professionalHeader1">[Job Title] at [Organization]</h1>
+            <div className="professionalAvatarDiv">
+              <Avatar
+                className="professionalAvatarStyle"
+                size={200}
+                src={portraitImg}
+              />
+              <Paper className="professionalPaperStyle" zDepth={5}>
+                <h1 className="professionalHeader1">
+                  [Job Title] at [Organization]
+                </h1>
               </Paper>
-            </div>}>
-          <img className="professionalImg" src={sampleImg} alt='' />
+            </div>
+          }>
+          <img className="professionalImg" src={sampleImg} alt="" />
         </CardMedia>
       </Card>
     </div>
-    <div className='professionalText'>
-      <div className='professionalName'>
+    <div className="professionalText">
+      <div className="professionalName">
         <h3 className="professionalHeader3">[First Name] [Last Name]</h3>
         <Divider />
       </div>
-      <div className='professionalContact'>
-        <div className='professionalUrl'>
+      <div className="professionalContact">
+        <div className="professionalUrl">
           <div>
             <LanguageIcon style={orgPage.urlIcon} />
           </div>
@@ -51,7 +58,7 @@ export default props => (
           </div>
         </div>
       </div>
-      <div className='professionalDescription'>
+      <div className="professionalDescription">
         <Divider />
         <p>Description</p>
         {hasVideo && (
@@ -61,7 +68,7 @@ export default props => (
         )}
         <Divider />
       </div>
-      <div className='professionalExperiences'>
+      <div className="professionalExperiences">
         <List>
           <ListItem leftIcon={<Domain />}>
             <h4>[Organization name] - [Job Title]</h4>

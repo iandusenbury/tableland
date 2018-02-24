@@ -20,7 +20,7 @@ export default function callApi(callDescriptor, callbacks = {}) {
     dispatch({
       [RSAA]: {
         body: JSON.stringify(decamelizeKeys), // TODO test on POST request
-        endpoint,
+        endpoint: `http://api.roadmaps.lvh.me:5000/v1${endpoint}`,
         method: method || 'GET',
         types: [
           request,

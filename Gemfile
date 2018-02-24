@@ -27,6 +27,8 @@ gem 'simple_token_authentication', '~> 1.0' # see semver.org
 gem 'omniauth-linkedin-oauth2'
 gem 'rack-cors', :require => 'rack/cors'
 
+gem 'active_model_serializers', '~> 0.10.7'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

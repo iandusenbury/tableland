@@ -1,13 +1,9 @@
 class User < ApplicationRecord
+  # Callback for setting defaults, defined below
+  after_initialize :set_default_attributes, if: :new_record?
   acts_as_token_authenticatable
 
   enum role: [:user, :admin, :super_admin]
-  after_initialize :set_default_attributes, :if => :new_record?
-
-  def set_default_attributes
-    self.role ||= :user
-    self.visible ||= true
-  end
 
   def self.from_omniauth(auth)
     @user = where(provider: auth.provider, uid: auth.uid).first
@@ -52,5 +48,12 @@ class User < ApplicationRecord
   has_many :prog_edits, through: :permissions, source: :program
 
   # Validations
-  validates :first_name, :last_name, :contact_url, presence: true
+  validates :first_name, :last_name, :contact_url, :role, presence: true
+  validates :visible, inclusion: { in: [true, false] }
+  
+  private
+    def set_default_attributes
+      self.role ||= :user
+      self.visible ||= true
+    end
 end

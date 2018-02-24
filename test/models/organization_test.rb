@@ -27,7 +27,7 @@ class OrganizationTest < ActiveSupport::TestCase
     if @organization.experiences.empty? # if the fixtures are modified, this is a fail safe
       user = users(:evan)
       if user.nil?
-        user = User.create!(first_name:"Evan", last_name:"White", linkedin_id:456, contact_url:"example.beef", visible:true, role:"admin")
+        user = User.create!(first_name:"Evan", last_name:"White", linkedin_id:456, contact_url:"example.beef")
       end
       user.experiences.create!(organization_id:@organization.id, start_date:Time.now, title:"Engineer")
     end
@@ -43,7 +43,7 @@ class OrganizationTest < ActiveSupport::TestCase
 
   test "upon destroy, should have its associated sponsors destroyed" do
     if @organization.sponsors.empty? # if the fixtures are modified, this is a fail safe
-      @organization.programs.create!(name:"Science Club", visible:true)
+      @organization.programs.create!(name:"Science Club")
     end
     assert_not @organization.sponsors.empty?, "The organization is not associated with any programs before the destroy"
     

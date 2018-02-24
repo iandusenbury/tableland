@@ -56,6 +56,7 @@ module Api::V1
       render json: @program, include: 'admins', status: :ok
     end
 
+    # Unreachable
     # DELETE /programs/1
     # DELETE /programs/1.json
     def destroy

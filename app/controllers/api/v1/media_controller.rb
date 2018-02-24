@@ -1,7 +1,9 @@
 module Api::V1
   class MediaController < ApiBaseController
+    before_action :set_mediable, only: [:create, :update, :destroy]
     before_action :set_medium, only: [:show, :update, :destroy]
 
+    # Unreachable
     # GET /media
     # GET /media.json
     def index
@@ -9,6 +11,7 @@ module Api::V1
       render json: @media, status: :ok
     end
 
+    # Unreachable
     # GET /media/1
     # GET /media/1.json
     def show
@@ -18,12 +21,14 @@ module Api::V1
     # POST /media
     # POST /media.json
     def create
-      @medium = Medium.new(medium_params)
+      # Check for existence of mediable here or in the set method?
+      @medium = @mediable.media.new(medium_params)
+      # @medium = Medium.new(medium_params)
 
-      if @medium.save
-        render json: @medium, status: :created
+      if @mediable.save
+        render json: @medium, include: '', status: :created
       else
-        render json: @medium.errors, status: :unprocessable_entity
+        render json: @mediable.errors, status: :unprocessable_entity
       end
     end
 
@@ -31,7 +36,7 @@ module Api::V1
     # PATCH/PUT /media/1.json
     def update
       if @medium.update(medium_params)
-        render json: @medium, status: :ok
+        render json: @medium, include: '', status: :ok
       else
         render json: @medium.errors, status: :unprocessable_entity
       end
@@ -44,9 +49,21 @@ module Api::V1
     end
 
     private
+      def set_mediable
+        @mediable = nil
+        if params[:user_id]
+          @mediable = User.find(params[:user_id])
+        elsif params[:organization_id]
+          @mediable = Organization.find(params[:organization_id])
+        elsif params[:program_id]
+          @mediable = Program.find(params[:program_id])
+        end
+      end
+
       # Use callbacks to share common setup or constraints between actions.
       def set_medium
-        @medium = Medium.find(params[:id])
+        @medium = @mediable.media.find(params[:id]) if @mediable
+        # @medium = Medium.find(params[:id])
       end
 
       # Never trust parameters from the scary internet, only allow the white list through.

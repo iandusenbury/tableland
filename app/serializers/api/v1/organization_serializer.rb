@@ -32,5 +32,8 @@ module Api::V1
     has_many :programs, key: :sponsoring do
       object.programs.where(visible: true)
     end
+    has_many :admins do
+      object.admins
+    end
   end
 end

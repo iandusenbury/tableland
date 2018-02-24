@@ -1,6 +1,6 @@
 module Api::V1
   class OrganizationsController < ApiBaseController
-    before_action :set_organization, only: [:show, :update, :destroy]
+    before_action :set_organization, only: [:show, :update, :grant_permission, :admins, :destroy]
 
     # GET /organizations
     # GET /organizations.json
@@ -12,7 +12,7 @@ module Api::V1
     # GET /organizations/1
     # GET /organizations/1.json
     def show
-      render json: @organization, status: :ok
+      render json: @organization, include: 'media,users.media,sponsoring.media', status: :ok
     end
 
     # POST /organizations
@@ -21,7 +21,7 @@ module Api::V1
       @organization = Organization.new(organization_params)
 
       if @organization.save
-        render json: @organization, status: :created
+        render json: @organization, include: '', status: :created
       else
         render json: @organization.errors, status: :unprocessable_entity
       end
@@ -31,10 +31,27 @@ module Api::V1
     # PATCH/PUT /organizations/1.json
     def update
       if @organization.update(organization_params)
-        render json: @organization, status: :ok
+        render json: @organization, include: '', status: :ok
       else
         render json: @organization.errors, status: :unprocessable_entity
       end
+    end
+
+    # POST /organizations/1/permissions
+    # POST /organizations/1/permissions.json
+    def grant_permission
+      @permission = @organization.permissions.new(admin_params)
+      if @organization.save
+        render json: @organization, include: 'admins', status: :created
+      else
+        render json: @organization.errors, status: :unprocessable_entity
+      end
+    end
+
+    # GET /organizations/1/admins
+    # GET /organizations/1/admins.json
+    def admins
+      render json: @organization, include: 'admins', status: :ok
     end
 
     # DELETE /organizations/1
@@ -52,6 +69,10 @@ module Api::V1
       # Never trust parameters from the scary internet, only allow the white list through.
       def organization_params
         params.require(:organization).permit(:name, :description, :url, :visible, :category, :address_line_1, :address_line_2, :address_line_3, :city, :state, :postal_code, :country)
+      end
+
+      def admin_params
+        params.require(:admin).permit(:user_id)
       end
   end
 end

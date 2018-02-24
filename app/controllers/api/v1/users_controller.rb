@@ -1,6 +1,6 @@
 module Api::V1
   class UsersController < ApiBaseController
-    before_action :set_user, only: [:show, :update, :destroy]
+    before_action :set_user, only: [:permissions, :show, :update, :destroy]
 
     # GET /users
     # GET /users.json
@@ -9,12 +9,27 @@ module Api::V1
       render json: @users, include: 'media', status: :ok
     end
 
+    # GET /users/1/permissions
+    # GET /users/1/permissions.json
+    def permissions
+      render json: @user, serializer: PermissionsSerializer, status: :ok
+    end
+
     # GET /users/1
     # GET /users/1.json
     def show
-      render json: @user, include: 'media,experiences.program.media,experiences.organization', status: :ok
+      render json: @user, include: 'media,experiences.program.media,experiences.organization.media', status: :ok
     end
 
+    # GET /users/random
+    # GET /users/random.json
+    def random
+      # Check for errors/failures
+      @user = User.where(visible: true).limit(1).order("RANDOM()").first
+      render json: @user, include: 'media,experiences.program.media,experiences.organization.media', status: :ok
+    end
+
+    # Unreachable
     # POST /users
     # POST /users.json
     def create
@@ -31,7 +46,7 @@ module Api::V1
     # PATCH/PUT /users/1.json
     def update
       if @user.update(user_params)
-        render json: @user, include: 'media', status: :ok
+        render json: @user, include: '', status: :ok
       else
         render json: @user.errors, status: :unprocessable_entity
       end

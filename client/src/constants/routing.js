@@ -3,6 +3,7 @@ import ConnectedHome from '../components/home'
 import ConnectedAbout from '../components/about'
 import ConnectedSearchResults from '../components/searchResults'
 import OrgPage from '../components/organization'
+import ConnectedEditProfile from '../components/edit'
 import ProfPage from '../components/professional'
 
 export const routePathToComponent = [
@@ -35,6 +36,11 @@ export const routePathToComponent = [
     name: 'ProfessionalPage',
     path: '/profile',
     component: ProfPage
+  },
+  {
+    name: 'EditProfile',
+    path: '/edit',
+   component: ConnectedEditProfile
   }
 ]
 

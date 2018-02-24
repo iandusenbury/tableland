@@ -1,0 +1,25 @@
+.EditBoxGrid {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-areas: "left" "right";
+    grid-column-gap: 2%;
+}
+
+.EditLeft {
+    height: auto;
+    border-right: 2px solid lightblue;
+}
+
+.EditRight {
+    height: auto;
+}
+
+.EditOuterDiv {
+    display: grid;
+    height: auto;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.EditOuterDiv > div {
+    background: transparent;
+}

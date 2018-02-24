@@ -1,0 +1,155 @@
+.EditPrimaryDiv {
+    width: 100%;
+    height: auto;
+    overflow-y: scroll;
+}
+
+.EditHeader {
+    width: 100%;
+    height: 16vh;
+    margin-top: .5%;
+    background-image: url("stemBackgroundImage.png");
+
+}
+
+.EditHeaderAvatar {
+    margin-left: 47%;
+}
+
+
+.EditMainGrid {
+    overflow: auto;
+    margin-top: 1%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-row-gap: 5%;
+    grid-template-areas: "personal" "media" "experience";
+}
+
+.EditPersonal {
+    height: 35vh;
+    margin-bottom: .75%;
+}
+
+.EditMedia {
+    height: 35vh;
+    margin-bottom: .75%;
+}
+
+
+.EditExperience {
+    height: auto;
+    margin-bottom: .75%;
+}
+
+
+.EditSectionGrid {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-column-gap: 2%;
+    margin-right: 2%;
+}
+
+.EditSectionGrid > div:nth-child(even){
+    /*height: 35vh;*/
+    height: auto;
+
+}
+
+.EditSectionGrid > div:nth-child(odd){
+    height: 35vh;
+    border-right: 2px solid lightblue;
+}
+
+.EditGrid {
+    margin-top: 1%;
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+
+
+.EditGrid > div:nth-child(odd){
+    background: transparent;
+    height: 35vh;
+}
+
+.EditGrid > div:nth-child(even){
+    background: transparent;
+}
+
+.EditFieldsGrid {
+    display: grid;
+    height: 35vh;
+    grid-template-columns: 1fr 1fr;
+}
+
+.EditFieldsGrid > div {
+    background: transparent;
+}
+
+/* NOTE: come back to this later*/
+p {
+    margin-top: 5%;
+    text-align: center;
+    font-size: xx-large;
+    font-family: Verdana;
+}
+
+.EditExperiencesFields{
+    height: auto;
+}
+
+
+.EditMediaGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.EditMediaGrid > div {
+    background: transparent;
+    height: auto;
+}
+
+
+.EditVideo {
+    height:31vh;
+    width: auto;
+    display: inline-block;
+    border: solid 1px grey;
+    margin: 2%;
+}
+
+
+.EditImage {
+    width: 350px;
+    height: 31vh;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+
+.EditAvatar {
+    height: 150px;
+    width: 150px;
+    display: inline-block;
+    margin-left: 15%;
+    margin-top: 3%;
+}
+
+.EditChangeButton {
+    height: auto;
+    width: auto;
+    display: inline-block;
+    margin-left: 4%;
+}
+
+.EditAddVideo {
+    height: 40px;
+    width: 150px;
+    display: inline-block;
+    margin-left: 2%;
+}
+
+.EditGeneric {
+    height: auto;
+    width: auto;
+}

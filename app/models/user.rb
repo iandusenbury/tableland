@@ -1,6 +1,40 @@
 class User < ApplicationRecord
   # Callback for setting defaults, defined below
   after_initialize :set_default_attributes, if: :new_record?
+  acts_as_token_authenticatable
+
+  enum role: [:user, :admin, :super_admin]
+
+  def self.from_omniauth(auth)
+    @user = where(provider: auth.provider, uid: auth.uid).first
+
+    return @user if @user.present?
+
+    User.transaction do
+      @user = User.create!(
+        provider: auth.provider,
+        uid: auth.uid,
+        email: auth.info.email,
+        first_name: auth.info.first_name,
+        last_name: auth.info.last_name,
+        contact_url: auth.info.urls.public_profile,
+        password: Devise.friendly_token[0,20]
+      )
+      @user.media.create!(
+        url: auth.info.image,
+        category: 'image',
+        description: 'LinkedIn profile photo'
+      )
+    end
+
+    @user
+  end
+
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable,
+         omniauth_providers: %i[linkedin]
 
   # Associations
   has_many :experiences, dependent: :destroy
@@ -14,11 +48,12 @@ class User < ApplicationRecord
   has_many :prog_edits, through: :permissions, source: :program
 
   # Validations
-  validates :first_name, :last_name, :linkedin_id, :contact_url, :role, presence: true
+  validates :first_name, :last_name, :contact_url, :role, presence: true
   validates :visible, inclusion: { in: [true, false] }
   
-  def set_default_attributes
-    self.role ||= :user
-    self.visible ||= true
-  end
+  private
+    def set_default_attributes
+      self.role ||= :user
+      self.visible ||= true
+    end
 end

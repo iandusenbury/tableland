@@ -8,6 +8,8 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
+# https://github.com/Shopify/bootsnap
+gem 'bootsnap', require: false
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
@@ -20,7 +22,10 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem 'foreman', '~> 0.84.0'
+gem 'devise'
+gem 'simple_token_authentication', '~> 1.0' # see semver.org
+gem 'omniauth-linkedin-oauth2'
+gem 'rack-cors', :require => 'rack/cors'
 
 gem 'active_model_serializers', '~> 0.10.7'
 
@@ -30,9 +35,11 @@ gem 'active_model_serializers', '~> 0.10.7'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry-rails'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'faker'
 end
 
 group :test do

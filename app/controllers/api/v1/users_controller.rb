@@ -21,6 +21,10 @@ module Api::V1
       render json: @user, include: 'media,experiences.program.media,experiences.organization.media', status: :ok
     end
 
+    def current
+      render json: current_user, status: :ok
+    end
+
     # GET /users/random
     # GET /users/random.json
     def random

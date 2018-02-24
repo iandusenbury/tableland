@@ -1,0 +1,163 @@
+.professionalMainDiv {
+  width: 100%;
+  height: calc(100vh - 72px);
+  background-color: white;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 0% auto;
+  grid-template-areas:
+    'tab   tab '
+    'image text'
+    ;
+}
+
+.professionalAvatarDiv {
+  height: 92vh;
+  width: 100%;
+}
+
+.professionalAvatarStyle {
+  position: absolute;
+  top: 0;
+  left: 0; 
+  right: 0; 
+  bottom: 0;
+  margin: auto;
+}
+
+.professionalPaperStyle {
+  background-color: rgba(231,224,215,0.75); 
+  position: relative;
+  top: 65vh; 
+  bottom: 0;
+  width: 65%;
+  margin: auto;
+}
+
+.professionalImg {
+  object-fit:cover;
+}
+
+.professionalImage {
+  grid-area: image;
+  overflow: hidden;
+  height: calc(100vh - 72px);
+}
+
+.professionalText {
+  grid-area: text;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: calc(100vh - 72px);
+}
+
+.professionalName {
+  height: auto;
+  width: auto;
+  margin: 28px 23px 0px;
+  font-size: 36px;
+}
+
+.professionalContact {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 50% 50%;
+  grid-template-areas:
+    'address'
+    'url    '
+    ;
+}
+
+.professionalUrl {
+  height: auto;
+  width: auto;
+  margin: 18px 18px 0px;
+  grid-area: url;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.professionalUrl p {
+  margin: 0px;
+  margin-top: 2px;
+}
+
+.professionalAddress {
+  height: auto;
+  width: auto;
+  margin: 18px 18px 0px;
+  grid-area: address;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.professionalAddress p {
+  margin: 0px;
+}
+
+.professionalDescription {
+  height: auto;
+  width: auto;
+  margin: 18px 21px 0px;
+}
+
+.professionalDescription p {
+  margin-left: 21px;
+}
+
+.professionalDescription div {
+  margin-left: 21px;
+  margin-bottom: 18px;
+}
+
+.professionalDescription div video {
+  margin-left: 0px;
+  margin-top: 0px;
+  width: 33vw !important;
+  height: auto !important;
+  background-size: cover;
+  background-color: gray;
+}
+
+.professionalExperiences {
+  height: auto;
+  width: auto;
+  margin: 2%;
+}
+
+.professionalExperiences p {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.professionalExperiences h4 {
+  margin-top: 2px;
+  margin-bottom: 5px;
+}
+
+.professionalHeader1 {
+  color: black;
+}
+
+.professionalHeader3 {
+  margin-left: 18px;
+  margin-right: 2%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.professionalImg {
+  padding: 0;
+  display: block;
+  margin: 0 auto;
+  height: 92.4vh;
+  width: 100%;
+}
+
+.professionalTopTab {
+  grid-area: tab;
+}
+
+.professionalTableRow:hover {
+  cursor: pointer;
+}

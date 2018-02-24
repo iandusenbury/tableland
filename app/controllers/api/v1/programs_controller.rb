@@ -1,6 +1,7 @@
 module Api::V1
   class ProgramsController < ApiBaseController
-    before_action :set_program, only: [:show, :update, :destroy]
+    before_action :set_organization, only: :create
+    before_action :set_program, only: [:show, :update, :grant_permission, :admins, :destroy]
 
     # GET /programs
     # GET /programs.json
@@ -12,18 +13,19 @@ module Api::V1
     # GET /programs/1
     # GET /programs/1.json
     def show
-      render json: @program, status: :ok
+      render json: @program, include: 'media,users.media,sponsors.media', status: :ok
     end
 
     # POST /programs
     # POST /programs.json
     def create
-      @program = Program.new(program_params)
+      @program = @organization.programs.new(program_params)
+      # @program = Program.new(program_params)
 
-      if @program.save
-        render json: @program, status: :created
+      if @organization.save
+        render json: @program, include: '', status: :created
       else
-        render json: @program.errors, status: :unprocessable_entity
+        render json: @organization.errors, status: :unprocessable_entity
       end
     end
 
@@ -31,10 +33,27 @@ module Api::V1
     # PATCH/PUT /programs/1.json
     def update
       if @program.update(program_params)
-        render json: @program, status: :ok
+        render json: @program, include: '', status: :ok
       else
         render json: @program.errors, status: :unprocessable_entity
       end
+    end
+
+    # POST /programs/1/permissions
+    # POST /programs/1/permissions.json
+    def grant_permission
+      @permission = @program.permissions.new(admin_params)
+      if @program.save
+        render json: @program, include: 'admins', status: :created
+      else
+        render json: @program.errors, status: :unprocessable_entity
+      end
+    end
+
+    # GET /programs/1/admins
+    # GET /programs/1/admins.json
+    def admins
+      render json: @program, include: 'admins', status: :ok
     end
 
     # DELETE /programs/1
@@ -44,6 +63,10 @@ module Api::V1
     end
 
     private
+      def set_organization
+        @organization = Organization.find(params[:organization_id])
+      end
+
       # Use callbacks to share common setup or constraints between actions.
       def set_program
         @program = Program.find(params[:id])
@@ -52,6 +75,10 @@ module Api::V1
       # Never trust parameters from the scary internet, only allow the white list through.
       def program_params
         params.require(:program).permit(:name, :description, :url, :visible)
+      end
+
+      def admin_params
+        params.require(:admin).permit(:user_id)
       end
   end
 end

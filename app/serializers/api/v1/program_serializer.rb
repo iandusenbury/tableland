@@ -24,5 +24,8 @@ module Api::V1
     has_many :organizations, key: :sponsors do
       object.organizations.where(visible: true)
     end
+    has_many :admins do
+      object.admins
+    end
   end
 end

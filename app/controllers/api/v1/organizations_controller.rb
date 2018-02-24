@@ -54,6 +54,7 @@ module Api::V1
       render json: @organization, include: 'admins', status: :ok
     end
 
+    # Unreachable
     # DELETE /organizations/1
     # DELETE /organizations/1.json
     def destroy

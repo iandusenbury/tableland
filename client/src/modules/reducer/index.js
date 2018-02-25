@@ -4,10 +4,12 @@ import example from './example'
 import user from './user'
 import adminPage from './adminReducer/adminReducer'
 import dialog from './dialog'
+import professionalPage from './professional'
 
 export default combineReducers({
   example,
   user,
   adminPage,
+  professionalPage,
   dialog
 })

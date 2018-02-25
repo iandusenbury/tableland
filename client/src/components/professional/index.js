@@ -22,21 +22,22 @@ const sampleImg = require('./sample.jpg')
 class professional extends Component {
   componentWillMount() {
     this.props.fetchProfessional(3)
-    //console.log(this.props.user)
   }
 
   render () {
     const {
+      /* fields not yet used
       id,
       type,
+      role,
+      link,
+      */
       firstName,
       lastName,
       description,
       contactUrl,
       mainTitle,
       mainLocation,
-      role,
-      link,
       media,
       experiences
     } = this.props.user
@@ -105,12 +106,6 @@ class professional extends Component {
           <div className="professionalExperiences">
             <List>
               {createExperienceTable(experiences)}
-              
-              <ListItem leftIcon={<Group />}>
-                <h4>[Program] - [Job Title]</h4>
-                <p>[Start Date] - [End Date]</p>
-                <p>[Award(s)]</p>
-              </ListItem>
             </List>
           </div>
         </div>
@@ -122,6 +117,7 @@ class professional extends Component {
 function createExperienceTable(experiences) {
   return experiences.map( experience => {
     const {
+      id,
       startDate,
       endDate,
       title,
@@ -131,11 +127,11 @@ function createExperienceTable(experiences) {
     } = experience
 
     const name = organization ? organization.name : program.name
-
-    console.log('organization: ' + experience.organization)
+    if (organization === undefined)
+      return createProgramTable(name, experience)
 
     return (
-      <ListItem leftIcon={<Domain />}>
+      <ListItem key={id} leftIcon={<Domain />}>
         <h4>{name} - {title}</h4>
         <p>{startDate} - {endDate}</p>
         <p>{award}</p>
@@ -144,7 +140,23 @@ function createExperienceTable(experiences) {
   })
 }
 
-function createProgramTable() {
+function createProgramTable(name, experience) {
+  const {
+    id,
+    startDate,
+    endDate,
+    title,
+    award,
+    program
+  } = experience
+
+  return (
+      <ListItem key={id} leftIcon={<Group />}>
+        <h4>{name} - {title}</h4>
+        <p>{startDate} - {endDate}</p>
+        <p>{award}</p>
+      </ListItem>
+  )
 }
 
 export default professional

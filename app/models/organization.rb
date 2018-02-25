@@ -25,10 +25,7 @@ class Organization < ApplicationRecord
   validates :name, :address_line_1, :address_line_2, :city, :country, presence: true
   validates :visible, inclusion: { in: [true, false] }
 
-<<<<<<< HEAD
   def set_default_attributes
     self.visible ||= true
   end
-=======
->>>>>>> add simple pattern search
 end

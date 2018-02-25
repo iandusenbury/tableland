@@ -16,7 +16,6 @@ import Group from 'material-ui/svg-icons/social/group'
 import Domain from 'material-ui/svg-icons/social/domain'
 
 const hasVideo = true // this will be passed as props
-const portraitImg = require('./portrait.png')
 const sampleImg = require('./sample.jpg')
 
 class professional extends Component {
@@ -38,15 +37,18 @@ class professional extends Component {
       contactUrl,
       mainTitle,
       mainLocation,
-      media,
+      profileImage,
+      profileVideo,
       experiences
-    } = this.props.user
+    } = this.props
 
+    /*
     const findAvatar = media.find(element => {
       if (element.category === 'image') 
         return element.url
       return portraitImg
     })
+    */
 
     return (
       <div className="professionalMainDiv">
@@ -59,7 +61,7 @@ class professional extends Component {
                   <Avatar
                     className="professionalAvatarStyle"
                     size={200}
-                    src={findAvatar}
+                    src={profileImage}
                   />
                   <Paper className="professionalPaperStyle" zDepth={5}>
                     <h1 className="professionalHeader1">
@@ -147,7 +149,6 @@ function createProgramTable(name, experience) {
     endDate,
     title,
     award,
-    program
   } = experience
 
   return (

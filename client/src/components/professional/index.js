@@ -42,14 +42,6 @@ class professional extends Component {
       experiences
     } = this.props
 
-    /*
-    const findAvatar = media.find(element => {
-      if (element.category === 'image') 
-        return element.url
-      return portraitImg
-    })
-    */
-
     return (
       <div className="professionalMainDiv">
         <TopTab className="professionalTopTab" />

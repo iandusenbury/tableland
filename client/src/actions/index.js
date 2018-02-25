@@ -22,7 +22,8 @@ export function fetchUser() {
 // Fetch Professional
 export function fetchProfessional(userID) {
   const callDescriptor = {
-    endpoint: `/users/${userID}`,
+    // endpoint: `/users/${userID}`,
+    endpoint: `/users/random`,
     types: [
       ActionTypes.REQUEST_PROFESSIONAL,
       ActionTypes.RECIEVE_PROFESSIONAL,

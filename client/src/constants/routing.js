@@ -4,7 +4,7 @@ import ConnectedAbout from '../components/about'
 import ConnectedSearchResults from '../components/searchResults'
 import OrgPage from '../components/organization'
 import ConnectedEditProfile from '../components/edit'
-import ProfPage from '../components/professional'
+import ProfPage from '../containers/professional'
 
 export const routePathToComponent = [
   {

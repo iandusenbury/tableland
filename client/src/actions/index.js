@@ -20,6 +20,27 @@ export function fetchUser() {
   }
 }
 
+// Fetch Professional
+export function fetchProfessional(userID) {
+  const callDescriptor = {
+    endpoint: `/users/${userID}`,
+    types: [
+      ActionTypes.REQUEST_PROFESSIONAL,
+      ActionTypes.RECIEVE_PROFESSIONAL,
+      ActionTypes.FAILURE_PROFESSIONAL
+    ]
+  }
+
+  console.log('userID: ' + userID)
+  console.log('endpoint: ' + callDescriptor.endpoint)
+
+  return dispatch => {
+    dispatch(
+      callApi(callDescriptor)
+    )
+  }
+}
+
 export function adminChangeTableTo(index) {
   return {
     type: ActionTypes.ADMIN_CHANGE_TABLE,

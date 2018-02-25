@@ -55,11 +55,11 @@ class professional extends Component {
                     size={200}
                     src={profileImage}
                   />
-                  <Paper className="professionalPaperStyle" zDepth={5}>
+                  <div className="professionalPaperStyle" >
                     <h1 className="professionalHeader1">
                       {mainTitle} at {mainLocation}
                     </h1>
-                  </Paper>
+                  </div>
                 </div>
               }>
               <img className="professionalImg" src={sampleImg} alt="" />

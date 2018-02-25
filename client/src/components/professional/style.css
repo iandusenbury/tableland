@@ -26,7 +26,8 @@
 }
 
 .professionalPaperStyle {
-  background-color: rgba(231,224,215,0.75); 
+  background-color: rgba(231,224,215,0.5); 
+  border-radius: 10px;
   position: relative;
   top: 65vh; 
   bottom: 0;
@@ -136,10 +137,12 @@
 }
 
 .professionalHeader1 {
+  font-size: 20px;
   color: black;
 }
 
 .professionalHeader3 {
+  font-size: 36px;
   margin-left: 18px;
   margin-right: 2%;
   margin-top: 2%;

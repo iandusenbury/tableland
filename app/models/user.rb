@@ -12,13 +12,6 @@ class User < ApplicationRecord
     return User.where(where_clause, term: "%#{term}%").limit(15)
   end
 
-  def self.search(term)
-    fields_to_search = ['first_name', 'last_name', 'description']
-    where_clause = fields_to_search.join(" LIKE :term OR ") + " LIKE :term "
-
-    return User.where(where_clause, term: "%#{term}%").select("id, first_name, last_name, description, contact_url, role")
-  end
-
   def self.from_omniauth(auth)
     @user = where(provider: auth.provider, uid: auth.uid).first
 

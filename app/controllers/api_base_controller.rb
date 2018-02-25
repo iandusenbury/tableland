@@ -6,11 +6,12 @@ class ApiBaseController < ApplicationController
 
   def search
     term = params[:term] || ''
-    @results = []
-    @results << User.search(term)
-    @results << Organization.search(term)
-    @results << Program.search(term)
-    render json: @results, root: "results", include: 'media', status: :ok
+    @results = { "results": [] }
+    @results[:results].concat User.search(term)
+    @results[:results].concat Organization.search(term)
+    @results[:results].concat Program.search(term)
+#    render json: @results, root: "results", include: 'media', status: :ok
+    render json: @results, include: 'media', status: :ok
   end
 
   private

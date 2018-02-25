@@ -1,9 +1,6 @@
 class Program < ApplicationRecord
-<<<<<<< HEAD
   # Callback for setting defaults, defined below
   after_initialize :set_default_attributes, if: :new_record?
-=======
->>>>>>> 546114db6e68bb1ed1319ff6ee53726268d13521
 
   def self.search(term)
     fields_to_search = ['name', 'description', 'url']

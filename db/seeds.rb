@@ -191,14 +191,26 @@ def create_media()
 end
 
 User.create(
-      first_name:   'admin',
-      last_name:    'admin',
+      first_name:   'super admin',
+      last_name:    'super admin',
       description:  'test super administrator',
       role:         :super_admin,
       contact_url:  'asdf.com',
       provider:     :linkedin,
-      email:        'admin@example.com',
+      email:        'super_admin@example.com',
       uid:          '1',
+      password:     'password'
+)
+
+User.create(
+      first_name:   'admin',
+      last_name:    'admin',
+      description:  'test administrator',
+      role:         :admin,
+      contact_url:  'asdf.com',
+      provider:     :linkedin,
+      email:        'admin@example.com',
+      uid:          '2',
       password:     'password'
 )
 

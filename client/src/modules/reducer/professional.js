@@ -2,20 +2,21 @@ import createReducer from '../../utils/createReducer'
 import ActionTypes from '../../constants/actionTypes'
 
 const initialState = {
-  user: {
-    id: 0,
-    type: 'User',
-    firstName: '',
-    lastName: '',
-    description: '',
-    contactUrl: '',
-    mainTitle: 'lol',
-    mainLocation: '',
-    role: '',
-    link: '',
-    media: [],
-    experiences: []
-  }
+  id: 0,
+  type: 'User',
+  firstName: '',
+  lastName: '',
+  description: '',
+  contactUrl: '',
+  mainTitle: '',
+  mainLocation: '',
+  role: '',
+  link: '',
+  media: {
+    image: {},
+    video: {}
+  }, 
+  experiences: []
 }
 
 const handlers = {
@@ -28,15 +29,17 @@ export default createReducer(initialState, handlers)
 
 function requestProfessional(state, data) {
   const { payload: { user } } = data
-	const { firstName, mainLocation, mainTitle } = user 
+  const { media } = user
 
+  const reducedMedia = media.reduce((obj, item) => {
+    obj[item.category] = item
+    return obj
+  }, {});
+
+   
   return {
     ...state,
-    user: {
-      ...user,
-      firstName,
-      mainLocation,
-      mainTitle
-    }
+    ...user,
+    media: reducedMedia
   }
 }

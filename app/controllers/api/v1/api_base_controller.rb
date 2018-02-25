@@ -6,10 +6,11 @@ module Api::V1
     serialization_scope :view_context
 
     def search
+      term = params[:term] || ''
       @results = []
-      @results << Program.first
-      @results << User.first
-      @results << Organization.first
+      @results << Program.search(term)
+      @results << User.search(term)
+      @results << Organization.search(term)
       render json: @results, root: "results", include: 'media', status: :ok
     end
 

@@ -31,9 +31,6 @@ export function fetchProfessional(userID) {
     ]
   }
 
-  console.log('userID: ' + userID)
-  console.log('endpoint: ' + callDescriptor.endpoint)
-
   return dispatch => {
     dispatch(
       callApi(callDescriptor)

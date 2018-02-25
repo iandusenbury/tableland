@@ -30,10 +30,6 @@ function requestProfessional(state, data) {
   const { payload: { user } } = data
 	const { firstName, mainLocation, mainTitle } = user 
 
-  console.log('first name: ' + user.firstName)
-  console.log('first name: ' + firstName)
-  console.log('main title: ' + user.mainTitle)
-
   return {
     ...state,
     user: {

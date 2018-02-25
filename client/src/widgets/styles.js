@@ -1,4 +1,4 @@
-import { grey400, grey500 } from 'material-ui/styles/colors'
+import { grey400, grey500, orange400 } from 'material-ui/styles/colors'
 
 export const style = {
   divider: {
@@ -21,7 +21,9 @@ export const style = {
   textFloating: {
     color: grey500
   },
-
+  organization: {
+    borderColor: orange400
+  },
   title: {
     cursor: 'pointer'
   },
@@ -72,5 +74,9 @@ export const style = {
   appBar: {
     pointerEvents: 'none',
     cursor: 'default'
+  },
+
+  organizationAppBar: {
+    backgroundColor: orange400
   }
 }

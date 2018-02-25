@@ -1,0 +1,93 @@
+.OrgPrimaryDiv {
+    width: 100%;
+    height: auto;
+    overflow-y: scroll;
+}
+
+.OrgHeader {
+    width: 100%;
+    height: 16vh;
+    margin-top: .5%;
+    background-image: url("STEMlogo.png");
+
+}
+
+.OrgHeaderAvatar {
+    margin-left: 47%;
+}
+
+
+.OrgMainGrid {
+    overflow: auto;
+    margin-top: 1%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-row-gap: 5%;
+    grid-template-areas: "personal" "media" "experience";
+}
+
+.OrgPersonal {
+    height: auto;
+    margin-bottom: .75%;
+}
+
+.OrgMedia {
+    height: 35vh;
+    margin-bottom: .75%;
+}
+
+
+.OrgSectionGrid {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-column-gap: 2%;
+    margin-right: 2%;
+}
+
+.OrgSectionGrid > div:nth-child(even){
+    /*height: 35vh;*/
+    height: auto;
+
+}
+
+.OrgSectionGrid > div:nth-child(odd){
+    height: auto;
+    border-right: 2px solid #FFCC80;
+}
+
+.OrgFieldsGrid {
+    display: grid;
+    height: 35vh;
+    grid-template-columns: 1fr 1fr;
+}
+
+.OrgFieldsGrid > div {
+    background: transparent;
+}
+
+.OrgMediaGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.OrgMediaGrid > div {
+    background: transparent;
+    height: auto;
+}
+
+
+.OrgVideo {
+    height:31vh;
+    width: auto;
+    display: inline-block;
+   /* border: solid 1px grey; */
+    margin: 2%;
+}
+
+
+.OrgImage {
+    width: 350px;
+    height: 31vh;
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+}

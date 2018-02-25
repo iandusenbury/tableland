@@ -4,6 +4,7 @@ import About from '../components/about'
 import SearchResults from '../components/searchResults'
 import OrgPage from '../components/organization'
 import EditProfile from '../components/edit'
+import EditOrg from '../components/edit_organization'
 import ProfPage from '../components/professional'
 
 export const routePathToComponent = [
@@ -41,6 +42,11 @@ export const routePathToComponent = [
     name: 'EditProfile',
     path: '/edit',
     component: EditProfile
+  },
+  {
+    name: 'EditOrg',
+    path: '/edit_organization',
+    component: EditOrg
   }
 ]
 

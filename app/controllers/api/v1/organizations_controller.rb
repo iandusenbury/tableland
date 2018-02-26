@@ -63,7 +63,7 @@ module Api::V1
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def organization_params
-        params.require(:organization).permit(:name, :description, :url, :visible, :category, :address_line_1, :address_line_2, :address_line_3, :city, :state, :postal_code, :country)
+        params.require(:organization).permit(:name, :description, :url, :visible, :category, :address_line_1, :address_line_2, :address_line_3, :city, :state, :postal_code, :country, :lat, :lng)
       end
 
       def admin_params

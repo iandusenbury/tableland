@@ -75,8 +75,12 @@ export function logoutUser() {
     type: ActionTypes.LOGOUT_USER
   })
 
+  // return {
+  //   type: ActionTypes.LOGOUT_USER
+  // }
+
   return dispatch => {
+    dispatch(onSuccess())
     dispatch(openDialog('Logout Successfull'))
-    dispatch(onSuccess)
   }
 }

@@ -68,9 +68,9 @@ class Users extends Component {
     const autoCompleteBank = users.map(user => user.linkedinId)
 
     return (
-      <div className="table-list">
-        <h2>{title}</h2>
-        <div className="search-filter">
+      <div className="admin-table-list">
+        <h2 className="admin-subtitle">{title}</h2>
+        <div className="admin-search-filter">
           <AutoComplete
             hintText="Search"
             dataSource={autoCompleteBank}
@@ -84,7 +84,7 @@ class Users extends Component {
             }
           />
         </div>
-        <div className="table-list-entries">
+        <div className="admin-table-list-entries">
           <Table selectable={false}>
             <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
               <TableRow>

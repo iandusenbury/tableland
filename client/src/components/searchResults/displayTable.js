@@ -34,31 +34,35 @@ class DisplayTable extends Component {
       } = user
 
       return (
-        <TableRow className="table-row-stripe" key={id}>
-          <TableRowColumn className="table-cell">
-            <div className="table-name table-border">
+        <TableRow className="search-table-row-stripe" key={id}>
+          <TableRowColumn className="search-table-cell">
+            <div className="search-table-name search-table-border">
               <h2>
                 {firstName} {lastName}
               </h2>
             </div>
-            <div className="table-icon table-border">
-              <div className="table-avatar">
+            <div className="search-table-icon search-table-border">
+              <div className="search-table-avatar">
                 <Avatar size={60} src={require('./portrait.png')} />
               </div>
-              <FlatButton className="table-flatbutton" hoverColor="#e7e0d7">
+              <FlatButton
+                className="search-table-flatbutton"
+                hoverColor="#e7e0d7">
                 View profile
               </FlatButton>
             </div>
-            <div className="table-about">
+            <div className="search-table-about">
               <ul>
                 <li>{title}</li>
-                <li>Working at: {orgName}</li>
+                <li>{orgName}</li>
               </ul>
             </div>
-            <ul className="table-contact">
-              <li>LinkedIn: {linkedinId}</li>
-              <li>Contact: {contactUrl}</li>
-            </ul>
+            <div className="search-table-contact">
+              <ul>
+                <li>LinkedIn: {linkedinId}</li>
+                <li>Contact: {contactUrl}</li>
+              </ul>
+            </div>
           </TableRowColumn>
         </TableRow>
       )

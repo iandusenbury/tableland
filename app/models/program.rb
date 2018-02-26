@@ -3,8 +3,8 @@ class Program < ApplicationRecord
   after_initialize :set_default_attributes, if: :new_record?
 
   def self.search(term)
-    fields_to_search = ['name', 'description', 'url']
-    where_clause = fields_to_search.join(" LIKE :term OR ") + " LIKE :term "
+    fields_to_search = ['name', 'url']
+    where_clause = Search.where_clause_from_fields(fields_to_search)
 
     return Program.where(where_clause, term: "%#{term}%").limit(15)
   end

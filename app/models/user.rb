@@ -7,16 +7,11 @@ class User < ApplicationRecord
 
   def self.search(term)
     fields_to_search = ['first_name', 'last_name', 'description']
-    where_clause = fields_to_search.join(" LIKE :term OR ") + " LIKE :term "
-
-    return User.where(where_clause, term: "%#{term}%").limit(15)
-  end
-
-  def self.search(term)
-    fields_to_search = ['first_name', 'last_name', 'description']
-    where_clause = fields_to_search.join(" LIKE :term OR ") + " LIKE :term "
-
-    return User.where(where_clause, term: "%#{term}%").select("id, first_name, last_name, description, contact_url, role")
+    where_clause = Search.where_clause_from_fields(fields_to_search)
+#    results = User.where(Search.where_clause_from_fields(fields_to_search), Search.term_to_regex(term))
+    
+#    return User.where(Search.where_clause_from_fields(fields_to_search), "%#{term}%")
+    return User.where(where_clause, "%#{term}%")
   end
 
   def self.from_omniauth(auth)

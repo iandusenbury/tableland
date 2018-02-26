@@ -4,9 +4,8 @@ class Organization < ApplicationRecord
 
   def self.search(term)
     fields_to_search = ['name', 'url', 'city']
-    where_clause = Search.where_clause_from_fields(fields_to_search)
-
-    return Organization.where(where_clause, term: "%#{term}%").limit(15)
+    results = Organization.where(Search.where_clause_from_fields(fields_to_search),
+                         term: Search.term_to_regex(term))
   end
 
   # Associations

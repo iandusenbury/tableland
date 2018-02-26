@@ -6,12 +6,10 @@ class User < ApplicationRecord
   enum role: [:user, :admin, :super_admin]
 
   def self.search(term)
-    fields_to_search = ['first_name', 'last_name', 'description']
-    where_clause = Search.where_clause_from_fields(fields_to_search)
-#    results = User.where(Search.where_clause_from_fields(fields_to_search), Search.term_to_regex(term))
-    
-#    return User.where(Search.where_clause_from_fields(fields_to_search), "%#{term}%")
-    return User.where(where_clause, "%#{term}%")
+    fields_to_search = ['first_name', 'last_name']
+    results = User.where(Search.where_clause_from_fields(fields_to_search),
+                         term: Search.term_to_regex(term))
+    # TODO: search for primary title and main location (and historical experience)
   end
 
   def self.from_omniauth(auth)

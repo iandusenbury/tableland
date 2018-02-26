@@ -92,7 +92,7 @@ function processAuthorization({ onSuccess, onFailure }) {
 
     if (Cookies.get('X-User-Token')) {
       if (onSuccess) {
-        append(dispatch(openDialog('Authorization Successfull!')))
+        append(dispatch(openDialog('Authorization Successful!')))
         append(dispatch(onSuccess, promises))
       }
     } else {

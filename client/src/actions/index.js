@@ -81,6 +81,6 @@ export function logoutUser() {
 
   return dispatch => {
     dispatch(onSuccess())
-    dispatch(openDialog('Logout Successfull'))
+    dispatch(openDialog('Logout Successful'))
   }
 }

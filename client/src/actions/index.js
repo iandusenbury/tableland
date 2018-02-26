@@ -20,6 +20,24 @@ export function fetchUser() {
   }
 }
 
+// Fetch Organization
+export function fetchOrganization(orgID) {
+  const callDescriptor = {
+    endpoint: `/organizations/${orgID}`,
+    types: [
+      ActionTypes.REQUEST_ORGANIZATION,
+      ActionTypes.RECIEVE_ORGANIZATION,
+      ActionTypes.FAILURE_ORGANIZATION
+    ]
+  }
+
+  return dispatch => {
+    dispatch(
+      callApi(callDescriptor)
+      )
+  }
+}
+
 export function adminChangeTableTo(index) {
   return {
     type: ActionTypes.ADMIN_CHANGE_TABLE,

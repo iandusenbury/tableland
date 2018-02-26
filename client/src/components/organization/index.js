@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import {
   Card,
   CardMedia,
@@ -26,71 +26,114 @@ const hasVideo = true // this will be passed as props
 const portraitImg = require('./portrait.png')
 const sampleImg = require('./sample.jpg')
 
-export default () => (
-  <div className="organizationMainDiv">
-    <TopTab className="organizationTopTab" />
-    <div className="organizationImage">
-      <Card>
-        <CardMedia
-          overlay={<CardTitle id="org_name" title="Organization name here" />}>
-          <img className="organizationImg" src={sampleImg} alt="" />
-        </CardMedia>
-      </Card>
-    </div>
-    <div className="organizationText">
-      <div className="organizationName">
-        <h3 className="organizationHeader3">Organization Name</h3>
-        <Divider />
-      </div>
-      <div className="organizationContact">
-        <div className="organizationAddress">
-          <BusinessIcon style={orgPage.businessIcon} />
-          <div>
-            <p>123 company rd</p>
-            <p>Portland, OR 97006</p>
+class organization extends Component {
+  componentWillMount() {
+    this.props.fetchOrganization(1)
+  }
+  
+  render () {
+    const {
+      id,
+      type,
+      name,
+      description,
+      url,
+      category,
+      addressLine1,
+      addressLine2,
+      city,
+      state,
+      postalCode,
+      country,
+      link,
+      users
+    } = this.props
+
+    return (
+      <div className="organizationMainDiv">
+        <TopTab className="organizationTopTab" />
+        <div className="organizationImage">
+          <Card>
+            <CardMedia
+              overlay={<CardTitle id="org_name" title={name} />}>
+              <img className="organizationImg" src={sampleImg} alt="" />
+            </CardMedia>
+          </Card>
+        </div>
+        <div className="organizationText">
+          <div className="organizationName">
+            <h3 className="organizationHeader3">{name}</h3>
+            <Divider />
+          </div>
+          <div className="organizationContact">
+            <div className="organizationAddress">
+              <BusinessIcon style={orgPage.businessIcon} />
+              <div>
+                <p>{addressLine1}</p>
+                <p>{city}, {state}</p>
+                <p>{country} {postalCode}</p>
+                <p>{addressLine2}</p>
+              </div>
+            </div>
+            <div className="organizationUrl">
+              <div>
+                <LanguageIcon style={orgPage.urlIcon} />
+              </div>
+              <div>
+                <p>{url}</p>
+              </div>
+            </div>
+          </div>
+          <div className="organizationDescription">
+            <Divider />
+            <p>{description}</p>
+            {hasVideo && (
+              <div>
+                {
+                  // eslint-disable-next-line
+                } <video /> {/* TODO: fix linting error */}
+              </div>
+            )}
+            <Divider />
+          </div>
+          <div className="organizationEmployees">
+            <Table>
+              <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
+                <TableRow>
+                  <TableHeaderColumn style={orgPage.tableHeaderCol} />
+                  <TableHeaderColumn>Employee</TableHeaderColumn>
+                  <TableHeaderColumn>Job Title</TableHeaderColumn>
+                </TableRow>
+              </TableHeader>
+              <TableBody showRowHover displayRowCheckbox={false}>
+                {createEmployeeTable(users)}
+              </TableBody>
+            </Table>
           </div>
         </div>
-        <div className="organizationUrl">
-          <div>
-            <LanguageIcon style={orgPage.urlIcon} />
-          </div>
-          <div>
-            <p>organizationurl.org/about</p>
-          </div>
-        </div>
       </div>
-      <div className="organizationDescription">
-        <Divider />
-        <p>Description</p>
-        {hasVideo && (
-          <div>
-            {
-              // eslint-disable-next-line
-            } <video /> {/* TODO: fix linting error */}
-          </div>
-        )}
-        <Divider />
-      </div>
-      <div className="organizationEmployees">
-        <Table>
-          <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
-            <TableRow>
-              <TableHeaderColumn style={orgPage.tableHeaderCol} />
-              <TableHeaderColumn>Employee</TableHeaderColumn>
-              <TableHeaderColumn>Job Title</TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody showRowHover displayRowCheckbox={false}>
-            <TableRow className="organizationTableRow" hoverable>
-              <TableRowColumn style={orgPage.tableRowColAvatar}>
-                <Avatar size={32} src={portraitImg} />
-              </TableRowColumn>
-              <TableRowColumn>Fred Henderson</TableRowColumn>
-              <TableRowColumn>Engineer</TableRowColumn>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </div>
-    </div>
-  </div>
-)
+    )
+  }
+}
+
+function createEmployeeTable(employees) {
+  return employees.map(employee => {
+    const {
+      firstName,
+      lastName,
+      title
+    } = employee
+
+    return (
+      <TableRow className="organizationTableRow" hoverable>
+        <TableRowColumn style={orgPage.tableRowColAvatar}>
+          <Avatar size={32} src={portraitImg} />
+        </TableRowColumn>
+        <TableRowColumn>Fred Henderson</TableRowColumn>
+        <TableRowColumn>Engineer</TableRowColumn>
+      </TableRow>
+    )
+  })
+}
+
+export default organization

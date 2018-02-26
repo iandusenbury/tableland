@@ -10,7 +10,6 @@ import {
   TextField,
   Toolbar,
   ToolbarGroup,
-  Chip
 } from 'material-ui'
 import PropTypes from 'prop-types'
 import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/menu'

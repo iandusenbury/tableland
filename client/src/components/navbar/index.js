@@ -9,7 +9,7 @@ import {
   Divider,
   TextField,
   Toolbar,
-  ToolbarGroup,
+  ToolbarGroup
 } from 'material-ui'
 import PropTypes from 'prop-types'
 import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/menu'
@@ -17,6 +17,8 @@ import muiThemeable from 'material-ui/styles/muiThemeable'
 
 import styles from '../../constants/styles'
 import './style.css'
+
+import { routePathObj } from '../../constants/routing'
 
 /*
    [Hamburger Menu] (if signed in)
@@ -33,7 +35,10 @@ const Navbar = props => {
     <header>
       <Toolbar style={styles.toolbar}>
         <ToolbarGroup>
-          <FlatButton containerElement={<Link to="/" />} label="MESA" />
+          <FlatButton
+            containerElement={<Link to={routePathObj.Home.path} />}
+            label="MESA"
+          />
         </ToolbarGroup>
         <ToolbarGroup>
           <div className="navbarSearch">
@@ -63,28 +68,28 @@ const Navbar = props => {
             />
             <Divider />
             <MenuItem
-              containerElement={<Link to="/" />}
+              containerElement={<Link to={routePathObj.Home.path} />}
               value="view_profile"
               primaryText="View Profile"
             />
             <MenuItem
-              containerElement={<Link to="/edit" />}
+              containerElement={<Link to={routePathObj.EditProfile.path} />}
               value="edit_profile"
               primaryText="Edit Profile"
             />
             <MenuItem
-              containerElement={<Link to="/admin" />}
+              containerElement={<Link to={routePathObj.AdminPage.path} />}
               value="admin_page"
               primaryText="Admin Page"
             />
             <Divider />
             <MenuItem
-              containerElement={<Link to="/" />}
+              containerElement={<Link to={routePathObj.Home.path} />}
               value="sign_out"
               primaryText="Sign Out"
             />
             <MenuItem
-              containerElement={<Link to="/about-us" />}
+              containerElement={<Link to={routePathObj.About.path} />}
               value="about"
               primaryText="About"
             />

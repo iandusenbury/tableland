@@ -17,14 +17,14 @@ const renderUser = user => {
     mainTitle,
     mainLocation,
     // linkedinId,
-    media,
+    // media,
     contactUrl
   } = user
-  const findAvatar = media.find(element => {
-    return element.category === 'image'
-  })
+  // const findAvatar = media.find(element => {
+  //   return element.category === 'image'
+  // })
   // console.log(findAvatar)
-  // const displayAvatar = require('./portrait.png')
+  const displayAvatar = require('./portrait.png')
   return (
     <TableRow className="table-row-stripe" key={id}>
       <TableRowColumn className="table-cell">
@@ -35,7 +35,7 @@ const renderUser = user => {
         </div>
         <div className="table-icon table-border">
           <div className="table-avatar">
-            <Avatar size={60} /*src={displayAvatar}*/ />
+            <Avatar size={60} src={displayAvatar} />
           </div>
           <FlatButton className="table-flatbutton" hoverColor="#e7e0d7">
             View profile
@@ -85,7 +85,7 @@ class DisplayTable extends Component {
       const { type } = result
       switch (type) {
         case 'User':
-          renderRow = this.renderUser
+          renderRow = renderUser
           break
         // case 'Program':
         //   renderRow = this.renderProgram
@@ -94,9 +94,10 @@ class DisplayTable extends Component {
         //   renderRow = this.renderOrganization
         //   break
         default:
+          renderRow = renderUser
           break
       }
-      return renderUser(result)
+      return renderRow(result)
     })
 
     return tableRows

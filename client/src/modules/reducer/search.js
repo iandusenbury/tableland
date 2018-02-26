@@ -17,7 +17,7 @@ export default createReducer(initialState, handlers)
 
 function requestSearch(state, { payload }) {
   const { results } = payload
-  // console.log(results)
+
   return {
     ...state,
     results
@@ -26,7 +26,6 @@ function requestSearch(state, { payload }) {
 
 function updateKey(state, { payload }) {
   const { searchKey } = payload
-  // console.log(searchKey)
 
   return {
     ...state,

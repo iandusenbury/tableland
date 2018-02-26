@@ -28,7 +28,7 @@ import styles from '../../constants/styles'
    "About"
 */
 const Navbar = props => {
-  const { authorizeUser, fetchUser } = props
+  const { authorizeUser, fetchUser, logoutUser } = props
 
   return (
     <header>
@@ -56,6 +56,11 @@ const Navbar = props => {
               onClick={() => fetchUser()}
               value="fetch_user"
               primaryText="Fetch User"
+            />
+            <MenuItem
+              onClick={() => logoutUser()}
+              value="logout_user"
+              primaryText="Logout"
             />
             <Divider />
             <MenuItem
@@ -93,7 +98,8 @@ const Navbar = props => {
 
 Navbar.propTypes = {
   authorizeUser: PropTypes.func.isRequired,
-  fetchUser: PropTypes.func.isRequired
+  fetchUser: PropTypes.func.isRequired,
+  logoutUser: PropTypes.func.isRequired
 }
 
 export default muiThemeable()(Navbar)

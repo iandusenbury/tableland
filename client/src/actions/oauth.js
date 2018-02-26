@@ -3,17 +3,13 @@ import moment from 'moment'
 import Cookies from 'cookies-js'
 
 import ActionTypes from '../constants/actionTypes'
-import { closeDialog, openOAuthDialog, addMessage } from '../actions'
+import { closeDialog, openDialog } from '../actions'
 
 export function authorizeOAuth(
   authorizeUrl,
-  { integrationName, fetchUser, onFailure, onSuccess, showDialog = true }
+  { integrationName, fetchUser, onFailure, onSuccess }
 ) {
   return dispatch => {
-    if (showDialog) {
-      dispatch(openOAuthDialog(integrationName))
-    }
-
     const url = authorizeUrl
     const authorizeWindow = window.open(
       url,
@@ -79,7 +75,8 @@ function authCookiesSet() {
 
 function authorizationFailed({ message, onFailure }) {
   return dispatch => {
-    const promises = [dispatch(closeDialog()), dispatch(addMessage(message))]
+    const promises = [dispatch(closeDialog())]
+    dispatch(openDialog(message))
 
     if (onFailure) {
       append(dispatch(onFailure), promises)
@@ -95,6 +92,7 @@ function processAuthorization({ onSuccess, onFailure }) {
 
     if (Cookies.get('X-User-Token')) {
       if (onSuccess) {
+        append(dispatch(openDialog('Authorization Successfull!')))
         append(dispatch(onSuccess, promises))
       }
     } else {

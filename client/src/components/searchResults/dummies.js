@@ -6,7 +6,13 @@ const dummyList = [
     mainTitle: 'Employee',
     mainLocation: 'My organization',
     linkedinId: 'flast',
-    contactUrl: 'mywebsite@url.com'
+    contactUrl: 'mywebsite@url.com',
+    media: [
+      {
+        category: 'image',
+        url: 'http://lorempixel.com/300/300'
+      }
+    ]
   },
   {
     id: 2,
@@ -15,7 +21,13 @@ const dummyList = [
     mainTitle: 'Scare Floor Technician',
     mainLocation: 'Monsters Inc.',
     linkedinId: 'mwazowski',
-    contactUrl: 'mwaz@monsters.inc'
+    contactUrl: 'mwaz@monsters.inc',
+    media: [
+      {
+        category: 'image',
+        url: 'http://lorempixel.com/300/300'
+      }
+    ]
   },
   {
     id: 3,
@@ -24,7 +36,13 @@ const dummyList = [
     mainTitle: 'Funny Man',
     mainLocation: 'British Comedy',
     linkedinId: 'mmmmmm',
-    contactUrl: 'mrbean@funny.org'
+    contactUrl: 'mrbean@funny.org',
+    media: [
+      {
+        category: 'image',
+        url: 'http://lorempixel.com/300/300'
+      }
+    ]
   },
   {
     id: 4,
@@ -33,7 +51,13 @@ const dummyList = [
     mainTitle: 'Composer',
     mainLocation: 'Composers International',
     linkedinId: 'hshore',
-    contactUrl: 'howard@shore.com'
+    contactUrl: 'howard@shore.com',
+    media: [
+      {
+        category: 'image',
+        url: 'http://lorempixel.com/300/300'
+      }
+    ]
   },
   {
     id: 5,
@@ -42,7 +66,13 @@ const dummyList = [
     mainTitle: 'The Emperor',
     mainLocation: 'My Kingdom',
     linkedinId: 'AlmightyEmperorKuzco',
-    contactUrl: 'king@snailmail.gov'
+    contactUrl: 'king@snailmail.gov',
+    media: [
+      {
+        category: 'image',
+        url: 'http://lorempixel.com/300/300'
+      }
+    ]
   }
 ]
 

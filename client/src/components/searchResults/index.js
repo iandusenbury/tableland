@@ -3,7 +3,7 @@ import { FlatButton } from 'material-ui'
 import PropTypes from 'prop-types'
 import DisplayTable from './displayTable'
 import './style.css'
-import dummyTable from './dummies'
+// import dummyTable from './dummies'
 
 let displaySearchKey
 
@@ -37,9 +37,9 @@ class SearchResults extends React.Component {
         </div>
         <div className="search-box">
           <div className="search-box-list">
-            <DisplayTable results={dummyTable} />
+            <DisplayTable results={results} />
           </div>
-          <div className="back-to-top">
+          <div className="search-back-to-top">
             <FlatButton hoverColor="#bed62f" href="#top" fullWidth>
               Return to top of results
             </FlatButton>
@@ -54,7 +54,7 @@ SearchResults.propTypes = {
   searchKey: PropTypes.element.isRequired,
   retrievedSearchKey: PropTypes.element.isRequired,
   results: PropTypes.element.isRequired,
-  sendSearchKey: PropTypes.func.isRequired,
+  // sendSearchKey: PropTypes.func.isRequired,
   updateSearchKey: PropTypes.func.isRequired
 }
 

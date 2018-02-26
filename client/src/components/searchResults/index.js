@@ -3,6 +3,7 @@ import { FlatButton } from 'material-ui'
 import PropTypes from 'prop-types'
 import DisplayTable from './displayTable'
 import './style.css'
+import dummyTable from './dummies'
 
 let displaySearchKey
 
@@ -15,6 +16,7 @@ const displaySearchKeyMessage = searchKey => {
 
 class SearchResults extends React.Component {
   componentWillMount() {
+    // const { sendSearchKey, retrievedSearchKey, updateSearchKey } = this.props
     const { retrievedSearchKey, updateSearchKey } = this.props
     if (retrievedSearchKey !== undefined) {
       displaySearchKey = `${retrievedSearchKey}`
@@ -35,7 +37,7 @@ class SearchResults extends React.Component {
         </div>
         <div className="search-box">
           <div className="search-box-list">
-            <DisplayTable results={results} />
+            <DisplayTable results={dummyTable} />
           </div>
           <div className="back-to-top">
             <FlatButton hoverColor="#bed62f" href="#top" fullWidth>

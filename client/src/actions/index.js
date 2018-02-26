@@ -20,6 +20,15 @@ export function fetchUser() {
   }
 }
 
+export function updateSearchKey(searchKey) {
+  return {
+    type: ActionTypes.UPDATE_SEARCH_KEY,
+    payload: {
+      searchKey
+    }
+  }
+}
+
 export function adminChangeTableTo(index) {
   return {
     type: ActionTypes.ADMIN_CHANGE_TABLE,

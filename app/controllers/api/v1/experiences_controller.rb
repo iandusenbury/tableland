@@ -1,7 +1,7 @@
 module Api::V1
   class ExperiencesController < ApiBaseController
     before_action :set_user, only: [:create, :update, :destroy]
-    before_action :set_experience, only: [:show, :update, :destroy]
+    before_action :set_experience, only: [:update, :destroy]
 
     # Unreachable
     # GET /experiences
@@ -18,8 +18,7 @@ module Api::V1
       render json: @experience, status: :ok
     end
 
-    # POST /experiences
-    # POST /experiences.json
+    # POST /v1/users/{user_id}/experiences
     def create
       # Refactor this workflow
       @experience = nil
@@ -46,8 +45,7 @@ module Api::V1
       end
     end
 
-    # PATCH/PUT /experiences/1
-    # PATCH/PUT /experiences/1.json
+    # PATCH/PUT /v1/users/{user_id}/experiences/{id}
     def update
       if @experience.update(organization_experience_params)
         render json: @experience, status: :ok
@@ -56,8 +54,7 @@ module Api::V1
       end
     end
 
-    # DELETE /experiences/1
-    # DELETE /experiences/1.json
+    # DELETE /v1/users/{user_id}/experiences/{id}
     def destroy
       @experience.destroy
     end

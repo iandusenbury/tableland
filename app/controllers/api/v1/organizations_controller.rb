@@ -1,22 +1,19 @@
 module Api::V1
   class OrganizationsController < ApiBaseController
-    before_action :set_organization, only: [:show, :update, :grant_permission, :admins, :destroy]
+    before_action :set_organization, only: [:show, :update, :grant_permission, :admins]
 
-    # GET /organizations
-    # GET /organizations.json
+    # GET /v1/organizations
     def index
       @organizations = Organization.all
       render json: @organizations, include: 'media', status: :ok
     end
 
-    # GET /organizations/1
-    # GET /organizations/1.json
+    # GET /v1/organizations/{id}
     def show
       render json: @organization, include: 'media,users.media,sponsoring.media', status: :ok
     end
 
-    # POST /organizations
-    # POST /organizations.json
+    # POST /v1/organizations
     def create
       @organization = Organization.new(organization_params)
 
@@ -27,8 +24,7 @@ module Api::V1
       end
     end
 
-    # PATCH/PUT /organizations/1
-    # PATCH/PUT /organizations/1.json
+    # PATCH/PUT /v1/organizations/{id}
     def update
       if @organization.update(organization_params)
         render json: @organization, include: '', status: :ok
@@ -37,8 +33,7 @@ module Api::V1
       end
     end
 
-    # POST /organizations/1/permissions
-    # POST /organizations/1/permissions.json
+    # POST /v1/organizations/{id}/permissions
     def grant_permission
       @permission = @organization.permissions.new(admin_params)
       if @organization.save
@@ -48,8 +43,7 @@ module Api::V1
       end
     end
 
-    # GET /organizations/1/admins
-    # GET /organizations/1/admins.json
+    # GET /v1/organizations/{id}/admins
     def admins
       render json: @organization, include: 'admins', status: :ok
     end

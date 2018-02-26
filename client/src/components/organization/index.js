@@ -28,7 +28,7 @@ const sampleImg = require('./sample.jpg')
 
 class organization extends Component {
   componentWillMount() {
-    this.props.fetchOrganization(1)
+    this.props.fetchOrganization(7)
   }
   
   render () {
@@ -121,7 +121,7 @@ function createEmployeeTable(employees) {
     const {
       firstName,
       lastName,
-      title
+      mainTitle
     } = employee
 
     return (
@@ -129,8 +129,8 @@ function createEmployeeTable(employees) {
         <TableRowColumn style={orgPage.tableRowColAvatar}>
           <Avatar size={32} src={portraitImg} />
         </TableRowColumn>
-        <TableRowColumn>Fred Henderson</TableRowColumn>
-        <TableRowColumn>Engineer</TableRowColumn>
+        <TableRowColumn>{firstName} {lastName}</TableRowColumn>
+        <TableRowColumn>{mainTitle}</TableRowColumn>
       </TableRow>
     )
   })

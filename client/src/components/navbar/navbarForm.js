@@ -25,7 +25,7 @@ SearchBar.propTypes = {
 }
 
 renderTextField.propTypes = {
-  input: PropTypes.element.isRequired
+  input: PropTypes.object.isRequired // eslint-disable-line react/forbid-prop-types
 }
 
 export default reduxForm({

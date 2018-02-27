@@ -28,8 +28,10 @@ const Refresh = ({ path = '/' }) => (
 const App = () => (
   <div>
     <Navbar />
-    <Dialog />
-    <main>{renderRoutes()}</main>
+    <main>
+      {renderRoutes()}
+      <Refresh path="/refresh" />
+    </main>
   </div>
 )
 

@@ -4,17 +4,15 @@ import {
   IconMenu,
   IconButton,
   MenuItem,
-  RaisedButton,
   FlatButton,
   Divider,
-  TextField,
   Toolbar,
   ToolbarGroup
 } from 'material-ui'
 import PropTypes from 'prop-types'
 import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/menu'
 import muiThemeable from 'material-ui/styles/muiThemeable'
-
+import NavbarForm from './navbarForm'
 import styles from '../../constants/styles'
 import './style.css'
 
@@ -41,10 +39,7 @@ const Navbar = props => {
           />
         </ToolbarGroup>
         <ToolbarGroup>
-          <div className="navbarSearch">
-            <TextField hintText="Search" />
-          </div>
-          <RaisedButton label="Search" />
+          <NavbarForm onSubmit={pushSearchResultsPage} />
           <IconMenu
             iconButtonElement={
               <IconButton touch>

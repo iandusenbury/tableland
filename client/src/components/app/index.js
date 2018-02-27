@@ -12,6 +12,18 @@ const renderRoutes = () => {
   })
   return routes
 }
+const Refresh = ({ path = '/' }) => (
+  <Route
+    path={path}
+    component={({ history, location, match }) => {
+      history.replace({
+        ...location,
+        pathname: location.pathname.substring(match.path.length)
+      })
+      return null
+    }}
+  />
+)
 
 const App = () => (
   <div>

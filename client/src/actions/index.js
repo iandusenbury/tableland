@@ -19,6 +19,22 @@ export function fetchUser() {
   }
 }
 
+export function sendSearchKey(searchKey) {
+  const callDescriptor = {
+    endpoint: `/search?key=${searchKey}`,
+    types: [
+      ActionTypes.REQUEST_SEARCH,
+      ActionTypes.RECIEVE_SEARCH,
+      ActionTypes.FAILURE_SEARCH
+    ]
+  }
+  return dispatch => {
+    dispatch(
+      callApi(callDescriptor /* , { onSuccess: oprtionalSuccessCallback } */)
+    )
+  }
+}
+
 export function adminChangeTableTo(index) {
   return {
     type: ActionTypes.ADMIN_CHANGE_TABLE,

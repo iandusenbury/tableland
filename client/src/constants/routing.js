@@ -45,12 +45,12 @@ export const routePathToComponent = [
 ]
 
 /* eslint no-param-reassign: ["error", { "props": false }] */
-export const routePathObj = routePathToComponent.reduce((obj, item) => {
-  obj[item.name] = item // Linter exception for this line
+export const routePaths = routePathToComponent.reduce((obj, item) => {
+  obj[item.name] = item.path // Linter exception for this line
   return obj
 }, {})
 
 export default {
   routePathToComponent,
-  routePathObj
+  routePaths
 }

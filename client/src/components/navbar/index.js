@@ -18,7 +18,7 @@ import muiThemeable from 'material-ui/styles/muiThemeable'
 import styles from '../../constants/styles'
 import './style.css'
 
-import { routePathObj } from '../../constants/routing'
+import { mesaMenuButton, navbarPaths } from '../../constants/navbar'
 
 /*
    [Hamburger Menu] (if signed in)
@@ -36,8 +36,8 @@ const Navbar = props => {
       <Toolbar style={styles.toolbar}>
         <ToolbarGroup>
           <FlatButton
-            containerElement={<Link to={routePathObj.Home.path} />}
-            label="MESA"
+            containerElement={<Link to={mesaMenuButton.path} />}
+            label={mesaMenuButton.label}
           />
         </ToolbarGroup>
         <ToolbarGroup>
@@ -68,30 +68,29 @@ const Navbar = props => {
             />
             <Divider />
             <MenuItem
-              containerElement={<Link to={routePathObj.Home.path} />}
-              value="view_profile"
-              primaryText="View Profile"
+              containerElement={<Link to={navbarPaths.view_profile.path} />}
+              value={navbarPaths.view_profile.value}
+              primaryText={navbarPaths.view_profile.primaryText}
             />
             <MenuItem
-              containerElement={<Link to={routePathObj.EditProfile.path} />}
-              value="edit_profile"
-              primaryText="Edit Profile"
+              containerElement={<Link to={navbarPaths.edit_profile.path} />}
+              value={navbarPaths.edit_profile.value}
+              primaryText={navbarPaths.edit_profile.primaryText}
             />
             <MenuItem
-              containerElement={<Link to={routePathObj.AdminPage.path} />}
-              value="admin_page"
-              primaryText="Admin Page"
-            />
-            <Divider />
-            <MenuItem
-              containerElement={<Link to={routePathObj.Home.path} />}
-              value="sign_out"
-              primaryText="Sign Out"
+              containerElement={<Link to={navbarPaths.admin_page.path} />}
+              value={navbarPaths.admin_page.value}
+              primaryText={navbarPaths.admin_page.primaryText}
             />
             <MenuItem
-              containerElement={<Link to={routePathObj.About.path} />}
-              value="about"
-              primaryText="About"
+              containerElement={<Link to={navbarPaths.sign_out.path} />}
+              value={navbarPaths.sign_out.value}
+              primaryText={navbarPaths.sign_out.primaryText}
+            />
+            <MenuItem
+              containerElement={<Link to={navbarPaths.about.path} />}
+              value={navbarPaths.about.value}
+              primaryText={navbarPaths.about.primaryText}
             />
           </IconMenu>
         </ToolbarGroup>

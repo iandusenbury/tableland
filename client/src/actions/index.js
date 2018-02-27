@@ -2,6 +2,7 @@ import Cookies from 'cookies-js'
 import ActionTypes from '../constants/actionTypes'
 import callApi from '../utils/api'
 import { authorizeOAuth } from './oauth'
+import RoadMap from '../utils/roadmap'
 
 // fetch User
 export function fetchUser() {
@@ -35,6 +36,19 @@ export function fetchProfessional(userID) {
     dispatch(
       callApi(callDescriptor)
     )
+  }
+}
+
+// Build Roadmap
+export function buildRoadMap(experiences) {
+  const { markers, polylines, bounds } = RoadMap(experiences)
+  return {
+    type: ActionTypes.GMAP_BUILD_MAP,
+    payload: {
+      markers,
+      polylines,
+      bounds
+    }
   }
 }
 

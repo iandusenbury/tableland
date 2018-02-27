@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-
+import PropTypes from 'prop-types'
 import Navbar from '../../containers/navbar'
 import { routePathToComponent } from '../../constants/routing'
 import Dialog from '../../containers/dialog'
@@ -28,11 +28,16 @@ const Refresh = ({ path = '/' }) => (
 const App = () => (
   <div>
     <Navbar />
+    <Dialog />
     <main>
       {renderRoutes()}
       <Refresh path="/refresh" />
     </main>
   </div>
 )
+
+Refresh.propTypes = {
+  path: PropTypes.string.isRequired
+}
 
 export default App

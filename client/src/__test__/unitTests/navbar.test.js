@@ -13,6 +13,25 @@ describe('navbar maintains correct paths', () => {
   const expectedMESAButton = mesaMenuButton
   const expectedMenuPaths = navbarMenuPaths
 
+  it('menu paths object fields are not undefined or empty', () => {
+    expectedMenuPaths.forEach(menuItem => {
+      expect(menuItem.path).not.toBe(undefined)
+      expect(menuItem.path).not.toBe('')
+      expect(menuItem.value).not.toBe(undefined)
+      expect(menuItem.value).not.toBe('')
+      expect(menuItem.primaryText).not.toBe(undefined)
+      expect(menuItem.primaryText).not.toBe('')
+    })
+  })
+
+  it('menu paths values are unique', () => {
+    const menuItemValues = expectedMenuPaths.map(menuItem => menuItem.value)
+    const isDuplicate = menuItemValues.some(
+      (item, idx) => menuItemValues.indexOf(item) !== idx
+    )
+    expect(isDuplicate).toEqual(false)
+  })
+
   it('mesa menu button links to home page', () => {
     const menuButton = wrapper.find('FlatButton').props()
     const menuButtonPath = menuButton.containerElement.props.to
@@ -39,5 +58,6 @@ describe('navbar maintains correct paths', () => {
         index += 1
       }
     })
+    expect(expectedMenuPaths.length).toEqual(index)
   })
 })

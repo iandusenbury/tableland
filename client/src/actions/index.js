@@ -5,7 +5,7 @@ import { authorizeOAuth } from './oauth'
 // fetch User
 export function fetchUser() {
   const callDescriptor = {
-    endpoint: `/user`,
+    endpoint: `/users/current`,
     types: [
       ActionTypes.REQUEST_USER,
       ActionTypes.RECIEVE_USER,

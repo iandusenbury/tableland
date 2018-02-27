@@ -14,6 +14,8 @@ module Api::V1
                 :state,
                 :postal_code,
                 :country,
+                :lat,
+                :lng,
                 :link
 
     # Methods for custom attributes

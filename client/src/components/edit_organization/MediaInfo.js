@@ -1,15 +1,14 @@
 import React from 'react'
 import { AppBar, IconButton } from 'material-ui'
-import './editOrg.css'
 import { style } from '../../widgets/styles'
 import Photo from 'material-ui/svg-icons/image/add-a-photo'
 import { StyledPaper } from '../../widgets/StyledPaper'
 import { StyledTextField } from '../../widgets/StyledTextField'
-import { orange400 } from 'material-ui/styles/colors'
+import './editOrg.css'
 
 const videoPlayer = require('./video.png')
 
-export const MediaInfo = props => (
+export const MediaInfo = () => (
   <StyledPaper>
     <div className="OrgSectionGrid">
       <div>
@@ -26,7 +25,7 @@ export const MediaInfo = props => (
       </div>
       <div className="OrgMediaGrid">
         <div>
-          <StyledTextField text="Video URL" org />
+          <StyledTextField text="Video URL" org multiLine />
         </div>
         <div>
           <div className="OrgVideo">

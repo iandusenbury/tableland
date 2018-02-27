@@ -1,12 +1,12 @@
 import React from 'react'
-import { Paper, AppBar, IconButton } from 'material-ui'
+import { AppBar, IconButton } from 'material-ui'
 import { StyledTextField } from '../../widgets/StyledTextField'
-import './edit.css'
 import { style } from '../../widgets/styles'
 import Person from 'material-ui/svg-icons/social/person'
 import { StyledPaper } from '../../widgets/StyledPaper'
+import './edit.css'
 
-export const Personal = props => (
+export const Personal = () => (
   <StyledPaper>
     <div className="EditSectionGrid">
       <div>

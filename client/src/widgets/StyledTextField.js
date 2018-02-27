@@ -1,10 +1,9 @@
 import React from 'react'
 import TextField from 'material-ui/TextField'
 import { style } from './styles'
-import { orange400 } from 'material-ui/styles/colors'
 
 export const StyledTextField = props => {
-  const { text, multiLine, disabled, textStyle, org } = props
+  const { text, multiLine, disabled, org } = props
   const isMultiLine = !!multiLine
 
   const underlineStyle = org ? style.organization : {}

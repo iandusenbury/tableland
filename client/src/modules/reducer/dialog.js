@@ -2,30 +2,30 @@ import ActionTypes from '../../constants/actionTypes'
 import createReducer from '../../utils/createReducer'
 
 const initialState = {
-  active: false,
-  message: ''
+  open: false,
+  message: 'initial message'
 }
 
 const handlers = {
-  [ActionTypes.ADD_MESSAGE]: addMessage,
-  [ActionTypes.CLEAR_MESSAGE]: clearMessage
+  [ActionTypes.CLOSE_DIALOG]: closeDialog,
+  [ActionTypes.OPEN_DIALOG]: openDialog
 }
 
 export default createReducer(initialState, handlers)
 
-function clearMessage(state) {
+function closeDialog(state) {
   return {
     ...state,
-    active: false,
-    message: ''
+    open: false
   }
 }
 
-function addMessage(state, { payload }) {
+function openDialog(state, { payload }) {
   const { message } = payload
+
   return {
     ...state,
-    active: true,
-    message
+    message,
+    open: true
   }
 }

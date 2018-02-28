@@ -12,7 +12,7 @@ class Program < ApplicationRecord
   has_many :media, as: :mediable, dependent: :destroy
 
   has_many :permissions, dependent: :destroy
-  has_many :admins, through: :permissions, source: :user
+  has_many :admins, -> { distinct }, through: :permissions, source: :user
 
   # Validations
   validates :name, presence: true

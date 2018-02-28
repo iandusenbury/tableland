@@ -10,10 +10,6 @@ const sand = "#e7e0d7"
 const styles = {
   toolbar: {
     backgroundColor: thermalRed
-  },
-
-  chip: {
-    backgroundColor: '#ffc0cb'
   }
 }
 

@@ -5,6 +5,7 @@ module Api::V1
     # Allow the current context of all controllers to be accessible in the serializers
     serialization_scope :view_context
 
+    # GET /v1/search
     def search
       term = params[:term] || ''
       @results = []

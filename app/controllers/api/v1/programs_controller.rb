@@ -1,23 +1,20 @@
 module Api::V1
   class ProgramsController < ApiBaseController
     before_action :set_organization, only: :create
-    before_action :set_program, only: [:show, :update, :grant_permission, :admins, :destroy]
+    before_action :set_program, only: [:show, :update, :grant_permission, :admins]
 
-    # GET /programs
-    # GET /programs.json
+    # GET /v1/programs
     def index
       @programs = Program.all
       render json: @programs, include: 'media', status: :ok
     end
 
-    # GET /programs/1
-    # GET /programs/1.json
+    # GET /v1/programs/{id}
     def show
       render json: @program, include: 'media,users.media,sponsors.media', status: :ok
     end
 
-    # POST /programs
-    # POST /programs.json
+    # POST /v1/organizations/{organization_id}/programs
     def create
       @program = @organization.programs.new(program_params)
       # @program = Program.new(program_params)
@@ -29,8 +26,7 @@ module Api::V1
       end
     end
 
-    # PATCH/PUT /programs/1
-    # PATCH/PUT /programs/1.json
+    # PATCH/PUT /v1/programs/{id}
     def update
       if @program.update(program_params)
         render json: @program, include: '', status: :ok
@@ -39,8 +35,7 @@ module Api::V1
       end
     end
 
-    # POST /programs/1/permissions
-    # POST /programs/1/permissions.json
+    # POST /v1/programs/{id}/permissions
     def grant_permission
       @permission = @program.permissions.new(admin_params)
       if @program.save
@@ -50,8 +45,7 @@ module Api::V1
       end
     end
 
-    # GET /programs/1/admins
-    # GET /programs/1/admins.json
+    # GET /v1/programs/{id}/admins
     def admins
       render json: @program, include: 'admins', status: :ok
     end

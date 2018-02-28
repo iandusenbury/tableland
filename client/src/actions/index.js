@@ -1,3 +1,4 @@
+import Cookies from 'cookies-js'
 import ActionTypes from '../constants/actionTypes'
 import callApi from '../utils/api'
 import { authorizeOAuth } from './oauth'
@@ -5,7 +6,7 @@ import { authorizeOAuth } from './oauth'
 // fetch User
 export function fetchUser() {
   const callDescriptor = {
-    endpoint: `/user`,
+    endpoint: `/users/current`,
     types: [
       ActionTypes.REQUEST_USER,
       ActionTypes.RECIEVE_USER,
@@ -14,9 +15,7 @@ export function fetchUser() {
   }
 
   return dispatch => {
-    dispatch(
-      callApi(callDescriptor /* , { onSuccess: oprtionalSuccessCallback } */)
-    )
+    dispatch(callApi(callDescriptor))
   }
 }
 
@@ -40,30 +39,15 @@ export function adminChangeAdminTo(changeTo) {
 
 // oauth
 export function closeDialog() {
-  return { type: ActionTypes.CLOSE_DIALOG }
-}
-
-export function openDialog(dialogId, dialogData) {
   return {
-    type: ActionTypes.OPEN_DIALOG,
-    payload: { dialogId, dialogData }
+    type: ActionTypes.CLOSE_DIALOG
   }
 }
 
-export function openOAuthDialog(url) {
-  return openDialog(ActionTypes.START_OAUTH, { url })
-}
-
-export function clearMessage() {
-  return { type: ActionTypes.CLEAR_MESSAGE }
-}
-
-export function addMessage(message) {
+export function openDialog(message) {
   return {
-    type: ActionTypes.ADD_MESSAGE,
-    payload: {
-      message
-    }
+    type: ActionTypes.OPEN_DIALOG,
+    payload: { message }
   }
 }
 
@@ -80,5 +64,19 @@ export function authorizeUser() {
         onSuccess
       })
     )
+  }
+}
+
+export function logoutUser() {
+  Cookies.expire('X-User-Email')
+  Cookies.expire('X-User-Token')
+
+  const onSuccess = () => ({
+    type: ActionTypes.LOGOUT_USER
+  })
+
+  return dispatch => {
+    dispatch(onSuccess())
+    dispatch(openDialog('Logout Successful'))
   }
 }

@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-//  import material-ui components
 import {
   IconMenu,
   IconButton,
@@ -11,13 +10,13 @@ import {
   TextField,
   Toolbar,
   ToolbarGroup,
-  Chip
 } from 'material-ui'
 import PropTypes from 'prop-types'
 import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/menu'
 import muiThemeable from 'material-ui/styles/muiThemeable'
 
 import styles from '../../constants/styles'
+import './style.css'
 
 /*
    [Hamburger Menu] (if signed in)
@@ -28,7 +27,7 @@ import styles from '../../constants/styles'
    "About"
 */
 const Navbar = props => {
-  const { authorizeUser, fetchUser } = props
+  const { authorizeUser, fetchUser, logoutUser } = props
 
   return (
     <header>
@@ -37,9 +36,9 @@ const Navbar = props => {
           <FlatButton containerElement={<Link to="/" />} label="MESA" />
         </ToolbarGroup>
         <ToolbarGroup>
-          <Chip style={styles.chip}>
+          <div className="navbarSearch">
             <TextField hintText="Search" />
-          </Chip>
+          </div>
           <RaisedButton label="Search" />
           <IconMenu
             iconButtonElement={
@@ -56,6 +55,11 @@ const Navbar = props => {
               onClick={() => fetchUser()}
               value="fetch_user"
               primaryText="Fetch User"
+            />
+            <MenuItem
+              onClick={() => logoutUser()}
+              value="logout_user"
+              primaryText="Logout"
             />
             <Divider />
             <MenuItem
@@ -93,7 +97,8 @@ const Navbar = props => {
 
 Navbar.propTypes = {
   authorizeUser: PropTypes.func.isRequired,
-  fetchUser: PropTypes.func.isRequired
+  fetchUser: PropTypes.func.isRequired,
+  logoutUser: PropTypes.func.isRequired
 }
 
 export default muiThemeable()(Navbar)

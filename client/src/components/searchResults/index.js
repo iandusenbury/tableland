@@ -19,7 +19,7 @@ const searchResults = () => (
       <div className="search-box-list">
         <DisplayTable users={dummyList} />
       </div>
-      <div className="back-to-top">
+      <div className="search-back-to-top">
         <FlatButton hoverColor="#bed62f" href="#top" fullWidth>
           Return to top of results
         </FlatButton>

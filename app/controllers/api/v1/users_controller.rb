@@ -1,6 +1,6 @@
 module Api::V1
   class UsersController < ApiBaseController
-    before_action :set_user, only: [:permissions, :show, :update, :destroy]
+    before_action :set_user, only: [:show, :update, :destroy]
 
     # GET /v1/users
     def index
@@ -8,9 +8,10 @@ module Api::V1
       render json: @users, include: 'media', status: :ok
     end
 
-    # GET /v1/users/{id}/permissions
+    # GET /v1/users/permissions
     def permissions
-      render json: @user, serializer: PermissionsSerializer, status: :ok
+      # Make checks on current_user role
+      render json: current_user, serializer: PermissionsSerializer, status: :ok
     end
 
     # GET /v1/users/{id}

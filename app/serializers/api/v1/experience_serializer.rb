@@ -7,7 +7,7 @@ module Api::V1
                 :end_date,
                 :title,
                 :award,
-                :primary,
+                :current,
                 :link
     
     # Methods for custom attributes and associations

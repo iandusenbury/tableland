@@ -71,11 +71,11 @@ module Api::V1
 
       # Refactor these to be one method that takes a parameter for appropriate ID
       def organization_experience_params
-        params.require(:experience).permit(:user_id, :organization_id, :start_date, :end_date, :title, :award, :primary)
+        params.require(:experience).permit(:user_id, :organization_id, :start_date, :end_date, :title, :award, :current)
       end
 
       def program_experience_params
-        params.require(:experience).permit(:user_id, :program_id, :start_date, :end_date, :title, :award, :primary)
+        params.require(:experience).permit(:user_id, :program_id, :start_date, :end_date, :title, :award, :current)
       end
 
   end

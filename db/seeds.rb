@@ -75,7 +75,7 @@ def create_experiences()
           end_date:        nil,
           title:           Faker::Company.profession,
           award:           Faker::Educator.course,
-          primary:         true
+          current:         true
          )
       else
         Experience.create( 
@@ -85,7 +85,7 @@ def create_experiences()
           end_date:        j.years.ago,
           title:           Faker::Company.profession,
           award:           Faker::Educator.course,
-          primary:         false
+          current:         false
          )
       end
     end
@@ -101,7 +101,7 @@ def create_experiences()
         start_date:      (j*2).years.ago,
         end_date:        j.years.ago,
         title:           "Member",
-        primary:         false
+        current:         false
       )
     end
   end

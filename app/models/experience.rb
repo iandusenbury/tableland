@@ -12,6 +12,6 @@ class Experience < ApplicationRecord
   validates :program_id, absence: true, if: :organization_id?
 
   def set_default_attributes
-    self.primary ||= false
+    self.current ||= false
   end
 end

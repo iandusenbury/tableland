@@ -8,7 +8,7 @@ module Api::V1
       render json: @users, include: 'media', status: :ok
     end
 
-    # GET /v1/users/permissions
+    # GET /v1/users/current/permissions
     def permissions
       # Make checks on current_user role
       render json: current_user, serializer: PermissionsSerializer, status: :ok

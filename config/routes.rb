@@ -12,7 +12,7 @@ Rails.application.routes.draw do
           collection do
             get 'random'
             get 'current'
-            get 'permissions'
+            get 'current/permissions', to: 'users#permissions'
           end
           # Create experiences for a user, update experiences for a user, destory experiences for a user
           resources :experiences, only: [:create, :update, :destroy]

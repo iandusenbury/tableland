@@ -101,7 +101,7 @@ class professional extends Component {
                 className='professionalVideo' 
                 title='Professional Video' 
                 allow= 'encrypted-media'
-                frameborder='0'
+                frameBorder='0'
                 src={videoUrl}
               />
             )}
@@ -174,7 +174,7 @@ const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep
 // [mon] [year]
 function getDate(date) {
   if (date !== null) {
-     var date = new Date(date.toString())
+     date = new Date(date.toString())
      date = monthNames[date.getMonth()] + ' ' + date.getFullYear()
   }
   else

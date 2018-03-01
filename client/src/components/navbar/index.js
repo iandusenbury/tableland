@@ -27,7 +27,7 @@ import { mesaMenuButton, navbarPaths } from '../../constants/navbar'
    "About"
 */
 const Navbar = props => {
-  const { authorizeUser, fetchUser, logoutUser, pushSearchResultsPage } = props
+  const { authorizeUser, fetchUser, logoutUser, fetchResults } = props
 
   return (
     <header>
@@ -39,7 +39,7 @@ const Navbar = props => {
           />
         </ToolbarGroup>
         <ToolbarGroup>
-          <NavbarForm onSubmit={pushSearchResultsPage} />
+          <NavbarForm onSubmit={fetchResults} />
           <IconMenu
             iconButtonElement={
               <IconButton touch>
@@ -98,7 +98,7 @@ Navbar.propTypes = {
   authorizeUser: PropTypes.func.isRequired,
   fetchUser: PropTypes.func.isRequired,
   logoutUser: PropTypes.func.isRequired,
-  pushSearchResultsPage: PropTypes.func.isRequired
+  fetchResults: PropTypes.func.isRequired
 }
 
 export default muiThemeable()(Navbar)

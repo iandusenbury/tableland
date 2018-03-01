@@ -13,9 +13,13 @@ const renderTextField = ({ input }) => (
 const SearchBar = props => {
   const { handleSubmit } = props
   return (
-    <form className="navbarSearchForm" onSubmit={handleSubmit}>
+    <form className="navbarSearchForm">
       <Field name="searchKey" component={renderTextField} />
-      <RaisedButton className="navbarSubmit" type="submit" label="Search" />
+      <RaisedButton
+        className="navbarSubmit"
+        onClick={handleSubmit}
+        label="Search"
+      />
     </form>
   )
 }

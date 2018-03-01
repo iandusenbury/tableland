@@ -1,4 +1,5 @@
 import Cookies from 'cookies-js'
+import { push } from 'react-router-redux'
 import ActionTypes from '../constants/actionTypes'
 import callApi from '../utils/api'
 import { authorizeOAuth } from './oauth'
@@ -19,7 +20,8 @@ export function fetchUser() {
   }
 }
 
-export function sendSearchKey(searchKey) {
+export function fetchResults(values) {
+  const { searchKey } = values
   const callDescriptor = {
     endpoint: `/search?key=${searchKey}`,
     types: [
@@ -29,10 +31,12 @@ export function sendSearchKey(searchKey) {
     ]
   }
   return dispatch => {
-    dispatch(
-      callApi(callDescriptor /* , { onSuccess: oprtionalSuccessCallback } */)
-    )
+    dispatch(callApi(callDescriptor, { onSuccess: loadResultsPage }))
   }
+}
+
+function loadResultsPage(response, dispatch) {
+  return dispatch(push('/results'))
 }
 
 export function adminChangeTableTo(index) {

@@ -15,6 +15,10 @@ const initialState = {
   postalCode: '',
   country: '',
   link: '',
+  media: {
+    image: {},
+    video: {}
+  },
   users: []
 }
 
@@ -28,9 +32,16 @@ export default createReducer(initialState, handlers)
 
 function requestOrganization(state, data) {
   const { payload: { organization } } = data
+  const { media } = organization
+
+  const reducedMedia = media.reduce((obj, item) => {
+    obj[item.category] = item
+    return obj
+  }, {});
   
   return {
     ...state,
-    ...organization
+    ...organization,
+    media: reducedMedia
   }
 }

@@ -22,32 +22,42 @@ import { orgPage } from '../../constants/viewStyles'
   [icon/photo]  [name]  [position]
 */
 
-const hasVideo = true // this will be passed as props
 const portraitImg = require('./portrait.png')
 const sampleImg = require('./sample.jpg')
 
 class organization extends Component {
   componentWillMount() {
-    this.props.fetchOrganization(7)
+    this.props.fetchOrganization(13)
   }
   
   render () {
     const {
+      /*
       id,
       type,
+      category,
+      link,
+      organizationImage,
+      */
       name,
       description,
       url,
-      category,
       addressLine1,
       addressLine2,
       city,
       state,
       postalCode,
       country,
-      link,
+      organizationVideo,
       users
     } = this.props
+
+    var videoUrl = ""
+    var hasVideo = false
+    if (organizationVideo) {
+      videoUrl = organizationVideo.replace("watch?v=", "embed/")
+      hasVideo = true
+    }
 
     return (
       <div className="organizationMainDiv">
@@ -88,11 +98,12 @@ class organization extends Component {
             <Divider />
             <p>{description}</p>
             {hasVideo && (
-              <div>
-                {
-                  // eslint-disable-next-line
-                } <video /> {/* TODO: fix linting error */}
-              </div>
+              <iframe
+                className="organizationVideo"
+                title="Organization Video"
+                allow="encrypted-media"
+                src={videoUrl}
+              />
             )}
             <Divider />
           </div>
@@ -119,15 +130,22 @@ class organization extends Component {
 function createEmployeeTable(employees) {
   return employees.map(employee => {
     const {
+      id,
       firstName,
       lastName,
-      mainTitle
+      mainTitle,
+      media
     } = employee
 
+    var imageUrl = null;
+
+    if (media && media[0])
+      imageUrl = media[0].url
+
     return (
-      <TableRow className="organizationTableRow" hoverable>
+      <TableRow key={id} className="organizationTableRow" hoverable>
         <TableRowColumn style={orgPage.tableRowColAvatar}>
-          <Avatar size={32} src={portraitImg} />
+          <Avatar size={32} src={imageUrl || portraitImg} />
         </TableRowColumn>
         <TableRowColumn>{firstName} {lastName}</TableRowColumn>
         <TableRowColumn>{mainTitle}</TableRowColumn>

@@ -1,21 +1,21 @@
 import ConnectedAdminPage from '../containers/admin'
-import ConnectedHome from '../components/home'
-import ConnectedAbout from '../components/about'
-import ConnectedSearchResults from '../components/searchResults'
+import Home from '../components/home'
+import About from '../components/about'
+import SearchResults from '../components/searchResults'
 import OrgPage from '../components/organization'
-import ConnectedEditProfile from '../components/edit'
 import ProfPage from '../containers/professional'
+import EditProfile from '../components/edit'
 
 export const routePathToComponent = [
   {
     name: 'Home',
     path: '/',
-    component: ConnectedHome
+    component: Home
   },
   {
     name: 'About',
     path: '/about-us',
-    component: ConnectedAbout
+    component: About
   },
   {
     name: 'AdminPage',
@@ -25,7 +25,7 @@ export const routePathToComponent = [
   {
     name: 'SearchResults',
     path: '/results',
-    component: ConnectedSearchResults
+    component: SearchResults
   },
   {
     name: 'OrganizationPage',
@@ -40,10 +40,17 @@ export const routePathToComponent = [
   {
     name: 'EditProfile',
     path: '/edit',
-    component: ConnectedEditProfile
+    component: EditProfile
   }
 ]
 
+/* eslint no-param-reassign: ["error", { "props": false }] */
+export const routePaths = routePathToComponent.reduce((obj, item) => {
+  obj[item.name] = item.path // Linter exception for this line
+  return obj
+}, {})
+
 export default {
-  routePathToComponent
+  routePathToComponent,
+  routePaths
 }

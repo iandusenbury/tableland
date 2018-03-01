@@ -11,13 +11,13 @@
 
 /* page sections */
 
-h1 {
+.admin-title {
   margin-top: 40px;
   text-align: center;
   font-family: sans-serif;
 }
 
-h2 {
+.admin-subtitle {
   padding-left: 64px;
   font-family: sans-serif;
 }
@@ -39,18 +39,18 @@ h2 {
 
 /* tables */
 
-.search-filter {
+.admin-search-filter {
   padding-left: 26px;
 }
 
-.table-list {
+.admin-table-list {
   grid-area: list;
   height: 100%;
   float: right;
   padding-right: 20px;
 }
 
-.table-list-entries {
+.admin-table-list-entries {
   max-height: 480px;
   overflow-y: scroll;
   margin-bottom: 20px;
@@ -58,29 +58,29 @@ h2 {
 
 /* menu sidebar */
 
-.menu-bar {
+.admin-menu-bar {
   grid-area: menu;
   float: left;
   height: 95.5%;
   margin: 10px;
 }
 
-.menu-bar-item {
+.admin-menu-bar-item {
   width: 100%;
 }
 
 @media only screen and (max-width: 700px) {
-  .menu-bar {
+  .admin-menu-bar {
     height: 90%;
     width: 90%;
     float: none;
   }
 
-  .menu-bar-item {
+  .admin-menu-bar-item {
     width: 90%;
   }
 
-  .table-list {
+  .admin-table-list {
     width: 100%;
     float: none;
   }

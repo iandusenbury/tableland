@@ -12,7 +12,7 @@ class Organization < ApplicationRecord
   has_many :media, as: :mediable, dependent: :destroy
   
   has_many :permissions, dependent: :destroy
-  has_many :admins, through: :permissions, source: :user
+  has_many :admins, -> { distinct }, through: :permissions, source: :user
 
   # Validations
   validates :name, :address_line_1, :address_line_2, :city, :country, presence: true

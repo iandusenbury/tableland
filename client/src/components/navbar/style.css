@@ -1,3 +1,6 @@
-ToolBar {
-    background-color: props.muiTheme.palette.thermalRed
+.navbarSearch {
+  background-color: #ffc0cb;
+  border-radius: 16px;
+  padding-right: 10px;
+  padding-left: 10px;
 }

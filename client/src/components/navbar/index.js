@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-//  import material-ui components
 import {
   IconMenu,
   IconButton,
@@ -10,14 +9,16 @@ import {
   Divider,
   TextField,
   Toolbar,
-  ToolbarGroup,
-  Chip
+  ToolbarGroup
 } from 'material-ui'
 import PropTypes from 'prop-types'
 import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/menu'
 import muiThemeable from 'material-ui/styles/muiThemeable'
 
 import styles from '../../constants/styles'
+import './style.css'
+
+import { mesaMenuButton, navbarPaths } from '../../constants/navbar'
 
 /*
    [Hamburger Menu] (if signed in)
@@ -28,18 +29,21 @@ import styles from '../../constants/styles'
    "About"
 */
 const Navbar = props => {
-  const { authorizeUser, fetchUser } = props
+  const { authorizeUser, fetchUser, logoutUser } = props
 
   return (
     <header>
       <Toolbar style={styles.toolbar}>
         <ToolbarGroup>
-          <FlatButton containerElement={<Link to="/" />} label="MESA" />
+          <FlatButton
+            containerElement={<Link to={mesaMenuButton.path} />}
+            label={mesaMenuButton.label}
+          />
         </ToolbarGroup>
         <ToolbarGroup>
-          <Chip style={styles.chip}>
+          <div className="navbarSearch">
             <TextField hintText="Search" />
-          </Chip>
+          </div>
           <RaisedButton label="Search" />
           <IconMenu
             iconButtonElement={
@@ -57,32 +61,36 @@ const Navbar = props => {
               value="fetch_user"
               primaryText="Fetch User"
             />
-            <Divider />
             <MenuItem
-              containerElement={<Link to="/" />}
-              value="view_profile"
-              primaryText="View Profile"
-            />
-            <MenuItem
-              containerElement={<Link to="/edit" />}
-              value="edit_profile"
-              primaryText="Edit Profile"
-            />
-            <MenuItem
-              containerElement={<Link to="/admin" />}
-              value="admin_page"
-              primaryText="Admin Page"
+              onClick={() => logoutUser()}
+              value="logout_user"
+              primaryText="Logout"
             />
             <Divider />
             <MenuItem
-              containerElement={<Link to="/" />}
-              value="sign_out"
-              primaryText="Sign Out"
+              containerElement={<Link to={navbarPaths.view_profile.path} />}
+              value={navbarPaths.view_profile.value}
+              primaryText={navbarPaths.view_profile.primaryText}
             />
             <MenuItem
-              containerElement={<Link to="/about-us" />}
-              value="about"
-              primaryText="About"
+              containerElement={<Link to={navbarPaths.edit_profile.path} />}
+              value={navbarPaths.edit_profile.value}
+              primaryText={navbarPaths.edit_profile.primaryText}
+            />
+            <MenuItem
+              containerElement={<Link to={navbarPaths.admin_page.path} />}
+              value={navbarPaths.admin_page.value}
+              primaryText={navbarPaths.admin_page.primaryText}
+            />
+            <MenuItem
+              containerElement={<Link to={navbarPaths.sign_out.path} />}
+              value={navbarPaths.sign_out.value}
+              primaryText={navbarPaths.sign_out.primaryText}
+            />
+            <MenuItem
+              containerElement={<Link to={navbarPaths.about.path} />}
+              value={navbarPaths.about.value}
+              primaryText={navbarPaths.about.primaryText}
             />
           </IconMenu>
         </ToolbarGroup>
@@ -93,7 +101,8 @@ const Navbar = props => {
 
 Navbar.propTypes = {
   authorizeUser: PropTypes.func.isRequired,
-  fetchUser: PropTypes.func.isRequired
+  fetchUser: PropTypes.func.isRequired,
+  logoutUser: PropTypes.func.isRequired
 }
 
 export default muiThemeable()(Navbar)

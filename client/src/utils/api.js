@@ -9,7 +9,7 @@ const defaultCallback = { onSuccess: identity }
 export default function callApi(callDescriptor, callbacks = {}) {
   const authEmail = Cookies.get('X-User-Email')
   const authToken = Cookies.get('X-User-Token')
-  const mergedCallbacks = { ...defaultCallback, callbacks }
+  const mergedCallbacks = { ...defaultCallback, ...callbacks }
   const {
     endpoint,
     method,

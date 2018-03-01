@@ -3,7 +3,7 @@ import Home from '../components/home'
 import About from '../components/about'
 import SearchResults from '../components/searchResults'
 import OrgPage from '../components/organization'
-import ConnectedEditProfile from '../components/edit'
+import EditProfile from '../components/edit'
 import ProfPage from '../containers/professional'
 
 export const routePathToComponent = [

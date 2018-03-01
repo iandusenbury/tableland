@@ -12,10 +12,17 @@ import { buildBounds, buildPolylines, buildMarkers } from './build'
 
 const GMap = withScriptjs(
   withGoogleMap(props => {
-    const { onMapMounted, experiencesProp, polylines, markers, ...otherProps } = props
+    const {
+      onMapMounted,
+      experiencesProp,
+      polylines,
+      markers,
+      ...otherProps
+    } = props
     return (
       <GoogleMap
         {...otherProps}
+        zoom={12}
         ref={map => {
           onMapMounted(map)
         }}>
@@ -57,8 +64,9 @@ class MyMapComponent extends Component {
       // profileImage,
       experiences
     } = this.props
-    const polylines = buildPolylines(experiences)
-    const markers = buildMarkers(experiences)
+    const sortedExperiences = experiences.sort((a, b) => Date.parse(a.startDate) - Date.parse(b.startDate))
+    const polylines = buildPolylines(sortedExperiences)
+    const markers = buildMarkers(sortedExperiences)
     return (
       <GMap
         markers={markers}
@@ -82,9 +90,8 @@ class MyMapComponent extends Component {
 }
 
 MyMapComponent.propTypes = {
-  experienceNodes: PropTypes.array.isRequired,
+  experiences: PropTypes.array.isRequired,
   polylines: PropTypes.array.isRequired,
-  bounds: PropTypes.object.isRequired,
   fetchProfessional: PropTypes.func.isRequired
 }
 

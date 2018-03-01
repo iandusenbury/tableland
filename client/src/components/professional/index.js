@@ -41,47 +41,46 @@ class professional extends Component {
       experiences
     } = this.props
 
-    //const hasVideo = true ? profileVideo : false
-    var videoUrl = ""
+    var videoUrl = ''
     var hasVideo = false
     if (profileVideo) {
-      videoUrl = profileVideo.replace("watch?v=", "embed/")
+      videoUrl = profileVideo.replace('watch?v=', 'embed/')
       hasVideo = true
     }
 
     return (
-      <div className="professionalMainDiv">
-        <TopTab className="professionalTopTab" />
-        <div className="professionalImage">
+      <div className='professionalMainDiv'>
+        <TopTab className='professionalTopTab' />
+        <div className='professionalImage'>
           <Card>
             <CardMedia
               overlay={
-                <div className="professionalAvatarDiv">
+                <div className='professionalAvatarDiv'>
                   <Avatar
-                    className="professionalAvatarStyle"
+                    className='professionalAvatarStyle'
                     size={200}
                     src={profileImage}
                   />
-                  <div className="professionalPaperStyle" >
-                    <h1 className="professionalHeader1">
+                  <div className='professionalPaperStyle' >
+                    <h1 className='professionalHeader1'>
                       {mainTitle} at {mainLocation}
                     </h1>
                   </div>
                 </div>
               }>
-              <img className="professionalImg" src={sampleImg} alt="" />
+              <img className='professionalImg' src={sampleImg} alt='' />
             </CardMedia>
           </Card>
         </div>
-        <div className="professionalText">
-          <div className="professionalName">
-            <h3 className="professionalHeader3">
+        <div className='professionalText'>
+          <div className='professionalName'>
+            <h3 className='professionalHeader3'>
               {firstName} {lastName}
             </h3>
             <Divider />
           </div>
-          <div className="professionalContact">
-            <div className="professionalUrl">
+          <div className='professionalContact'>
+            <div className='professionalUrl'>
               <div>
                 <LanguageIcon style={orgPage.urlIcon} />
               </div>
@@ -92,22 +91,23 @@ class professional extends Component {
               </div>
             </div>
           </div>
-          <div className="professionalDescription">
+          <div className='professionalDescription'>
             <Divider />
             <p>
               {description}
             </p>
             {hasVideo && (
               <iframe 
-                className="professionalVideo" 
-                title="Professional Video" 
-                allow= "encrypted-media"
+                className='professionalVideo' 
+                title='Professional Video' 
+                allow= 'encrypted-media'
+                frameborder='0'
                 src={videoUrl}
               />
             )}
             <Divider />
           </div>
-          <div className="professionalExperiences">
+          <div className='professionalExperiences'>
             <List>
               {createExperienceTable(experiences)}
             </List>
@@ -133,18 +133,6 @@ function createExperienceTable(experiences) {
     const name = organization ? organization.name : program.name
     if (organization === undefined)
       return createProgramTable(name, experience)
-
-
-        /*
-   var start = new Date(startDate.toString())
-   start = monthNames[start.getMonth()] + " " + start.getFullYear()
-   if (endDate !== null) {
-     var end = new Date(endDate.toString())
-     end = monthNames[end.getMonth()] + " " + end.getFullYear()
-   }
-   else
-     var end = "Current"
-     */
 
     var start = getDate(startDate)
     var end = getDate(endDate)
@@ -181,16 +169,16 @@ function createProgramTable(name, experience) {
 }
 
 // This const defines months for use in following function
-const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 // This function takes a date string as an argument and returns a string in the format
 // [mon] [year]
 function getDate(date) {
   if (date !== null) {
      var date = new Date(date.toString())
-     date = monthNames[date.getMonth()] + " " + date.getFullYear()
+     date = monthNames[date.getMonth()] + ' ' + date.getFullYear()
   }
   else
-    date = "Current"
+    date = 'Current'
 
   return date
 }

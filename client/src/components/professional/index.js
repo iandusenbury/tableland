@@ -41,6 +41,14 @@ class professional extends Component {
       experiences
     } = this.props
 
+    //const hasVideo = true ? profileVideo : false
+    var videoUrl = ""
+    var hasVideo = false
+    if (profileVideo) {
+      videoUrl = profileVideo.replace("watch?v=", "embed/")
+      hasVideo = true
+    }
+
     return (
       <div className="professionalMainDiv">
         <TopTab className="professionalTopTab" />
@@ -89,14 +97,13 @@ class professional extends Component {
             <p>
               {description}
             </p>
-            {{profileVideo} && (
-              <div>
-                <iframe 
-                  className="professionalVideo" 
-                  title="Professional Video" 
-                  src={profileVideo} 
-                />
-              </div>
+            {hasVideo && (
+              <iframe 
+                className="professionalVideo" 
+                title="Professional Video" 
+                allow= "encrypted-media"
+                src={videoUrl}
+              />
             )}
             <Divider />
           </div>

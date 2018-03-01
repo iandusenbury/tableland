@@ -36,9 +36,10 @@
 }
 
 .professionalVideo {
-  width: 560px;
-  height: 315px;
+  height: 30vh;
+  width: 40vw;
   frameborder: 0;
+  margin-left: 20px;
 }
 
 .professionalImg {

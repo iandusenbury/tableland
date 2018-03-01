@@ -6,13 +6,12 @@ class User < ApplicationRecord
   enum role: [:user, :admin, :super_admin]
 
   def self.search(term)
-    fields_to_search = ['first_name', 'last_name', 'experiences.title', 
-                        'experiences.award']
+    fields_to_search = ['first_name', 'last_name', 'experiences.title' ]
 
     results = User.select('users.*')
       .distinct
       .where(Search.where_clause_from_fields(fields_to_search), 
-        term: Search.term_to_regex(term))
+        term: Search.term_to_pattern(term))
       .joins('INNER JOIN experiences ON users.id=experiences.user_id')
   end
 

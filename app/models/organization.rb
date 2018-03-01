@@ -7,7 +7,7 @@ class Organization < ApplicationRecord
 
     results = Organization.where(
       Search.where_clause_from_fields(fields_to_search),
-      term: Search.term_to_regex(term))
+      term: Search.term_to_pattern(term))
   end
 
   # Associations

@@ -7,7 +7,7 @@ class Program < ApplicationRecord
 
     results = Program.where(
       Search.where_clause_from_fields(fields_to_search), 
-      term: Search.term_to_regex(term))
+      term: Search.term_to_pattern(term))
   end
 
   # Associations

@@ -3,7 +3,7 @@ class Search
     return where_clause = fields_to_search.join(" LIKE :term OR ") + " LIKE :term "
   end
 
-  def self.term_to_regex(term)
-    return "%#{term}%"
+  def self.term_to_pattern(term)
+    return "#{term}%"
   end
 end

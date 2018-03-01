@@ -3,7 +3,6 @@ import {
   Card,
   CardMedia,
   Divider,
-  Paper,
   List,
   ListItem,
   Avatar
@@ -15,7 +14,7 @@ import './style.css'
 import Group from 'material-ui/svg-icons/social/group'
 import Domain from 'material-ui/svg-icons/social/domain'
 
-const hasVideo = true // this will be passed as props
+//const hasVideo = true // this will be passed as props
 const sampleImg = require('./sample.jpg')
 
 class professional extends Component {
@@ -90,9 +89,13 @@ class professional extends Component {
             <p>
               {description}
             </p>
-            {hasVideo && (
+            {{profileVideo} && (
               <div>
-                <video /> {/* placeholder, has linting error here */}
+                <iframe 
+                  className="professionalVideo" 
+                  title="Professional Video" 
+                  src={profileVideo} 
+                />
               </div>
             )}
             <Divider />

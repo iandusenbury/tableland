@@ -35,6 +35,12 @@
   margin: auto;
 }
 
+.professionalVideo {
+  width: 560px;
+  height: 315px;
+  frameborder: 0;
+}
+
 .professionalImg {
   object-fit:cover;
 }

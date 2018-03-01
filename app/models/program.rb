@@ -3,9 +3,11 @@ class Program < ApplicationRecord
   after_initialize :set_default_attributes, if: :new_record?
 
   def self.search(term)
-    fields_to_search = ['name', 'url']
-    results = Program.where(Search.where_clause_from_fields(fields_to_search),
-                         term: Search.term_to_regex(term))
+    fields_to_search = ['name']
+
+    results = Program.where(
+      Search.where_clause_from_fields(fields_to_search), 
+      term: Search.term_to_regex(term))
   end
 
   # Associations

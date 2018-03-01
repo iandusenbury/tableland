@@ -10,6 +10,7 @@ module Api::V1
                 :main_title,
                 :main_location, 
                 :role,
+                :visible,
                 :link
 
     # Methods for custom attributes

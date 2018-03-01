@@ -44,8 +44,8 @@ class User < ApplicationRecord
   has_many :media, as: :mediable, dependent: :destroy
 
   has_many :permissions, dependent: :destroy
-  has_many :org_edits, through: :permissions, source: :organization
-  has_many :prog_edits, through: :permissions, source: :program
+  has_many :org_edits, -> { distinct }, through: :permissions, source: :organization
+  has_many :prog_edits, -> { distinct }, through: :permissions, source: :program
 
   # Validations
   validates :first_name, :last_name, :contact_url, :role, presence: true

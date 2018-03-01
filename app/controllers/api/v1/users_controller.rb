@@ -1,32 +1,30 @@
 module Api::V1
   class UsersController < ApiBaseController
-    before_action :set_user, only: [:permissions, :show, :update, :destroy]
+    before_action :set_user, only: [:show, :update, :destroy]
 
-    # GET /users
-    # GET /users.json
+    # GET /v1/users
     def index
       @users = User.all
       render json: @users, include: 'media', status: :ok
     end
 
-    # GET /users/1/permissions
-    # GET /users/1/permissions.json
+    # GET /v1/users/current/permissions
     def permissions
-      render json: @user, serializer: PermissionsSerializer, status: :ok
+      # Make checks on current_user role
+      render json: current_user, serializer: PermissionsSerializer, status: :ok
     end
 
-    # GET /users/1
-    # GET /users/1.json
+    # GET /v1/users/{id}
     def show
       render json: @user, include: 'media,experiences.program.media,experiences.organization.media', status: :ok
     end
 
+    # GET /v1/users/current
     def current
-      render json: current_user, status: :ok
+      render json: current_user, include: 'media,experiences.program.media,experiences.organization.media', status: :ok
     end
 
-    # GET /users/random
-    # GET /users/random.json
+    # GET /v1/users/random
     def random
       # Check for errors/failures
       @user = User.where(visible: true).limit(1).order("RANDOM()").first
@@ -46,8 +44,7 @@ module Api::V1
       end
     end
 
-    # PATCH/PUT /users/1
-    # PATCH/PUT /users/1.json
+    # PATCH/PUT /v1/users/{id}
     def update
       if @user.update(user_params)
         render json: @user, include: '', status: :ok
@@ -56,8 +53,7 @@ module Api::V1
       end
     end
 
-    # DELETE /users/1
-    # DELETE /users/1.json
+    # DELETE /v1/users/{id}
     def destroy
       @user.destroy
     end

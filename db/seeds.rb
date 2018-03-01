@@ -36,7 +36,9 @@ def create_organizations()
       city:           Faker::Address.city,
       state:          Faker::Address.state_abbr,
       postal_code:    Faker::Address.postcode,
-      country:        Faker::Address.country
+      country:        Faker::Address.country,
+      lat:            Faker::Address.latitude,
+      lng:            Faker::Address.longitude
     )
   end
 end
@@ -73,7 +75,7 @@ def create_experiences()
           end_date:        nil,
           title:           Faker::Company.profession,
           award:           Faker::Educator.course,
-          primary:         true
+          current:         true
          )
       else
         Experience.create( 
@@ -83,7 +85,7 @@ def create_experiences()
           end_date:        j.years.ago,
           title:           Faker::Company.profession,
           award:           Faker::Educator.course,
-          primary:         false
+          current:         false
          )
       end
     end
@@ -99,7 +101,7 @@ def create_experiences()
         start_date:      (j*2).years.ago,
         end_date:        j.years.ago,
         title:           "Member",
-        primary:         false
+        current:         false
       )
     end
   end

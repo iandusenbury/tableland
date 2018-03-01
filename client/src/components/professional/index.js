@@ -134,10 +134,25 @@ function createExperienceTable(experiences) {
     if (organization === undefined)
       return createProgramTable(name, experience)
 
+
+        /*
+   var start = new Date(startDate.toString())
+   start = monthNames[start.getMonth()] + " " + start.getFullYear()
+   if (endDate !== null) {
+     var end = new Date(endDate.toString())
+     end = monthNames[end.getMonth()] + " " + end.getFullYear()
+   }
+   else
+     var end = "Current"
+     */
+
+    var start = getDate(startDate)
+    var end = getDate(endDate)
+
     return (
       <ListItem key={id} leftIcon={<Domain />}>
         <h4>{name} - {title}</h4>
-        <p>{startDate} - {endDate}</p>
+          <p>{start} - {end}</p>
         <p>{award}</p>
       </ListItem>
     )
@@ -152,14 +167,32 @@ function createProgramTable(name, experience) {
     title,
     award,
   } = experience
+  
+ var start = getDate(startDate)
+ var end = getDate(endDate)
 
   return (
       <ListItem key={id} leftIcon={<Group />}>
         <h4>{name} - {title}</h4>
-        <p>{startDate} - {endDate}</p>
+        <p>{start} - {end}</p>
         <p>{award}</p>
       </ListItem>
   )
+}
+
+// This const defines months for use in following function
+const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+// This function takes a date string as an argument and returns a string in the format
+// [mon] [year]
+function getDate(date) {
+  if (date !== null) {
+     var date = new Date(date.toString())
+     date = monthNames[date.getMonth()] + " " + date.getFullYear()
+  }
+  else
+    date = "Current"
+
+  return date
 }
 
 export default professional

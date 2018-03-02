@@ -10,7 +10,7 @@ const videoPlayer = require('./VideoPlaceholder.jpg')
 
 export const Media = () => (
   <StyledPaper>
-    <div className="EditSectionGrid">
+    <div className="editSectionGrid">
       <div>
         <AppBar
           iconElementLeft={
@@ -22,13 +22,13 @@ export const Media = () => (
           title={<span style={style.title}>Media</span>}
         />
       </div>
-      <div className="EditMediaGrid">
+      <div className="editMediaGrid">
         <div>
           <StyledTextField text="Video URL" />
         </div>
         <div>
-          <div className="EditVideo">
-            <img className="EditImage" src={videoPlayer} />
+          <div className="editVideo">
+            <img className="editImage" src={videoPlayer} />
           </div>
         </div>
       </div>

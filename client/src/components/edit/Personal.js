@@ -8,7 +8,7 @@ import './edit.css'
 
 export const Personal = () => (
   <StyledPaper>
-    <div className="EditSectionGrid">
+    <div className="editSectionGrid">
       <div>
         <AppBar
           iconElementLeft={
@@ -20,7 +20,7 @@ export const Personal = () => (
           iconStyleLeft={style.appBar}
         />
       </div>
-      <div className="EditFieldsGrid">
+      <div className="editFieldsGrid">
         <div>
           <StyledTextField text="First Name" />
         </div>

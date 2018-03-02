@@ -11,7 +11,7 @@ export const AddExperience = props => {
   const name = `Name of ${type}`
 
   return (
-    <div className="EditOuterDiv">
+    <div className="editOuterDiv">
       <div>
         <StyledTextField text={name} />
       </div>

@@ -8,8 +8,8 @@ import './experience.css'
 
 export const Experience = () => (
   <StyledPaper>
-    <div className="EditBoxGrid">
-      <div className="EditLeft">
+    <div className="editBoxGrid">
+      <div className="editLeft">
         <AppBar
           iconElementLeft={
             <IconButton>
@@ -20,7 +20,7 @@ export const Experience = () => (
           iconStyleLeft={style.appBar}
         />
       </div>
-      <div className="EditRight">
+      <div className="editRight">
         <AddExperience />
       </div>
     </div>

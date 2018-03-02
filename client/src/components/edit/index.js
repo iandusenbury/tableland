@@ -10,20 +10,20 @@ import Person from 'material-ui/svg-icons/social/person'
 class EditProfile extends Component {
   render() {
     return (
-      <div className="EditPrimaryDiv">
-        <div className="EditHeader">
-          <div className="EditHeaderAvatar">
+      <div className="editPrimaryDiv">
+        <div className="editHeader">
+          <div className="editHeaderAvatar">
             <Avatar icon={<Person />} size={100} style={style.avatarIcon} />
           </div>
         </div>
-        <div className="EditMainGrid">
-          <div className="EditPersonal">
+        <div className="editMainGrid">
+          <div className="editPersonal">
             <Personal />
           </div>
-          <div className="EditMedia">
+          <div className="editMedia">
             <Media />
           </div>
-          <div className="EditExperience">
+          <div className="editExperience">
             <Experience />
           </div>
         </div>

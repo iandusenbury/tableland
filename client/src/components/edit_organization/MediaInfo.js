@@ -10,7 +10,7 @@ const videoPlayer = require('./video.png')
 
 export const MediaInfo = () => (
   <StyledPaper>
-    <div className="OrgSectionGrid">
+    <div className="orgSectionGrid">
       <div>
         <AppBar
           iconElementLeft={
@@ -23,13 +23,13 @@ export const MediaInfo = () => (
           style={style.organizationAppBar}
         />
       </div>
-      <div className="OrgMediaGrid">
+      <div className="orgMediaGrid">
         <div>
           <StyledTextField text="Video URL" org multiLine />
         </div>
         <div>
-          <div className="OrgVideo">
-            <img className="OrgImage" src={videoPlayer} />
+          <div className="orgVideo">
+            <img className="orgImage" src={videoPlayer} />
           </div>
         </div>
       </div>

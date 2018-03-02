@@ -1,10 +1,10 @@
-.OrgPrimaryDiv {
+.orgPrimaryDiv {
     width: 100%;
     height: auto;
     overflow-y: scroll;
 }
 
-.OrgHeader {
+.orgHeader {
     width: 100%;
     height: 16vh;
     margin-top: .5%;
@@ -12,12 +12,12 @@
 
 }
 
-.OrgHeaderAvatar {
+.orgHeaderAvatar {
     margin-left: 47%;
 }
 
 
-.OrgMainGrid {
+.orgMainGrid {
     overflow: auto;
     margin-top: 1%;
     display: grid;
@@ -26,57 +26,57 @@
     grid-template-areas: "personal" "media" "experience";
 }
 
-.OrgPersonal {
+.orgPersonal {
     height: auto;
     margin-bottom: .75%;
 }
 
-.OrgMedia {
+.orgMedia {
     height: 35vh;
     margin-bottom: .75%;
 }
 
 
-.OrgSectionGrid {
+.orgSectionGrid {
     display: grid;
     grid-template-columns: 20% 80%;
     grid-column-gap: 2%;
     margin-right: 2%;
 }
 
-.OrgSectionGrid > div:nth-child(even){
+.orgSectionGrid > div:nth-child(even){
     /*height: 35vh;*/
     height: auto;
 
 }
 
-.OrgSectionGrid > div:nth-child(odd){
+.orgSectionGrid > div:nth-child(odd){
     height: auto;
     border-right: 2px solid #FFCC80;
 }
 
-.OrgFieldsGrid {
+.orgFieldsGrid {
     display: grid;
     height: 35vh;
     grid-template-columns: 1fr 1fr;
 }
 
-.OrgFieldsGrid > div {
+.orgFieldsGrid > div {
     background: transparent;
 }
 
-.OrgMediaGrid {
+.orgMediaGrid {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
-.OrgMediaGrid > div {
+.orgMediaGrid > div {
     background: transparent;
     height: auto;
 }
 
 
-.OrgVideo {
+.orgVideo {
     height:31vh;
     width: auto;
     display: inline-block;
@@ -85,7 +85,7 @@
 }
 
 
-.OrgImage {
+.orgImage {
     width: 350px;
     height: 31vh;
     opacity: 0.4;

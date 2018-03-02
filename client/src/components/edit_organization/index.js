@@ -6,15 +6,15 @@ import { MediaInfo } from './MediaInfo'
 class EditOrg extends Component {
   render() {
     return (
-      <div className="OrgPrimaryDiv">
-        <div className="OrgHeader">
-          <div className="OrgHeaderAvatar" />
+      <div className="orgPrimaryDiv">
+        <div className="orgHeader">
+          <div className="orgHeaderAvatar" />
         </div>
-        <div className="OrgMainGrid">
-          <div className="OrgPersonal">
+        <div className="orgMainGrid">
+          <div className="orgPersonal">
             <About />
           </div>
-          <div className="OrgMedia">
+          <div className="orgMedia">
             <MediaInfo />
           </div>
         </div>

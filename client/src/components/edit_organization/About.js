@@ -8,7 +8,7 @@ import './editOrg.css'
 
 export const About = () => (
   <StyledPaper>
-    <div className="OrgSectionGrid">
+    <div className="orgSectionGrid">
       <div>
         <AppBar
           iconElementLeft={
@@ -21,7 +21,7 @@ export const About = () => (
           style={style.organizationAppBar}
         />
       </div>
-      <div className="OrgFieldsGrid">
+      <div className="orgFieldsGrid">
         <div>
           <StyledTextField text="Organization Name" org />
         </div>

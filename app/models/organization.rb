@@ -6,7 +6,7 @@ class Organization < ApplicationRecord
     fields_to_search = ['name', 'city', 'state']
 
     results = Organization.where(
-      Search.where_clause_from_fields(fields_to_search),
+      Search.where_clause_from_fields_vis_only(fields_to_search), 
       term: Search.term_to_pattern(term))
   end
 

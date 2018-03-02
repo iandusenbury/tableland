@@ -75,6 +75,8 @@ def create_users()
       password:     Faker::Internet.password(8)
     )
   end
+
+  make_sample_invisible(User.all, 0.10)
 end
 
 
@@ -84,7 +86,6 @@ def create_companies()
       name:           STEM_COMPANIES[i],
       description:    Faker::HitchhikersGuideToTheGalaxy.quote,
       url:            Faker::Internet.url,
-      visible:        Faker::Boolean.boolean(0.8),
       category:       "company",
       address_line_1: Faker::Address.street_address,
       address_line_2: Faker::Address.secondary_address,
@@ -96,6 +97,8 @@ def create_companies()
       lng:            Faker::Address.longitude
     )
   end
+
+  make_sample_invisible(Organization.all, 0.10)
 end
 
 
@@ -105,7 +108,6 @@ def create_institutions()
       name:           Faker::Educator.university, 
       description:    Faker::HitchhikersGuideToTheGalaxy.quote,
       url:            Faker::Internet.url,
-      visible:        Faker::Boolean.boolean(0.8),
       category:       "institution",
       address_line_1: Faker::Address.street_address,
       address_line_2: Faker::Address.secondary_address,
@@ -117,6 +119,8 @@ def create_institutions()
       lng:            Faker::Address.longitude
     )
   end
+
+  make_sample_invisible(Organization.all, 0.10)
 end
 
 
@@ -127,7 +131,6 @@ def create_organizations()
                         ["Society", "Association", "Foundation"].sample, 
       description:    Faker::HitchhikersGuideToTheGalaxy.quote,
       url:            Faker::Internet.url,
-      visible:        Faker::Boolean.boolean(0.8),
       category:       "organization",
       address_line_1: Faker::Address.street_address,
       address_line_2: Faker::Address.secondary_address,
@@ -139,6 +142,8 @@ def create_organizations()
       lng:            Faker::Address.longitude
     )
   end
+
+  make_sample_invisible(Organization.all, 0.10)
 end
 
 
@@ -148,9 +153,10 @@ def create_programs()
       name:        "#{Faker::ProgrammingLanguage.name.capitalize} Club",
       description: Faker::DrWho.quote,
       url:         Faker::Internet.url,
-      visible:     Faker::Boolean.boolean(0.8)
     )
   end
+
+  make_sample_invisible(Program.all, 0.10)
 end
 
 
@@ -296,6 +302,16 @@ def create_media()
   end
 end
 
+
+def make_sample_invisible(collection, percentage)
+  # make some collections invisible (when not possible during creation)
+  for i in 1..(collection.length * percentage)
+    collection.all.sample.update(visible: false)
+  end
+end
+
+
+# create administration accounts
 User.create(
       first_name:   'super admin',
       last_name:    'super admin',
@@ -307,6 +323,7 @@ User.create(
       uid:          '1',
       password:     'password'
 )
+User.find_by(uid: '1').update(visible: false)
 
 User.create(
       first_name:   'admin',
@@ -319,6 +336,8 @@ User.create(
       uid:          '2',
       password:     'password'
 )
+User.find_by(uid: '2').update(visible: false)
+
 
 create_users()
 create_companies()

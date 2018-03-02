@@ -152,7 +152,7 @@ def create_programs()
     Program.create( 
       name:        "#{Faker::ProgrammingLanguage.name.capitalize} Club",
       description: Faker::DrWho.quote,
-      url:         Faker::Internet.url,
+      url:         Faker::Internet.url
     )
   end
 

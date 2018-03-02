@@ -64,6 +64,6 @@ class User < ApplicationRecord
   private
     def set_default_attributes
       self.role ||= :user
-      self.visible ||= true
+      self.visible = true
     end
 end

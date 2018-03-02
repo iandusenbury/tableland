@@ -4,7 +4,6 @@ import { style } from './styles'
 
 export const StyledTextField = props => {
   const { text, multiLine, disabled, org } = props
-  const isMultiLine = !!multiLine
 
   const underlineStyle = org ? style.organization : {}
 
@@ -14,7 +13,7 @@ export const StyledTextField = props => {
       floatingLabelStyle={style.textFloating}
       floatingLabelFocusStyle={style.textFloating}
       hintStyle={style.textHint}
-      multiLine={isMultiLine}
+      multiLine={multiLine}
       floatingLabelText={text}
       disabled={disabled}
     />

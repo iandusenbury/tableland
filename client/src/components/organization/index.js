@@ -52,31 +52,31 @@ class organization extends Component {
       users
     } = this.props
 
-    var videoUrl = ""
+    var videoUrl = ''
     var hasVideo = false
     if (organizationVideo) {
-      videoUrl = organizationVideo.replace("watch?v=", "embed/")
+      videoUrl = organizationVideo.replace('watch?v=', 'embed/')
       hasVideo = true
     }
 
     return (
-      <div className="organizationMainDiv">
-        <TopTab className="organizationTopTab" />
-        <div className="organizationImage">
+      <div className='organizationMainDiv'>
+        <TopTab className='organizationTopTab' />
+        <div className='organizationImage'>
           <Card>
             <CardMedia
-              overlay={<CardTitle id="org_name" title={name} />}>
-              <img className="organizationImg" src={sampleImg} alt="" />
+              overlay={<CardTitle id='org_name' title={name} />}>
+              <img className='organizationImg' src={sampleImg} alt='' />
             </CardMedia>
           </Card>
         </div>
-        <div className="organizationText">
-          <div className="organizationName">
-            <h3 className="organizationHeader3">{name}</h3>
+        <div className='organizationText'>
+          <div className='organizationName'>
+            <h3 className='organizationHeader3'>{name}</h3>
             <Divider />
           </div>
-          <div className="organizationContact">
-            <div className="organizationAddress">
+          <div className='organizationContact'>
+            <div className='organizationAddress'>
               <BusinessIcon style={orgPage.businessIcon} />
               <div>
                 <p>{addressLine1}</p>
@@ -85,7 +85,7 @@ class organization extends Component {
                 <p>{addressLine2}</p>
               </div>
             </div>
-            <div className="organizationUrl">
+            <div className='organizationUrl'>
               <div>
                 <LanguageIcon style={orgPage.urlIcon} />
               </div>
@@ -94,20 +94,21 @@ class organization extends Component {
               </div>
             </div>
           </div>
-          <div className="organizationDescription">
+          <div className='organizationDescription'>
             <Divider />
             <p>{description}</p>
             {hasVideo && (
               <iframe
-                className="organizationVideo"
-                title="Organization Video"
-                allow="encrypted-media"
+                className='organizationVideo'
+                title='Organization Video'
+                allow='encrypted-media'
+                frameBorder='0'
                 src={videoUrl}
               />
             )}
             <Divider />
           </div>
-          <div className="organizationEmployees">
+          <div className='organizationEmployees'>
             <Table>
               <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
                 <TableRow>
@@ -137,13 +138,18 @@ function createEmployeeTable(employees) {
       media
     } = employee
 
-    var imageUrl = null;
+    var imageUrl = media.reduce((obj, item) => {
+      obj[item.category] = item
+      return obj
+    }, {})
 
-    if (media && media[0])
-      imageUrl = media[0].url
-
+    if (imageUrl.image)
+      imageUrl = imageUrl.image.url
+    else
+      imageUrl = null
+ 
     return (
-      <TableRow key={id} className="organizationTableRow" hoverable>
+      <TableRow key={id} className='organizationTableRow' hoverable>
         <TableRowColumn style={orgPage.tableRowColAvatar}>
           <Avatar size={32} src={imageUrl || portraitImg} />
         </TableRowColumn>

@@ -7,12 +7,15 @@ module ExceptionHandler
     end
 
     rescue_from ActiveRecord::RecordInvalid do |record_invalid_exception|
-      render json: { errors: record_invalid_exception.record.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: record_invalid_exception.record.errors.messages }, status: :unprocessable_entity
     end
 
     rescue_from ExceptionTypes::UnauthorizedError do |unauthorized_exception|
-      binding.pry
       render json: { error: unauthorized_exception.message }, status: :unauthorized
+    end
+
+    rescue_from ExceptionTypes::BadRequestError do |bad_request_exception|
+      render json: { error: bad_request_exception.message }, status: :unprocessable_entity
     end
   end
 

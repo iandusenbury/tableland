@@ -80,36 +80,37 @@ export const buildBounds = locations => {
   return bounds
 }
 
-export const buildMarkers = experiences => {
-  const markers = []
-  const experienceOrgs = []
-  experiences.forEach(experience => {
-    if (experience.organization) {
-      experienceOrgs.push(experience)
-    }
-  })
-
-  experienceOrgs.forEach((experience, index) => {
-    const location = {
-      lat: parseFloat(experience.organization.lat),
-      lng: parseFloat(experience.organization.lng)
-    }
-    const marker = (
-      <Marker key={index} label={index.toString()} position={location}>
-        {index === experienceOrgs.length - 1 && (
-          <InfoWindow>
-            <div>
-              <h3>{experience.organization.name}</h3>
-              <p>{experience.title}</p>
-            </div>
-          </InfoWindow>
-        )}
-      </Marker>
-    )
-    markers.push(marker)
-  })
-  return markers
-}
+// export const buildMarkers = (experiences, isMarkerShown, toggleMarkerFlag) => {
+//   const markers = []
+//   const experienceOrgs = []
+//   experiences.forEach(experience => {
+//     if (experience.organization) {
+//       experienceOrgs.push(experience)
+//     }
+//   })
+//
+//   experienceOrgs.forEach((experience, index) => {
+//     const location = {
+//       lat: parseFloat(experience.organization.lat),
+//       lng: parseFloat(experience.organization.lng)
+//     }
+//     const marker = (
+//       <Marker key={index} onClick={() => toggleMarkerFlag(index)} label={index.toString()} position={location}>
+//         {isMarkerShown[index] && (
+//           <InfoWindow>
+//             <div>
+//               <h3>{experience.organization.name}</h3>
+//               <p>{experience.title}</p>
+//               <p>{experience.startDate} - {experience.endDate || "Present"}</p>
+//             </div>
+//           </InfoWindow>
+//         )}
+//       </Marker>
+//     )
+//     markers.push(marker)
+//   })
+//   return markers
+// }
 
 export const buildPolylines = experiences => {
   const experienceNodes = []

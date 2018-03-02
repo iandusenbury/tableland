@@ -10,6 +10,7 @@ class Experience < ApplicationRecord
   # Validations
   validates :user_id, :start_date, :title, presence: { message: "%{attribute} must be present" }
   validates :program_id, absence: { message: "An experience must not be created for both a program and organization at the same time." }, if: :organization_id?
+  validates :parent_org, absence: { message: "An experience for an organization should not have a specified parent organization." }, if: :organization_id?
   validates :parent_org, presence: { message: "An experience for a program must have a specified parent organization." }, if: :program_id?
   validates :current, inclusion: { in: [true, false] }
 

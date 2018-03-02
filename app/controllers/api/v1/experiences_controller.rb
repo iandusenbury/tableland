@@ -76,14 +76,19 @@ module Api::V1
         program_id = params[:program_id] || params[:experience][:program_id]
         parent_org_id = params[:parent_org] || params[:experience][:parent_org]
         
-        if program_id
-          Program.find(program_id)
+        if !program_id && !organization_id
+          raise ExceptionTypes::BadRequestError.new("An experience must be associated with either a program or an organization")
         end
         if organization_id
           Organization.find(organization_id)
-        end
-        if parent_org_id
-          Organization.find(parent_org_id)
+        elsif program_id
+          program = Program.find(program_id)
+          if parent_org_id
+            parent_organization = Organization.find(parent_org_id)
+            if !program.sponsors.exists?(organization_id: parent_organization.id)
+              raise ExceptionTypes::BadRequestError.new("Specified parent organization with ID: #{parent_org_id}, must be a parent of the specified program with ID: #{program_id}")
+            end
+          end
         end
       end
 
@@ -92,23 +97,19 @@ module Api::V1
         start_date = params[:start_date] || params[:experience][:start_date]
         end_date = params[:end_date] || params[:experience][:end_date]
 
-        if start_date
-          begin
-            start_date = DateTime.parse(start_date)
-          rescue ArgumentError
-            raise ExceptionTypes::BadRequestError.new("Invalid datetime format for start_date: #{start_date}")
+        if start_date && end_date
+          start_date = parse_datetime("start_date", start_date)
+          end_date = parse_datetime("end_date", end_date)
+          check_chronological(start_date, end_date)
+        elsif start_date
+          start_date = parse_datetime("start_date", start_date)
+          if @experience && @experience.end_date
+            check_chronological(start_date, @experience.end_date)
           end
-        end
-
-        if end_date
-          begin
-            end_date = DateTime.parse(end_date)
-          rescue ArgumentError
-            raise ExceptionTypes::BadRequestError.new("Invalid datetime format for end_date: #{end_date}")
-          else
-            if start_date && end_date < start_date
-              raise ExceptionTypes::BadRequestError.new("end_date: #{end_date}, must not be before start_date: #{start_date}")
-            end
+        elsif end_date
+          end_date = parse_datetime("end_date", end_date)
+          if @experience
+            check_chronological(@experience.start_date, end_date)
           end
         end
       end
@@ -119,6 +120,23 @@ module Api::V1
 
         if current && current != true && current != false
           raise ExceptionTypes::BadRequestError.new("Invalid format for current: #{current}, must be boolean true or false")
+        end
+      end
+
+      # Attempt to convert string param into DateTime object, raise BadRequestError if unsuccessful
+      def parse_datetime(param_name, datetime_to_parse)
+        begin
+          datetime_to_parse = DateTime.parse(datetime_to_parse)
+        rescue ArgumentError
+            raise ExceptionTypes::BadRequestError.new("Invalid datetime format for #{param_name}: #{datetime_to_parse}")
+        end
+        datetime_to_parse
+      end
+
+      # Validate that the start_date for an experience comes before the end_date for an experience
+      def check_chronological(comes_before, comes_after)
+        if comes_after < comes_before
+          raise ExceptionTypes::BadRequestError.new("end_date: #{comes_after}, must not be before start_date: #{comes_before}")
         end
       end
 

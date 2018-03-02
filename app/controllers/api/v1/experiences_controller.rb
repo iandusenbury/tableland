@@ -62,6 +62,9 @@ module Api::V1
     private
       def set_user
         @user = User.find(params[:user_id])
+        if @user.id != current_user.id
+          raise ExceptionTypes::UnauthorizedError.new("You do not have access to modify the experiences of the user with ID #{@user.id}")
+        end
       end
 
       # Use callbacks to share common setup or constraints between actions.

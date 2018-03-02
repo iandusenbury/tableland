@@ -101,7 +101,8 @@ def create_experiences()
         start_date:      (j*2).years.ago,
         end_date:        j.years.ago,
         title:           "Member",
-        current:         false
+        current:         false,
+        parent_org:      Faker::Number.between(1, NUM_ORGS)
       )
     end
   end

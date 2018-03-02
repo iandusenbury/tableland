@@ -75,7 +75,7 @@ module Api::V1
       end
 
       def program_experience_params
-        params.require(:experience).permit(:user_id, :program_id, :start_date, :end_date, :title, :award, :current)
+        params.require(:experience).permit(:user_id, :program_id, :start_date, :end_date, :title, :award, :current, :parent_org)
       end
 
   end

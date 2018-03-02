@@ -10,6 +10,7 @@ class Experience < ApplicationRecord
   # Validations
   validates :user_id, :start_date, :title, presence: true
   validates :program_id, absence: true, if: :organization_id?
+  validates :parent_org, presence: true, if: :program_id?
 
   def set_default_attributes
     self.current ||= false

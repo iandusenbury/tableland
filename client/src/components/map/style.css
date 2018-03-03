@@ -1,0 +1,35 @@
+.mapProfilePreviewTab {
+  height: 100px;
+  width: 320px;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  border-radius: 12px 12px 0px 0px;
+  margin: auto;
+  position: absolute;
+  overflow: hidden;
+  z-index: 9;
+  background-color: #ff9e15;
+  display: grid;
+  grid-template-columns: 20% auto;
+  grid-template-areas: 'avatar info';
+}
+
+.mapProfilePreviewInfo {
+  grid-area: info;
+  text-align: center;
+}
+
+.mapProfilePreviewInfo h3 {
+  margin: 0px;
+  margin-top: 8px;
+}
+
+.mapProfilePreviewInfo p {
+  margin: 0px;
+  margin-top: 8px;
+}
+
+.mapProfilePreviewAvatar {
+  grid-area: avatar;
+}

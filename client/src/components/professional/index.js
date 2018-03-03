@@ -1,4 +1,4 @@
-import  React, { Component } from 'react'
+import React, { Component } from 'react'
 import {
   Card,
   CardMedia,
@@ -23,7 +23,7 @@ class professional extends Component {
     this.props.fetchProfessional(3)
   }
 
-  render () {
+  render() {
     const {
       /* fields not yet used
       id,
@@ -55,7 +55,7 @@ class professional extends Component {
                     size={200}
                     src={profileImage}
                   />
-                  <div className="professionalPaperStyle" >
+                  <div className="professionalPaperStyle">
                     <h1 className="professionalHeader1">
                       {mainTitle} at {mainLocation}
                     </h1>
@@ -79,17 +79,13 @@ class professional extends Component {
                 <LanguageIcon style={orgPage.urlIcon} />
               </div>
               <div>
-                <p>
-                  {contactUrl}
-                </p>
+                <p>{contactUrl}</p>
               </div>
             </div>
           </div>
           <div className="professionalDescription">
             <Divider />
-            <p>
-              {description}
-            </p>
+            <p>{description}</p>
             {hasVideo && (
               <div>
                 <video /> {/* placeholder, has linting error here */}
@@ -98,9 +94,7 @@ class professional extends Component {
             <Divider />
           </div>
           <div className="professionalExperiences">
-            <List>
-              {createExperienceTable(experiences)}
-            </List>
+            <List>{createExperienceTable(experiences)}</List>
           </div>
         </div>
       </div>
@@ -109,7 +103,7 @@ class professional extends Component {
 }
 
 function createExperienceTable(experiences) {
-  return experiences.map( experience => {
+  return experiences.map(experience => {
     const {
       id,
       startDate,
@@ -121,13 +115,16 @@ function createExperienceTable(experiences) {
     } = experience
 
     const name = organization ? organization.name : program.name
-    if (organization === undefined)
-      return createProgramTable(name, experience)
+    if (organization === undefined) return createProgramTable(name, experience)
 
     return (
       <ListItem key={id} leftIcon={<Domain />}>
-        <h4>{name} - {title}</h4>
-        <p>{startDate} - {endDate}</p>
+        <h4>
+          {name} - {title}
+        </h4>
+        <p>
+          {startDate} - {endDate}
+        </p>
         <p>{award}</p>
       </ListItem>
     )
@@ -135,20 +132,18 @@ function createExperienceTable(experiences) {
 }
 
 function createProgramTable(name, experience) {
-  const {
-    id,
-    startDate,
-    endDate,
-    title,
-    award,
-  } = experience
+  const { id, startDate, endDate, title, award } = experience
 
   return (
-      <ListItem key={id} leftIcon={<Group />}>
-        <h4>{name} - {title}</h4>
-        <p>{startDate} - {endDate}</p>
-        <p>{award}</p>
-      </ListItem>
+    <ListItem key={id} leftIcon={<Group />}>
+      <h4>
+        {name} - {title}
+      </h4>
+      <p>
+        {startDate} - {endDate}
+      </p>
+      <p>{award}</p>
+    </ListItem>
   )
 }
 

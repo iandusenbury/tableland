@@ -1,5 +1,5 @@
 import React from 'react'
-import { Marker, Polyline, InfoWindow } from 'react-google-maps'
+import { Polyline } from 'react-google-maps'
 
 // Nodes, consists of a timeline and location and priority level
 /*
@@ -58,6 +58,7 @@ const buildPolylineGroup = (i, index, nodes) => {
 export const buildBounds = locations => {
   const locationData = []
   const bounds = defaultBounds
+  const boundExtension = 0.3
   if (locations && locations.length > 0) {
     locations.forEach(node => {
       if (node.organization) {
@@ -75,6 +76,14 @@ export const buildBounds = locations => {
     bounds.south = Math.min(...latitudes)
     bounds.east = Math.max(...longitudes)
     bounds.west = Math.min(...longitudes)
+  }
+  if (bounds.north - bounds.south < 1) {
+    bounds.north += boundExtension
+    bounds.south -= boundExtension
+  }
+  if (bounds.east - bounds.west < 1) {
+    bounds.east += boundExtension
+    bounds.west -= boundExtension
   }
 
   return bounds

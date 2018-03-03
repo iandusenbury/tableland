@@ -31,35 +31,7 @@ export function fetchProfessional() {
   }
 
   return dispatch => {
-    dispatch(
-      callApi(callDescriptor, { onSuccess: initializeMarkerFlags } )
-    )
-  }
-}
-
-function initializeMarkerFlags(response, dispatch) {
-  const { payload: { user: { experiences } } } = response
-  let experienceLength = 0
-  experiences.forEach(experience => {
-    if (experience.organization) {
-      experienceLength += 1
-    }
-  })
-
-  return dispatch(updateMarkerFlags(experienceLength))
-}
-
-function updateMarkerFlags(size) {
-  const markerFlags = []
-  for (let i = 0; i < size - 1; i += 1) {
-    markerFlags.push(false)
-  }
-  markerFlags.push(true)
-  return {
-    type: ActionTypes.INIT_MARKER_FLAGS,
-    payload: {
-      markerFlags
-    }
+    dispatch(callApi(callDescriptor))
   }
 }
 

@@ -8,9 +8,12 @@ import {
   InfoWindow
 } from 'react-google-maps'
 import { compose, withHandlers, withStateHandlers } from 'recompose'
+import { Avatar, FlatButton } from 'material-ui'
 import mapStyle from './style.json'
 import { buildBounds, buildPolylines } from './build'
 import BottomTab from '../../constants/tabs/tabViewProfile'
+import './style.css'
+import styleJS from './style'
 
 /*
  * TODO:
@@ -26,10 +29,10 @@ class MyMapComponent extends Component {
 
   render() {
     const {
-      // firstName,
-      // lastName,
-      // mainTitle,
-      // profileImage,
+      firstName,
+      lastName,
+      mainTitle,
+      profileImage,
       experiences
     } = this.props
     const sortedExperiences = experiences.sort(
@@ -57,6 +60,20 @@ class MyMapComponent extends Component {
             if (refs.map) {
               refs.map.fitBounds(bounds)
             }
+          },
+          onPanTo: () => (index, location) => {
+            const boundExtension = 0.1
+            const newBounds = {
+              north: location.lat + boundExtension,
+              south: location.lat - boundExtension,
+              east: location.lng + boundExtension,
+              west: location.lng - boundExtension
+            }
+            refs.map.panTo(location)
+            refs.map.fitBounds(newBounds)
+          },
+          onPanOut: () => () => {
+            refs.map.fitBounds(bounds)
           }
         }
       }),
@@ -72,8 +89,15 @@ class MyMapComponent extends Component {
           }
         },
         {
-          onToggleOpen: ({ isMarkerOpen }) => index => {
-            isMarkerOpen[index] = !isMarkerOpen[index]
+          onToggleOpen: ({ isMarkerOpen }) => indexClicked => {
+            for (let i = 0; i < isMarkerOpen.length; i += 1) {
+              if (i === indexClicked) {
+                isMarkerOpen[i] = true
+              } else {
+                isMarkerOpen[i] = false
+              }
+            }
+            // isMarkerOpen[indexClicked] = !isMarkerOpen[indexClicked]
             return isMarkerOpen
           }
         }
@@ -88,6 +112,8 @@ class MyMapComponent extends Component {
         // isMarkerShown,
         isMarkerOpen,
         onToggleOpen,
+        onPanTo,
+        onPanOut,
         // toggleMarkerFlag,
         ...otherProps
       } = props
@@ -125,7 +151,17 @@ class MyMapComponent extends Component {
               const getDate = date => {
                 if (date !== null) {
                   date = new Date(date.toString())
-                  date = `${date.getMonth() + 1}/${date.getFullYear()}`
+                  date = `${monthNames[date.getMonth()]} ${date.getFullYear()}`
+                } else date = 'Current'
+
+                return date
+              }
+
+              const getShortDate = date => {
+                if (date !== null) {
+                  date = new Date(date.toString())
+                  const year = date.getFullYear() % 100
+                  date = `${date.getMonth() + 1}/${year}`
                 } else date = 'Current'
 
                 return date
@@ -138,23 +174,26 @@ class MyMapComponent extends Component {
                 endDate
               } = experience
 
-              const label = endDate ? getDate(startDate) : `Now`
+              const label = endDate ? getShortDate(startDate) : `Now`
 
               return (
                 <Marker
                   key={index}
                   onClick={() => onToggleOpen(index)}
-                  label={label}
+                  // label={label}
                   // icon={require('./mapIcon.png')}
                   position={location}>
                   {isMarkerOpen[index] && (
                     <InfoWindow>
                       <div>
-                        <h3>{name}</h3>
+                        <h2>{name}</h2>
                         <p>{title}</p>
                         <p>
                           {getDate(startDate)} - {getDate(endDate)}
                         </p>
+                        <FlatButton primary onClick={() => onPanTo(index, location)}>Pan To</FlatButton>
+                        <FlatButton primary onClick={() => onPanOut()}>Pan Out</FlatButton>
+                        <p style={{position: 'absolute', right:'2px', bottom:'4px'}}>{index + 1}</p>
                       </div>
                     </InfoWindow>
                   )}
@@ -170,11 +209,11 @@ class MyMapComponent extends Component {
     })
 
     return (
-      <div>
+      <div style={{ height: `calc(100vh - 56px)`}}>
         <GMap
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyARRsWk_FbczyZ0RFU4STmiTxxYfnWmiBs&v=3.exp&libraries=geometry,drawing,places"
           loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ height: `calc(100vh - 72px)` }} />}
+          containerElement={<div style={{ height: `100%` }} />}
           mapElement={<div style={{ height: `100%` }} />}
           defaultZoom={12}
           defaultCenter={{ lat: 45.516, lng: -122.679565 }}
@@ -185,6 +224,15 @@ class MyMapComponent extends Component {
             fullscreenControl: false
           }}
         />
+        <div className="mapProfilePreviewTab">
+          <div className="mapProfilePreviewAvatar">
+            <Avatar style={styleJS.styles.avatar} size={styleJS.avatarSize} src={profileImage} />
+          </div>
+          <div className="mapProfilePreviewInfo">
+            <h3 className="mapProfilePreviewHeader">{firstName} {lastName}</h3>
+            <p className="mapProfilePreviewTitle">{mainTitle}</p>
+          </div>
+        </div>
         <BottomTab />
       </div>
     )

@@ -15,7 +15,7 @@ const initialState = {
   media: {
     image: {},
     video: {}
-  }, 
+  },
   experiences: []
 }
 
@@ -34,9 +34,8 @@ function requestProfessional(state, data) {
   const reducedMedia = media.reduce((obj, item) => {
     obj[item.category] = item
     return obj
-  }, {});
+  }, {})
 
-   
   return {
     ...state,
     ...user,

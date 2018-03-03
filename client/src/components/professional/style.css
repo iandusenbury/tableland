@@ -1,6 +1,6 @@
 .professionalMainDiv {
   width: 100%;
-  height: calc(100vh - 72px);
+  height: calc(100vh - 56px);
   background-color: white;
   display: grid;
   grid-template-columns: 50% 50%;
@@ -12,24 +12,24 @@
 }
 
 .professionalAvatarDiv {
-  height: 92vh;
+  height: calc(100vh - 56px);
   width: 100%;
 }
 
 .professionalAvatarStyle {
   position: absolute;
   top: 0;
-  left: 0; 
-  right: 0; 
+  left: 0;
+  right: 0;
   bottom: 0;
   margin: auto;
 }
 
 .professionalPaperStyle {
-  background-color: rgba(231,224,215,0.5); 
+  background-color: rgba(231,224,215,0.5);
   border-radius: 10px;
   position: relative;
-  top: 65vh; 
+  top: 65vh;
   bottom: 0;
   width: 65%;
   margin: auto;
@@ -42,14 +42,14 @@
 .professionalImage {
   grid-area: image;
   overflow: hidden;
-  height: calc(100vh - 72px);
+  height: calc(100vh - 56px);
 }
 
 .professionalText {
   grid-area: text;
   overflow-y: scroll;
   overflow-x: hidden;
-  height: calc(100vh - 72px);
+  height: calc(100vh - 56px);
 }
 
 .professionalName {
@@ -153,7 +153,7 @@
   padding: 0;
   display: block;
   margin: 0 auto;
-  height: 92.4vh;
+  height: calc(100vh - 56px);
   width: 100%;
 }
 

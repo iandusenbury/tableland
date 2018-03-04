@@ -1,107 +1,196 @@
-import React from 'react'
-import {
-  Card,
-  CardMedia,
-  Divider,
-  Paper,
-  List,
-  ListItem,
-  Avatar
-} from 'material-ui'
+import React, { Component } from 'react'
+import { Card, CardMedia, Divider, List, ListItem, Avatar } from 'material-ui'
 import LanguageIcon from 'material-ui/svg-icons/action/language'
+import Group from 'material-ui/svg-icons/social/group'
+import Domain from 'material-ui/svg-icons/social/domain'
+import PropTypes from 'prop-types'
+
 import TopTab from '../../constants/tabs/tabViewMap'
 import { orgPage } from '../../constants/viewStyles'
 import './style.css'
-import Group from 'material-ui/svg-icons/social/group'
-import Domain from 'material-ui/svg-icons/social/domain'
 
-const hasVideo = true // this will be passed as props
-const portraitImg = require('./portrait.png')
+// const hasVideo = true // this will be passed as props
 const sampleImg = require('./sample.jpg')
 
-export default props => (
-  <div className="professionalMainDiv">
-    <TopTab className="professionalTopTab" />
-    <div className="professionalImage">
-      <Card>
-        <CardMedia
-          overlay={
-            <div className="professionalAvatarDiv">
-              <Avatar
-                className="professionalAvatarStyle"
-                size={200}
-                src={portraitImg}
-              />
-              <Paper className="professionalPaperStyle" zDepth={5}>
-                <h1 className="professionalHeader1">
-                  [Job Title] at [Organization]
-                </h1>
-              </Paper>
-            </div>
-          }>
-          <img className="professionalImg" src={sampleImg} alt="" />
-        </CardMedia>
-      </Card>
-    </div>
-    <div className="professionalText">
-      <div className="professionalName">
-        <h3 className="professionalHeader3">[First Name] [Last Name]</h3>
-        <Divider />
-      </div>
-      <div className="professionalContact">
-        <div className="professionalUrl">
-          <div>
-            <LanguageIcon style={orgPage.urlIcon} />
+class Professional extends Component {
+  componentWillMount() {
+    const { fetchProfessional } = this.props
+    // fetches random propfessional
+    fetchProfessional()
+  }
+
+  render() {
+    const {
+      firstName,
+      lastName,
+      description,
+      contactUrl,
+      mainTitle,
+      mainLocation,
+      profileImage,
+      profileVideo,
+      experiences
+    } = this.props
+
+    let videoUrl = ''
+    let hasVideo = false
+    if (profileVideo) {
+      videoUrl = profileVideo.replace('watch?v=', 'embed/')
+      hasVideo = true
+    }
+
+    return (
+      <div className="professionalMainDiv">
+        <TopTab className="professionalTopTab" />
+        <div className="professionalImage">
+          <Card>
+            <CardMedia
+              overlay={
+                <div className="professionalAvatarDiv">
+                  <Avatar
+                    className="professionalAvatarStyle"
+                    size={200}
+                    src={profileImage}
+                  />
+                  <div className="professionalPaperStyle">
+                    <h1 className="professionalHeader1">
+                      {mainTitle} at {mainLocation}
+                    </h1>
+                  </div>
+                </div>
+              }>
+              <img className="professionalImg" src={sampleImg} alt="" />
+            </CardMedia>
+          </Card>
+        </div>
+        <div className="professionalText">
+          <div className="professionalName">
+            <h3 className="professionalHeader3">
+              {firstName} {lastName}
+            </h3>
+            <Divider />
           </div>
-          <div>
-            <p>www.linkedin.com/in/[vanityname]</p>
+          <div className="professionalContact">
+            <div className="professionalUrl">
+              <div>
+                <LanguageIcon style={orgPage.urlIcon} />
+              </div>
+              <div>
+                <p>{contactUrl}</p>
+              </div>
+            </div>
+          </div>
+          <div className="professionalDescription">
+            <Divider />
+            <p>{description}</p>
+            {hasVideo && (
+              <div className="professionalVideoWrapper">
+                <iframe
+                  className="professionalVideo"
+                  title="Professional Video"
+                  allow="encrypted-media"
+                  frameBorder="0"
+                  src={videoUrl}
+                />
+              </div>
+            )}
+            <Divider />
+          </div>
+          <div className="professionalExperiences">
+            <List>{createExperienceTable(experiences)}</List>
           </div>
         </div>
       </div>
-      <div className="professionalDescription">
-        <Divider />
-        <p>Description</p>
-        {hasVideo && (
-          <div>
-            <video /> {/* placeholder, has linting error here */}
-          </div>
-        )}
-        <Divider />
-      </div>
-      <div className="professionalExperiences">
-        <List>
-          <ListItem leftIcon={<Domain />}>
-            <h4>[Organization name] - [Job Title]</h4>
-            <p>[start date] - [end date]</p>
-            <p>[Award(s)]</p>
-            <ListItem leftIcon={<Group />}>
-              <h4>[Program] - [Job Title]</h4>
-              <p>[Start Date] - [End Date]</p>
-              <p>[Award(s)]</p>
-            </ListItem>
-            <ListItem leftIcon={<Group />}>
-              <h4>[Program] - [Job Title]</h4>
-              <p>[Start Date] - [End Date]</p>
-              <p>[Award(s)]</p>
-            </ListItem>
-          </ListItem>
-          <ListItem leftIcon={<Domain />}>
-            <h4>[Organization name] - [Job Title]</h4>
-            <p>[start date] - [end date]</p>
-            <p>[Award(s)]</p>
-          </ListItem>
-          <ListItem leftIcon={<Domain />}>
-            <h4>[Organization name] - [Job Title]</h4>
-            <p>[start date] - [end date]</p>
-            <p>[Award(s)]</p>
-          </ListItem>
-          <ListItem leftIcon={<Domain />}>
-            <h4>[Organization name] - [Job Title]</h4>
-            <p>[start date] - [end date]</p>
-            <p>[Award(s)]</p>
-          </ListItem>
-        </List>
-      </div>
-    </div>
-  </div>
-)
+    )
+  }
+}
+
+Professional.propTypes = {
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  contactUrl: PropTypes.string.isRequired,
+  mainTitle: PropTypes.string.isRequired,
+  mainLocation: PropTypes.string.isRequired,
+  profileImage: PropTypes.string.isRequired,
+  profileVideo: PropTypes.string.isRequired,
+  experiences: PropTypes.element.isRequired,
+  fetchProfessional: PropTypes.func.isRequired
+}
+
+function createExperienceTable(experiences) {
+  return experiences.map(experience => {
+    const {
+      id,
+      startDate,
+      endDate,
+      title,
+      award,
+      organization,
+      program
+    } = experience
+
+    const name = organization ? organization.name : program.name
+    if (organization === undefined) return createProgramTable(name, experience)
+
+    const start = getDate(startDate)
+    const end = getDate(endDate)
+
+    return (
+      <ListItem key={id} leftIcon={<Domain />}>
+        <h4>
+          {name} - {title}
+        </h4>
+        <p>
+          {start} - {end}
+        </p>
+        <p>{award}</p>
+      </ListItem>
+    )
+  })
+}
+
+function createProgramTable(name, experience) {
+  const { id, startDate, endDate, title, award } = experience
+
+  const start = getDate(startDate)
+  const end = getDate(endDate)
+
+  return (
+    <ListItem key={id} leftIcon={<Group />}>
+      <h4>
+        {name} - {title}
+      </h4>
+      <p>
+        {start} - {end}
+      </p>
+      <p>{award}</p>
+    </ListItem>
+  )
+}
+
+// This const defines months for use in following function
+const monthNames = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec'
+]
+// This function takes a date string as an argument and returns a string in the format
+// [mon] [year]
+function getDate(date) {
+  if (date === null) return 'current'
+
+  const initDate = new Date(date.toString())
+  return `${monthNames[initDate.getMonth()]} ${initDate.getFullYear()}`
+}
+
+export default Professional

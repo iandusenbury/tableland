@@ -2,6 +2,7 @@ module Api::V1
   class UsersController < ApiBaseController
     before_action :set_user, only: [:show, :update, :destroy]
     before_action :validate_permission, only: [:index, :permissions]
+    before_action :validate_destroy, if: -> { @user.id != current_user.id }, only: :destroy
 
     # GET /v1/users
     def index
@@ -64,6 +65,10 @@ module Api::V1
       # For certain actions, assert admin access only
       def validate_permission
         raise ExceptionTypes::UnauthorizedError.new("Admin access only") if current_user.user?
+      end
+
+      def validate_destroy
+        raise ExceptionTypes::UnauthorizedError.new("You do not have permission to delete the user with ID #{@user.id}") unless current_user.super_admin?
       end
 
       # Execute the appropriate query for the index action based on the query params and return the result

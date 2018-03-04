@@ -4,10 +4,8 @@ import { fetchProfessional } from '../../actions'
 
 import Professional from '../../components/professional'
 
-const portraitImg = require('./portrait.png')
-
 const mapStateToProps = state => ({
-  profileImage: state.app.professionalPage.media.image.url || portraitImg,
+  profileImage: state.app.professionalPage.media.image.url,
   profileVideo: state.app.professionalPage.media.video.url,
   ...state.app.professionalPage
 })

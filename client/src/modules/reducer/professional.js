@@ -1,5 +1,8 @@
 import createReducer from '../../utils/createReducer'
 import ActionTypes from '../../constants/actionTypes'
+import { isEmpty } from 'ramda'
+
+const portraitImg = require('../../assets/images/portrait.png')
 
 const initialState = {
   id: 0,
@@ -13,8 +16,12 @@ const initialState = {
   role: '',
   link: '',
   media: {
-    image: {},
-    video: {}
+    image: {
+      url: ''
+    },
+    video: {
+      url: ''
+    }
   }, 
   experiences: []
 }
@@ -36,6 +43,20 @@ function requestProfessional(state, data) {
     return obj
   }, {});
 
+  if (isEmpty(media)) {
+    return {
+      ...state,
+      ...user,
+      media: {
+        image: {
+          url: portraitImg
+        },
+        video: {
+          url: ''
+        }
+      }
+    }
+  }
    
   return {
     ...state,

@@ -58,7 +58,9 @@ class User < ApplicationRecord
   has_many :prog_edits, -> { distinct }, through: :permissions, source: :program
 
   # Validations
-  validates :first_name, :last_name, :contact_url, :role, presence: true
+  validates :first_name, :last_name, presence: { message: "%{attribute} must be present" },
+                                     length: { maximum: 50, message: "%{attribute} must not be longer than %{count} characters" } 
+  validates :contact_url, :role, presence: { message: "%{attribute} must be present" }
   validates :visible, inclusion: { in: [true, false] }
   
   private

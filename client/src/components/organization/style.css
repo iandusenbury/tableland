@@ -11,10 +11,20 @@
     ;
 }
 
+.organization-video-wrapper {
+  height: 0;
+  position: relative;
+  padding-bottom: 60%;
+}
+
 .organizationVideo {
-  height: 40vh;
-  width: 40vw;
-  margin-left: 20px;
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
 }
 
 .organizationImage {

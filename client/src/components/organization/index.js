@@ -14,31 +14,23 @@ import {
 } from 'material-ui'
 import BusinessIcon from 'material-ui/svg-icons/communication/business'
 import LanguageIcon from 'material-ui/svg-icons/action/language'
+import PropTypes from 'prop-types'
+
 import TopTab from '../../constants/tabs/tabViewMap'
-import './style.css'
 import { orgPage } from '../../constants/viewStyles'
-/*
-  Employees should be listed as
-  [icon/photo]  [name]  [position]
-*/
+import './style.css'
 
 const portraitImg = require('./portrait.png')
 const sampleImg = require('./sample.jpg')
 
-class organization extends Component {
+class Organization extends Component {
   componentWillMount() {
-    this.props.fetchOrganization(13)
+    const { fetchOrganization } = this.props
+    fetchOrganization(13)
   }
   
   render () {
     const {
-      /*
-      id,
-      type,
-      category,
-      link,
-      organizationImage,
-      */
       name,
       description,
       url,
@@ -52,8 +44,8 @@ class organization extends Component {
       users
     } = this.props
 
-    var videoUrl = ''
-    var hasVideo = false
+    let videoUrl = ''
+    let hasVideo = false
     if (organizationVideo) {
       videoUrl = organizationVideo.replace('watch?v=', 'embed/')
       hasVideo = true
@@ -98,13 +90,15 @@ class organization extends Component {
             <Divider />
             <p>{description}</p>
             {hasVideo && (
-              <iframe
-                className='organizationVideo'
-                title='Organization Video'
-                allow='encrypted-media'
-                frameBorder='0'
-                src={videoUrl}
-              />
+              <div className="organization-video-wrapper">
+                <iframe
+                  className='organizationVideo'
+                  title='Organization Video'
+                  allow='encrypted-media'
+                  frameBorder='0'
+                  src={videoUrl}
+                />
+              </div>
             )}
             <Divider />
           </div>
@@ -126,6 +120,20 @@ class organization extends Component {
       </div>
     )
   }
+}
+
+Organization.propTypes = {
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  addressLine1: PropTypes.string.isRequired,
+  addressLine2: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
+  state: PropTypes.string.isRequired,
+  postalCode: PropTypes.string.isRequired,
+  country: PropTypes.string.isRequired,
+  organizationVideo: PropTypes.string,
+  users: PropTypes.array.isRequired
 }
 
 function createEmployeeTable(employees) {
@@ -160,4 +168,4 @@ function createEmployeeTable(employees) {
   })
 }
 
-export default organization
+export default Organization

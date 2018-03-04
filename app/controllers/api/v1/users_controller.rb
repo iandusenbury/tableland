@@ -26,8 +26,8 @@ module Api::V1
 
     # GET /v1/users/random
     def random
-      # Check for errors/failures
       @user = User.where(visible: true).limit(1).order("RANDOM()").first
+      @user ||= { user: {} }
       render json: @user, include: 'media,experiences.program.media,experiences.organization.media', status: :ok
     end
 

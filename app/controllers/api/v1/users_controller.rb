@@ -1,16 +1,16 @@
 module Api::V1
   class UsersController < ApiBaseController
     before_action :set_user, only: [:show, :update, :destroy]
+    before_action :validate_permission, only: [:index, :permissions]
 
     # GET /v1/users
     def index
-      @users = User.all
+      @users = index_query || User.all
       render json: @users, include: 'media', status: :ok
     end
 
     # GET /v1/users/current/permissions
     def permissions
-      # Make checks on current_user role
       render json: current_user, serializer: PermissionsSerializer, status: :ok
     end
 
@@ -59,6 +59,28 @@ module Api::V1
     private
       def set_user
         @user = User.find(params[:id])
+      end
+
+      # For certain actions, assert admin access only
+      def validate_permission
+        raise ExceptionTypes::UnauthorizedError.new("Admin access only") if current_user.user?
+      end
+
+      # Execute the appropriate query for the index action based on the query params and return the result
+      def index_query
+        users = nil
+        role = validate_role([:user, :admin, :super_admin])
+        visible = validate_visible
+
+        if role && visible
+          users = User.where(role: role, visible: (visible == "true"))
+        elsif role
+          users = User.where(role: role)
+        elsif visible
+          users = User.where(visible: (visible == "true"))
+        end
+
+        users
       end
 
       # Validate the request payload for updating an existing user

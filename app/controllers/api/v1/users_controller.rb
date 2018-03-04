@@ -137,12 +137,12 @@ module Api::V1
       # Validate that the role attribute in the payload matches one of
       # the options in the argument array
       def validate_role(options)
-        binding.pry
         role = params[:role] || (params[:user] && params[:user][:role])
 
         if role        
           raise ExceptionTypes::BadRequestError.new("You must set role to one of the following: #{options.join(", ")}") unless options.include? role.to_sym
         end
+
         role
       end
 
@@ -154,6 +154,7 @@ module Api::V1
         if visible && visible.to_s != "true" && visible.to_s != "false"
           raise ExceptionTypes::BadRequestError.new("Invalid format for visible: #{visible}, must be boolean true or false")
         end
+        
         visible
       end
 

@@ -86,12 +86,17 @@ const GMap = compose(withScriptjs, withGoogleMap)(props => {
           } = experience
 
           const label = endDate ? getShortDate(startDate) : `Now`
+          var icon = (index === 0) ? require('./first.png') : require('./default.png')
+          if (index === experienceOrgs.length - 1)
+            icon = require('./current.png')
+
           return (
             <Marker
               key={index}
               onClick={() => onToggleOpen(index)}
               // label={label}
               // icon={require('./mapIcon.png')}
+              icon={icon}
               position={location}>
               {isMarkerOpen[index] && (
                 <InfoWindow onCloseClick={() => onToggleOpen(index)}>

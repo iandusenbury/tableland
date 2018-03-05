@@ -4,12 +4,12 @@ import { TableRow, TableRowColumn, Avatar, FlatButton } from 'material-ui'
 const defaultImage = require('./portrait.png')
 
 const retrieveMedia = media => {
-  const foo = media.reduce((obj, item) => {
+  const mediaObj = media.reduce((obj, item) => {
     /* eslint no-param-reassign: ["error", { "props": false }] */
     obj[item.category] = item
     return obj
   }, {})
-  return foo.image ? foo.image.url : defaultImage
+  return mediaObj.image ? mediaObj.image.url : defaultImage
 }
 
 const tableRow = profile => {

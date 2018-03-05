@@ -27,8 +27,8 @@ function requestUser(state, { payload }) {
     ...state,
     ...user,
     signedIn: true,
-    isAdmin: user.role === 'user',
-    isSuperAdmin: user.role === 'super admin'
+    isAdmin: user.role !== 'user',
+    isSuperAdmin: user.role === 'super_admin'
   }
 }
 

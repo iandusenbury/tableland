@@ -31,6 +31,20 @@ export function fetchAllOrganizations() {
   }
 }
 
-export function toggleUserVisibility(id) {
-  return { type: ActionTypes.TOGGLE_USER_VISIBILITY, id }
+export function toggleUserVisibility(id, visible) {
+  const callDescriptor = {
+    body: { visible: !visible },
+    endpoint: `/users/${id}`,
+    method: 'PUT',
+    types: [
+      ActionTypes.REQUEST_PATCH_USER_VISIBILITY,
+      ActionTypes.RECIEVE_PATCH_USER_VISIBILITY,
+      ActionTypes.FAILURE_PATCH_USER_VISIBILITY
+    ]
+  }
+
+  const onSuccess = (response, dispatch) =>
+    dispatch({ type: ActionTypes.TOGGLE_USER_VISIBILITY, id })
+
+  return dispatch => dispatch(callApi(callDescriptor, { onSuccess }))
 }

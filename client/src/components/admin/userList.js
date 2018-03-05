@@ -56,7 +56,7 @@ export default class UserList extends Component {
       } = user
 
       const blockedCheckbox = (
-        <Checkbox checked={!visible} onCheck={() => toggleUserVisibility(id)} />
+        <Checkbox checked={!visible} onCheck={() => toggleUserVisibility(id, visible)} />
       )
 
       const rowButton1 = (

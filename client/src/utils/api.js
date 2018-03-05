@@ -65,7 +65,7 @@ function handleResponse(response, callbacks, dispatch, getState) {
 function handleSuccess(response, { onSuccess }, dispatch, getState) {
   return onSuccess
     ? onSuccess(response, dispatch, getState)
-    : new Promise
+    : Promise.resolve(response)
 }
 
 // convert strings to boolean values

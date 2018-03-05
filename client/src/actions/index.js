@@ -14,9 +14,7 @@ export function fetchUser() {
     ]
   }
 
-  return dispatch => {
-    dispatch(callApi(callDescriptor))
-  }
+  return dispatch => dispatch(callApi(callDescriptor))
 }
 
 // Fetch Professional
@@ -31,9 +29,7 @@ export function fetchProfessional(userID = 'random') {
     ]
   }
 
-  return dispatch => {
-    dispatch(callApi(callDescriptor))
-  }
+  return dispatch => dispatch(callApi(callDescriptor))
 }
 
 export function adminChangeTableTo(index) {

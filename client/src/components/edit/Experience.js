@@ -4,7 +4,7 @@ import './experience.css'
 import { style } from '../../widgets/styles'
 import Location from 'material-ui/svg-icons/communication/location-on'
 import { StyledPaper } from '../../widgets/StyledPaper'
-import { AddExperience } from './AddExperience'
+import AddExperience from './AddExperience'
 
 export const Experience = props => (
   <StyledPaper>

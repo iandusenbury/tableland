@@ -3,8 +3,8 @@ import Home from '../components/home'
 import About from '../components/about'
 import SearchResults from '../components/searchResults'
 import OrgPage from '../containers/organization'
+import ProfPage from '../containers/professional'
 import EditProfile from '../components/edit'
-import ProfPage from '../components/professional'
 
 export const routePathToComponent = [
   {

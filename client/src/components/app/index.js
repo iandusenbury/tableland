@@ -1,6 +1,5 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-
 import Navbar from '../../containers/navbar'
 import { routePathToComponent } from '../../constants/routing'
 import Dialog from '../../containers/dialog'

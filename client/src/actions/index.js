@@ -47,13 +47,21 @@ export function fetchResults(values) {
       ActionTypes.FAILURE_SEARCH
     ]
   }
-  return dispatch => {
+  return dispatch =>
     dispatch(callApi(callDescriptor, { onSuccess: loadResultsPage }))
-  }
 }
 
 function loadResultsPage(response, dispatch) {
   return dispatch(push('/results'))
+}
+
+export function updateSearchKey(searchKey) {
+  return {
+    type: ActionTypes.UPDATE_SEARCH_KEY,
+    payload: {
+      searchKey
+    }
+  }
 }
 
 export function adminChangeTableTo(index) {

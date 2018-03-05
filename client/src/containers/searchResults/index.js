@@ -2,7 +2,6 @@ import { connect } from 'react-redux'
 import { formValueSelector } from 'redux-form'
 import { bindActionCreators } from 'redux'
 import SearchResults from '../../components/searchResults'
-// import { sendSearchKey, updateSearchKey } from '../../actions'
 import { updateSearchKey } from '../../actions'
 
 const searchKeySelector = formValueSelector('searchBar')
@@ -19,7 +18,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      // sendSearchKey,
       updateSearchKey
     },
     dispatch

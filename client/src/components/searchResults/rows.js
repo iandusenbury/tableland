@@ -1,13 +1,15 @@
 import React from 'react'
 import { TableRow, TableRowColumn, Avatar, FlatButton } from 'material-ui'
 
+const defaultImage = require('./portrait.png')
+
 const retrieveMedia = media => {
-  const { image: { url } } = media.reduce((obj, item) => {
+  const foo = media.reduce((obj, item) => {
     /* eslint no-param-reassign: ["error", { "props": false }] */
     obj[item.category] = item
     return obj
   }, {})
-  return url
+  return foo.image ? foo.image.url : defaultImage
 }
 
 const tableRow = profile => {
@@ -32,12 +34,9 @@ const tableRow = profile => {
 }
 
 export const renderProgram = program => {
-  const { id, name, description, media, url: contactUrl } = program
+  const { id, type, name, description, media, url: contactUrl } = program
 
   const url = retrieveMedia(media)
-  // console.log(findAvatar)
-  // console.log(url)
-  // const displayAvatar = require('./portrait.png')
   const profileName = <h2>{name}</h2>
   const avatar = <Avatar size={60} src={url} />
   const info = (
@@ -47,7 +46,7 @@ export const renderProgram = program => {
   )
   const contact = <li>Contact: {contactUrl}</li>
   const rowInfo = {
-    id,
+    id: `${type}_${id}`,
     profileName,
     avatar,
     info,
@@ -57,22 +56,30 @@ export const renderProgram = program => {
 }
 
 export const renderOrganization = organization => {
-  const { id, name, addressLine1, media, contactUrl } = organization
+  const {
+    id,
+    type,
+    name,
+    addressLine1,
+    addressLine2,
+    addressLine3,
+    media,
+    url: contactUrl
+  } = organization
 
   const url = retrieveMedia(media)
-  // console.log(findAvatar)
-  // console.log(url)
-  // const displayAvatar = require('./portrait.png')
   const profileName = <h2>{name}</h2>
   const avatar = <Avatar size={60} src={url} />
   const info = (
     <ul>
       <li>{addressLine1}</li>
+      <li>{addressLine2}</li>
+      <li>{addressLine3}</li>
     </ul>
   )
   const contact = <li>Contact: {contactUrl}</li>
   const rowInfo = {
-    id,
+    id: `${type}_${id}`,
     profileName,
     avatar,
     info,
@@ -84,6 +91,7 @@ export const renderOrganization = organization => {
 export const renderUser = user => {
   const {
     id,
+    type,
     firstName,
     lastName,
     mainTitle,
@@ -93,9 +101,6 @@ export const renderUser = user => {
   } = user
 
   const url = retrieveMedia(media)
-  // console.log(findAvatar)
-  // console.log(url)
-  // const displayAvatar = require('./portrait.png')
   const profileName = (
     <h2>
       {firstName}
@@ -111,17 +116,11 @@ export const renderUser = user => {
   )
   const contact = <li>Contact: {contactUrl}</li>
   const rowInfo = {
-    id,
+    id: `${type}_${id}`,
     profileName,
     avatar,
     info,
     contact
   }
   return tableRow(rowInfo)
-}
-
-export default {
-  renderUser,
-  renderProgram,
-  renderOrganization
 }

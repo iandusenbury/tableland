@@ -20,6 +20,23 @@ export function fetchUser() {
   }
 }
 
+// Fetch Professional
+// if no argument given, random will be used
+export function fetchProfessional(userID = 'random') {
+  const callDescriptor = {
+    endpoint: `/users/${userID}`,
+    types: [
+      ActionTypes.REQUEST_PROFESSIONAL,
+      ActionTypes.RECIEVE_PROFESSIONAL,
+      ActionTypes.FAILURE_PROFESSIONAL
+    ]
+  }
+
+  return dispatch => {
+    dispatch(callApi(callDescriptor))
+  }
+}
+
 export function fetchResults(values) {
   const { searchKey } = values
   const callDescriptor = {

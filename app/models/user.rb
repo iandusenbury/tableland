@@ -5,6 +5,16 @@ class User < ApplicationRecord
 
   enum role: [:user, :admin, :super_admin]
 
+  def self.search(term)
+    fields_to_search = ['first_name', 'last_name', 'experiences.title' ]
+
+    results = User.select('users.*')
+      .distinct
+      .where(Search.where_clause_from_fields_vis_only(fields_to_search), 
+        term: Search.term_to_pattern(term))
+      .joins('INNER JOIN experiences ON users.id=experiences.user_id')
+  end
+
   def self.from_omniauth(auth)
     @user = where(provider: auth.provider, uid: auth.uid).first
 
@@ -48,12 +58,14 @@ class User < ApplicationRecord
   has_many :prog_edits, -> { distinct }, through: :permissions, source: :program
 
   # Validations
-  validates :first_name, :last_name, :contact_url, :role, presence: true
+  validates :first_name, :last_name, presence: { message: "%{attribute} must be present" },
+                                     length: { maximum: 50, message: "%{attribute} must not be longer than %{count} characters" } 
+  validates :contact_url, :role, presence: { message: "%{attribute} must be present" }
   validates :visible, inclusion: { in: [true, false] }
   
   private
     def set_default_attributes
       self.role ||= :user
-      self.visible ||= true
+      self.visible = true
     end
 end

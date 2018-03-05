@@ -8,6 +8,7 @@ class Organization < ApplicationRecord
     results = Organization.where(
       Search.where_clause_from_fields_vis_only(fields_to_search), 
       term: Search.term_to_pattern(term))
+      .sample(10)
   end
 
   # Associations

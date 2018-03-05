@@ -67,7 +67,7 @@ def create_users()
     User.create( 
       first_name:   Faker::Name.first_name, 
       last_name:    Faker::Name.last_name,
-      description:  Faker::Dune.quote,
+      description:  Faker::Lorem.paragraph,
       contact_url:  Faker::Internet.url,
       provider:     :linkedin,
       email:        Faker::Internet.safe_email,
@@ -84,7 +84,7 @@ def create_companies()
   for i in 1..NUM_COMPS do
     Organization.create(  
       name:           STEM_COMPANIES[i],
-      description:    Faker::HitchhikersGuideToTheGalaxy.quote,
+      description:    Faker::Lorem.paragraph,
       url:            Faker::Internet.url,
       category:       "company",
       address_line_1: Faker::Address.street_address,
@@ -106,7 +106,7 @@ def create_institutions()
   for i in 1..NUM_INSTS do
     Organization.create( 
       name:           Faker::Educator.university, 
-      description:    Faker::HitchhikersGuideToTheGalaxy.quote,
+      description:    Faker::Lorem.paragraph,
       url:            Faker::Internet.url,
       category:       "institution",
       address_line_1: Faker::Address.street_address,
@@ -129,7 +129,7 @@ def create_organizations()
     Organization.create( 
       name:           Faker::Hobbit.location + " " + 
                         ["Society", "Association", "Foundation"].sample, 
-      description:    Faker::HitchhikersGuideToTheGalaxy.quote,
+      description:    Faker::Lorem.paragraph,
       url:            Faker::Internet.url,
       category:       "organization",
       address_line_1: Faker::Address.street_address,
@@ -151,7 +151,7 @@ def create_programs()
   for i in 1..NUM_PROGS do
     Program.create( 
       name:        "#{Faker::ProgrammingLanguage.name.capitalize} Club",
-      description: Faker::DrWho.quote,
+      description: Faker::Lorem.paragraph,
       url:         Faker::Internet.url
     )
   end
@@ -252,7 +252,7 @@ def create_media()
       mediable_id:    i,
       mediable_type:  "User",
       category:       "image",
-      description:    Faker::Hipster.sentence,
+      description:    Faker::Lorem.sentence,
       url:            Faker::LoremPixel.image("100x100", false, 'people')
     )
     
@@ -260,8 +260,8 @@ def create_media()
       mediable_id:    i,
       mediable_type:  "User",
       category:       "video",
-      description:    Faker::Company.catch_phrase,
-      url:            "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+      description:    Faker::Lorem.sentence,
+      url:            "https://www.youtube.com/watch?v=oa2_Nn0_h0Q"
     )
   end
 
@@ -271,7 +271,7 @@ def create_media()
       mediable_id:    i,
       mediable_type:  "Organization",
       category:       "image",
-      description:    Faker::Company.catch_phrase,
+      description:    Faker::Lorem.sentence,
       url:            Faker::LoremPixel.image("100x100", false, 'business')
     )
 
@@ -279,8 +279,8 @@ def create_media()
       mediable_id:    i,
       mediable_type:  "Organization",
       category:       "video",
-      description:    Faker::Company.catch_phrase,
-      url:            "https://www.youtube.com/watch?v=ksBE53CIT8E"
+      description:    Faker::Lorem.sentence,
+      url:            "https://www.youtube.com/watch?v=j97MuROR64U"
     )
   end
 
@@ -289,7 +289,7 @@ def create_media()
       mediable_id:    i,
       mediable_type:  "Program",
       category:       "image",
-      description:    Faker::Company.catch_phrase,
+      description:    Faker::Lorem.sentence,
       url:            Faker::LoremPixel.image("100x100", false, 'technics')
     )
 
@@ -297,8 +297,8 @@ def create_media()
       mediable_id:    i,
       mediable_type:  "Program",
       category:       "video",
-      description:    Faker::Company.catch_phrase,
-      url:            "https://www.youtube.com/watch?v=VPVJzi7Ta9w"
+      description:    Faker::Lorem.sentence,
+      url:            "https://www.youtube.com/watch?v=w4PUNmPm884"
     )
   end
 end

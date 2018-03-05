@@ -9,7 +9,9 @@ const sand = "#e7e0d7"
 
 const styles = {
   toolbar: {
-    backgroundColor: thermalRed
+    backgroundColor: thermalRed,
+    width: 'calc(100vw - 26px)',
+    height: '56px'
   }
 }
 

@@ -7,11 +7,12 @@ module Api::V1
 
     # GET /v1/search
     def search
+      term = params[:term] || ''
       @results = []
-      @results << Program.first
-      @results << User.first
-      @results << Organization.first
-      render json: @results, root: "results", include: 'media', status: :ok
+      @results << Program.search(term)
+      @results << User.search(term)
+      @results << Organization.search(term)
+      render json: @results.flatten, root: "results", include: 'media', status: :ok
     end
 
     private

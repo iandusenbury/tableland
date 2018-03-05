@@ -1,3 +1,5 @@
+import Cookies from 'cookies-js'
+import { push } from 'react-router-redux'
 import ActionTypes from '../constants/actionTypes'
 import callApi from '../utils/api'
 import { authorizeOAuth } from './oauth'
@@ -14,19 +16,44 @@ export function fetchUser() {
   }
 
   return dispatch => {
-    dispatch(
-      callApi(callDescriptor /* , { onSuccess: oprtionalSuccessCallback } */)
-    )
+    dispatch(callApi(callDescriptor))
   }
 }
 
-export function updateSearchKey(searchKey) {
-  return {
-    type: ActionTypes.UPDATE_SEARCH_KEY,
-    payload: {
-      searchKey
-    }
+// Fetch Professional
+// if no argument given, random will be used
+export function fetchProfessional(userID = 'random') {
+  const callDescriptor = {
+    endpoint: `/users/${userID}`,
+    types: [
+      ActionTypes.REQUEST_PROFESSIONAL,
+      ActionTypes.RECIEVE_PROFESSIONAL,
+      ActionTypes.FAILURE_PROFESSIONAL
+    ]
   }
+
+  return dispatch => {
+    dispatch(callApi(callDescriptor))
+  }
+}
+
+export function fetchResults(values) {
+  const { searchKey } = values
+  const callDescriptor = {
+    endpoint: `/search?key=${searchKey}`,
+    types: [
+      ActionTypes.REQUEST_SEARCH,
+      ActionTypes.RECIEVE_SEARCH,
+      ActionTypes.FAILURE_SEARCH
+    ]
+  }
+  return dispatch => {
+    dispatch(callApi(callDescriptor, { onSuccess: loadResultsPage }))
+  }
+}
+
+function loadResultsPage(response, dispatch) {
+  return dispatch(push('/results'))
 }
 
 export function adminChangeTableTo(index) {
@@ -49,30 +76,15 @@ export function adminChangeAdminTo(changeTo) {
 
 // oauth
 export function closeDialog() {
-  return { type: ActionTypes.CLOSE_DIALOG }
-}
-
-export function openDialog(dialogId, dialogData) {
   return {
-    type: ActionTypes.OPEN_DIALOG,
-    payload: { dialogId, dialogData }
+    type: ActionTypes.CLOSE_DIALOG
   }
 }
 
-export function openOAuthDialog(url) {
-  return openDialog(ActionTypes.START_OAUTH, { url })
-}
-
-export function clearMessage() {
-  return { type: ActionTypes.CLEAR_MESSAGE }
-}
-
-export function addMessage(message) {
+export function openDialog(message) {
   return {
-    type: ActionTypes.ADD_MESSAGE,
-    payload: {
-      message
-    }
+    type: ActionTypes.OPEN_DIALOG,
+    payload: { message }
   }
 }
 
@@ -89,5 +101,19 @@ export function authorizeUser() {
         onSuccess
       })
     )
+  }
+}
+
+export function logoutUser() {
+  Cookies.expire('X-User-Email')
+  Cookies.expire('X-User-Token')
+
+  const onSuccess = () => ({
+    type: ActionTypes.LOGOUT_USER
+  })
+
+  return dispatch => {
+    dispatch(onSuccess())
+    dispatch(openDialog('Logout Successful'))
   }
 }

@@ -10,6 +10,7 @@ module Api::V1
                 :main_title,
                 :main_location, 
                 :role,
+                :visible,
                 :link
 
     # Methods for custom attributes
@@ -17,12 +18,12 @@ module Api::V1
       object.class.name
     end
     def main_title
-      object.experiences.where(primary: true).pluck(:title).first
+      object.experiences.where(current: true).pluck(:title).first
     end
     def main_location
-      primary_organization, primary_program = object.experiences.where(primary: true).pluck(:organization_id, :program_id).first
-      return object.organizations.where(id: primary_organization).pluck(:name).first if primary_organization.present?
-      object.programs.where(id: primary_program).pluck(:name).first if primary_program.present?
+      current_organization, current_program = object.experiences.where(current: true).pluck(:organization_id, :program_id).first
+      return object.organizations.where(id: current_organization).pluck(:name).first if current_organization.present?
+      object.programs.where(id: current_program).pluck(:name).first if current_program.present?
     end
     def link
       view_context.v1_user_url(object)

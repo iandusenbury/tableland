@@ -9,9 +9,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     # You need to implement the method below in your model (e.g. app/models/user.rb)
     @user = User.from_omniauth(auth_hash)
 
-    render json: @user
-
-    # TODO: reroute user based on signup/signin
+    render json: 'all done'
   end
 
   def failure

@@ -7,8 +7,10 @@ module Api::V1
                 :end_date,
                 :title,
                 :award,
-                :primary,
+                :current,
                 :link
+
+    attribute   :parent_organization, if: :program_present?
     
     # Methods for custom attributes and associations
     def type
@@ -22,6 +24,9 @@ module Api::V1
     end
     def organization_present?
       object.organization.present?
+    end
+    def parent_organization
+      object.parent_org
     end
 
     # Available associations

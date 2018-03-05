@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
+import { DatePicker, MenuItem } from 'material-ui'
+import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
+import { Field, reduxForm } from 'redux-form'
+
 import { StyledTextField } from '../../widgets/StyledTextField'
 import { AddButton } from '../../widgets/AddButton'
 import { StyledSelectField } from '../../widgets/StyledSelectField'
-import { DatePicker, MenuItem } from 'material-ui'
 import { style } from '../../widgets/styles'
-import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import './edit.css'
 
 class AddExperience extends Component {
@@ -27,6 +29,7 @@ class AddExperience extends Component {
   render() {
     const { type } = this.props
     const name = `Name of ${type}`
+
     const inputProps = {
       value: this.state.address,
       onChange: this.onChange,
@@ -90,5 +93,7 @@ class AddExperience extends Component {
     )
   }
 }
+
+
 
 export default AddExperience

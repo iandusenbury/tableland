@@ -6,16 +6,13 @@ Rails.application.routes.draw do
     scope module: 'api' do
       namespace :v1 do
         get 'search', to: 'api_base#search'
-        get 'user', to: 'users#current'
         # Get all users (super_admin), Get a specific user with all their media and experiences, update a specific user, destroy a specific user
         resources :users, only: [:index, :show, :update, :destroy] do
-          # Get a random user
+          # Get a random user, Get the current user, Get the current user's permissions
           collection do
             get 'random'
-          end
-          # Get all permissions for an admin (admins)
-          member do
-              get 'permissions'
+            get 'current'
+            get 'current/permissions', to: 'users#permissions'
           end
           # Create experiences for a user, update experiences for a user, destory experiences for a user
           resources :experiences, only: [:create, :update, :destroy]

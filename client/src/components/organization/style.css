@@ -1,6 +1,6 @@
-mainDiv {
+.organizationMainDiv {
   width: 100%;
-  height: 92.4vh;
+  height: calc(100vh - 72px);
   background-color: white;
   display: grid;
   grid-template-columns: 50% 50%;
@@ -11,30 +11,29 @@ mainDiv {
     ;
 }
 
-img {
-  object-fit:cover;
-}
-
-.image {
+.organizationImage {
   grid-area: image;
   overflow: hidden;
-  height: 92.4vh;
+  height: calc(100vh - 72px);
+  background-color: white;
 }
 
-.text {
+.organizationText {
+  height: calc(100vh - 72px);
+  background-color: white;
   grid-area: text;
   overflow-y: scroll;
   overflow-x: hidden;
 }
 
-.name {
+.organizationName {
   height: auto;
   width: auto;
   margin: 28px 23px 0px;
   font-size: 36px;
 }
 
-.contact {
+.organizationContact {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 50% 50%;
@@ -44,7 +43,7 @@ img {
     ;
 }
 
-.url {
+.organizationUrl {
   height: auto;
   width: auto;
   margin: 18px 18px 0px;
@@ -53,12 +52,12 @@ img {
   vertical-align: middle;
 }
 
-.url p {
+.organizationUrl p {
   margin: 0px;
   margin-top: 2px;
 }
 
-.address {
+.organizationAddress {
   height: auto;
   width: auto;
   margin: 18px 18px 0px;
@@ -67,26 +66,26 @@ img {
   vertical-align: middle;
 }
 
-.address p {
+.organizationAddress p {
   margin: 0px;
 }
 
-.description {
+.organizationDescription {
   height: auto;
   width: auto;
   margin: 18px 21px 0px;
 }
 
-.description p {
+.organizationDescription p {
   margin-left: 21px;
 }
 
-.description div {
+.organizationDescription div {
   margin-left: 21px;
   margin-bottom: 18px;
 }
 
-.description div video {
+.organizationDescription div video {
   margin-left: 0px;
   margin-top: 0px;
   width: 33vw !important;
@@ -95,31 +94,32 @@ img {
   background-color: gray;
 }
 
-.employees {
+.organizationEmployees {
   height: auto;
   width: auto;
   margin: 2%;
 }
 
-h3 {
+.organizationHeader3 {
   margin-left: 18px;
   margin-right: 2%;
   margin-top: 2%;
   margin-bottom: 2%;
 }
 
-img {
+.organizationImg {
+  object-fit:cover;
   padding: 0;
   display: block;
   margin: 0 auto;
-  height: 92.4vh;
+  height: calc(100vh - 72px);
   width: 100%;
 }
 
-.topTab {
+.organizationTopTab {
   grid-area: tab;
 }
 
-.tableRow:hover {
+.organizationTableRow:hover {
   cursor: pointer;
 }

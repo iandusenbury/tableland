@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::API
+  include ExceptionTypes
+  include ExceptionHandler
+  
   # https://github.com/gonzalo-bulnes/simple_token_authentication#make-models-token-authenticatable
-  acts_as_token_authentication_handler_for User, except: [:index, :show, :linkedin], fallback: :exception
+  acts_as_token_authentication_handler_for User, except: [:search, :show, :linkedin, :random], fallback: :exception
 
   private
 

@@ -19,19 +19,36 @@
 .professionalAvatarStyle {
   position: absolute;
   top: 0;
-  left: 0; 
-  right: 0; 
+  left: 0;
+  right: 0;
   bottom: 0;
   margin: auto;
 }
 
 .professionalPaperStyle {
-  background-color: rgba(231,224,215,0.75); 
+  background-color: rgba(231,224,215,0.5);
+  border-radius: 10px;
   position: relative;
-  top: 65vh; 
+  top: 65vh;
   bottom: 0;
   width: 65%;
   margin: auto;
+}
+
+.professionalVideoWrapper {
+  height: 0;
+  position: relative;
+  padding-bottom: 60%;
+}
+
+.professionalVideo {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  rigth: 0;
+  top: 0;
+  width: 100%;
 }
 
 .professionalImg {
@@ -110,15 +127,6 @@
   margin-bottom: 18px;
 }
 
-.professionalDescription div video {
-  margin-left: 0px;
-  margin-top: 0px;
-  width: 33vw !important;
-  height: auto !important;
-  background-size: cover;
-  background-color: gray;
-}
-
 .professionalExperiences {
   height: auto;
   width: auto;
@@ -136,10 +144,12 @@
 }
 
 .professionalHeader1 {
+  font-size: 20px;
   color: black;
 }
 
 .professionalHeader3 {
+  font-size: 36px;
   margin-left: 18px;
   margin-right: 2%;
   margin-top: 2%;

@@ -4,8 +4,8 @@ module Api::V1
     type :permissions
 
     # If the user is the super_admin, they should see all organizations and programs
-    attribute :organizations, if: -> { object.role == 'admin' }
-    attribute :programs, if: -> { object.role == 'admin' }
+    attribute :organizations, if: -> { object.role == 'super_admin' }
+    attribute :programs, if: -> { object.role == 'super_admin' }
 
     # Methods for custom attributes
     def organizations
@@ -24,7 +24,7 @@ module Api::V1
     end
 
     # Otherwise, if the user is an admin, they should see only their assigned permissions
-    has_many :org_edits, key: :organizations, if: -> { object.role == 'user' }
-    has_many :prog_edits, key: :programs, if: -> { object.role == 'user' }
+    has_many :org_edits, key: :organizations, if: -> { object.role == 'admin' }
+    has_many :prog_edits, key: :programs, if: -> { object.role == 'admin' }
   end
 end

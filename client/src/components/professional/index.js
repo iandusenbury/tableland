@@ -1,36 +1,26 @@
-import  React, { Component } from 'react'
-import {
-  Card,
-  CardMedia,
-  Divider,
-  Paper,
-  List,
-  ListItem,
-  Avatar
-} from 'material-ui'
+import React, { Component } from 'react'
+import { Card, CardMedia, Divider, List, ListItem, Avatar } from 'material-ui'
 import LanguageIcon from 'material-ui/svg-icons/action/language'
+import Group from 'material-ui/svg-icons/social/group'
+import Domain from 'material-ui/svg-icons/social/domain'
+import PropTypes from 'prop-types'
+
 import TopTab from '../../constants/tabs/tabViewMap'
 import { orgPage } from '../../constants/viewStyles'
 import './style.css'
-import Group from 'material-ui/svg-icons/social/group'
-import Domain from 'material-ui/svg-icons/social/domain'
 
-const hasVideo = true // this will be passed as props
+// const hasVideo = true // this will be passed as props
 const sampleImg = require('./sample.jpg')
 
-class professional extends Component {
+class Professional extends Component {
   componentWillMount() {
-    this.props.fetchProfessional(3)
+    const { fetchProfessional } = this.props
+    // fetches random propfessional
+    fetchProfessional()
   }
 
-  render () {
+  render() {
     const {
-      /* fields not yet used
-      id,
-      type,
-      role,
-      link,
-      */
       firstName,
       lastName,
       description,
@@ -41,6 +31,13 @@ class professional extends Component {
       profileVideo,
       experiences
     } = this.props
+
+    let videoUrl = ''
+    let hasVideo = false
+    if (profileVideo) {
+      videoUrl = profileVideo.replace('watch?v=', 'embed/')
+      hasVideo = true
+    }
 
     return (
       <div className="professionalMainDiv">
@@ -55,11 +52,11 @@ class professional extends Component {
                     size={200}
                     src={profileImage}
                   />
-                  <Paper className="professionalPaperStyle" zDepth={5}>
+                  <div className="professionalPaperStyle">
                     <h1 className="professionalHeader1">
                       {mainTitle} at {mainLocation}
                     </h1>
-                  </Paper>
+                  </div>
                 </div>
               }>
               <img className="professionalImg" src={sampleImg} alt="" />
@@ -79,28 +76,28 @@ class professional extends Component {
                 <LanguageIcon style={orgPage.urlIcon} />
               </div>
               <div>
-                <p>
-                  {contactUrl}
-                </p>
+                <p>{contactUrl}</p>
               </div>
             </div>
           </div>
           <div className="professionalDescription">
             <Divider />
-            <p>
-              {description}
-            </p>
+            <p>{description}</p>
             {hasVideo && (
-              <div>
-                <video /> {/* placeholder, has linting error here */}
+              <div className="professionalVideoWrapper">
+                <iframe
+                  className="professionalVideo"
+                  title="Professional Video"
+                  allow="encrypted-media"
+                  frameBorder="0"
+                  src={videoUrl}
+                />
               </div>
             )}
             <Divider />
           </div>
           <div className="professionalExperiences">
-            <List>
-              {createExperienceTable(experiences)}
-            </List>
+            <List>{createExperienceTable(experiences)}</List>
           </div>
         </div>
       </div>
@@ -108,8 +105,21 @@ class professional extends Component {
   }
 }
 
+Professional.propTypes = {
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  contactUrl: PropTypes.string.isRequired,
+  mainTitle: PropTypes.string.isRequired,
+  mainLocation: PropTypes.string.isRequired,
+  profileImage: PropTypes.string.isRequired,
+  profileVideo: PropTypes.string.isRequired,
+  experiences: PropTypes.element.isRequired,
+  fetchProfessional: PropTypes.func.isRequired
+}
+
 function createExperienceTable(experiences) {
-  return experiences.map( experience => {
+  return experiences.map(experience => {
     const {
       id,
       startDate,
@@ -121,13 +131,19 @@ function createExperienceTable(experiences) {
     } = experience
 
     const name = organization ? organization.name : program.name
-    if (organization === undefined)
-      return createProgramTable(name, experience)
+    if (organization === undefined) return createProgramTable(name, experience)
+
+    const start = getDate(startDate)
+    const end = getDate(endDate)
 
     return (
       <ListItem key={id} leftIcon={<Domain />}>
-        <h4>{name} - {title}</h4>
-        <p>{startDate} - {endDate}</p>
+        <h4>
+          {name} - {title}
+        </h4>
+        <p>
+          {start} - {end}
+        </p>
         <p>{award}</p>
       </ListItem>
     )
@@ -135,21 +151,46 @@ function createExperienceTable(experiences) {
 }
 
 function createProgramTable(name, experience) {
-  const {
-    id,
-    startDate,
-    endDate,
-    title,
-    award,
-  } = experience
+  const { id, startDate, endDate, title, award } = experience
+
+  const start = getDate(startDate)
+  const end = getDate(endDate)
 
   return (
-      <ListItem key={id} leftIcon={<Group />}>
-        <h4>{name} - {title}</h4>
-        <p>{startDate} - {endDate}</p>
-        <p>{award}</p>
-      </ListItem>
+    <ListItem key={id} leftIcon={<Group />}>
+      <h4>
+        {name} - {title}
+      </h4>
+      <p>
+        {start} - {end}
+      </p>
+      <p>{award}</p>
+    </ListItem>
   )
 }
 
-export default professional
+// This const defines months for use in following function
+const monthNames = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec'
+]
+// This function takes a date string as an argument and returns a string in the format
+// [mon] [year]
+function getDate(date) {
+  if (date === null) return 'current'
+
+  const initDate = new Date(date.toString())
+  return `${monthNames[initDate.getMonth()]} ${initDate.getFullYear()}`
+}
+
+export default Professional

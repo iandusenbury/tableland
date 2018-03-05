@@ -9,6 +9,6 @@ class Search
   end
 
   def self.term_to_pattern(term)
-    return "#{term}%"
+    return "%#{term}%"
   end
 end

@@ -12,7 +12,7 @@ import {
 import PropTypes from 'prop-types'
 import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/menu'
 import muiThemeable from 'material-ui/styles/muiThemeable'
-import NavbarForm from './navbarForm'
+import SearchBarForm from '../../containers/searchBarForm'
 import styles from '../../constants/styles'
 import './style.css'
 
@@ -27,7 +27,7 @@ import { mesaMenuButton, navbarPaths } from '../../constants/navbar'
    "About"
 */
 const Navbar = props => {
-  const { authorizeUser, fetchUser, logoutUser, fetchResults } = props
+  const { authorizeUser, fetchUser, logoutUser } = props
 
   return (
     <header>
@@ -39,7 +39,7 @@ const Navbar = props => {
           />
         </ToolbarGroup>
         <ToolbarGroup>
-          <NavbarForm onSubmit={fetchResults} />
+          <SearchBarForm />
           <IconMenu
             iconButtonElement={
               <IconButton touch>
@@ -97,8 +97,7 @@ const Navbar = props => {
 Navbar.propTypes = {
   authorizeUser: PropTypes.func.isRequired,
   fetchUser: PropTypes.func.isRequired,
-  logoutUser: PropTypes.func.isRequired,
-  fetchResults: PropTypes.func.isRequired
+  logoutUser: PropTypes.func.isRequired
 }
 
 export default muiThemeable()(Navbar)

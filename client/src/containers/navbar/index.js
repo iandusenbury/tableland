@@ -1,11 +1,6 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import {
-  authorizeUser,
-  fetchUser,
-  logoutUser,
-  fetchResults
-} from '../../actions'
+import { authorizeUser, logoutUser, fetchUser } from '../../actions'
 
 import Navbar from '../../components/navbar'
 
@@ -13,9 +8,8 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       authorizeUser,
-      fetchUser,
       logoutUser,
-      fetchResults
+      fetchUser
     },
     dispatch
   )

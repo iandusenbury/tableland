@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Field, reduxForm } from 'redux-form'
 import { RaisedButton, TextField } from 'material-ui'
-import './style.css'
+import '../navbar/style.css'
 
 const renderTextField = ({ input }) => (
   <div className="navbarSearch">
@@ -11,20 +11,17 @@ const renderTextField = ({ input }) => (
 )
 
 const SearchBar = props => {
-  const { handleSubmit } = props
+  const { fetchResults, handleSubmit } = props
   return (
-    <form className="navbarSearchForm">
+    <form onSubmit={handleSubmit(fetchResults)} className="navbarSearchForm">
       <Field name="searchKey" component={renderTextField} />
-      <RaisedButton
-        className="navbarSubmit"
-        onClick={handleSubmit}
-        label="Search"
-      />
+      <RaisedButton className="navbarSubmit" type="submit" label="Search" />
     </form>
   )
 }
 
 SearchBar.propTypes = {
+  fetchResults: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired
 }
 

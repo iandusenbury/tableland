@@ -1,17 +1,6 @@
 import React from 'react'
 import { Polyline } from 'react-google-maps'
 
-// Nodes, consists of a timeline and location and priority level
-/*
-const nodes = [
-  {
-    start: 0,
-    end: randEndTime(0),
-    location: { lat: randLat(), lng: randLong() },
-    priority: randPrio()
-  },
-]
-*/
 const startOpacity = 0.5
 const defaultBounds = {
   north: 0.0,
@@ -22,6 +11,7 @@ const defaultBounds = {
 
 const buildPolylineGroup = (i, index, nodes) => {
   const children = []
+  // Returns an opacity based on index in array (higher index -> higher opacity)
   const opacity = (length, spot) =>
     startOpacity + (spot + 1) / length * (1 - startOpacity)
 
@@ -77,6 +67,7 @@ export const buildBounds = locations => {
     bounds.east = Math.max(...longitudes)
     bounds.west = Math.min(...longitudes)
   }
+  // If there is only one point, or groups of points clumped together
   if (bounds.north - bounds.south < 1) {
     bounds.north += boundExtension
     bounds.south -= boundExtension
@@ -88,38 +79,6 @@ export const buildBounds = locations => {
 
   return bounds
 }
-
-// export const buildMarkers = (experiences, isMarkerShown, toggleMarkerFlag) => {
-//   const markers = []
-//   const experienceOrgs = []
-//   experiences.forEach(experience => {
-//     if (experience.organization) {
-//       experienceOrgs.push(experience)
-//     }
-//   })
-//
-//   experienceOrgs.forEach((experience, index) => {
-//     const location = {
-//       lat: parseFloat(experience.organization.lat),
-//       lng: parseFloat(experience.organization.lng)
-//     }
-//     const marker = (
-//       <Marker key={index} onClick={() => toggleMarkerFlag(index)} label={index.toString()} position={location}>
-//         {isMarkerShown[index] && (
-//           <InfoWindow>
-//             <div>
-//               <h3>{experience.organization.name}</h3>
-//               <p>{experience.title}</p>
-//               <p>{experience.startDate} - {experience.endDate || "Present"}</p>
-//             </div>
-//           </InfoWindow>
-//         )}
-//       </Marker>
-//     )
-//     markers.push(marker)
-//   })
-//   return markers
-// }
 
 export const buildPolylines = experiences => {
   const experienceNodes = []

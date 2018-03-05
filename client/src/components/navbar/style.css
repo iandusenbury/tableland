@@ -1,6 +1,27 @@
 .navbarSearch {
+  grid-area: search;
+  height: 48px;
+  margin-top: 4px;
+  margin-bottom: 4px;
   background-color: #ffc0cb;
   border-radius: 16px;
   padding-right: 10px;
   padding-left: 10px;
+}
+
+.navbarSearchForm {
+  height: inherit;
+  grid-area: form;
+  display: inline-grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas: 'search submit';
+}
+
+.navbarSubmit {
+  height: 38px;
+  grid-area: submit;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 8px;
+  margin-right: 4px;
 }

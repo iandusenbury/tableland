@@ -1,23 +1,35 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
+// import { routePathToComponent } from '../../constants/routing'
+import PrivateRoute from '../../containers/privateRoute'
 import Navbar from '../../containers/navbar'
-import { routePathToComponent } from '../../constants/routing'
 import Dialog from '../../containers/dialog'
 
-const renderRoutes = () => {
-  const routes = routePathToComponent.map(route => {
-    const { name, path, component } = route
-    return <Route key={name} exact path={path} component={component} />
-  })
-  return routes
-}
+// routes
+import Admin from '../../containers/admin'
+import Home from '../home'
+import About from '../about'
+import SearchResults from '../searchResults'
+import OrgPage from '../organization'
+import EditProfile from '../edit'
+import ProfPage from '../professional'
+import NotFound from '../notFound'
 
 const App = () => (
   <div>
     <Navbar />
     <Dialog />
-    <main>{renderRoutes()}</main>
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route exact path="/about" component={About} />
+      <PrivateRoute exact path="/admin" component={Admin} />
+      <Route exact path="/results" component={SearchResults} />
+      <Route exact path="/organization/:id" component={OrgPage} />
+      <Route exact path="/profile/:id" component={ProfPage} />
+      <Route exact path="/edit" component={EditProfile} />
+      <Route component={NotFound} />
+    </Switch>
   </div>
 )
 

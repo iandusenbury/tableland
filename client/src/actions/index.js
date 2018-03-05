@@ -97,3 +97,18 @@ export function logoutUser() {
     dispatch(openDialog('Logout Successful'))
   }
 }
+
+function isLoggedIn() {
+  return !!Cookies.get('X-User-Email') && !!Cookies.get('X-User-Token')
+}
+
+export function initializeApp() {
+  const onSuccess = () => ({
+    type: ActionTypes.APP_INITIALIZED
+  })
+
+  return dispatch =>
+    dispatch(fetchUser()).then(() => {
+      dispatch(onSuccess())
+    })
+}

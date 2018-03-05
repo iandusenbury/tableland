@@ -1,4 +1,4 @@
-import { map, identity } from 'ramda'
+import { map, identity, merge } from 'ramda'
 import { camelizeKeys, decamelizeKeys } from 'humps'
 import { RSAA, ApiError, getJSON } from 'redux-api-middleware'
 import Cookies from 'cookies-js'
@@ -9,17 +9,18 @@ const defaultCallback = { onSuccess: identity }
 export default function callApi(callDescriptor, callbacks = {}) {
   const authEmail = Cookies.get('X-User-Email')
   const authToken = Cookies.get('X-User-Token')
-  const mergedCallbacks = { ...defaultCallback, ...callbacks }
+  const mergedCallbacks = merge(defaultCallback, callbacks)
   const {
+    body,
     endpoint,
     method,
     types: [request, recieve, failure]
   } = callDescriptor
 
-  return dispatch =>
+  return (dispatch, getState) =>
     dispatch({
       [RSAA]: {
-        body: JSON.stringify(decamelizeKeys), // TODO test on POST request
+        body: JSON.stringify(decamelizeKeys(body)) || identity, // TODO test on POST request
         endpoint: `http://api.roadmaps.lvh.me:5000/v1${endpoint}`,
         method: method || 'GET',
         types: [
@@ -48,20 +49,23 @@ export default function callApi(callDescriptor, callbacks = {}) {
       }
     }).then(
       response =>
-        response && handleResponse(response, mergedCallbacks, dispatch)
+        response &&
+        handleResponse(response, mergedCallbacks, dispatch, getState)
     )
 }
 
-function handleResponse(response, callbacks, dispatch) {
+function handleResponse(response, callbacks, dispatch, getState) {
   return response.error
     ? response
-    : handleSuccess(response, callbacks, dispatch)
+    : handleSuccess(response, callbacks, dispatch, getState)
 }
 
 // if a callback function is supplied it will use that function
 // if not we just return response, dispatch (per the default identity callback)
-function handleSuccess(response, { onSuccess }, dispatch) {
-  return onSuccess(response, dispatch)
+function handleSuccess(response, { onSuccess }, dispatch, getState) {
+  return onSuccess
+    ? onSuccess(response, dispatch, getState)
+    : new Promise
 }
 
 // convert strings to boolean values

@@ -1,20 +1,18 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { adminChangeTableTo, adminChangeAdminTo } from '../../actions'
+import { fetchAllOrganizations } from '../../actions/admin'
 
 import AdminPage from '../../components/admin'
 
 const mapStateToProps = state => ({
-  tables: state.app.adminPage.tables,
-  currentTable: state.app.adminPage.currentTable,
-  isAdmin: state.app.adminPage.isAdmin
+  isSuperAdmin: state.app.user.isSuperAdmin,
+  organizations: state.app.admin.organizations
 })
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      adminChangeTableTo,
-      adminChangeAdminTo
+      fetchAllOrganizations
     },
     dispatch
   )

@@ -1,0 +1,11 @@
+.error-container {
+  text-align: center;
+}
+
+.error-number {
+  font-size: 50px;
+}
+
+.error-message {
+  font-size: 30px;
+}

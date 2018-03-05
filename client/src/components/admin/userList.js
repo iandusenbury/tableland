@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { MuiThemeProvider, getMuiTheme } from 'material-ui/styles'
-import PropTypes from 'prop-types'
 import {
   Table,
   TableHeader,
+  Checkbox,
   TableHeaderColumn,
   TableBody,
   TableRow,
@@ -13,7 +13,7 @@ import {
   AutoComplete
 } from 'material-ui'
 
-import UserList from '../../containers/admin/userList'
+import PropTypes from 'prop-types'
 
 import './style.css'
 
@@ -26,25 +26,38 @@ const muiTheme = getMuiTheme({
   }
 })
 
-export default class AdminPage extends Component {
+export default class UserList extends Component {
   constructor(props) {
     super(props)
 
-    this.renderOrganizationRows = this.renderOrganizationRows.bind(this)
-    this.renderOrganizationTable = this.renderOrganizationTable.bind(this)
+    // this.renderAdminList = this.renderAdminList.bind(this)
+    // this.renderAdminMenu = this.renderAdminMenu.bind(this)
+    // this.renderAdminSection = this.renderAdminSection.bind(this)
+    this.renderUserTable = this.renderUserTable.bind(this)
+    this.renderUserRows = this.renderUserRows.bind(this)
   }
 
   componentWillMount() {
-    const { fetchAllOrganizations } = this.props
+    const { fetchAllUsers } = this.props
 
-    fetchAllOrganizations()
+    fetchAllUsers()
   }
 
-  renderOrganizationRows() {
-    const { organizations } = this.props
+  renderUserRows() {
+    const { users, toggleUserVisibility } = this.props
 
-    return organizations.map(organization => {
-      const { id, name } = organization
+    return users.map(user => {
+      const {
+        id,
+        firstName,
+        email,
+        lastName,
+        visible
+      } = user
+
+      const blockedCheckbox = (
+        <Checkbox checked={!visible} onCheck={() => toggleUserVisibility(id)} />
+      )
 
       const rowButton1 = (
         <TableRowColumn>
@@ -62,10 +75,10 @@ export default class AdminPage extends Component {
 
       return (
         <TableRow key={id}>
-          <TableRowColumn>{name}</TableRowColumn>
           <TableRowColumn>
-            <RaisedButton backgroundColor="#8195b1" label="View" />
+            {firstName} {lastName}
           </TableRowColumn>
+          <TableRowColumn>{blockedCheckbox}</TableRowColumn>
           {rowButton1}
           {rowButton2}
         </TableRow>
@@ -73,7 +86,7 @@ export default class AdminPage extends Component {
     })
   }
 
-  renderOrganizationTable() {
+  renderUserTable() {
     return (
       <div className="table-container">
         <Table height="300px">
@@ -90,7 +103,7 @@ export default class AdminPage extends Component {
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false} stripedRows>
-            {this.renderOrganizationRows()}
+            {this.renderUserRows()}
           </TableBody>
         </Table>
       </div>
@@ -98,20 +111,21 @@ export default class AdminPage extends Component {
   }
 
   render() {
-    const { isSuperAdmin } = this.props
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
-        <h1 className="admin-title">Admin Center</h1>
-        <UserList />
-        <h1 className="admin-title">Organizations</h1>
-        {this.renderOrganizationTable()}
+        <h1 className="admin-title">Users</h1>
+        {this.renderUserTable()}
       </MuiThemeProvider>
     )
   }
 }
 
-AdminPage.propTypes = {
-  isSuperAdmin: PropTypes.bool.isRequired,
-  organizations: PropTypes.array.isRequired, // eslint-disable-line
-  fetchAllOrganizations: PropTypes.func.isRequired
+UserList.propTypes = {
+  fetchAllUsers: PropTypes.func.isRequired,
+  users: PropTypes.array.isRequired
+  // isAdmin: PropTypes.bool.isRequired,
+  // tables: PropTypes.element.isRequired,
+  // currentTable: PropTypes.element.isRequired,
+  // adminChangeTableTo: PropTypes.func.isRequired,
+  // adminChangeAdminTo: PropTypes.func.isRequired
 }

@@ -3,7 +3,12 @@ import ActionTypes from '../../constants/actionTypes'
 
 const initialState = {
   firstName: '',
-  lastName: ''
+  lastName: '',
+  role: '',
+  visible: true,
+  signedIn: false,
+  isAdmin: false,
+  isSuperAdmin: false
 }
 
 const handlers = {
@@ -17,9 +22,13 @@ export default createReducer(initialState, handlers)
 
 function requestUser(state, { payload }) {
   const { user } = payload
+
   return {
     ...state,
-    ...user
+    ...user,
+    signedIn: true,
+    isAdmin: user.role === 'user',
+    isSuperAdmin: user.role === 'super admin'
   }
 }
 

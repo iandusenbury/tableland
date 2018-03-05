@@ -47,9 +47,8 @@ export function fetchResults(values) {
       ActionTypes.FAILURE_SEARCH
     ]
   }
-  return dispatch => {
+  return dispatch =>
     dispatch(callApi(callDescriptor, { onSuccess: loadResultsPage }))
-  }
 }
 
 function loadResultsPage(response, dispatch) {

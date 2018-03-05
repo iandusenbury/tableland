@@ -24,7 +24,7 @@ const mapStateToProps = state => {
     }
   }
   const onPanTo = (index, location) => {
-    const boundExtension = 0.1
+    const boundExtension = 0.2
     const newBounds = {
       north: location.lat + boundExtension,
       south: location.lat - boundExtension,

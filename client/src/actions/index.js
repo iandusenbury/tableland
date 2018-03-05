@@ -31,14 +31,40 @@ export function fetchProfessional() {
   }
 
   return dispatch => {
-    dispatch(callApi(callDescriptor))
+    dispatch(callApi(callDescriptor, { onSuccess: initMapMarkers }))
   }
 }
 
-export function toggleMarkerFlag(index) {
-  console.log(index)
+function initMapMarkers(response, dispatch) {
+  const { payload: { user: { experiences } } } = response
+  const isMarkerOpen = []
+  const sortedExperiences = experiences.sort(
+    (a, b) => Date.parse(a.startDate) - Date.parse(b.startDate)
+  )
+  let experienceLength = 0
+  sortedExperiences.forEach(experience => {
+    if (experience.organization) {
+      experienceLength += 1
+    }
+  })
+  for (let i = 0; i < experienceLength - 1; i += 1) {
+    isMarkerOpen.push(false)
+  }
+  isMarkerOpen.push(true)
+
+  const dispatchFunc = markerArray => ({
+    type: ActionTypes.INIT_MAP_MARKERS,
+    payload: {
+      isMarkerOpen: markerArray
+    }
+  })
+
+  return dispatch(dispatchFunc(isMarkerOpen))
+}
+
+export function toggleMarker(index) {
   return {
-    type: ActionTypes.TOGGLE_MARKER_FLAG,
+    type: ActionTypes.UPDATE_OPEN_MARKERS,
     payload: {
       index
     }

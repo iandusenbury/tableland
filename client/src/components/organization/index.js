@@ -12,9 +12,9 @@ import {
   TableBody,
   Avatar
 } from 'material-ui'
+import PropTypes from 'prop-types'
 import BusinessIcon from 'material-ui/svg-icons/communication/business'
 import LanguageIcon from 'material-ui/svg-icons/action/language'
-import PropTypes from 'prop-types'
 
 import TopTab from '../../constants/tabs/tabViewMap'
 import { orgPage } from '../../constants/viewStyles'

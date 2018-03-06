@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { Field, reduxForm, formValueSelector } from 'redux-form'
 import { AppBar, IconButton, Avatar } from 'material-ui'
 import './edit.css'
 import { style } from '../../widgets/styles'
@@ -8,30 +9,48 @@ import { StyledTextField } from '../../widgets/StyledTextField'
 
 const videoPlayer = require('./VideoPlaceholder.jpg')
 
-export const Media = props => (
-  <StyledPaper>
-    <div className="EditSectionGrid">
-      <div>
-        <AppBar
-          iconElementLeft={
-            <IconButton>
-              <Photo />
-            </IconButton>
-          }
-          iconStyleLeft={style.appBar}
-          title={<span style={style.title}>Media</span>}
-        />
-      </div>
-      <div className="EditMediaGrid">
-        <div>
-          <StyledTextField text="Video URL" />
-        </div>
-        <div>
-          <div className="EditVideo">
-            <img className="EditImage" src={videoPlayer} />
+class Media extends Component {
+  render() {
+    return (
+      <StyledPaper>
+        <div className="EditSectionGrid">
+          <div>
+            <AppBar
+              iconElementLeft={
+                <IconButton>
+                  <Photo />
+                </IconButton>
+              }
+              iconStyleLeft={style.appBar}
+              title={<span style={style.title}>Media</span>}
+            />
           </div>
+          <form>
+            <div className="EditMediaGrid">
+              <div>
+                <Field
+                  name="video"
+                  text="Video URL"
+                  component={StyledTextField}
+                />
+              </div>
+              <div>
+                <div className="EditVideo">
+                  <img className="EditImage" src={videoPlayer} />
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
-      </div>
-    </div>
-  </StyledPaper>
-)
+      </StyledPaper>
+    )
+  }
+}
+
+Media = reduxForm({
+  form: 'addExperience',
+  initialValues: {
+  }
+})(Media)
+
+export default Media

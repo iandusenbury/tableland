@@ -1,11 +1,10 @@
 import React from 'react'
 import { AppBar, IconButton } from 'material-ui'
-import Location from 'material-ui/svg-icons/communication/location-on'
-
-import { style } from '../../widgets/styles'
-import { StyledPaper } from '../../widgets/StyledPaper'
-import AddExperience from './AddExperience'
 import './experience.css'
+import { style } from '../../widgets/styles'
+import Location from 'material-ui/svg-icons/communication/location-on'
+import { StyledPaper } from '../../widgets/StyledPaper'
+import { AddExperience } from './AddExperience'
 
 const Experience = () => (
   <StyledPaper>

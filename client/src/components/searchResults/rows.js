@@ -13,9 +13,9 @@ const retrieveMedia = media => {
 }
 
 const tableRow = profile => {
-  const { id, profileName, avatar, info, contact } = profile
+  const { id, type, profileName, avatar, info, contact } = profile
   return (
-    <TableRow className="search-table-row-stripe" key={id}>
+    <TableRow className="search-table-row-stripe" key={`${type}_${id}`}>
       <TableRowColumn className="search-table-cell">
         <div className="search-table-name search-table-border">
           {profileName}
@@ -46,7 +46,8 @@ export const renderProgram = program => {
   )
   const contact = <li>Contact: {contactUrl}</li>
   const rowInfo = {
-    id: `${type}_${id}`,
+    id,
+    type,
     profileName,
     avatar,
     info,
@@ -79,7 +80,8 @@ export const renderOrganization = organization => {
   )
   const contact = <li>Contact: {contactUrl}</li>
   const rowInfo = {
-    id: `${type}_${id}`,
+    id,
+    type,
     profileName,
     avatar,
     info,
@@ -116,7 +118,8 @@ export const renderUser = user => {
   )
   const contact = <li>Contact: {contactUrl}</li>
   const rowInfo = {
-    id: `${type}_${id}`,
+    id,
+    type,
     profileName,
     avatar,
     info,

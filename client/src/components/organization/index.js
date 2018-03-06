@@ -28,8 +28,7 @@ class Organization extends Component {
     const { fetchOrganization } = this.props
     fetchOrganization(13)
   }
-  
-  render () {
+  render() {
     const {
       name,
       description,
@@ -133,7 +132,8 @@ Organization.propTypes = {
   postalCode: PropTypes.string.isRequired,
   country: PropTypes.string.isRequired,
   organizationVideo: PropTypes.string,
-  users: PropTypes.array.isRequired
+  users: PropTypes.array.isRequired,
+  fetchOrganization: PropTypes.func.isRequired
 }
 
 function createEmployeeTable(employees) {

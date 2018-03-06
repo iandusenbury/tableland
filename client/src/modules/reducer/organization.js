@@ -35,9 +35,9 @@ function requestOrganization(state, data) {
   const { media } = organization
 
   const reducedMedia = media.reduce((obj, item) => {
-    obj[item.category] = item
+    obj[item.category] = item // eslint-disable-line
     return obj
-  }, {});
+  }, {})
   
   return {
     ...state,

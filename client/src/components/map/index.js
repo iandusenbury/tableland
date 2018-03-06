@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Avatar } from 'material-ui'
+import { Avatar, Paper } from 'material-ui'
 import GMap from './gmap'
 import mapStyle from './style.json'
 import BottomTab from '../../constants/tabs/tabViewProfile'
@@ -12,6 +12,9 @@ import styleJS from './style'
  *    Improve with more specific styling
  * Key: AIzaSyARRsWk_FbczyZ0RFU4STmiTxxYfnWmiBs
  */
+
+const firstMarkerImg = require('./first.png')
+const currentMarkerImg = require('./current.png')
 
 class MyMapComponent extends Component {
   componentWillMount() {
@@ -55,6 +58,49 @@ class MyMapComponent extends Component {
             fullscreenControl: false
           }}
         />
+        <Paper style={styleJS.styles.paper} zDepth={3}>
+          <div className="mapLegend">
+            <h3>Legend</h3>
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <img src={firstMarkerImg} alt="first marker" />
+                  </td>
+                  <td>First Experience</td>
+                </tr>
+                <tr>
+                  <td>
+                    <img src={currentMarkerImg} alt="current marker" />
+                  </td>
+                  <td>Current Experience</td>
+                </tr>
+                <tr>
+                  <td>
+                    <svg height="5" width="28">
+                      <path
+                        d="M0 0 L28 0 Z"
+                        style={{ stroke: 'orange', strokeWidth: '5' }}
+                      />
+                    </svg>
+                  </td>
+                  <td>Main Experience Path</td>
+                </tr>
+                <tr>
+                  <td className="mapLegendConcurrent">
+                    <svg height="5" width="28">
+                      <path d="M0 0 L7 0 Z" />
+                      <path d="M7 0 L14 0 Z" />
+                      <path d="M14 0 L21 0 Z" />
+                      <path d="M21 0 L28 0 Z" />
+                    </svg>
+                  </td>
+                  <td>Concurrent Experience Paths</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </Paper>
         <div className="mapProfilePreviewTab">
           <div className="mapProfilePreviewAvatar">
             <Avatar
@@ -77,7 +123,7 @@ class MyMapComponent extends Component {
 }
 
 MyMapComponent.propTypes = {
-  sortedExperiences: PropTypes.array.isRequired,
+  sortedExperiences: PropTypes.array.isRequired, // eslint-disable-line
   fetchProfessional: PropTypes.func.isRequired
 }
 

@@ -17,7 +17,13 @@ const buildPolylineGroup = (i, index, nodes) => {
 
   // build polylines
   let n = index + 1
-
+  const dashLineIcon = {
+    path: 'M0 0 L0 200 Z',
+    scale: 0.07,
+    fillColor: 'green',
+    strokeOpacity: 0.7,
+    strokeWeight: 3
+  }
   // polyline to next parent
   const nextParent = (
     <Polyline
@@ -36,7 +42,17 @@ const buildPolylineGroup = (i, index, nodes) => {
       <Polyline
         key={n}
         path={[nodes[index].location, nodes[n].location]}
-        options={{ strokeColor: 'green', strokeOpacity: '0.5' }}
+        options={{
+          strokeColor: 'green',
+          strokeOpacity: '0.1',
+          icons: [
+            {
+              icon: dashLineIcon,
+              offset: '30px',
+              repeat: '45px'
+            }
+          ]
+        }}
       />
     )
     n += 1

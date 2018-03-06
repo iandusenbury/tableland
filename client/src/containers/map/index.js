@@ -8,7 +8,13 @@ import Map from '../../components/map'
 const portraitImg = require('../professional/portrait.png')
 
 const mapStateToProps = state => {
-  const { experiences } = state.app.professionalPage
+  const { experiences, media } = state.app.professionalPage
+  let profileImage
+  if (media.image) {
+    profileImage = media.image.url
+  } else {
+    profileImage = portraitImg
+  }
   const refs = {
     map: undefined
   }
@@ -39,7 +45,7 @@ const mapStateToProps = state => {
   }
 
   return {
-    profileImage: state.app.professionalPage.media.image.url || portraitImg,
+    profileImage,
     ...state.app.professionalPage,
     sortedExperiences,
     isMarkerOpen: state.app.roadmap.isMarkerOpen,

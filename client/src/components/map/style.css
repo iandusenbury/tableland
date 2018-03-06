@@ -33,3 +33,41 @@
 .mapProfilePreviewAvatar {
   grid-area: avatar;
 }
+
+.mapLegend {
+  height: auto;
+  width: auto;
+  position: relative;
+  top: 8px;
+  margin: auto;
+  margin: 0px 8px 16px;
+}
+
+.mapLegend h3 {
+  margin-top: 4px;
+  margin-bottom: 10px;
+  margin-left: 4px;
+}
+
+.mapLegend table tbody tr {
+  margin: 14px 0px 14px;
+}
+
+.mapLegend table tbody tr td {
+  height: 32px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.mapLegendConcurrent svg path {
+  stroke: green;
+  stroke-width: 5;
+}
+
+.mapLegendConcurrent svg path:nth-child(odd){
+  stroke-opacity: 1;
+}
+
+.mapLegendConcurrent svg path:nth-child(even){
+  stroke-opacity: 0.3;
+}

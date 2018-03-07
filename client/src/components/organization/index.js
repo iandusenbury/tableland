@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import {
   Card,
   CardMedia,
@@ -12,85 +12,160 @@ import {
   TableBody,
   Avatar
 } from 'material-ui'
+import PropTypes from 'prop-types'
 import BusinessIcon from 'material-ui/svg-icons/communication/business'
 import LanguageIcon from 'material-ui/svg-icons/action/language'
-import TopTab from '../../constants/tabs/tabViewMap'
-import './style.css'
-import { orgPage } from '../../constants/viewStyles'
-/*
-  Employees should be listed as
-  [icon/photo]  [name]  [position]
-*/
 
-const hasVideo = true // this will be passed as props
+import TopTab from '../../constants/tabs/tabViewMap'
+import { orgPage } from '../../constants/viewStyles'
+import './style.css'
+
 const portraitImg = require('./portrait.png')
 const sampleImg = require('./sample.jpg')
 
-export default () => (
-  <div className="organizationMainDiv">
-    <TopTab className="organizationTopTab" />
-    <div className="organizationImage">
-      <Card>
-        <CardMedia
-          overlay={<CardTitle id="org_name" title="Organization name here" />}>
-          <img className="organizationImg" src={sampleImg} alt="" />
-        </CardMedia>
-      </Card>
-    </div>
-    <div className="organizationText">
-      <div className="organizationName">
-        <h3 className="organizationHeader3">Organization Name</h3>
-        <Divider />
-      </div>
-      <div className="organizationContact">
-        <div className="organizationAddress">
-          <BusinessIcon style={orgPage.businessIcon} />
-          <div>
-            <p>123 company rd</p>
-            <p>Portland, OR 97006</p>
+class Organization extends Component {
+  componentWillMount() {
+    const { fetchOrganization } = this.props
+    fetchOrganization(13)
+  }
+  render() {
+    const {
+      name,
+      description,
+      url,
+      addressLine1,
+      addressLine2,
+      city,
+      state,
+      postalCode,
+      country,
+      organizationVideo,
+      users
+    } = this.props
+
+    let videoUrl = ''
+    let hasVideo = false
+    if (organizationVideo) {
+      videoUrl = organizationVideo.replace('watch?v=', 'embed/')
+      hasVideo = true
+    }
+
+    return (
+      <div className='organizationMainDiv'>
+        <TopTab className='organizationTopTab' />
+        <div className='organizationImage'>
+          <Card>
+            <CardMedia
+              overlay={<CardTitle id='org_name' title={name} />}>
+              <img className='organizationImg' src={sampleImg} alt='' />
+            </CardMedia>
+          </Card>
+        </div>
+        <div className='organizationText'>
+          <div className='organizationName'>
+            <h3 className='organizationHeader3'>{name}</h3>
+            <Divider />
+          </div>
+          <div className='organizationContact'>
+            <div className='organizationAddress'>
+              <BusinessIcon style={orgPage.businessIcon} />
+              <div>
+                <p>{addressLine1}</p>
+                <p>{city}, {state}</p>
+                <p>{country} {postalCode}</p>
+                <p>{addressLine2}</p>
+              </div>
+            </div>
+            <div className='organizationUrl'>
+              <div>
+                <LanguageIcon style={orgPage.urlIcon} />
+              </div>
+              <div>
+                <p>{url}</p>
+              </div>
+            </div>
+          </div>
+          <div className='organizationDescription'>
+            <Divider />
+            <p>{description}</p>
+            {hasVideo && (
+              <div className="organization-video-wrapper">
+                <iframe
+                  className='organizationVideo'
+                  title='Organization Video'
+                  allow='encrypted-media'
+                  frameBorder='0'
+                  src={videoUrl}
+                />
+              </div>
+            )}
+            <Divider />
+          </div>
+          <div className='organizationEmployees'>
+            <Table>
+              <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
+                <TableRow>
+                  <TableHeaderColumn style={orgPage.tableHeaderCol} />
+                  <TableHeaderColumn>Employee</TableHeaderColumn>
+                  <TableHeaderColumn>Job Title</TableHeaderColumn>
+                </TableRow>
+              </TableHeader>
+              <TableBody showRowHover displayRowCheckbox={false}>
+                {createEmployeeTable(users)}
+              </TableBody>
+            </Table>
           </div>
         </div>
-        <div className="organizationUrl">
-          <div>
-            <LanguageIcon style={orgPage.urlIcon} />
-          </div>
-          <div>
-            <p>organizationurl.org/about</p>
-          </div>
-        </div>
       </div>
-      <div className="organizationDescription">
-        <Divider />
-        <p>Description</p>
-        {hasVideo && (
-          <div>
-            {
-              // eslint-disable-next-line
-            } <video /> {/* TODO: fix linting error */}
-          </div>
-        )}
-        <Divider />
-      </div>
-      <div className="organizationEmployees">
-        <Table>
-          <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
-            <TableRow>
-              <TableHeaderColumn style={orgPage.tableHeaderCol} />
-              <TableHeaderColumn>Employee</TableHeaderColumn>
-              <TableHeaderColumn>Job Title</TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody showRowHover displayRowCheckbox={false}>
-            <TableRow className="organizationTableRow" hoverable>
-              <TableRowColumn style={orgPage.tableRowColAvatar}>
-                <Avatar size={32} src={portraitImg} />
-              </TableRowColumn>
-              <TableRowColumn>Fred Henderson</TableRowColumn>
-              <TableRowColumn>Engineer</TableRowColumn>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </div>
-    </div>
-  </div>
-)
+    )
+  }
+}
+
+Organization.propTypes = {
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  addressLine1: PropTypes.string.isRequired,
+  addressLine2: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
+  state: PropTypes.string.isRequired,
+  postalCode: PropTypes.string.isRequired,
+  country: PropTypes.string.isRequired,
+  organizationVideo: PropTypes.string,
+  users: PropTypes.array.isRequired,
+  fetchOrganization: PropTypes.func.isRequired
+}
+
+function createEmployeeTable(employees) {
+  return employees.map(employee => {
+    const {
+      id,
+      firstName,
+      lastName,
+      mainTitle,
+      media
+    } = employee
+
+    var imageUrl = media.reduce((obj, item) => {
+      obj[item.category] = item
+      return obj
+    }, {})
+
+    if (imageUrl.image)
+      imageUrl = imageUrl.image.url
+    else
+      imageUrl = null
+ 
+    return (
+      <TableRow key={id} className='organizationTableRow' hoverable>
+        <TableRowColumn style={orgPage.tableRowColAvatar}>
+          <Avatar size={32} src={imageUrl || portraitImg} />
+        </TableRowColumn>
+        <TableRowColumn>{firstName} {lastName}</TableRowColumn>
+        <TableRowColumn>{mainTitle}</TableRowColumn>
+      </TableRow>
+    )
+  })
+}
+
+export default Organization

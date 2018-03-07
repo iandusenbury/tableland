@@ -32,7 +32,7 @@ class Personal extends Component {
             <div className="EditFieldsGrid">
               <div>
                 <Field
-                  name="first_name"
+                  name="first"
                   component={StyledTextField}
                   text="First Name"
                   initialValue={Personal.first_name}
@@ -55,7 +55,7 @@ class Personal extends Component {
               </div>
               <div>
                 <Field
-                  name="job"
+                  name="title"
                   component={StyledTextField}
                   text="Current Job Title"
                   disabled
@@ -70,5 +70,6 @@ class Personal extends Component {
 }
 
 export default reduxForm({
-  form: 'personal'
+  form: 'personal',
+  enableReinitialize: true
 })(Personal)

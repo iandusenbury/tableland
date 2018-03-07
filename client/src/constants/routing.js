@@ -4,7 +4,7 @@ import About from '../components/about'
 import SearchResults from '../containers/searchResults'
 import OrgPage from '../containers/organization'
 import ProfPage from '../containers/professional'
-import EditProfile from '../components/edit'
+import EditProfile from '../containers/edit'
 
 export const routePathToComponent = [
   {

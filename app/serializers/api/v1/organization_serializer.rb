@@ -6,7 +6,7 @@ module Api::V1
                 :name, 
                 :description, 
                 :url, 
-                :category, 
+                :visible, 
                 :address_line_1, 
                 :address_line_2,
                 :address_line_3,

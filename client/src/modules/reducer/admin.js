@@ -1,10 +1,11 @@
-import { find, findIndex, propEq, update, merge } from 'ramda'
+import { findIndex, propEq, update } from 'ramda'
 import createReducer from '../../utils/createReducer'
 import ActionTypes from '../../constants/actionTypes'
 
 const initialState = {
   users: [],
-  organizations: []
+  organizations: [],
+  userListDialog: false
 }
 
 const handlers = {
@@ -12,7 +13,9 @@ const handlers = {
   // [ActionTypes.ACTION_NAME]: actionFunction
   [ActionTypes.RECIEVE_ALL_USERS]: getUsers,
   [ActionTypes.RECIEVE_ALL_ORGANIZATIONS]: getOrganizations,
-  [ActionTypes.TOGGLE_USER_VISIBILITY]: toggleUserVisibility
+  [ActionTypes.SUCCESS_PATCH_SUPER_ADMIN]: updateUser,
+  [ActionTypes.SUCCESS_PATCH_USER_VISIBILITY]: updateUser,
+  [ActionTypes.SUCCESS_ORGANIZATION_ADD_ADMIN]: updateUser
 }
 
 export default createReducer(initialState, handlers)
@@ -35,15 +38,11 @@ function getOrganizations(state, { payload }) {
   }
 }
 
-function toggleUserVisibility(state, { id }) {
+function updateUser(state, { payload }) {
   const { users } = state
-  const user = find(propEq('id', id))(users)
-  const index = findIndex(propEq('id', id))(users)
-  const updatedUsers = update(
-    index,
-    merge(user, { visible: !user.visible }),
-    users
-  )
+  const { user } = payload
+  const index = findIndex(propEq('id', user.id))(users)
+  const updatedUsers = update(index, user, users)
 
   return {
     ...state,

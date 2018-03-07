@@ -7,13 +7,7 @@ import Loading from '../loading'
 const PrivateRoute = props => {
   const { component: Component, loading, isAdmin, ...rest } = props
 
-  const componentToRender = () => {
-    if (loading) {
-      return <Loading />
-    }
-
-    return <NotFound />
-  }
+  
 
   return (
     <Route

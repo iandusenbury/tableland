@@ -1,20 +1,9 @@
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { fetchAllOrganizations } from '../../actions/admin'
 
 import AdminPage from '../../components/admin'
 
 const mapStateToProps = state => ({
-  isSuperAdmin: state.app.user.isSuperAdmin,
-  organizations: state.app.admin.organizations
+  isSuperAdmin: state.app.user.isSuperAdmin
 })
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      fetchAllOrganizations
-    },
-    dispatch
-  )
-
-export default connect(mapStateToProps, mapDispatchToProps)(AdminPage)
+export default connect(mapStateToProps)(AdminPage)

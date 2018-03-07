@@ -1,18 +1,19 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { fetchAllUsers, toggleUserVisibility } from '../../actions/admin'
 
+import { addOrganizationAdmin } from '../../actions/admin'
 import UserList from '../../components/admin/userList'
 
 const mapStateToProps = state => ({
-  users: state.app.admin.users
+  dialogIsOpen: state.app.dialog.open === 2,
+  users: state.app.admin.users,
+  organizationId: state.app.dialog.dialogData.organizationId
 })
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      fetchAllUsers,
-      toggleUserVisibility
+      addOrganizationAdmin
     },
     dispatch
   )

@@ -76,7 +76,7 @@ function authCookiesSet() {
 function authorizationFailed({ message, onFailure }) {
   return dispatch => {
     const promises = [dispatch(closeDialog())]
-    dispatch(openDialog(message))
+    dispatch(openDialog(1, { message }))
 
     if (onFailure) {
       append(dispatch(onFailure), promises)
@@ -92,7 +92,9 @@ function processAuthorization({ onSuccess, onFailure }) {
 
     if (authCookiesSet()) {
       if (onSuccess) {
-        append(dispatch(openDialog('Authorization Successful!')))
+        append(
+          dispatch(openDialog(1, { message: 'Authorization Successful!' }))
+        )
         append(dispatch(onSuccess, promises))
       }
     } else {

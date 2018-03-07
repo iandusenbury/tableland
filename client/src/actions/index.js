@@ -19,7 +19,7 @@ export function fetchUser() {
 
 // Fetch Professional
 // if no argument given, random will be used
-export function fetchProfessional(userID = 'random') {
+export function fetchProfessional(userID = 'current') {
   const callDescriptor = {
     endpoint: `/users/${userID}`,
     types: [
@@ -57,10 +57,10 @@ export function closeDialog() {
   }
 }
 
-export function openDialog(message) {
+export function openDialog(id, data) {
   return {
     type: ActionTypes.OPEN_DIALOG,
-    payload: { message }
+    payload: { id, data }
   }
 }
 
@@ -88,10 +88,10 @@ export function logoutUser() {
     type: ActionTypes.LOGOUT_USER
   })
 
-  return dispatch => {
-    dispatch(onSuccess())
-    dispatch(openDialog('Logout Successful'))
-  }
+  return dispatch =>
+    dispatch(onSuccess()).then(() =>
+      dispatch(openDialog('Logout Successful', 1))
+    )
 }
 
 function isLoggedIn() {

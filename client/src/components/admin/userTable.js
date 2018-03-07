@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { MuiThemeProvider, getMuiTheme } from 'material-ui/styles'
-import PropTypes from 'prop-types'
 import {
   Table,
   TableHeader,
+  Checkbox,
   TableHeaderColumn,
   TableBody,
   TableRow,
@@ -11,7 +11,7 @@ import {
   RaisedButton
 } from 'material-ui'
 
-import Dialog from '../../containers/dialog'
+import PropTypes from 'prop-types'
 
 import './style.css'
 
@@ -29,18 +29,37 @@ export default class UserTable extends Component {
     this.renderUserRows = this.renderUserRows.bind(this)
   }
 
+  componentWillMount() {
+    const { fetchAllUsers } = this.props
+
+    fetchAllUsers()
+  }
+
   renderUserRows() {
-    const { users, organizationId, addOrganizationAdmin } = this.props
+    const { users, toggleUserVisibility, toggleUserSuperAdmin } = this.props
 
     return users.map(user => {
-      const { id, firstName, email, lastName, role } = user
+      const { id, firstName, email, lastName, visible, role } = user
 
-      const addAdminButton = (
+      const blockedCheckbox = (
+        <Checkbox
+          checked={!visible}
+          onCheck={() => toggleUserVisibility(id, visible)}
+        />
+      )
+
+      const superAdminCheckbox = (
+        <Checkbox
+          checked={role === 'super_admin'}
+          onCheck={() => toggleUserSuperAdmin(id, role)}
+        />
+      )
+
+      const revokeAdminButton = (
         <RaisedButton
+          disabled={role !== 'admin'}
           backgroundColor="#8195b1"
-          label="Add"
-          onClick={() => addOrganizationAdmin(id, organizationId)}
-          disabled={role === 'super_admin'}
+          label="Revoke"
         />
       )
 
@@ -50,7 +69,9 @@ export default class UserTable extends Component {
             {firstName} {lastName}
           </TableRowColumn>
           <TableRowColumn>{email}</TableRowColumn>
-          <TableRowColumn>{addAdminButton}</TableRowColumn>
+          <TableRowColumn>{blockedCheckbox}</TableRowColumn>
+          <TableRowColumn>{superAdminCheckbox}</TableRowColumn>
+          <TableRowColumn>{revokeAdminButton}</TableRowColumn>
         </TableRow>
       )
     })
@@ -60,7 +81,9 @@ export default class UserTable extends Component {
     const headerValues = [
       { tooltip: 'Full Name', value: 'Name' },
       { tooltip: 'Email', value: 'Email' },
-      { tooltip: 'Add as admin', value: 'Add' }
+      { tooltip: 'Block/Unblock', value: 'Blocked' },
+      { tooltip: 'Is Super Admin', value: 'Super Admin' },
+      { tooltip: 'Revoke org/prog admin access', value: 'Revoke Admin' }
     ]
 
     const mapHeaderValues = headerValues.map(({ tooltip, value }) => (
@@ -84,21 +107,18 @@ export default class UserTable extends Component {
   }
 
   render() {
-    const { dialogIsOpen } = this.props
-
     return (
-      <Dialog open={dialogIsOpen} autoScrollBodyContent>
-        <MuiThemeProvider muiTheme={muiTheme}>
-          {this.renderUserTable()}
-        </MuiThemeProvider>
-      </Dialog>
+      <MuiThemeProvider muiTheme={muiTheme}>
+        <h1 className="admin-title">Users</h1>
+        {this.renderUserTable()}
+      </MuiThemeProvider>
     )
   }
 }
 
 UserTable.propTypes = {
-  dialogIsOpen: PropTypes.bool.isRequired,
-  users: PropTypes.array.isRequired, // eslint-disable-line
-  organizationId: PropTypes.number.isRequired,
-  addOrganizationAdmin: PropTypes.func.isRequired
+  fetchAllUsers: PropTypes.func.isRequired,
+  toggleUserVisibility: PropTypes.func.isRequired,
+  toggleUserSuperAdmin: PropTypes.func.isRequired,
+  users: PropTypes.array.isRequired // eslint-disable-line
 }

@@ -1,5 +1,6 @@
 import ActionTypes from '../constants/actionTypes'
 import callApi from '../utils/api'
+import { openDialog } from './index'
 
 export function fetchAllUsers() {
   const callDescriptor = {
@@ -11,9 +12,7 @@ export function fetchAllUsers() {
     ]
   }
 
-  return dispatch => {
-    dispatch(callApi(callDescriptor))
-  }
+  return dispatch => dispatch(callApi(callDescriptor))
 }
 
 export function fetchAllOrganizations() {
@@ -26,9 +25,7 @@ export function fetchAllOrganizations() {
     ]
   }
 
-  return dispatch => {
-    dispatch(callApi(callDescriptor))
-  }
+  return dispatch => dispatch(callApi(callDescriptor))
 }
 
 export function toggleUserVisibility(id, visible) {
@@ -38,13 +35,44 @@ export function toggleUserVisibility(id, visible) {
     method: 'PUT',
     types: [
       ActionTypes.REQUEST_PATCH_USER_VISIBILITY,
-      ActionTypes.RECIEVE_PATCH_USER_VISIBILITY,
+      ActionTypes.SUCCESS_PATCH_USER_VISIBILITY,
       ActionTypes.FAILURE_PATCH_USER_VISIBILITY
     ]
   }
 
+  return dispatch => dispatch(callApi(callDescriptor))
+}
+
+export function toggleUserSuperAdmin(id, role) {
+  const newRole = role === 'super_admin' ? 'user' : 'super_admin'
+  const callDescriptor = {
+    body: { role: newRole },
+    endpoint: `/users/${id}`,
+    method: 'PUT',
+    types: [
+      ActionTypes.REQUEST_PATCH_SUPER_ADMIN,
+      ActionTypes.SUCCESS_PATCH_SUPER_ADMIN,
+      ActionTypes.FAILURE_PATCH_SUPER_ADMIN
+    ]
+  }
+
+  return dispatch => dispatch(callApi(callDescriptor))
+}
+
+export function addOrganizationAdmin(id, organizationId) {
+  const callDescriptor = {
+    body: { admin: { user_id: id } },
+    endpoint: `/organizations/${organizationId}/permissions`,
+    method: 'POST',
+    types: [
+      ActionTypes.REQUEST_ORGANIZATION_ADD_ADMIN,
+      ActionTypes.SUCCESS_ORGANIZATION_ADD_ADMIN,
+      ActionTypes.FAILURE_ORGANIZATION_ADD_ADMIN
+    ]
+  }
+
   const onSuccess = (response, dispatch) =>
-    dispatch({ type: ActionTypes.TOGGLE_USER_VISIBILITY, id })
+    dispatch(openDialog(1, { message: 'Success' }))
 
   return dispatch => dispatch(callApi(callDescriptor, { onSuccess }))
 }

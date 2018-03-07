@@ -14,9 +14,8 @@ const sampleImg = require('./sample.jpg')
 
 class Professional extends Component {
   componentWillMount() {
-    const { fetchProfessional } = this.props
-    // fetches random propfessional
-    fetchProfessional()
+    const { fetchProfessional, match } = this.props
+    fetchProfessional(match.params.id)
   }
 
   render() {

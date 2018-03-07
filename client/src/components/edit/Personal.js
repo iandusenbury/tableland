@@ -7,6 +7,8 @@ import { style } from '../../widgets/styles'
 import Person from 'material-ui/svg-icons/social/person'
 import { StyledPaper } from '../../widgets/StyledPaper'
 import { fetchProfessional } from '../../actions'
+import {AddButton} from "../../widgets/AddButton";
+import {showResults} from "./index";
 
 class Personal extends Component {
   componentDidMount() {
@@ -14,6 +16,7 @@ class Personal extends Component {
   }
 
   render() {
+    const {handleSubmit} = this.props
     return (
       <StyledPaper>
         <div className="EditSectionGrid">
@@ -28,14 +31,13 @@ class Personal extends Component {
               iconStyleLeft={style.appBar}
             />
           </div>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="EditFieldsGrid">
               <div>
                 <Field
                   name="first"
                   component={StyledTextField}
                   text="First Name"
-                  initialValue={Personal.first_name}
                 />
               </div>
               <div>
@@ -71,5 +73,5 @@ class Personal extends Component {
 
 export default reduxForm({
   form: 'personal',
-  enableReinitialize: true
+  onSubmit: showResults
 })(Personal)

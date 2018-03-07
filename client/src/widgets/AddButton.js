@@ -14,6 +14,7 @@ export const AddButton = props => {
       labelPosition="after"
       style={style.addButton}
       buttonStyle={style.buttonStyle}
+      type="submit"
     />
   )
 }

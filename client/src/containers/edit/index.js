@@ -1,6 +1,7 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { fetchProfessional } from '../../actions'
+import {submit} from 'redux-form'
 
 import EditProfile from '../../components/edit'
 
@@ -13,7 +14,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
     bindActionCreators(
         {
-            fetchProfessional
+            fetchProfessional,
+            submit
         },
         dispatch
     )

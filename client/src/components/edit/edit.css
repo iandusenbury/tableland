@@ -112,11 +112,16 @@
 }
 
 
-.EditImage {
+.EditImageNoVideo {
     width: 350px;
     height: 31vh;
     opacity: 0.5;
     filter: alpha(opacity=50);
+}
+
+.EditImageWithVideo {
+    width: 350px;
+    height: 31vh;
 }
 
 .EditAvatar {

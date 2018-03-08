@@ -23,23 +23,21 @@ class EditProfile extends Component {
       firstName,
       lastName,
       description,
-      contactUrl,
       mainTitle,
-      mainLocation,
       profileImage,
       profileVideo,
       experiences,
       submit
     } = this.props
 
-    const exist = firstName !== ''
+    const exists = firstName !== ''
     return (
       <div>
-          {exist &&
+          {exists &&
           <div className="EditPrimaryDiv">
               <div className="EditHeader">
                   <div className="EditHeaderAvatar">
-                      <Avatar icon={<Person/>} size={100} style={style.avatarIcon}/>
+                      <Avatar src={profileImage} size={100} style={style.avatarIcon}/>
                   </div>
               </div>
               <div className="EditMainGrid">
@@ -53,13 +51,13 @@ class EditProfile extends Component {
                       />
                   </div>
                   <div className="EditMedia">
-                      <Media/>
+                      <Media video={profileVideo}/>
                   </div>
                   <div className="EditExperience">
-                      <Experience/>
+                      <Experience experiences={experiences}/>
                   </div>
               </div>
-              <RaisedButton label="submit" onClick={() => submit('personal')}/>
+              <RaisedButton label="save" onClick={() => submit('personal')} fullWidth={true} secondary={true}/>
           </div>
           }
       </div>

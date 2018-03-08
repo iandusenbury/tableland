@@ -10,7 +10,13 @@ import { StyledTextField } from '../../widgets/StyledTextField'
 const videoPlayer = require('./VideoPlaceholder.jpg')
 
 class Media extends Component {
+
+  componentDidMount(){
+    this.props.initialize({...this.props})
+  }
+
   render() {
+    const videoImage = this.props.video ? 'EditImageWithVideo' : 'EditImageNoVideo'
     return (
       <StyledPaper>
         <div className="EditSectionGrid">
@@ -32,11 +38,12 @@ class Media extends Component {
                   name="video"
                   text="Video URL"
                   component={StyledTextField}
+                  multiLine
                 />
               </div>
               <div>
                 <div className="EditVideo">
-                  <img className="EditImage" src={videoPlayer} />
+                  <img className={videoImage} src={videoPlayer} />
                 </div>
               </div>
             </div>
@@ -48,9 +55,7 @@ class Media extends Component {
 }
 
 Media = reduxForm({
-  form: 'addExperience',
-  initialValues: {
-  }
+  form: 'media'
 })(Media)
 
 export default Media

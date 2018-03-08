@@ -20,8 +20,8 @@ const currentMarkerImg = require('./current.png')
 
 class MyMapComponent extends Component {
   componentWillMount() {
-    const { fetchProfessional } = this.props
-    fetchProfessional()
+    const { fetchMapProfessional } = this.props
+    fetchMapProfessional()
   }
 
   render() {

@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { fetchProfessional, toggleMarker } from '../../actions'
+import { fetchMapProfessional, toggleMarker } from '../../actions'
 import { buildBounds } from '../../components/map/build'
 
 import Map from '../../components/map'
@@ -58,7 +58,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      fetchProfessional,
+      fetchMapProfessional,
       toggleMarker
     },
     dispatch

@@ -8,8 +8,8 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       authorizeUser,
-      logoutUser,
-      fetchUser
+      fetchUser,
+      logoutUser
     },
     dispatch
   )

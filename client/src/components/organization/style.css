@@ -11,6 +11,22 @@
     ;
 }
 
+.organization-video-wrapper {
+  height: 0;
+  position: relative;
+  padding-bottom: 60%;
+}
+
+.organizationVideo {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+
 .organizationImage {
   grid-area: image;
   overflow: hidden;

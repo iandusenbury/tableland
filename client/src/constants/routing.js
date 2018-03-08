@@ -2,7 +2,7 @@ import ConnectedAdminPage from '../containers/admin'
 import Home from '../components/home'
 import About from '../components/about'
 import SearchResults from '../containers/searchResults'
-import OrgPage from '../components/organization'
+import OrgPage from '../containers/organization'
 import ProfPage from '../containers/professional'
 import EditProfile from '../components/edit'
 

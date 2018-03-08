@@ -20,6 +20,22 @@ export function fetchUser() {
   }
 }
 
+// Fetch Organization
+export function fetchOrganization(orgID) {
+  const callDescriptor = {
+    endpoint: `/organizations/${orgID}`,
+    types: [
+      ActionTypes.REQUEST_ORGANIZATION,
+      ActionTypes.RECIEVE_ORGANIZATION,
+      ActionTypes.FAILURE_ORGANIZATION
+    ]
+  }
+
+  return dispatch => {
+    dispatch(callApi(callDescriptor))
+  }
+}
+
 // Fetch Professional
 // if no argument given, random will be used
 export function fetchProfessional(userID = 'random') {
@@ -33,7 +49,9 @@ export function fetchProfessional(userID = 'random') {
   }
 
   return dispatch => {
-    dispatch(callApi(callDescriptor))
+    dispatch(
+      callApi(callDescriptor)
+      )
   }
 }
 

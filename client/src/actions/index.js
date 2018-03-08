@@ -18,7 +18,7 @@ export function fetchUser() {
 }
 
 // Fetch Professional
-// if no argument given, random will be used
+// if no argument given, current will be used
 export function fetchProfessional(userID = 'current') {
   const callDescriptor = {
     endpoint: `/users/${userID}`,
@@ -90,7 +90,7 @@ export function logoutUser() {
 
   return dispatch =>
     dispatch(onSuccess()).then(() =>
-      dispatch(openDialog('Logout Successful', 1))
+      dispatch(openDialog(1, { message: 'Logout Successful' }))
     )
 }
 

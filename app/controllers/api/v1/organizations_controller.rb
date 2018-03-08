@@ -66,20 +66,20 @@ module Api::V1
       end
 
       # Attempt to prevent the creation of the same organization with slightly different names
+      # by trying to find an existing organization with almost the exact same name and either
+      # an exact match for the first two address lines or an exact match for the geographic coordinates.
       def prevent_duplication(valid_new_organization)
-        potential_duplicate = find_duplicate(valid_new_organization.name)
-        if potential_duplicate && potential_duplicate.same_location?(valid_new_organization)
-          return potential_duplicate
-        end
-        valid_new_organization
-      end
+        new_name = valid_new_organization.name
+        found_duplicate = nil;
+        
+        same_name_organizations = Organization.where("LOWER(name) = ?", new_name.downcase)
 
-      # Attempt to find an existing organization with the exact same name or almost the exact 
-      # same name as the argument
-      def find_duplicate(name_to_check)
-        return Organization.find_by(name: name_to_check) ||
-               Organization.find_by(name: name_to_check.titleize) ||
-               Organization.find_by(name: name_to_check.downcase)
+        same_name_organizations.each do |organization|
+          found_duplicate = organization if organization.same_location?(valid_new_organization)
+          break if found_duplicate.present?
+        end
+
+        return found_duplicate || valid_new_organization
       end
 
       # Permit only the appropriate parameters for the creation of a new organization

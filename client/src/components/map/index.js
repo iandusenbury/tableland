@@ -20,7 +20,10 @@ const currentMarkerImg = require('./current.png')
 
 class MyMapComponent extends Component {
   componentWillMount() {
-    const { fetchMapProfessional } = this.props
+    const { fetchMapProfessional, currentProfile } = this.props
+    if (currentProfile > 0) {
+      fetchMapProfessional(currentProfile)
+    }
     fetchMapProfessional()
   }
 
@@ -193,13 +196,14 @@ class MyMapComponent extends Component {
 
 MyMapComponent.propTypes = {
   sortedExperiences: PropTypes.array.isRequired, // eslint-disable-line
-  fetchProfessional: PropTypes.func.isRequired,
+  fetchMapProfessional: PropTypes.func.isRequired,
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
   mainTitle: PropTypes.string, // eslint-disable-line
   profileImage: PropTypes.string.isRequired,
   sortedExperiences: PropTypes.array.isRequired, // eslint-disable-line
   currentMarker: PropTypes.number.isRequired,
+  currentProfile: PropTypes.number.isRequired,
   isMarkerOpen: PropTypes.array.isRequired, // eslint-disable-line
   toggleMarker: PropTypes.func.isRequired,
   onPanTo: PropTypes.func.isRequired,

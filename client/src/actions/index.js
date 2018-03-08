@@ -82,12 +82,12 @@ export function fetchMapProfessional(userID = 'random') {
   }
 
   return dispatch => {
-    dispatch(callApi(callDescriptor, { onSuccess: initMapMarkers }))
+    dispatch(callApi(callDescriptor, { onSuccess: initMap }))
   }
 }
 
-function initMapMarkers(response, dispatch) {
-  const { payload: { user: { experiences } } } = response
+function initMap(response, dispatch) {
+  const { payload: { user: { id, experiences } } } = response
   const isMarkerOpen = []
   const sortedExperiences = experiences.sort(
     (a, b) => Date.parse(a.startDate) - Date.parse(b.startDate)
@@ -103,14 +103,15 @@ function initMapMarkers(response, dispatch) {
     }
   })
 
-  const dispatchFunc = markerArray => ({
-    type: ActionTypes.INIT_MAP_MARKERS,
+  const initMarkers = (markerArray, profileID) => ({
+    type: ActionTypes.INIT_MAP_INFO,
     payload: {
-      isMarkerOpen: markerArray
+      isMarkerOpen: markerArray,
+      currentProfile: profileID
     }
   })
 
-  return dispatch(dispatchFunc(isMarkerOpen))
+  return dispatch(initMarkers(isMarkerOpen, id))
 }
 
 export function toggleMarker(index) {

@@ -3,10 +3,10 @@ import { Polyline } from 'react-google-maps'
 
 const startOpacity = 0.5
 const defaultBounds = {
-  north: 0.0,
-  east: 0.0,
-  south: 0.0,
-  west: 0.0
+  north: 45.516,
+  east: -122.679565,
+  south: 45.516,
+  west: -122.679565
 }
 
 const buildPolylineGroup = (i, index, nodes) => {

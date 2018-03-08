@@ -3,25 +3,27 @@ import ActionTypes from '../../constants/actionTypes'
 
 const initialState = {
   isMarkerOpen: [],
-  currentMarker: 0
+  currentMarker: 0,
+  currentProfile: 0
 }
 
 const handlers = {
   // Pattern:
   // [ActionTypes.ACTION_NAME]: actionFunction
   [ActionTypes.UPDATE_OPEN_MARKERS]: updateMarkers,
-  [ActionTypes.INIT_MAP_MARKERS]: initMarkers
+  [ActionTypes.INIT_MAP_INFO]: initMarkers
 }
 
 export default createReducer(initialState, handlers)
 
 function initMarkers(state, data) {
-  const { payload: { isMarkerOpen } } = data
+  const { payload: { currentProfile, isMarkerOpen } } = data
 
   return {
     ...state,
     isMarkerOpen,
-    currentMarker: isMarkerOpen.length - 1
+    currentMarker: isMarkerOpen.length - 1,
+    currentProfile
   }
 }
 

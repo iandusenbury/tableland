@@ -141,3 +141,11 @@ export function initializeApp() {
       dispatch(onSuccess())
     })
 }
+
+export function addProgram(){
+  return {type: ActionTypes.ADD_PROGRAM}
+}
+
+export function addExp(){
+  return {type: ActionTypes.ADD_EXP}
+}

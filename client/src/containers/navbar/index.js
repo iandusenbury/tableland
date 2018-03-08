@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { authorizeUser, fetchUser, logoutUser } from '../../actions'
+import { authorizeUser, logoutUser, fetchUser } from '../../actions'
 
 import Navbar from '../../components/navbar'
 

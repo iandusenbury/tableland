@@ -1,5 +1,8 @@
+import { isEmpty } from 'ramda'
 import createReducer from '../../utils/createReducer'
 import ActionTypes from '../../constants/actionTypes'
+
+const portraitImg = require('../../assets/images/portrait.png')
 
 const initialState = {
   id: 0,
@@ -13,8 +16,12 @@ const initialState = {
   role: '',
   link: '',
   media: {
-    image: {},
-    video: {}
+    image: {
+      url: ''
+    },
+    video: {
+      url: ''
+    }
   },
   experiences: []
 }
@@ -35,6 +42,21 @@ function requestProfessional(state, data) {
     obj[item.category] = item // eslint-disable-line
     return obj
   }, {})
+
+  if (isEmpty(media)) {
+    return {
+      ...state,
+      ...user,
+      media: {
+        image: {
+          url: portraitImg
+        },
+        video: {
+          url: ''
+        }
+      }
+    }
+  }
 
   return {
     ...state,

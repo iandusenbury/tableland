@@ -35,6 +35,22 @@
   margin: auto;
 }
 
+.professionalVideoWrapper {
+  height: 0;
+  position: relative;
+  padding-bottom: 60%;
+}
+
+.professionalVideo {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  rigth: 0;
+  top: 0;
+  width: 100%;
+}
+
 .professionalImg {
   object-fit:cover;
 }
@@ -109,15 +125,6 @@
 .professionalDescription div {
   margin-left: 21px;
   margin-bottom: 18px;
-}
-
-.professionalDescription div video {
-  margin-left: 0px;
-  margin-top: 0px;
-  width: 33vw !important;
-  height: auto !important;
-  background-size: cover;
-  background-color: gray;
 }
 
 .professionalExperiences {

@@ -41,16 +41,23 @@ function initMapMarkers(response, dispatch) {
   const sortedExperiences = experiences.sort(
     (a, b) => Date.parse(a.startDate) - Date.parse(b.startDate)
   )
-  let experienceLength = 0
+  // let experienceLength = 0
+
+  // Check for is main experience here
+
   sortedExperiences.forEach(experience => {
     if (experience.organization) {
-      experienceLength += 1
+      if (experience.current) {
+        isMarkerOpen.push(true)
+      } else {
+        isMarkerOpen.push(false)
+      }
     }
   })
-  for (let i = 0; i < experienceLength - 1; i += 1) {
-    isMarkerOpen.push(false)
-  }
-  isMarkerOpen.push(true)
+  // for (let i = 0; i < experienceLength; i += 1) {
+  //   isMarkerOpen.push(false)
+  // }
+  // isMarkerOpen.push(true)
 
   const dispatchFunc = markerArray => ({
     type: ActionTypes.INIT_MAP_MARKERS,

@@ -2,7 +2,8 @@ import createReducer from '../../utils/createReducer'
 import ActionTypes from '../../constants/actionTypes'
 
 const initialState = {
-  isMarkerOpen: []
+  isMarkerOpen: [],
+  currentMarker: 0
 }
 
 const handlers = {
@@ -19,7 +20,8 @@ function initMarkers(state, data) {
 
   return {
     ...state,
-    isMarkerOpen
+    isMarkerOpen,
+    currentMarker: isMarkerOpen.length - 1
   }
 }
 
@@ -37,6 +39,7 @@ function updateMarkers(state, data) {
 
   return {
     ...state,
-    isMarkerOpen
+    isMarkerOpen,
+    currentMarker: index
   }
 }

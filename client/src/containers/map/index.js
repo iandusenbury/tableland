@@ -10,7 +10,7 @@ const portraitImg = require('../professional/portrait.png')
 const mapStateToProps = state => {
   const { experiences, media } = state.app.professionalPage
   let profileImage
-  if (media.image) {
+  if (media.image && media.image.url) {
     profileImage = media.image.url
   } else {
     profileImage = portraitImg
@@ -48,7 +48,7 @@ const mapStateToProps = state => {
     profileImage,
     ...state.app.professionalPage,
     sortedExperiences,
-    isMarkerOpen: state.app.roadmap.isMarkerOpen,
+    ...state.app.roadmap,
     onPanTo,
     onPanOut,
     onMapMounted

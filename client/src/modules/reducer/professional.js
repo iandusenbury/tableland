@@ -32,7 +32,7 @@ function requestProfessional(state, data) {
   const { media } = user
 
   const reducedMedia = media.reduce((obj, item) => {
-    obj[item.category] = item
+    obj[item.category] = item // eslint-disable-line
     return obj
   }, {})
 

@@ -113,7 +113,7 @@ function initMap(response, dispatch) {
     }
   })
 
-  return dispatch(initMarkers(isMarkerOpen, id))
+  return dispatch(initMarkers(isMarkerOpen, id)).then(() => dispatch(push('/')))
 }
 
 export function toggleMarker(index) {

@@ -1,7 +1,8 @@
 import React from 'react'
-import { TableRow, TableRowColumn, Avatar, FlatButton } from 'material-ui'
+import { Avatar } from 'material-ui'
 import BusinessIcon from 'material-ui/svg-icons/communication/business'
 import GroupIcon from 'material-ui/svg-icons/social/group'
+import SearchResultRow from '../../containers/searchResultRow'
 
 // Default Avatar images
 const userImage = require('../../assets/images/portrait.png')
@@ -39,27 +40,6 @@ const getAvatar = (media, type) => {
   return avatar
 }
 
-const tableRow = profile => {
-  const { id, type, profileName, avatar, info, contact } = profile
-  return (
-    <TableRow className="search-table-row-stripe" key={`${type}_${id}`}>
-      <TableRowColumn className="search-table-cell">
-        <div className="search-table-name search-table-border">
-          {profileName}
-        </div>
-        <div className="search-table-icon search-table-border">
-          <div className="search-table-avatar">{avatar}</div>
-          <FlatButton className="search-table-flatbutton" hoverColor="#e7e0d7">
-            View profile
-          </FlatButton>
-        </div>
-        <div className="search-table-about">{info}</div>
-        <ul className="search-table-contact">Contact: {contact}</ul>
-      </TableRowColumn>
-    </TableRow>
-  )
-}
-
 export const renderProgram = program => {
   const { id, type, name, description, media, url: contactUrl } = program
 
@@ -79,7 +59,7 @@ export const renderProgram = program => {
     info,
     contact
   }
-  return tableRow(rowInfo)
+  return <SearchResultRow {...rowInfo} />
 }
 
 export const renderOrganization = organization => {
@@ -132,7 +112,7 @@ export const renderOrganization = organization => {
     info,
     contact
   }
-  return tableRow(rowInfo)
+  return <SearchResultRow {...rowInfo} />
 }
 
 export const renderUser = user => {
@@ -169,5 +149,5 @@ export const renderUser = user => {
     info,
     contact
   }
-  return tableRow(rowInfo)
+  return <SearchResultRow {...rowInfo} />
 }

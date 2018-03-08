@@ -32,13 +32,14 @@ const Navbar = props => {
   return (
     <header>
       <Toolbar style={styles.toolbar}>
-        <ToolbarGroup>
+        <ToolbarGroup style={styles.toolbarGroupLeft}>
           <FlatButton
+            style={styles.toolbarGroupLeft.flatButton}
             containerElement={<Link to={mesaMenuButton.path} />}
             label={mesaMenuButton.label}
           />
         </ToolbarGroup>
-        <ToolbarGroup>
+        <ToolbarGroup style={styles.toolbarGroupRight}>
           <SearchBarForm />
           <IconMenu
             iconButtonElement={

@@ -2,11 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Field, reduxForm } from 'redux-form'
 import { RaisedButton, TextField } from 'material-ui'
+import styleJS from '../../constants/styles'
 import '../navbar/style.css'
 
 const renderTextField = ({ input }) => (
   <div className="navbarSearch">
-    <TextField hintText="Search" {...input} />
+    <TextField style={styleJS.searchBar} inputStyle={styleJS.searchBar.inputStyle} hintText="Search" {...input} />
   </div>
 )
 

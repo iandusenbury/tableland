@@ -6,27 +6,14 @@ import GroupIcon from 'material-ui/svg-icons/social/group'
 // Default Avatar images
 const userImage = require('../../assets/images/portrait.png')
 
-const orgImage = <BusinessIcon />
-const progImage = <GroupIcon />
+const orgIcon = <BusinessIcon />
+const progIcon = <GroupIcon />
 
 const getDefaultImage = type => {
-  let url
-  switch (type) {
-    case 'User':
-      url = userImage
-      break
-    case 'Organization':
-      url = orgImage
-      break
-    case 'Program':
-      url = progImage
-      break
-    default:
-      url = userImage
-      break
-  }
+  if (type === 'Program') return orgIcon
+  if (type === 'Organization') return progIcon
 
-  return url
+  return userImage
 }
 
 // Returns image url belonging to profile or default url

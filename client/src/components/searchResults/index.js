@@ -14,22 +14,11 @@ class SearchResults extends React.Component {
   renderTableRows() {
     const { results } = this.props
     const tableRows = results.map(result => {
-      let renderRow = null
       const { type } = result
-      switch (type) {
-        case 'User':
-          renderRow = renderUser
-          break
-        case 'Program':
-          renderRow = renderProgram
-          break
-        case 'Organization':
-          renderRow = renderOrganization
-          break
-        default:
-          break
-      }
-      return renderRow ? renderRow(result) : null
+      if (type === 'User') return renderUser(result)
+      if (type === 'Program') return renderProgram(result)
+      if (type === 'Organization') return renderOrganization(result)
+      return null
     })
 
     return tableRows

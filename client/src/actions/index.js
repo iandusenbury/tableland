@@ -49,16 +49,16 @@ export function fetchProfessional(userID = 'random') {
   }
 
   return dispatch => {
-    dispatch(
-      callApi(callDescriptor)
-      )
+    dispatch(callApi(callDescriptor))
   }
 }
 
 export function fetchResults(values) {
   const { searchKey } = values
+  // trim leading and trailing spaces, replace spaces with '+' sign
+  const term = searchKey.trim().replace(/ /g, '+')
   const callDescriptor = {
-    endpoint: `/search?key=${searchKey}`,
+    endpoint: `/search?term=${term}`,
     types: [
       ActionTypes.REQUEST_SEARCH,
       ActionTypes.RECIEVE_SEARCH,
@@ -71,15 +71,6 @@ export function fetchResults(values) {
 
 function loadResultsPage(response, dispatch) {
   return dispatch(push('/results'))
-}
-
-export function updateSearchKey(searchKey) {
-  return {
-    type: ActionTypes.UPDATE_SEARCH_KEY,
-    payload: {
-      searchKey
-    }
-  }
 }
 
 export function adminChangeTableTo(index) {

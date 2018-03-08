@@ -4,30 +4,11 @@ import PropTypes from 'prop-types'
 import './style.css'
 import { renderUser, renderOrganization, renderProgram } from './rows'
 
-let displaySearchKey
-
-const displaySearchKeyMessage = searchKey => {
-  if (displaySearchKey !== '') {
-    return <p>Results for {`"${searchKey}"`}</p>
-  }
-  return <p>Enter a search term</p>
-}
-
 class SearchResults extends React.Component {
   constructor(props) {
     super(props)
 
     this.renderTableRows = this.renderTableRows.bind(this)
-  }
-
-  componentWillMount() {
-    const { retrievedSearchKey, updateSearchKey } = this.props
-    if (retrievedSearchKey !== undefined) {
-      displaySearchKey = `${retrievedSearchKey}`
-    } else {
-      displaySearchKey = ''
-    }
-    updateSearchKey(displaySearchKey)
   }
 
   renderTableRows() {
@@ -55,13 +36,13 @@ class SearchResults extends React.Component {
   }
 
   render() {
-    const { results, searchKey } = this.props
+    const { results } = this.props
     const isEmptyResults = results.length === 0
     return (
       <div>
         <div className="search-header">
           <h1 className="search-title">Search Results</h1>
-          {displaySearchKeyMessage(searchKey)}
+          {isEmptyResults && <p>Sorry, no results were found</p>}
         </div>
         <div className="search-box">
           <div className="search-box-list">
@@ -85,10 +66,7 @@ class SearchResults extends React.Component {
 }
 
 SearchResults.propTypes = {
-  searchKey: PropTypes.string.isRequired,
-  retrievedSearchKey: PropTypes.string, // eslint-disable-line
-  results: PropTypes.array.isRequired, // eslint-disable-line
-  updateSearchKey: PropTypes.func.isRequired
+  results: PropTypes.array.isRequired // eslint-disable-line
 }
 
 export default SearchResults

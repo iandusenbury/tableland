@@ -114,7 +114,8 @@ Professional.propTypes = {
   profileImage: PropTypes.string.isRequired,
   profileVideo: PropTypes.string.isRequired,
   experiences: PropTypes.element.isRequired,
-  fetchProfessional: PropTypes.func.isRequired
+  fetchProfessional: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired // eslint-disable-line
 }
 
 function createExperienceTable(experiences) {

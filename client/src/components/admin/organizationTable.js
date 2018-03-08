@@ -12,7 +12,8 @@ import {
   TableRowColumn,
   RaisedButton
 } from 'material-ui'
-import UserList from '../../containers/admin/userList'
+
+import AddAdminDialog from '../../containers/admin/dialogs/addAdminDialog'
 
 import './style.css'
 
@@ -65,7 +66,10 @@ export default class OrganizationList extends Component {
           backgroundColor="#8195b1"
           label="Add Admin"
           onClick={() =>
-            openDialog(2, { message: 'User List', organizationId: id })
+            openDialog(2, {
+              message: `Add Admin to ${name}`,
+              organizationId: id
+            })
           }
         />
       )
@@ -97,7 +101,7 @@ export default class OrganizationList extends Component {
 
     return (
       <div>
-        <UserList />
+        <AddAdminDialog />
         <div className="table-container">
           <Table height="300px">
             <TableHeader displaySelectAll={false} adjustForCheckbox={false}>

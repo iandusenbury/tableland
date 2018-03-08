@@ -7,16 +7,13 @@ import Loading from '../loading'
 const PrivateRoute = props => {
   const { component: Component, loading, isAdmin, ...rest } = props
 
-  
-
   return (
     <Route
       {...rest}
       render={p =>
-        loading ? (
-          <Loading />
-        ) : (
-        isAdmin ? <Component {...p} /> : <NotFound />)}
+        // eslint-disable-next-line
+        loading ? <Loading /> : isAdmin ? <Component {...p} /> : <NotFound />
+      }
     />
   )
 }

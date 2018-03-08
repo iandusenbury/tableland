@@ -11,9 +11,7 @@ import {
   RaisedButton
 } from 'material-ui'
 
-import Dialog from '../../containers/dialog'
-
-import './style.css'
+import '../style.css'
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -84,20 +82,15 @@ export default class UserTable extends Component {
   }
 
   render() {
-    const { dialogIsOpen } = this.props
-
     return (
-      <Dialog open={dialogIsOpen} autoScrollBodyContent>
-        <MuiThemeProvider muiTheme={muiTheme}>
-          {this.renderUserTable()}
-        </MuiThemeProvider>
-      </Dialog>
+      <MuiThemeProvider muiTheme={muiTheme}>
+        {this.renderUserTable()}
+      </MuiThemeProvider>
     )
   }
 }
 
 UserTable.propTypes = {
-  dialogIsOpen: PropTypes.bool.isRequired,
   users: PropTypes.array.isRequired, // eslint-disable-line
   organizationId: PropTypes.number.isRequired,
   addOrganizationAdmin: PropTypes.func.isRequired

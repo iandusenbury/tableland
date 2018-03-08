@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { MuiThemeProvider, getMuiTheme } from 'material-ui/styles'
 import PropTypes from 'prop-types'
 
@@ -16,19 +16,20 @@ const muiTheme = getMuiTheme({
   }
 })
 
-export default class AdminPage extends Component {
-  render() {
-    const { isSuperAdmin } = this.props
-    return (
-      <MuiThemeProvider muiTheme={muiTheme}>
-        <h1 className="admin-title">Admin Center</h1>
-        <UserTable />
-        <OrganizationTable />
-      </MuiThemeProvider>
-    )
-  }
+const AdminPage = props => {
+  const { isSuperAdmin } = props
+
+  return (
+    <MuiThemeProvider muiTheme={muiTheme}>
+      <h1 className="admin-title">Admin Center</h1>
+      {isSuperAdmin && <UserTable />}
+      <OrganizationTable />
+    </MuiThemeProvider>
+  )
 }
 
 AdminPage.propTypes = {
   isSuperAdmin: PropTypes.bool.isRequired
 }
+
+export default AdminPage

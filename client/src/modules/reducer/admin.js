@@ -5,7 +5,9 @@ import ActionTypes from '../../constants/actionTypes'
 const initialState = {
   users: [],
   organizations: [],
-  userListDialog: false
+  userPermissions: {
+    organizations: []
+  }
 }
 
 const handlers = {
@@ -15,7 +17,8 @@ const handlers = {
   [ActionTypes.RECIEVE_ALL_ORGANIZATIONS]: getOrganizations,
   [ActionTypes.SUCCESS_PATCH_SUPER_ADMIN]: updateUser,
   [ActionTypes.SUCCESS_PATCH_USER_VISIBILITY]: updateUser,
-  [ActionTypes.SUCCESS_ORGANIZATION_ADD_ADMIN]: updateUser
+  [ActionTypes.SUCCESS_ORGANIZATION_ADD_ADMIN]: updateUser,
+  [ActionTypes.RECIEVE_USER_PERMISSIONS]: getUserPermissions
 }
 
 export default createReducer(initialState, handlers)
@@ -47,5 +50,16 @@ function updateUser(state, { payload }) {
   return {
     ...state,
     users: [...updatedUsers]
+  }
+}
+
+function getUserPermissions(state, { payload }) {
+  const { permissions: { organizations } } = payload
+
+  return {
+    ...state,
+    userPermissions: {
+      organizations
+    }
   }
 }

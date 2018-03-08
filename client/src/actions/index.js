@@ -94,10 +94,6 @@ export function logoutUser() {
     )
 }
 
-function isLoggedIn() {
-  return !!Cookies.get('X-User-Email') && !!Cookies.get('X-User-Token')
-}
-
 export function initializeApp() {
   const onSuccess = () => ({
     type: ActionTypes.APP_INITIALIZED

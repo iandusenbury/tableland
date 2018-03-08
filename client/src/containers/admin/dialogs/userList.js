@@ -1,8 +1,8 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import { addOrganizationAdmin } from '../../actions/admin'
-import UserList from '../../components/admin/userList'
+import { addOrganizationAdmin } from '../../../actions/admin'
+import UserList from '../../../components/admin/dialogs/userList'
 
 const mapStateToProps = state => ({
   dialogIsOpen: state.app.dialog.open === 2,

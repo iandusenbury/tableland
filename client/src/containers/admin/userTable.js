@@ -5,6 +5,7 @@ import {
   toggleUserVisibility,
   toggleUserSuperAdmin
 } from '../../actions/admin'
+import { openDialog } from '../../actions'
 
 import UserTable from '../../components/admin/userTable'
 
@@ -17,7 +18,8 @@ const mapDispatchToProps = dispatch =>
     {
       fetchAllUsers,
       toggleUserVisibility,
-      toggleUserSuperAdmin
+      toggleUserSuperAdmin,
+      openDialog
     },
     dispatch
   )

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { MuiThemeProvider, getMuiTheme } from 'material-ui/styles'
+import PropTypes from 'prop-types'
 import {
   Table,
   TableHeader,
@@ -11,8 +12,7 @@ import {
   RaisedButton
 } from 'material-ui'
 
-import PropTypes from 'prop-types'
-
+import RevokeAdminDialog from '../../containers/admin/dialogs/revokeAdminDialog'
 import './style.css'
 
 const muiTheme = getMuiTheme({
@@ -36,7 +36,12 @@ export default class UserTable extends Component {
   }
 
   renderUserRows() {
-    const { users, toggleUserVisibility, toggleUserSuperAdmin } = this.props
+    const {
+      users,
+      toggleUserVisibility,
+      toggleUserSuperAdmin,
+      openDialog
+    } = this.props
 
     return users.map(user => {
       const { id, firstName, email, lastName, visible, role } = user
@@ -60,6 +65,12 @@ export default class UserTable extends Component {
           disabled={role !== 'admin'}
           backgroundColor="#8195b1"
           label="Revoke"
+          onClick={() =>
+            openDialog(3, {
+              message: `Revoke admin status for ${firstName} ${lastName}`,
+              userId: id
+            })
+          }
         />
       )
 
@@ -94,6 +105,7 @@ export default class UserTable extends Component {
 
     return (
       <div className="table-container">
+        <RevokeAdminDialog />
         <Table height="300px">
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>{mapHeaderValues}</TableRow>
@@ -120,5 +132,6 @@ UserTable.propTypes = {
   fetchAllUsers: PropTypes.func.isRequired,
   toggleUserVisibility: PropTypes.func.isRequired,
   toggleUserSuperAdmin: PropTypes.func.isRequired,
+  openDialog: PropTypes.func.isRequired,
   users: PropTypes.array.isRequired // eslint-disable-line
 }

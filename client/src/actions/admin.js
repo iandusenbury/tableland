@@ -76,3 +76,31 @@ export function addOrganizationAdmin(id, organizationId) {
 
   return dispatch => dispatch(callApi(callDescriptor, { onSuccess }))
 }
+
+// TODO: change 'current' to 'id' when proper endpoint exists
+export function fetchUserAdminPermissions(id) { // eslint-disable-line
+  const callDescriptor = {
+    endpoint: `/users/current/permissions`,
+    types: [
+      ActionTypes.REQUEST_USER_PERMISSIONS,
+      ActionTypes.RECIEVE_USER_PERMISSIONS,
+      ActionTypes.FAILURE_USER_PERMISSIONS
+    ]
+  }
+
+  return dispatch => dispatch(callApi(callDescriptor))
+}
+
+// TODO: make post
+export function revokeOrganizationAdmin(id) {
+  const callDescriptor = {
+    endpoint: `/users/${id}/permissions`,
+    types: [
+      ActionTypes.REQUEST_USER_PERMISSIONS,
+      ActionTypes.RECIEVE_USER_PERMISSIONS,
+      ActionTypes.FAILURE_USER_PERMISSIONS
+    ]
+  }
+
+  return dispatch => dispatch(callApi(callDescriptor))
+}

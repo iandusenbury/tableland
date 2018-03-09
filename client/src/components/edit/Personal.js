@@ -1,5 +1,5 @@
 import React from 'react'
-import { Paper, AppBar, IconButton } from 'material-ui'
+import { AppBar, IconButton } from 'material-ui'
 import { StyledTextField } from '../../widgets/StyledTextField'
 import './edit.css'
 import { style } from '../../widgets/styles'

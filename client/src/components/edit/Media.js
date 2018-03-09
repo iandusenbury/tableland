@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppBar, IconButton, Avatar } from 'material-ui'
+import { AppBar, IconButton } from 'material-ui'
 import './edit.css'
 import { style } from '../../widgets/styles'
 import Photo from 'material-ui/svg-icons/image/add-a-photo'
@@ -28,7 +28,7 @@ export const Media = props => (
         </div>
         <div>
           <div className="EditVideo">
-            <img className="EditImage" src={videoPlayer} />
+            <img className="EditImage" alt="" src={videoPlayer} />
           </div>
         </div>
       </div>

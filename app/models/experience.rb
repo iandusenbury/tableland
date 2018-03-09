@@ -14,7 +14,8 @@ class Experience < ApplicationRecord
   validates :parent_org, presence: { message: "An experience for a program must have a specified parent organization." }, if: :program_id?
   validates :current, inclusion: { in: [true, false] }
 
-  def set_default_attributes
-    self.current ||= false
-  end
+  private
+    def set_default_attributes
+      self.current ||= false
+    end
 end

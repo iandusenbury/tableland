@@ -10,7 +10,7 @@ module Api::V1
     # GET /v1/organizations
     def index
       @organizations = Organization.all
-      render json: @organizations, include: 'media', status: :ok
+      render json: @organizations, include: '', status: :ok
     end
 
     # GET /v1/organizations/{id}

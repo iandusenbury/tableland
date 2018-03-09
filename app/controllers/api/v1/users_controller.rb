@@ -8,7 +8,7 @@ module Api::V1
     # GET /v1/users
     def index
       @users = index_query || User.all
-      render json: @users, include: 'media', status: :ok
+      render json: @users, include: '', status: :ok
     end
 
     # GET /v1/users/current/permissions
@@ -73,6 +73,7 @@ module Api::V1
         raise ExceptionTypes::UnauthorizedError.new("Admin access only") if current_user.user?
       end
 
+      # For the destroy acton, only allow super admins to delete a user other than themselves.
       def validate_destroy
         raise ExceptionTypes::UnauthorizedError.new("You do not have permission to delete the user with ID #{@user.id}") unless current_user.super_admin?
       end

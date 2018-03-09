@@ -51,7 +51,8 @@ class Organization < ApplicationRecord
   validates :visible, 
                   inclusion:    { in: [true, false] }
 
-  def set_default_attributes
-    self.visible = true
-  end
+  private
+    def set_default_attributes
+      self.visible = true
+    end
 end

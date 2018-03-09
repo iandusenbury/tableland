@@ -26,7 +26,8 @@ class Program < ApplicationRecord
   validates :name, presence: true
   validates :visible, inclusion: { in: [true, false] }
 
-  def set_default_attributes
-    self.visible = true
-  end
+  private
+    def set_default_attributes
+      self.visible = true
+    end
 end

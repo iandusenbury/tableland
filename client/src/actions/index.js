@@ -15,9 +15,7 @@ export function fetchUser() {
     ]
   }
 
-  return dispatch => {
-    dispatch(callApi(callDescriptor))
-  }
+  return dispatch => dispatch(callApi(callDescriptor))
 }
 
 // Fetch Organization
@@ -37,8 +35,8 @@ export function fetchOrganization(orgID) {
 }
 
 // Fetch Professional
-// if no argument given, random will be used
-export function fetchProfessional(userID = 'random') {
+// if no argument given, current will be used
+export function fetchProfessional(userID = 'current') {
   const callDescriptor = {
     endpoint: `/users/${userID}`,
     types: [
@@ -48,9 +46,7 @@ export function fetchProfessional(userID = 'random') {
     ]
   }
 
-  return dispatch => {
-    dispatch(callApi(callDescriptor))
-  }
+  return dispatch => dispatch(callApi(callDescriptor))
 }
 
 export function fetchResults(values) {
@@ -150,10 +146,10 @@ export function closeDialog() {
   }
 }
 
-export function openDialog(message) {
+export function openDialog(id, data) {
   return {
     type: ActionTypes.OPEN_DIALOG,
-    payload: { message }
+    payload: { id, data }
   }
 }
 
@@ -181,8 +177,19 @@ export function logoutUser() {
     type: ActionTypes.LOGOUT_USER
   })
 
-  return dispatch => {
-    dispatch(onSuccess())
-    dispatch(openDialog('Logout Successful'))
-  }
+  return dispatch =>
+    dispatch(onSuccess()).then(() =>
+      dispatch(openDialog(1, { message: 'Logout Successful' }))
+    )
+}
+
+export function initializeApp() {
+  const onSuccess = () => ({
+    type: ActionTypes.APP_INITIALIZED
+  })
+
+  return dispatch =>
+    dispatch(fetchUser()).then(() => {
+      dispatch(onSuccess())
+    })
 }

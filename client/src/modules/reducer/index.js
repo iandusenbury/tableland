@@ -6,6 +6,8 @@ import adminPage from './adminReducer/adminReducer'
 import organizationPage from './organization'
 import professionalPage from './professional'
 import dialog from './dialog'
+import isLoading from './isLoading'
+import admin from './admin'
 import search from './search'
 import roadmap from './roadmap'
 
@@ -16,6 +18,8 @@ export default combineReducers({
   professionalPage,
   adminPage,
   dialog,
+  isLoading,
+  admin,
   search,
   roadmap
 })

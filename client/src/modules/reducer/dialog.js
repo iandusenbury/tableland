@@ -3,7 +3,10 @@ import createReducer from '../../utils/createReducer'
 
 const initialState = {
   open: false,
-  message: 'initial message'
+  dialogData: {
+    message: 'initial message',
+    organizationId: null
+  }
 }
 
 const handlers = {
@@ -21,11 +24,13 @@ function closeDialog(state) {
 }
 
 function openDialog(state, { payload }) {
-  const { message } = payload
+  const { id, data } = payload
 
   return {
     ...state,
-    message,
-    open: true
+    open: id,
+    dialogData: {
+      ...data
+    }
   }
 }

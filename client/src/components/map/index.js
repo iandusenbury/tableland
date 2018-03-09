@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 import { Avatar, Paper, RaisedButton } from 'material-ui'
 import ChevronLeft from 'material-ui/svg-icons/navigation/chevron-left'
 import ChevronRight from 'material-ui/svg-icons/navigation/chevron-right'
@@ -29,6 +30,7 @@ class MyMapComponent extends Component {
 
   render() {
     const {
+      id,
       firstName,
       lastName,
       mainTitle,
@@ -39,7 +41,8 @@ class MyMapComponent extends Component {
       toggleMarker,
       onPanTo,
       onPanOut,
-      onMapMounted
+      onMapMounted,
+      openProfile
     } = this.props
 
     const experienceOrgs = []
@@ -188,13 +191,16 @@ class MyMapComponent extends Component {
             <p className="mapProfilePreviewTitle">{mainTitle}</p>
           </div>
         </div>
-        <BottomTab />
+        <Link to={`/users/${id}`}>
+          <BottomTab />
+        </Link>
       </div>
     )
   }
 }
 
 MyMapComponent.propTypes = {
+  id: PropTypes.number.isRequired,
   sortedExperiences: PropTypes.array.isRequired, // eslint-disable-line
   fetchMapProfessional: PropTypes.func.isRequired,
   firstName: PropTypes.string.isRequired,
@@ -208,7 +214,8 @@ MyMapComponent.propTypes = {
   toggleMarker: PropTypes.func.isRequired,
   onPanTo: PropTypes.func.isRequired,
   onPanOut: PropTypes.func.isRequired,
-  onMapMounted: PropTypes.func.isRequired
+  onMapMounted: PropTypes.func.isRequired,
+  openProfile: PropTypes.func.isRequired
 }
 
 export default MyMapComponent

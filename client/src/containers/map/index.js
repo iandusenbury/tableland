@@ -1,5 +1,6 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
 import { fetchMapProfessional, toggleMarker } from '../../actions'
 import { buildBounds } from '../../components/map/build'
 
@@ -59,7 +60,8 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       fetchMapProfessional,
-      toggleMarker
+      toggleMarker,
+      openProfile: id => push(`/users/${id}`)
     },
     dispatch
   )

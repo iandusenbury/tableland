@@ -1,14 +1,33 @@
-.professionalMainDiv {
+@media (max-width: 620px) {
+  .professionalMainDiv {
   width: 100%;
+  margin-top: 0;
   height: calc(100vh - 56px);
   background-color: white;
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 100%;
   grid-template-rows: 0% auto;
   grid-template-areas:
-    'tab   tab '
-    'image text'
+    'tab'
+    'image'
+    'text'
     ;
+  }
+}
+
+@media (min-width: 621px) {
+  .professionalMainDiv {
+    width: 100%;
+    height: calc(100vh - 56px);
+    background-color: white;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 0% auto;
+    grid-template-areas:
+      'tab   tab '
+      'image text'
+      ;
+  }
 }
 
 .professionalAvatarDiv {

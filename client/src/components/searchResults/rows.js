@@ -1,4 +1,5 @@
 import React from 'react'
+import { find, propEq } from 'ramda'
 import { TableRow, TableRowColumn, Avatar, FlatButton } from 'material-ui'
 import BusinessIcon from 'material-ui/svg-icons/communication/business'
 import GroupIcon from 'material-ui/svg-icons/social/group'
@@ -18,12 +19,8 @@ const getDefaultImage = type => {
 
 // Returns image url belonging to profile or default url
 const retrieveMedia = (media, type) => {
-  const mediaObj = media.reduce((obj, item) => {
-    /* eslint no-param-reassign: ["error", { "props": false }] */
-    obj[item.category] = item
-    return obj
-  }, {})
-  return mediaObj.image ? mediaObj.image.url : getDefaultImage(type)
+  const image = find(propEq('category', 'image'))(media)
+  return image && image.url ? image.url : getDefaultImage(type)
 }
 
 // Returns an Avatar component with either a photo or icon

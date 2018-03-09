@@ -26,7 +26,7 @@ class SearchResults extends React.Component {
 
   render() {
     const { results } = this.props
-    const isEmptyResults = results.length === 0
+    const isEmptyResults = !results || results.length === 0
     return (
       <div className="search-body">
         <div className="search-header">

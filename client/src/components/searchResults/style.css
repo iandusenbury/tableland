@@ -20,6 +20,10 @@
 
 /* search page */
 
+.search-body {
+  height: calc(100vh - 56px);
+}
+
 .search-header {
   padding-left: 0px;
   text-align: center;
@@ -28,11 +32,13 @@
 }
 
 .search-title {
-  margin-top: 28px;
+  padding-top: 28px;
+  margin: 0;
 }
 
 .search-box {
   margin: 0 5%;
+  max-height: 90vh;
 }
 
 /* table of list of results */

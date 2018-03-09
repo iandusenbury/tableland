@@ -6,6 +6,8 @@ import adminPage from './adminReducer/adminReducer'
 import organizationPage from './organization'
 import professionalPage from './professional'
 import dialog from './dialog'
+import isLoading from './isLoading'
+import admin from './admin'
 
 export default combineReducers({
   example,
@@ -13,5 +15,7 @@ export default combineReducers({
   organizationPage,
   professionalPage,
   adminPage,
-  dialog
+  dialog,
+  isLoading,
+  admin
 })

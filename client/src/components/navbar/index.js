@@ -17,6 +17,7 @@ import styles from '../../constants/styles'
 import './style.css'
 
 import { mesaMenuButton, navbarPaths } from '../../constants/navbar'
+import Dialog from '../../containers/dialog'
 
 /*
    [Hamburger Menu] (if signed in)
@@ -27,10 +28,11 @@ import { mesaMenuButton, navbarPaths } from '../../constants/navbar'
    "About"
 */
 const Navbar = props => {
-  const { authorizeUser, fetchUser, logoutUser } = props
+  const { authorizeUser, fetchUser, logoutUser, dialogIsOpen } = props
 
   return (
     <header>
+      <Dialog open={dialogIsOpen} />
       <Toolbar style={styles.toolbar}>
         <ToolbarGroup style={styles.toolbarGroupLeft}>
           <FlatButton
@@ -64,7 +66,7 @@ const Navbar = props => {
             />
             <Divider />
             <MenuItem
-              containerElement={<Link to={navbarPaths.view_profile.path} />}
+              containerElement={<Link to="/profile" />}
               value={navbarPaths.view_profile.value}
               primaryText={navbarPaths.view_profile.primaryText}
             />
@@ -77,11 +79,6 @@ const Navbar = props => {
               containerElement={<Link to={navbarPaths.admin_page.path} />}
               value={navbarPaths.admin_page.value}
               primaryText={navbarPaths.admin_page.primaryText}
-            />
-            <MenuItem
-              containerElement={<Link to={navbarPaths.sign_out.path} />}
-              value={navbarPaths.sign_out.value}
-              primaryText={navbarPaths.sign_out.primaryText}
             />
             <MenuItem
               containerElement={<Link to={navbarPaths.about.path} />}
@@ -98,7 +95,8 @@ const Navbar = props => {
 Navbar.propTypes = {
   authorizeUser: PropTypes.func.isRequired,
   fetchUser: PropTypes.func.isRequired,
-  logoutUser: PropTypes.func.isRequired
+  logoutUser: PropTypes.func.isRequired,
+  dialogIsOpen: PropTypes.bool.isRequired
 }
 
 export default muiThemeable()(Navbar)

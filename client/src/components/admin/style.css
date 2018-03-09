@@ -11,6 +11,10 @@
 
 /* page sections */
 
+.admin-table-row:nth-child(odd) {
+  background: #ccc;
+}
+
 .admin-title {
   margin-top: 40px;
   text-align: center;
@@ -38,6 +42,13 @@
 }
 
 /* tables */
+
+.table-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1140px;
+  max-width: 90%;
+}
 
 .admin-search-filter {
   padding-left: 26px;

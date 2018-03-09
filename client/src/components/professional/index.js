@@ -14,9 +14,8 @@ const sampleImg = require('./sample.jpg')
 
 class Professional extends Component {
   componentWillMount() {
-    const { fetchProfessional } = this.props
-    // fetches random propfessional
-    fetchProfessional()
+    const { fetchProfessional, match } = this.props
+    fetchProfessional(match.params.id)
   }
 
   render() {
@@ -115,7 +114,8 @@ Professional.propTypes = {
   profileImage: PropTypes.string.isRequired,
   profileVideo: PropTypes.string.isRequired,
   experiences: PropTypes.element.isRequired,
-  fetchProfessional: PropTypes.func.isRequired
+  fetchProfessional: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired // eslint-disable-line
 }
 
 function createExperienceTable(experiences) {

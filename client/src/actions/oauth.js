@@ -70,13 +70,13 @@ export function authorizeOAuth(
 }
 
 function authCookiesSet() {
-  return Cookies.get('X-User-Email') && Cookies.get('X-User-Token')
+  return !!Cookies.get('X-User-Email') && !!Cookies.get('X-User-Token')
 }
 
 function authorizationFailed({ message, onFailure }) {
   return dispatch => {
     const promises = [dispatch(closeDialog())]
-    dispatch(openDialog(message))
+    dispatch(openDialog(1, { message }))
 
     if (onFailure) {
       append(dispatch(onFailure), promises)
@@ -90,9 +90,11 @@ function processAuthorization({ onSuccess, onFailure }) {
   return dispatch => {
     const promises = [dispatch(oauthDone())]
 
-    if (Cookies.get('X-User-Token')) {
+    if (authCookiesSet()) {
       if (onSuccess) {
-        append(dispatch(openDialog('Authorization Successful!')))
+        append(
+          dispatch(openDialog(1, { message: 'Authorization Successful!' }))
+        )
         append(dispatch(onSuccess, promises))
       }
     } else {

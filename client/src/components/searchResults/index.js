@@ -2,7 +2,8 @@ import React from 'react'
 import { FlatButton, Table, TableBody } from 'material-ui'
 import PropTypes from 'prop-types'
 import './style.css'
-import { renderUser, renderOrganization, renderProgram } from './rows'
+import { getRowInfo } from './rows'
+import SearchResultRow from '../../containers/searchResultRow'
 
 class SearchResults extends React.Component {
   constructor(props) {
@@ -14,11 +15,9 @@ class SearchResults extends React.Component {
   renderTableRows() {
     const { results } = this.props
     const tableRows = results.map(result => {
-      const { type } = result
-      if (type === 'User') return renderUser(result)
-      if (type === 'Program') return renderProgram(result)
-      if (type === 'Organization') return renderOrganization(result)
-      return null
+      const { id, type } = result
+
+      return <SearchResultRow key={`${type}_${id}`} {...getRowInfo(result)} />
     })
 
     return tableRows

@@ -2,7 +2,6 @@ import React from 'react'
 import { Avatar } from 'material-ui'
 import BusinessIcon from 'material-ui/svg-icons/communication/business'
 import GroupIcon from 'material-ui/svg-icons/social/group'
-import SearchResultRow from '../../containers/searchResultRow'
 
 // Default Avatar images
 const userImage = require('../../assets/images/portrait.png')
@@ -40,7 +39,7 @@ const getAvatar = (media, type) => {
   return avatar
 }
 
-export const renderProgram = program => {
+const getProgramInfo = program => {
   const { id, type, name, description, media, url: contactUrl } = program
 
   const avatar = getAvatar(media, 'Program')
@@ -51,7 +50,7 @@ export const renderProgram = program => {
     </ul>
   )
   const contact = <a href={contactUrl}>{contactUrl}</a>
-  const rowInfo = {
+  return {
     id,
     type,
     profileName,
@@ -59,10 +58,9 @@ export const renderProgram = program => {
     info,
     contact
   }
-  return <SearchResultRow key={`${type}_${id}`} {...rowInfo} />
 }
 
-export const renderOrganization = organization => {
+const getOrganizationInfo = organization => {
   const {
     id,
     type,
@@ -104,7 +102,7 @@ export const renderOrganization = organization => {
     <ul>{address.map((line, index) => <li key={index}>{line}</li>)}</ul> // eslint-disable-line
   )
   const contact = <a href={contactUrl}>{contactUrl}</a>
-  const rowInfo = {
+  return {
     id,
     type,
     profileName,
@@ -112,10 +110,9 @@ export const renderOrganization = organization => {
     info,
     contact
   }
-  return <SearchResultRow key={`${type}_${id}`} {...rowInfo} />
 }
 
-export const renderUser = user => {
+const getUserInfo = user => {
   const {
     id,
     type,
@@ -130,8 +127,7 @@ export const renderUser = user => {
   const avatar = getAvatar(media, 'User')
   const profileName = (
     <h2>
-      {firstName}
-      {lastName}
+      {firstName} {lastName}
     </h2>
   )
   const info = (
@@ -141,7 +137,7 @@ export const renderUser = user => {
     </ul>
   )
   const contact = <a href={contactUrl}>{contactUrl}</a>
-  const rowInfo = {
+  return {
     id,
     type,
     profileName,
@@ -149,5 +145,16 @@ export const renderUser = user => {
     info,
     contact
   }
-  return <SearchResultRow key={`${type}_${id}`} {...rowInfo} />
+}
+
+export const getRowInfo = result => {
+  const { type } = result
+  if (type === 'Program') return getProgramInfo(result)
+  if (type === 'Organization') return getOrganizationInfo(result)
+
+  return getUserInfo(result)
+}
+
+export default {
+  getRowInfo
 }

@@ -1,12 +1,13 @@
 import React from 'react'
 import { AppBar, IconButton } from 'material-ui'
-import './experience.css'
-import { style } from '../../widgets/styles'
 import Location from 'material-ui/svg-icons/communication/location-on'
-import { StyledPaper } from '../../widgets/StyledPaper'
-import { AddExperience } from './AddExperience'
 
-export const Experience = props => (
+import { style } from '../../widgets/styles'
+import { StyledPaper } from '../../widgets/StyledPaper'
+import AddExperience from './AddExperience'
+import './experience.css'
+
+const Experience = () => (
   <StyledPaper>
     <div className="EditBoxGrid">
       <div className="EditLeft">
@@ -26,3 +27,5 @@ export const Experience = props => (
     </div>
   </StyledPaper>
 )
+
+export default Experience

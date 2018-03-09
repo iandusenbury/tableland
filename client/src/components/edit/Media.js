@@ -27,7 +27,7 @@ export const Media = props => (
           <StyledTextField text="Video URL" />
         </div>
         <div>
-          <div className="EditVideo">
+          <div className="EditImageWrapper">
             <img className="EditImage" alt="" src={videoPlayer} />
           </div>
         </div>

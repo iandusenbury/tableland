@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
+import Avatar from 'material-ui/Avatar'
+import Person from 'material-ui/svg-icons/social/person'
 import Experience from './Experience'
 import './edit.css'
 import { Personal } from './Personal'
 import { Media } from './Media'
 import { style } from '../../widgets/styles'
-import Avatar from 'material-ui/Avatar'
-import Person from 'material-ui/svg-icons/social/person'
 
 class EditProfile extends Component {
   render() {

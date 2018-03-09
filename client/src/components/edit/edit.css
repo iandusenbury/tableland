@@ -28,6 +28,7 @@
 
 .EditPersonal {
     height: 35vh;
+    width: 100vw;
     margin-bottom: .75%;
 }
 
@@ -77,10 +78,18 @@
     background: transparent;
 }
 
-.EditFieldsGrid {
-    display: grid;
-    height: 35vh;
-    grid-template-columns: 1fr 1fr;
+@media (max-width: 660px) {
+  .EditFieldsGrid {
+      height: 35vh;
+  }
+}
+
+@media (min-width: 661px) {
+  .EditFieldsGrid {
+      display: grid;
+      height: 35vh;
+      grid-template-columns: 1fr 1fr;
+  }
 }
 
 .EditFieldsGrid > div {
@@ -91,33 +100,88 @@
     height: auto;
 }
 
-
-.EditMediaGrid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+@media (max-width: 660px) {
+  .EditMediaGrid {
+    height: auto;
+  }
 }
 
+@media (min-width: 661px) {
+  .EditMediaGrid {
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
 .EditMediaGrid > div {
     background: transparent;
     height: auto;
 }
 
-
-.EditVideo {
-    height:31vh;
-    width: auto;
-    display: inline-block;
+@media (min-width: 660px) {
+  .EditImageWrapper {
+    height: 0;
+    position: relative;
     border: solid 1px grey;
-    margin: 2%;
+    margin: 5%;
+    padding-bottom: 60%;
+  }
 }
 
+@media (max-width: 661px) {
+  .EditImageWrapper {
+    height: 20vh;
+    max-width: 270px;
+    max-height: 200px;
+    position: relative;
+    border: solid 1px grey;
+    margin: 2%;
+  }
+}
 
-.EditImage {
+@media (min-width: 660px) {
+  .EditImage {
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 661px) {
+  .EditImage {
+    bottom: 0;
+    max-height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+  }
+}
+
+/*
+@media (min-width: 660px) {
+  .EditImage {
     width: 350px;
     height: 31vh;
     opacity: 0.5;
     filter: alpha(opacity=50);
+  }
 }
+
+@media (max-width: 661px) {
+  .EditImage {
+    width: 350px;
+    height: 31vh;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+  }
+}
+*/
 
 .EditAvatar {
     height: 150px;

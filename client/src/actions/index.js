@@ -1,4 +1,5 @@
 import Cookies from 'cookies-js'
+import { push } from 'react-router-redux'
 import ActionTypes from '../constants/actionTypes'
 import callApi from '../utils/api'
 import { authorizeOAuth } from './oauth'
@@ -17,6 +18,22 @@ export function fetchUser() {
   return dispatch => dispatch(callApi(callDescriptor))
 }
 
+// Fetch Organization
+export function fetchOrganization(orgID) {
+  const callDescriptor = {
+    endpoint: `/organizations/${orgID}`,
+    types: [
+      ActionTypes.REQUEST_ORGANIZATION,
+      ActionTypes.RECIEVE_ORGANIZATION,
+      ActionTypes.FAILURE_ORGANIZATION
+    ]
+  }
+
+  return dispatch => {
+    dispatch(callApi(callDescriptor))
+  }
+}
+
 // Fetch Professional
 // if no argument given, current will be used
 export function fetchProfessional(userID = 'current') {
@@ -30,6 +47,24 @@ export function fetchProfessional(userID = 'current') {
   }
 
   return dispatch => dispatch(callApi(callDescriptor))
+}
+
+export function fetchResults(values) {
+  const { searchKey } = values
+  const callDescriptor = {
+    endpoint: `/search?key=${searchKey}`,
+    types: [
+      ActionTypes.REQUEST_SEARCH,
+      ActionTypes.RECIEVE_SEARCH,
+      ActionTypes.FAILURE_SEARCH
+    ]
+  }
+  return dispatch =>
+    dispatch(callApi(callDescriptor, { onSuccess: loadResultsPage }))
+}
+
+function loadResultsPage(response, dispatch) {
+  return dispatch(push('/results'))
 }
 
 export function adminChangeTableTo(index) {

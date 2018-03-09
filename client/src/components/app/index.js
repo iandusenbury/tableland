@@ -1,7 +1,6 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
-// import { routePathToComponent } from '../../constants/routing'
 import PrivateRoute from '../../containers/privateRoute'
 import Navbar from '../../containers/navbar'
 

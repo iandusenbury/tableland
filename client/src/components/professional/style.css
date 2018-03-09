@@ -1,6 +1,6 @@
 .professionalMainDiv {
   width: 100%;
-  height: calc(100vh - 72px);
+  height: calc(100vh - 56px);
   background-color: white;
   display: grid;
   grid-template-columns: 50% 50%;
@@ -58,14 +58,14 @@
 .professionalImage {
   grid-area: image;
   overflow: hidden;
-  height: calc(100vh - 72px);
+  height: calc(100vh - 56px);
 }
 
 .professionalText {
   grid-area: text;
   overflow-y: scroll;
   overflow-x: hidden;
-  height: calc(100vh - 72px);
+  height: calc(100vh - 56px);
 }
 
 .professionalName {

@@ -4,17 +4,15 @@ import {
   IconMenu,
   IconButton,
   MenuItem,
-  RaisedButton,
   FlatButton,
   Divider,
-  TextField,
   Toolbar,
   ToolbarGroup
 } from 'material-ui'
 import PropTypes from 'prop-types'
 import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/menu'
 import muiThemeable from 'material-ui/styles/muiThemeable'
-
+import SearchBarForm from '../../containers/searchBarForm'
 import styles from '../../constants/styles'
 import './style.css'
 
@@ -36,17 +34,15 @@ const Navbar = props => {
     <header>
       <Dialog open={dialogIsOpen} />
       <Toolbar style={styles.toolbar}>
-        <ToolbarGroup>
+        <ToolbarGroup style={styles.toolbarGroupLeft}>
           <FlatButton
+            style={styles.toolbarGroupLeft.flatButton}
             containerElement={<Link to={mesaMenuButton.path} />}
             label={mesaMenuButton.label}
           />
         </ToolbarGroup>
-        <ToolbarGroup>
-          <div className="navbarSearch">
-            <TextField hintText="Search" />
-          </div>
-          <RaisedButton label="Search" />
+        <ToolbarGroup style={styles.toolbarGroupRight}>
+          <SearchBarForm />
           <IconMenu
             iconButtonElement={
               <IconButton touch>

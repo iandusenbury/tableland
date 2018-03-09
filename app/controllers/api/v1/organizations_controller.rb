@@ -2,7 +2,10 @@ module Api::V1
   class OrganizationsController < ApiBaseController
     before_action :set_organization, only: [:show, :update, :grant_permission, :admins]
     before_action :allow_if_visible, except: [:index, :show] 
+    before_action :require_correct_admin, only: [:update, :grant_permission]
     before_action :validate_update_params, only: :update
+    before_action :check_index_permission, only: :index
+    before_action :check_get_admins_permission, only: :admins
 
     # GET /v1/organizations
     def index
@@ -33,12 +36,10 @@ module Api::V1
 
     # POST /v1/organizations/{id}/permissions
     def grant_permission
-      @permission = @organization.permissions.new(admin_params)
-      if @organization.save
-        render json: @organization, include: 'admins', status: :created
-      else
-        render json: @organization.errors, status: :unprocessable_entity
-      end
+      new_admin = validate_grant_params
+      @organization.permissions.new(user_id: new_admin.id)
+      @organization.save!
+      render json: new_admin, include: '', status: :created
     end
 
     # GET /v1/organizations/{id}/admins
@@ -63,16 +64,57 @@ module Api::V1
         raise ExceptionTypes::UnauthorizedError.new("Your account has been blocked") unless (current_user.visible? || current_user.super_admin?)
       end
 
-      # Validate the request payload and permissions when updating an existing organization
-      def validate_update_params
+      # Restrict certain actions to only admins with permission for the specified organization
+      def require_correct_admin
         if current_user.user?
           raise ExceptionTypes::UnauthorizedError.new("Admin access only")
         end
         if current_user.admin?
-          raise ExceptionTypes::UnauthorizedError.new("You do not have permission to edit the organization with ID #{@organization.id}") unless @organization.admins.exists? current_user.id
+          raise ExceptionTypes::UnauthorizedError.new("You do not have permission to modify the organization with ID #{@organization.id}") unless @organization.admins.exists? current_user.id
         end
+      end
+
+      # Validate the request payload when updating an existing organization
+      def validate_update_params
         validate_url
         validate_visible
+      end
+
+      # Validate that an existing user can be found for granting the new permission
+      # Admins can only provide an email while super admins can provide email or ID
+      def validate_grant_params
+        found_user = nil
+        email = nil
+        user_id = nil
+
+        email = params[:email]
+        user_id = params[:user_id] 
+
+        if current_user.admin?
+          raise ExceptionTypes::BadRequestError.new("An email must be provided") unless email.present?
+          found_user = User.find_by!(email: email)
+        elsif current_user.super_admin?
+          if user_id.present?
+            found_user = User.find(user_id)
+          elsif email.present?
+            found_user = User.find_by!(email: email)
+          else
+            raise ExceptionTypes::BadRequestError.new("A user ID or email must be provided")
+          end
+        end
+
+        found_user.update!(role: :admin) if found_user.user?
+        found_user
+      end
+
+      # Ensure that only super admins can view all organizations
+      def check_index_permission
+        raise ExceptionTypes::UnauthorizedError.new("You do not have permission to view all organizations") unless current_user.super_admin?
+      end
+
+      # Ensure that only super admins can view all admins for a specific organization
+      def check_get_admins_permission
+        raise ExceptionTypes::UnauthorizedError.new("You do not have permission to view all admins for the specified organization") unless current_user.super_admin?
       end
 
       # Attempt to prevent the creation of the same organization with slightly different names
@@ -123,9 +165,5 @@ module Api::V1
         params.require(:organization).permit(:name, :description, :url, :visible, :address_line_1, :address_line_2, :address_line_3, :city, :state, :postal_code, :country, :lat, :lng)
       end
 
-      # Permit only a user_id or email when assigning an admin to an existing organization
-      def admin_params
-        params.require(:admin).permit(:user_id)
-      end
   end
 end

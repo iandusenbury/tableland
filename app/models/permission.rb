@@ -5,6 +5,6 @@ class Permission < ApplicationRecord
   belongs_to :program, optional: true
   
   # Validations
-  validates :user_id, presence: true
-  validates :program_id, absence: true, if: :organization_id?
+  validates :user_id, presence: { message: "%{attribute} must be present" }
+  validates :program_id, absence: { message: "A permission must not be granted for both a program and organization at the same time." }, if: :organization_id?
 end

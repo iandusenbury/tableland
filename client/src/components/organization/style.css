@@ -47,13 +47,43 @@
   width: 100%;
 }
 
-.organizationImage {
-  grid-area: image;
-  overflow: hidden;
-  height: calc(100vh - 56px);
-  background-color: white;
+@media (max-width: 620px) {
+  .organizationImage {
+    grid-area: image;
+    overflow: hidden;
+    height: calc(80vh - 56px);
+    background-color: white;
+  }
 }
 
+@media (min-width: 620px) {
+  .organizationImage {
+    grid-area: image;
+    overflow: hidden;
+    height: calc(100vh - 56px);
+    background-color: white;
+  }
+}
+
+
+@media (max-width: 620px) {
+  .organizationText {
+    grid-area: text;
+    height: calc(100vh - 56px);
+  }
+}
+
+@media (min-width: 620px) {
+  .organizationText {
+    height: calc(100vh - 56px);
+    background-color: white;
+    grid-area: text;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+}
+
+/*
 .organizationText {
   height: calc(100vh - 56px);
   background-color: white;
@@ -61,6 +91,7 @@
   overflow-y: scroll;
   overflow-x: hidden;
 }
+*/
 
 .organizationName {
   height: auto;

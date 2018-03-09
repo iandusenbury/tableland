@@ -1,6 +1,6 @@
 .organizationMainDiv {
   width: 100%;
-  height: calc(100vh - 72px);
+  height: calc(100vh - 56px);
   background-color: white;
   display: grid;
   grid-template-columns: 50% 50%;
@@ -30,12 +30,12 @@
 .organizationImage {
   grid-area: image;
   overflow: hidden;
-  height: calc(100vh - 72px);
+  height: calc(100vh - 56px);
   background-color: white;
 }
 
 .organizationText {
-  height: calc(100vh - 72px);
+  height: calc(100vh - 56px);
   background-color: white;
   grid-area: text;
   overflow-y: scroll;
@@ -128,7 +128,7 @@
   padding: 0;
   display: block;
   margin: 0 auto;
-  height: calc(100vh - 72px);
+  height: calc(100vh - 56px);
   width: 100%;
 }
 

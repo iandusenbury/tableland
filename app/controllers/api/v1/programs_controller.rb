@@ -6,7 +6,7 @@ module Api::V1
     # GET /v1/programs
     def index
       @programs = Program.all
-      render json: @programs, include: 'media', status: :ok
+      render json: @programs, include: '', status: :ok
     end
 
     # GET /v1/programs/{id}

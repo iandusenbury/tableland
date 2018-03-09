@@ -59,7 +59,7 @@ export const renderProgram = program => {
     info,
     contact
   }
-  return <SearchResultRow {...rowInfo} />
+  return <SearchResultRow key={`${type}_${id}`} {...rowInfo} />
 }
 
 export const renderOrganization = organization => {
@@ -112,7 +112,7 @@ export const renderOrganization = organization => {
     info,
     contact
   }
-  return <SearchResultRow {...rowInfo} />
+  return <SearchResultRow key={`${type}_${id}`} {...rowInfo} />
 }
 
 export const renderUser = user => {
@@ -149,5 +149,5 @@ export const renderUser = user => {
     info,
     contact
   }
-  return <SearchResultRow {...rowInfo} />
+  return <SearchResultRow key={`${type}_${id}`} {...rowInfo} />
 }

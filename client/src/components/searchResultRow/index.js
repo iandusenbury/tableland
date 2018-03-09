@@ -39,7 +39,7 @@ const SearchResultRow = props => {
     fetchMapProfessional
   } = props
   return (
-    <TableRow className="search-table-row-stripe" key={`${type}_${id}`}>
+    <TableRow className="search-table-row-stripe">
       <TableRowColumn className="search-table-cell">
         <div className="search-table-name search-table-border">
           {profileName}

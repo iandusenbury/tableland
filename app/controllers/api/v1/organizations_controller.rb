@@ -21,9 +21,7 @@ module Api::V1
     # POST /v1/organizations
     def create
       @organization = Organization.new(create_organization_params)
-      if @organization.valid?
-        @organization = prevent_duplication(@organization)
-      end
+      @organization = verify_organization(@organization)
       @organization.save!
       render json: @organization, include: '', status: :created
     end
@@ -115,6 +113,15 @@ module Api::V1
       # Ensure that only super admins can view all admins for a specific organization
       def check_get_admins_permission
         raise ExceptionTypes::UnauthorizedError.new("You do not have permission to view all admins for the specified organization") unless current_user.super_admin?
+      end
+
+      # Verify that the newly created organization is valid and if it is, check to
+      # see if it matches an existing organization that should be used instead.
+      def verify_organization(organization_to_verify)
+        if organization_to_verify.valid?
+          organization_to_verify = prevent_duplication(organization_to_verify)
+        end
+        organization_to_verify
       end
 
       # Attempt to prevent the creation of the same organization with slightly different names

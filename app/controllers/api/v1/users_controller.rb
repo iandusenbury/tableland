@@ -100,9 +100,9 @@ module Api::V1
         params_filter = nil
 
         if @user.id != current_user.id
-          params_filter = validate_mismatch
+          params_filter = validate_id_mismatch
         else
-          params_filter = validate_match
+          params_filter = validate_id_match
         end
 
         params_filter ||= :user_params
@@ -110,7 +110,7 @@ module Api::V1
 
       # If the update is for a user that does not match the current user,
       # determine if permission should be granted for the update
-      def validate_mismatch
+      def validate_id_mismatch
         if current_user.super_admin?
           validate_role([:user, :admin, :super_admin])
           validate_visible
@@ -122,7 +122,7 @@ module Api::V1
 
       # If the update is for a user that does match the current user,
       # determine which params should be permitted.
-      def validate_match
+      def validate_id_match
         if current_user.admin?
           validate_role([:user, :admin])
           return :admin_params

@@ -4,6 +4,10 @@ import { authorizeUser, logoutUser, fetchUser } from '../../actions'
 
 import Navbar from '../../components/navbar'
 
+const mapStateToProps = state => ({
+  dialogIsOpen: state.app.dialog.open === 1
+})
+
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
@@ -14,4 +18,4 @@ const mapDispatchToProps = dispatch =>
     dispatch
   )
 
-export default connect(null, mapDispatchToProps)(Navbar)
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar)

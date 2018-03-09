@@ -1,4 +1,4 @@
-import { isEmpty } from 'ramda'
+import { find, propEq } from 'ramda'
 import createReducer from '../../utils/createReducer'
 import ActionTypes from '../../constants/actionTypes'
 
@@ -38,29 +38,15 @@ function requestProfessional(state, data) {
   const { payload: { user } } = data
   const { media } = user
 
-  const reducedMedia = media.reduce((obj, item) => {
-    obj[item.category] = item // eslint-disable-line
-    return obj
-  }, {})
-
-  if (isEmpty(media)) {
-    return {
-      ...state,
-      ...user,
-      media: {
-        image: {
-          url: portraitImg
-        },
-        video: {
-          url: ''
-        }
-      }
-    }
-  }
+  const image = find(propEq('category', 'image'))(media)
+  const video = find(propEq('category', 'video'))(media)
 
   return {
     ...state,
     ...user,
-    media: reducedMedia
+    media: {
+      image: image || { url: portraitImg },
+      video: video || { url: '' }
+    }
   }
 }

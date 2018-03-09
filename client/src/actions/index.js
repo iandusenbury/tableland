@@ -105,7 +105,7 @@ function initMap(response, dispatch) {
     }
   })
 
-  const initMarkers = (markerArray, profileID) => ({
+  const initMapInfo = (markerArray, profileID) => ({
     type: ActionTypes.INIT_MAP_INFO,
     payload: {
       isMarkerOpen: markerArray,
@@ -113,7 +113,7 @@ function initMap(response, dispatch) {
     }
   })
 
-  return dispatch(initMarkers(isMarkerOpen, id)).then(() => dispatch(push('/')))
+  return dispatch(initMapInfo(isMarkerOpen, id)).then(() => dispatch(push('/')))
 }
 
 export function toggleMarker(index) {

@@ -11,8 +11,8 @@ const orgIcon = <BusinessIcon />
 const progIcon = <GroupIcon />
 
 const getDefaultImage = type => {
-  if (type === 'Program') return orgIcon
-  if (type === 'Organization') return progIcon
+  if (type === 'Program') return progIcon
+  if (type === 'Organization') return orgIcon
 
   return userImage
 }

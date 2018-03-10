@@ -17,8 +17,8 @@ import styleJS from './style'
  * Key: AIzaSyARRsWk_FbczyZ0RFU4STmiTxxYfnWmiBs
  */
 
-const firstMarkerImg = require('./first.png')
-const currentMarkerImg = require('./current.png')
+const firstMarkerImg = require('../../assets/icons/first.png')
+const currentMarkerImg = require('../../assets/icons/current.png')
 
 class MyMapComponent extends Component {
   componentDidMount() {

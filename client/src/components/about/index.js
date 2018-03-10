@@ -1,6 +1,8 @@
 import React from 'react'
 import './style.css'
 
+const githubIcon = require('../../assets/icons/GitHub-Mark-32px.png')
+
 export default () => (
   <div className="about-main-div">
     <h1 className="about-header-one">About MESA</h1>
@@ -26,6 +28,7 @@ export default () => (
 
     <h2 className="about-header-one">About Us</h2>
     <p className="about-text">
+      View us on Github <a href="https://github.com/iandusenbury/tableland"><img className="about-github-icon" src={githubIcon} alt="" /></a>
     </p>
   </div>
 )

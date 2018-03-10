@@ -68,7 +68,7 @@ function loadResultsPage(response, dispatch) {
 }
 
 function initMap(response, dispatch) {
-  const { payload: { user: { id, experiences } } } = response
+  const { payload: { user: { experiences } } } = response
   const isMarkerOpen = []
   const sortedExperiences = experiences.sort(
     (a, b) => Date.parse(a.startDate) - Date.parse(b.startDate)
@@ -84,15 +84,14 @@ function initMap(response, dispatch) {
     }
   })
 
-  const initMarkers = (markerArray, profileID) => ({
+  const initMarkers = markerArray => ({
     type: ActionTypes.INIT_MAP_INFO,
     payload: {
-      isMarkerOpen: markerArray,
-      currentProfile: profileID
+      isMarkerOpen: markerArray
     }
   })
 
-  return dispatch(initMarkers(isMarkerOpen, id))
+  return dispatch(initMarkers(isMarkerOpen))
 }
 
 export function toggleMarker(index) {

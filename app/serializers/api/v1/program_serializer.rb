@@ -6,6 +6,7 @@ module Api::V1
                 :name, 
                 :description, 
                 :url,
+                :visible,
                 :link
 
     # Methods for custom attributes

@@ -8,6 +8,7 @@ import PropTypes from 'prop-types'
 
 import TopTab from '../../constants/tabs/tabViewMap'
 import { orgPage } from '../../constants/viewStyles'
+import { getDate } from '../../constants/dates'
 import './style.css'
 
 // const hasVideo = true // this will be passed as props
@@ -172,30 +173,6 @@ function createProgramTable(name, experience) {
       <p>{award}</p>
     </ListItem>
   )
-}
-
-// This const defines months for use in following function
-const monthNames = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec'
-]
-// This function takes a date string as an argument and returns a string in the format
-// [mon] [year]
-function getDate(date) {
-  if (date === null) return 'current'
-
-  const initDate = new Date(date.toString())
-  return `${monthNames[initDate.getMonth()]} ${initDate.getFullYear()}`
 }
 
 export default Professional

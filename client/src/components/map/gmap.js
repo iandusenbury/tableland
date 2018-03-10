@@ -8,38 +8,12 @@ import {
   InfoWindow
 } from 'react-google-maps'
 import { buildPolylines } from './build'
+import { getDate } from '../../constants/dates'
 import './style.css'
 
-const firstMarkerImg = require('./first.png')
-const currentMarkerImg = require('./current.png')
-const defaultMarkerImg = require('./default.png')
-
-// This const defines months for use in following function
-const monthNames = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec'
-]
-
-// This function takes a date string as an argument and returns a string in the format
-// [mon] [year]
-const getDate = date => {
-  if (date !== null) {
-    date = new Date(date.toString()) // eslint-disable-line
-    date = `${monthNames[date.getMonth()]} ${date.getFullYear()}` // eslint-disable-line
-  } else date = 'Current' // eslint-disable-line
-
-  return date
-}
+const firstMarkerImg = require('../../assets/icons/first.png')
+const currentMarkerImg = require('../../assets/icons/current.png')
+const defaultMarkerImg = require('../../assets/icons/default.png')
 
 const getExperienceOverlapCount = (experiences, index, location) => {
   let count = 0

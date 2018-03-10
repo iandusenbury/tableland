@@ -34,12 +34,10 @@ module Api::V1
 
     # POST /v1/programs/{id}/permissions
     def grant_permission
-      @permission = @program.permissions.new(admin_params)
-      if @program.save
-        render json: @program, include: 'admins', status: :created
-      else
-        render json: @program.errors, status: :unprocessable_entity
-      end
+      new_admin = validate_grant_params
+      @program.permissions.new(user_id: new_admin.id)
+      @program.save!
+      render json: new_admin, include: '', status: :created
     end
 
     # GET /v1/programs/{id}/admins

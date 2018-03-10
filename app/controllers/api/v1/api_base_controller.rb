@@ -21,6 +21,32 @@ module Api::V1
         raise ExceptionTypes::UnauthorizedError.new("Your account has been blocked") unless (current_user.visible? || current_user.super_admin?)
       end
 
+      # Validate that an existing user can be found for granting the new permission
+      # Admins can only provide an email while super admins can provide email or ID
+      def validate_grant_params
+        found_user = nil
+        email = nil
+        user_id = nil
+
+        email = params[:email]
+        user_id = params[:user_id] 
+
+        if current_user.admin?
+          raise ExceptionTypes::BadRequestError.new("An email must be provided") unless email.present?
+          found_user = User.find_by!(email: email)
+        elsif current_user.super_admin?
+          if user_id.present?
+            found_user = User.find(user_id)
+          elsif email.present?
+            found_user = User.find_by!(email: email)
+          else
+            raise ExceptionTypes::BadRequestError.new("A user ID or email must be provided")
+          end
+        end
+
+        found_user.update!(role: :admin) if found_user.user?
+        found_user
+      end
 
     private
       # Helps all controllers implicitly locate the serializers

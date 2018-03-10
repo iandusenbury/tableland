@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { fetchProfessional, updateMapCurrentProfile } from '../../actions'
+import { fetchProfessional } from '../../actions'
 
 import Professional from '../../components/professional'
 
@@ -13,8 +13,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      fetchProfessional,
-      updateMapCurrentProfile
+      fetchProfessional
     },
     dispatch
   )

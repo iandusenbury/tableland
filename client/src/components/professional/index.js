@@ -6,7 +6,6 @@ import Group from 'material-ui/svg-icons/social/group'
 import Domain from 'material-ui/svg-icons/social/domain'
 import PropTypes from 'prop-types'
 
-import GMap from '../../containers/map'
 import TopTab from '../../constants/tabs/tabViewMap'
 import { orgPage } from '../../constants/viewStyles'
 import './style.css'
@@ -31,9 +30,7 @@ class Professional extends Component {
       mainLocation,
       profileImage,
       profileVideo,
-      experiences,
-      isMapShown,
-      updateMapCurrentProfile
+      experiences
     } = this.props
 
     let videoUrl = ''
@@ -41,10 +38,6 @@ class Professional extends Component {
     if (profileVideo) {
       videoUrl = profileVideo.replace('watch?v=', 'embed/')
       hasVideo = true
-    }
-
-    if (isMapShown) {
-      return <GMap />
     }
 
     return (
@@ -116,6 +109,7 @@ class Professional extends Component {
 }
 
 Professional.propTypes = {
+  id: PropTypes.number.isRequired,
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,

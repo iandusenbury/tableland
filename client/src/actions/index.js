@@ -67,21 +67,6 @@ function loadResultsPage(response, dispatch) {
   return dispatch(push('/results'))
 }
 
-export function fetchMapProfessional(userID = 'random') {
-  const callDescriptor = {
-    endpoint: `/users/${userID}`,
-    types: [
-      ActionTypes.REQUEST_PROFESSIONAL,
-      ActionTypes.RECIEVE_PROFESSIONAL,
-      ActionTypes.FAILURE_PROFESSIONAL
-    ]
-  }
-
-  return dispatch => {
-    dispatch(callApi(callDescriptor, { onSuccess: initMap }))
-  }
-}
-
 function initMap(response, dispatch) {
   const { payload: { user: { id, experiences } } } = response
   const isMarkerOpen = []
@@ -108,15 +93,6 @@ function initMap(response, dispatch) {
   })
 
   return dispatch(initMarkers(isMarkerOpen, id))
-}
-
-export function updateMapCurrentProfile(id) {
-  return {
-    type: ActionTypes.UPDATE_MAP_PROFILE,
-    payload: {
-      id
-    }
-  }
 }
 
 export function toggleMarker(index) {

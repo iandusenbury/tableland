@@ -28,14 +28,7 @@ import Dialog from '../../containers/dialog'
    "About"
 */
 const Navbar = props => {
-  const {
-    authorizeUser,
-    fetchUser,
-    logoutUser,
-    dialogIsOpen,
-    updateMapCurrentProfile,
-    profileID
-  } = props
+  const { authorizeUser, fetchUser, logoutUser, dialogIsOpen } = props
 
   return (
     <header>
@@ -43,7 +36,6 @@ const Navbar = props => {
       <Toolbar style={styles.toolbar}>
         <ToolbarGroup style={styles.toolbarGroupLeft}>
           <FlatButton
-            onClick={() => updateMapCurrentProfile(profileID)}
             style={styles.toolbarGroupLeft.flatButton}
             containerElement={<Link to={mesaMenuButton.path} />}
             label={mesaMenuButton.label}
@@ -104,9 +96,7 @@ Navbar.propTypes = {
   authorizeUser: PropTypes.func.isRequired,
   fetchUser: PropTypes.func.isRequired,
   logoutUser: PropTypes.func.isRequired,
-  dialogIsOpen: PropTypes.bool.isRequired,
-  updateMapCurrentProfile: PropTypes.func.isRequired,
-  profileID: PropTypes.number.isRequired
+  dialogIsOpen: PropTypes.bool.isRequired
 }
 
 export default muiThemeable()(Navbar)

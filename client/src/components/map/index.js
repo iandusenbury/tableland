@@ -22,17 +22,12 @@ const currentMarkerImg = require('./current.png')
 
 class MyMapComponent extends Component {
   componentDidMount() {
-    const { fetchProfessional, currentProfile, match } = this.props
+    const { fetchProfessional, match } = this.props
     if (match) {
       fetchProfessional(match.params.id)
-    } else if (currentProfile === 0) {
+    } else {
       fetchProfessional('random') // Fetch random user
     }
-  }
-
-  componentWillUnmount() {
-    const { updateMapCurrentProfile } = this.props
-    updateMapCurrentProfile(0) // Reset to load current user later
   }
 
   render() {
@@ -200,19 +195,17 @@ class MyMapComponent extends Component {
 }
 
 MyMapComponent.propTypes = {
-  match: PropTypes.object.isRequired, // eslint-disable-line
+  match: PropTypes.object, // eslint-disable-line
   profile: PropTypes.object.isRequired, // eslint-disable-line
   sortedExperiences: PropTypes.array.isRequired, // eslint-disable-line
   fetchProfessional: PropTypes.func.isRequired,
   profileImage: PropTypes.string.isRequired,
   currentMarker: PropTypes.number.isRequired,
-  currentProfile: PropTypes.number.isRequired,
   isMarkerOpen: PropTypes.array.isRequired, // eslint-disable-line
   toggleMarker: PropTypes.func.isRequired,
   onPanTo: PropTypes.func.isRequired,
   onPanOut: PropTypes.func.isRequired,
   onMapMounted: PropTypes.func.isRequired,
-  updateMapCurrentProfile: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired
 }
 

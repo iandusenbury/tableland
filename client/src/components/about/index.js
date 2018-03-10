@@ -12,6 +12,10 @@ export default () => (
     </p>
 
     <p className="about-text">
+      [[Something from the MESA About page here??]]
+    </p>
+
+    <p className="about-text">
       <a href='http://oregonmesa.org/'>MESA Homepage</a>
     </p>
 

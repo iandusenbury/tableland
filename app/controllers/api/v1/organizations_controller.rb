@@ -57,11 +57,6 @@ module Api::V1
         @organization = Organization.find(params[:id])
       end
 
-      # Only allow access to certain actions if the current user is visible
-      def allow_if_visible
-        raise ExceptionTypes::UnauthorizedError.new("Your account has been blocked") unless (current_user.visible? || current_user.super_admin?)
-      end
-
       # Restrict certain actions to only admins with permission for the specified organization
       def require_correct_admin
         if current_user.user?

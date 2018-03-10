@@ -15,6 +15,13 @@ module Api::V1
       render json: @results.flatten, root: "results", include: 'media', status: :ok
     end
 
+    protected
+      # Only allow access to certain actions if the current user is visible
+      def allow_if_visible
+        raise ExceptionTypes::UnauthorizedError.new("Your account has been blocked") unless (current_user.visible? || current_user.super_admin?)
+      end
+
+
     private
       # Helps all controllers implicitly locate the serializers
       def set_serializer_namespace

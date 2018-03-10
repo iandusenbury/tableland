@@ -11,7 +11,8 @@ const handlers = {
   // Pattern:
   // [ActionTypes.ACTION_NAME]: actionFunction
   [ActionTypes.UPDATE_OPEN_MARKERS]: updateMarkers,
-  [ActionTypes.INIT_MAP_INFO]: initMarkers
+  [ActionTypes.INIT_MAP_INFO]: initMarkers,
+  [ActionTypes.UPDATE_MAP_PROFILE]: updateCurrentProfile
 }
 
 export default createReducer(initialState, handlers)
@@ -43,5 +44,14 @@ function updateMarkers(state, data) {
     ...state,
     isMarkerOpen,
     currentMarker: index
+  }
+}
+
+function updateCurrentProfile(state, data) {
+  const { payload: { id } } = data
+
+  return {
+    ...state,
+    currentProfile: id
   }
 }

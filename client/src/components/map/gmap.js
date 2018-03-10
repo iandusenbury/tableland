@@ -41,34 +41,18 @@ const getDate = date => {
   return date
 }
 
-// const getShortDate = date => {
-//   if (date !== null) {
-//     date = new Date(date.toString())
-//     const year = date.getFullYear() % 100
-//     date = `${date.getMonth() + 1}/${year}`
-//   } else date = 'Current'
-//
-//   return date
-// }
-
-const getExperienceOverlapInfo = (experiences, index, location) => {
+const getExperienceOverlapCount = (experiences, index, location) => {
   let count = 0
-  let isLast = false
+  const compareLocation = (first, second) =>
+    first.lat === second.lat && first.lng === second.lng
 
-  // experiences.forEach(experience => {
-  for (let i = experiences.length - 1; i >= 0; i -= 1) {
-    if (location === experiences[i].location) {
-      isLast = true
-      break
-    }
-  }
-  for (let i = 0; i < experiences.length; i += 1) {
-    if (location === experiences[i].location && i !== index) {
+  for (let j = 0; j < experiences.length; j += 1) {
+    if (compareLocation(location, experiences[j].location) && j !== index) {
       count += 1
     }
   }
 
-  return { count, isLast }
+  return count
 }
 
 const GMap = compose(withScriptjs, withGoogleMap)(props => {
@@ -92,50 +76,38 @@ const GMap = compose(withScriptjs, withGoogleMap)(props => {
       {experienceOrgs.map((experience, index) => {
         const { location } = experience
         const { organization: { name }, title, startDate, endDate } = experience
-        // const label = endDate ? getShortDate(startDate) : `Now`
         let icon = index === 0 ? firstMarkerImg : defaultMarkerImg
         if (index === expLength - 1) icon = currentMarkerImg
 
-        const { count, isLast } = getExperienceOverlapInfo(
-          experienceOrgs,
-          index,
-          location
-        )
+        const count = getExperienceOverlapCount(experienceOrgs, index, location)
 
-        // const prevIndex = index - 1 >= 0 ? index - 1 : 0
-        // const isFirstIndex = index === 0
-        // const prevLocation = experienceOrgs[prevIndex].location
-        //
-        // const nextIndex = index + 1 < expLength ? index + 1 : expLength - 1
-        // const isLastIndex = index === expLength - 1
-        // const nextLocation = experienceOrgs[nextIndex].location
+        const pluralizeOtherExpMessage = numExp => {
+          if (numExp > 1) {
+            return <p>{numExp} other experiences here</p>
+          }
+          return <p>{numExp} other experience here</p>
+        }
 
         return (
-          <div key={index}>
-            {isLast && (
-              <Marker
-                // key={index} // eslint-disable-line
-                onClick={() => onToggleOpen(index)}
-                // label={label}
-                icon={icon}
-                position={location}>
-                {isMarkerOpen[index] && (
-                  <InfoWindow onCloseClick={() => onToggleOpen(index)}>
-                    <div>
-                      <h2>{name}</h2>
-                      <p>{title}</p>
-                      <p>
-                        {getDate(startDate)} - {getDate(endDate)}
-                      </p>
-                      {isLast &&
-                        count > 0 && <p>{count} other experiences here</p>}
-                      <p className="gMapInfoWindowP">{index + 1}</p>
-                    </div>
-                  </InfoWindow>
-                )}
-              </Marker>
+          <Marker
+            key={index} // eslint-disable-line
+            onClick={() => onToggleOpen(index)}
+            icon={icon}
+            position={location}>
+            {isMarkerOpen[index] && (
+              <InfoWindow onCloseClick={() => onToggleOpen(index)}>
+                <div>
+                  <h2>{name}</h2>
+                  <p>{title}</p>
+                  <p>
+                    {getDate(startDate)} - {getDate(endDate)}
+                  </p>
+                  {true && count > 0 && pluralizeOtherExpMessage(count)}
+                  <p className="gMapInfoWindowP">{index + 1}</p>
+                </div>
+              </InfoWindow>
             )}
-          </div>
+          </Marker>
         )
       })}
       {polylines.map(poly => poly.children)}

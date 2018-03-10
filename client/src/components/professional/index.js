@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Card, CardMedia, Divider, List, ListItem, Avatar } from 'material-ui'
+import { Link } from 'react-router-dom'
 import LanguageIcon from 'material-ui/svg-icons/action/language'
 import Group from 'material-ui/svg-icons/social/group'
 import Domain from 'material-ui/svg-icons/social/domain'
@@ -40,7 +41,9 @@ class Professional extends Component {
 
     return (
       <div className="professionalMainDiv">
-        <TopTab className="professionalTopTab" />
+        <Link to="/">
+          <TopTab className="professionalTopTab" />
+        </Link>
         <div className="professionalImage">
           <Card>
             <CardMedia

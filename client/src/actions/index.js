@@ -46,7 +46,7 @@ export function fetchProfessional(userID = 'current') {
     ]
   }
 
-  return dispatch => dispatch(callApi(callDescriptor))
+  return dispatch => dispatch(callApi(callDescriptor, { onSuccess: initMap }))
 }
 
 export function fetchResults(values) {
@@ -108,6 +108,15 @@ function initMap(response, dispatch) {
   })
 
   return dispatch(initMarkers(isMarkerOpen, id))
+}
+
+export function updateMapCurrentProfile(id) {
+  return {
+    type: ActionTypes.UPDATE_MAP_PROFILE,
+    payload: {
+      id
+    }
+  }
 }
 
 export function toggleMarker(index) {

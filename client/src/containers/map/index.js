@@ -1,21 +1,25 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { push } from 'react-router-redux'
-import { fetchMapProfessional, toggleMarker } from '../../actions'
+import {
+  toggleMarker,
+  updateMapCurrentProfile,
+  fetchProfessional
+} from '../../actions'
 import { buildBounds } from '../../components/map/build'
 
 import Map from '../../components/map'
 
-const portraitImg = require('../professional/portrait.png')
-
 const mapStateToProps = state => {
-  const { experiences, media } = state.app.professionalPage
-  let profileImage
-  if (media.image && media.image.url) {
-    profileImage = media.image.url
-  } else {
-    profileImage = portraitImg
-  }
+  // Determines current user or other profile's roadmap
+  const { currentProfile } = state.app.roadmap
+  const { signedIn, id } = state.app.user
+  const profile = state.app.professionalPage
+    // signedIn && currentProfile === id
+    //   ? state.app.user
+    //   : state.app.professionalPage
+
+  const { experiences, media: { image: { url } } } = profile
+
   const refs = {
     map: undefined
   }
@@ -46,8 +50,8 @@ const mapStateToProps = state => {
   }
 
   return {
-    profileImage,
-    ...state.app.professionalPage,
+    profileImage: url,
+    profile,
     sortedExperiences,
     ...state.app.roadmap,
     onPanTo,
@@ -59,9 +63,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      fetchMapProfessional,
       toggleMarker,
-      openProfile: id => push(`/users/${id}`)
+      updateMapCurrentProfile,
+      fetchProfessional
     },
     dispatch
   )

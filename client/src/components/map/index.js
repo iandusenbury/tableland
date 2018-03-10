@@ -21,19 +21,22 @@ const currentMarkerImg = require('./current.png')
 
 class MyMapComponent extends Component {
   componentWillMount() {
-    const { fetchMapProfessional, currentProfile } = this.props
+    const { fetchProfessional, currentProfile } = this.props
     if (currentProfile > 0) {
-      fetchMapProfessional(currentProfile)
+      fetchProfessional(currentProfile)
+    } else {
+      fetchProfessional('random') // Fetch current user
     }
-    fetchMapProfessional()
+  }
+
+  componentWillUnmount() {
+    const { updateMapCurrentProfile } = this.props
+    updateMapCurrentProfile(0) // Reset to load current user later
   }
 
   render() {
     const {
-      id,
-      firstName,
-      lastName,
-      mainTitle,
+      profile: { id, firstName, lastName, mainTitle },
       profileImage,
       sortedExperiences,
       currentMarker,
@@ -41,40 +44,29 @@ class MyMapComponent extends Component {
       toggleMarker,
       onPanTo,
       onPanOut,
-      onMapMounted,
-      openProfile
+      onMapMounted
     } = this.props
 
-    const experienceOrgs = []
-    sortedExperiences.forEach(experience => {
-      if (experience.organization) {
-        experience.location = { // eslint-disable-line
-          lat: parseFloat(experience.organization.lat),
-          lng: parseFloat(experience.organization.lng)
-        }
-        experienceOrgs.push(experience)
+    const experienceOrgs = sortedExperiences.filter(
+      experience => experience.organization && experience.organization.id
+    )
+    experienceOrgs.forEach(experience => {
+      experience.location = { // eslint-disable-line
+        lat: parseFloat(experience.organization.lat),
+        lng: parseFloat(experience.organization.lng)
       }
     })
+
     const expLength = experienceOrgs.length
     const isEmptyExperiece = expLength === 0
 
-    let prevIndex
-    let isFirstIndex
-    let prevLocation
+    const prevIndex = currentMarker - 1 >= 0 ? currentMarker - 1 : 0
+    const isFirstIndex = currentMarker === 0
 
-    let nextIndex
-    let isLastIndex
-    let nextLocation
-    if (expLength > 0) {
-      prevIndex = currentMarker - 1 >= 0 ? currentMarker - 1 : 0
-      isFirstIndex = currentMarker === 0
-      prevLocation = experienceOrgs[prevIndex].location
+    const nextIndex =
+      currentMarker + 1 < expLength ? currentMarker + 1 : expLength - 1
+    const isLastIndex = currentMarker === expLength - 1
 
-      nextIndex =
-        currentMarker + 1 < expLength ? currentMarker + 1 : expLength - 1
-      isLastIndex = currentMarker === expLength - 1
-      nextLocation = experienceOrgs[nextIndex].location
-    }
     return (
       <div className="mapMainDiv">
         <GMap
@@ -140,42 +132,46 @@ class MyMapComponent extends Component {
             </table>
           </div>
         </Paper>
-        <div className="mapPanNavigation">
-          <RaisedButton
-            style={styleJS.styles.panButtonTo}
-            disabled={isEmptyExperiece}
-            onClick={() =>
-              onPanTo(currentMarker, experienceOrgs[currentMarker].location)
-            }>
-            Pan To
-          </RaisedButton>
-          <RaisedButton
-            style={styleJS.styles.panButtonTo}
-            disabled={isEmptyExperiece}
-            onClick={() => onPanOut()}>
-            Pan Out
-          </RaisedButton>
-        </div>
-        <div className="mapNavigation">
-          <RaisedButton
-            style={styleJS.styles.navButtonLeft}
-            disabled={isFirstIndex || isEmptyExperiece}
-            onClick={() => {
-              toggleMarker(prevIndex)
-              onPanTo(prevIndex, prevLocation)
-            }}>
-            <ChevronLeft style={styleJS.styles.chevron} />
-          </RaisedButton>
-          <RaisedButton
-            style={styleJS.styles.navButtonRight}
-            disabled={isLastIndex || isEmptyExperiece}
-            onClick={() => {
-              toggleMarker(nextIndex)
-              onPanTo(nextIndex, nextLocation)
-            }}>
-            <ChevronRight style={styleJS.styles.chevron} />
-          </RaisedButton>
-        </div>
+        {expLength > 0 && (
+          <div>
+            <div className="mapPanNavigation">
+              <RaisedButton
+                style={styleJS.styles.panButtonTo}
+                disabled={isEmptyExperiece}
+                onClick={() =>
+                  onPanTo(currentMarker, experienceOrgs[currentMarker].location)
+                }>
+                Zoom To
+              </RaisedButton>
+              <RaisedButton
+                style={styleJS.styles.panButtonTo}
+                disabled={isEmptyExperiece}
+                onClick={() => onPanOut()}>
+                Zoom Out
+              </RaisedButton>
+            </div>
+            <div className="mapNavigation">
+              <RaisedButton
+                style={styleJS.styles.navButtonLeft}
+                disabled={isFirstIndex || isEmptyExperiece}
+                onClick={() => {
+                  toggleMarker(prevIndex)
+                  onPanTo(prevIndex, experienceOrgs[prevIndex].location)
+                }}>
+                <ChevronLeft style={styleJS.styles.chevron} />
+              </RaisedButton>
+              <RaisedButton
+                style={styleJS.styles.navButtonRight}
+                disabled={isLastIndex || isEmptyExperiece}
+                onClick={() => {
+                  toggleMarker(nextIndex)
+                  onPanTo(nextIndex, experienceOrgs[nextIndex].location)
+                }}>
+                <ChevronRight style={styleJS.styles.chevron} />
+              </RaisedButton>
+            </div>
+          </div>
+        )}
         <div className="mapProfilePreviewTab">
           <div className="mapProfilePreviewAvatar">
             <Avatar
@@ -191,7 +187,7 @@ class MyMapComponent extends Component {
             <p className="mapProfilePreviewTitle">{mainTitle}</p>
           </div>
         </div>
-        <Link to={`/users/${id}`}>
+        <Link to={`/professional/${id}`}>
           <BottomTab />
         </Link>
       </div>
@@ -200,14 +196,10 @@ class MyMapComponent extends Component {
 }
 
 MyMapComponent.propTypes = {
-  id: PropTypes.number.isRequired,
+  profile: PropTypes.object.isRequired, // eslint-disable-line
   sortedExperiences: PropTypes.array.isRequired, // eslint-disable-line
-  fetchMapProfessional: PropTypes.func.isRequired,
-  firstName: PropTypes.string.isRequired,
-  lastName: PropTypes.string.isRequired,
-  mainTitle: PropTypes.string, // eslint-disable-line
+  fetchProfessional: PropTypes.func.isRequired,
   profileImage: PropTypes.string.isRequired,
-  sortedExperiences: PropTypes.array.isRequired, // eslint-disable-line
   currentMarker: PropTypes.number.isRequired,
   currentProfile: PropTypes.number.isRequired,
   isMarkerOpen: PropTypes.array.isRequired, // eslint-disable-line
@@ -215,7 +207,7 @@ MyMapComponent.propTypes = {
   onPanTo: PropTypes.func.isRequired,
   onPanOut: PropTypes.func.isRequired,
   onMapMounted: PropTypes.func.isRequired,
-  openProfile: PropTypes.func.isRequired
+  updateMapCurrentProfile: PropTypes.func.isRequired
 }
 
 export default MyMapComponent

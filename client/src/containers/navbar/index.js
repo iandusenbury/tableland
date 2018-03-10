@@ -1,11 +1,17 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { authorizeUser, logoutUser, fetchUser } from '../../actions'
+import {
+  authorizeUser,
+  logoutUser,
+  fetchUser,
+  updateMapCurrentProfile
+} from '../../actions'
 
 import Navbar from '../../components/navbar'
 
 const mapStateToProps = state => ({
-  dialogIsOpen: state.app.dialog.open === 1
+  dialogIsOpen: state.app.dialog.open === 1,
+  profileID: state.app.user.id || 0
 })
 
 const mapDispatchToProps = dispatch =>
@@ -13,7 +19,8 @@ const mapDispatchToProps = dispatch =>
     {
       authorizeUser,
       fetchUser,
-      logoutUser
+      logoutUser,
+      updateMapCurrentProfile
     },
     dispatch
   )

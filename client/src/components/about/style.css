@@ -1,0 +1,12 @@
+.about-main-div {
+  width: 90%;
+  height: calc(100vh - 56px - 2%);
+  background-color: white;
+  padding: 5%;
+}
+
+.about-header-one {
+}
+
+.about-text {
+}

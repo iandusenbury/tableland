@@ -15,7 +15,7 @@ export function fetchUser() {
     ]
   }
 
-  return dispatch => dispatch(callApi(callDescriptor))
+  return dispatch => dispatch(callApi(callDescriptor, { onSuccess: initMap }))
 }
 
 // Fetch Organization

@@ -6,7 +6,6 @@ module Api::V1
                 :name, 
                 :description, 
                 :url, 
-                :category, 
                 :address_line_1, 
                 :address_line_2,
                 :address_line_3,
@@ -16,6 +15,7 @@ module Api::V1
                 :country,
                 :lat,
                 :lng,
+                :visible,
                 :link
 
     # Methods for custom attributes

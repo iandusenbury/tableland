@@ -6,6 +6,7 @@ import Group from 'material-ui/svg-icons/social/group'
 import Domain from 'material-ui/svg-icons/social/domain'
 import PropTypes from 'prop-types'
 
+import GMap from '../../containers/map'
 import TopTab from '../../constants/tabs/tabViewMap'
 import { orgPage } from '../../constants/viewStyles'
 import './style.css'
@@ -21,6 +22,7 @@ class Professional extends Component {
 
   render() {
     const {
+      id,
       firstName,
       lastName,
       description,
@@ -29,7 +31,9 @@ class Professional extends Component {
       mainLocation,
       profileImage,
       profileVideo,
-      experiences
+      experiences,
+      isMapShown,
+      updateMapCurrentProfile
     } = this.props
 
     let videoUrl = ''
@@ -39,10 +43,14 @@ class Professional extends Component {
       hasVideo = true
     }
 
+    if (isMapShown) {
+      return <GMap />
+    }
+
     return (
       <div className="professionalMainDiv">
-        <Link to="/">
-          <TopTab className="professionalTopTab" />
+        <Link to={`/roadmap/${id}`} className="professionalTopTab">
+          <TopTab />
         </Link>
         <div className="professionalImage">
           <Card>

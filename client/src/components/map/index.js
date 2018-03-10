@@ -7,6 +7,7 @@ import ChevronRight from 'material-ui/svg-icons/navigation/chevron-right'
 import GMap from './gmap'
 import mapStyle from './style.json'
 import BottomTab from '../../constants/tabs/tabViewProfile'
+import Loading from '../loading'
 import './style.css'
 import styleJS from './style'
 
@@ -20,12 +21,12 @@ const firstMarkerImg = require('./first.png')
 const currentMarkerImg = require('./current.png')
 
 class MyMapComponent extends Component {
-  componentWillMount() {
-    const { fetchProfessional, currentProfile } = this.props
-    if (currentProfile > 0) {
-      fetchProfessional(currentProfile)
-    } else {
-      fetchProfessional('random') // Fetch current user
+  componentDidMount() {
+    const { fetchProfessional, currentProfile, match } = this.props
+    if (match) {
+      fetchProfessional(match.params.id)
+    } else if (currentProfile === 0) {
+      fetchProfessional('random') // Fetch random user
     }
   }
 
@@ -35,6 +36,9 @@ class MyMapComponent extends Component {
   }
 
   render() {
+    const { loading } = this.props
+    if (loading) return <Loading />
+
     const {
       profile: { id, firstName, lastName, mainTitle },
       profileImage,
@@ -196,6 +200,7 @@ class MyMapComponent extends Component {
 }
 
 MyMapComponent.propTypes = {
+  match: PropTypes.object.isRequired, // eslint-disable-line
   profile: PropTypes.object.isRequired, // eslint-disable-line
   sortedExperiences: PropTypes.array.isRequired, // eslint-disable-line
   fetchProfessional: PropTypes.func.isRequired,
@@ -207,7 +212,8 @@ MyMapComponent.propTypes = {
   onPanTo: PropTypes.func.isRequired,
   onPanOut: PropTypes.func.isRequired,
   onMapMounted: PropTypes.func.isRequired,
-  updateMapCurrentProfile: PropTypes.func.isRequired
+  updateMapCurrentProfile: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired
 }
 
 export default MyMapComponent

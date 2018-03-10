@@ -23,13 +23,15 @@ const initialState = {
       url: ''
     }
   },
-  experiences: []
+  experiences: [],
+  isMapShown: false
 }
 
 const handlers = {
   // Pattern:
   // [ActionTypes.ACTION_NAME]: actionFunction
-  [ActionTypes.RECIEVE_PROFESSIONAL]: requestProfessional
+  [ActionTypes.RECIEVE_PROFESSIONAL]: requestProfessional,
+  [ActionTypes.UPDATE_MAP_PROFILE]: updateMapShown
 }
 
 export default createReducer(initialState, handlers)
@@ -48,5 +50,15 @@ function requestProfessional(state, data) {
       image: image || { url: portraitImg },
       video: video || { url: '' }
     }
+  }
+}
+
+function updateMapShown(state, data) {
+  const { payload: { id: profileID } } = data
+  const { id } = state
+
+  return {
+    ...state,
+    isMapShown: profileID === id
   }
 }

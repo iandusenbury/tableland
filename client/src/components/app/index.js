@@ -12,6 +12,7 @@ import SearchResults from '../searchResults'
 import OrgPage from '../organization'
 import EditProfile from '../edit'
 import Professional from '../../containers/professional'
+import GMap from '../../containers/map'
 import NotFound from '../notFound'
 
 const App = () => (
@@ -25,6 +26,7 @@ const App = () => (
       <Route exact path="/organization/:id" component={OrgPage} />
       <Route exact path="/profile" component={Professional} />
       <Route exact path="/professional/:id" component={Professional} />
+      <Route exact path="/roadmap/:id" component={GMap} />
       <Route exact path="/edit" component={EditProfile} />
       <Route component={NotFound} />
     </Switch>

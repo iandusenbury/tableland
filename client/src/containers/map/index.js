@@ -13,11 +13,13 @@ const mapStateToProps = state => {
   // Determines current user or other profile's roadmap
   const { currentProfile } = state.app.roadmap
   const { signedIn, id } = state.app.user
-  const profile = state.app.professionalPage
-    // signedIn && currentProfile === id
-    //   ? state.app.user
-    //   : state.app.professionalPage
+  const { loading } = state.app.isLoading
+  const profile =
+    !loading && signedIn && state.routing.location.pathname === '/'
+      ? state.app.user
+      : state.app.professionalPage
 
+  console.log(!loading && signedIn && state.routing.location.pathname === '/')
   const { experiences, media: { image: { url } } } = profile
 
   const refs = {
@@ -53,6 +55,7 @@ const mapStateToProps = state => {
     profileImage: url,
     profile,
     sortedExperiences,
+    ...state.app.isLoading,
     ...state.app.roadmap,
     onPanTo,
     onPanOut,

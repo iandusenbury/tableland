@@ -145,8 +145,5 @@ module Api::V1
         params.require(:program).permit(:name, :description, :url, :visible)
       end
 
-      def admin_params
-        params.require(:admin).permit(:user_id)
-      end
   end
 end

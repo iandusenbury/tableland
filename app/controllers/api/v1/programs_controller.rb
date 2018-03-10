@@ -3,6 +3,10 @@ module Api::V1
     before_action :set_organization, only: :create
     before_action :set_program, only: [:show, :update, :grant_permission, :admins]
     before_action :allow_if_visible, except: [:index, :show]
+    before_action :require_correct_admin, only: [:update, :grant_permission]
+    before_action :validate_update_params, only: :update
+    before_action :check_index_permission, only: :index
+    before_action :check_get_admins_permission, only: :admins
 
     # GET /v1/programs
     def index
@@ -24,11 +28,8 @@ module Api::V1
 
     # PATCH/PUT /v1/programs/{id}
     def update
-      if @program.update(update_program_params)
-        render json: @program, include: '', status: :ok
-      else
-        render json: @program.errors, status: :unprocessable_entity
-      end
+      @program.update!(update_program_params)
+      render json: @program, include: '', status: :ok
     end
 
     # POST /v1/programs/{id}/permissions
@@ -62,6 +63,32 @@ module Api::V1
         @program = Program.find(params[:id])
       end
 
+      # Restrict certain actions to only admins with permission for the specified program
+      def require_correct_admin
+        if current_user.user?
+          raise ExceptionTypes::UnauthorizedError.new("Admin access only")
+        end
+        if current_user.admin?
+          raise ExceptionTypes::UnauthorizedError.new("You do not have permission to modify the program with ID #{@program.id}") unless @program.admins.exists? current_user.id
+        end
+      end
+
+      # Validate the request payload when updating an existing program
+      def validate_update_params
+        validate_url
+        validate_visible
+      end
+
+      # Ensure that only super admins can view all programs
+      def check_index_permission
+        raise ExceptionTypes::UnauthorizedError.new("You do not have permission to view all programs") unless current_user.super_admin?
+      end
+
+      # Ensure that only super admins can view all admins for a specific program
+      def check_get_admins_permission
+        raise ExceptionTypes::UnauthorizedError.new("You do not have permission to view all admins for the specified program") unless current_user.super_admin?
+      end
+
       # Verify that the newly created program is valid and if it is, check to
       # see if it matches an existing program at the same organization that 
       # should be used instead. Otherwise, save the new program and connect
@@ -87,6 +114,27 @@ module Api::V1
                               .first
 
         found_duplicate
+      end
+
+      # Validate that the url attribute in the payload does not contain invalid characters or spaces
+      # This parse method is very lenient and could be made more strict if we want
+      def validate_url
+        url = params[:url] || params[:program][:url]
+        begin
+          URI.parse(url) if url
+        rescue URI::InvalidURIError
+          raise ExceptionTypes::BadRequestError.new("Invalid characters used in URL: #{url}")
+        end
+      end
+
+      # Validate that the visible attribute in the payload is strictly
+      # boolean true or false
+      def validate_visible
+        visible = params[:visible] || params[:program][:visible]
+
+        if visible && visible.to_s != "true" && visible.to_s != "false"
+          raise ExceptionTypes::BadRequestError.new("Invalid format for visible: #{visible}, must be boolean true or false")
+        end
       end
 
       # Permit only the appropriate parameters for the creation of a new program

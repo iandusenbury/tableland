@@ -90,9 +90,9 @@
     grid-template-columns: 1fr 3fr 4fr;
     grid-template-rows: 25% auto;
     grid-template-areas:
-      'name name  name   '
-      'icon about contact' /* What does this line do? */
-      'icon about contact';
+      'name name  '
+      'icon about ' /* What does this line do? */
+      'icon contact';
   }
 }
 
@@ -182,13 +182,15 @@
   .search-table-about p {
     margin-top: 10px;
     margin-bottom: 0;
-    width: 50vw;
+    text-align: center;
+    width: 60vw;
     font-size: 14px;
     white-space: normal;
   }
 }
 
-.search-table-contact li {
+.search-table-contact p {
+  text-align: center;
   list-style-type: none;
   font-size: 14px;
   white-space: normal;

@@ -17,6 +17,10 @@ module ExceptionHandler
     rescue_from ExceptionTypes::BadRequestError do |bad_request_exception|
       render json: { error: bad_request_exception.message }, status: :unprocessable_entity
     end
+
+    rescue_from ActionController::ParameterMissing do |parameter_missing_exception|
+      render json: { error: parameter_missing_exception.message }, status: :bad_request
+    end
   end
 
 end

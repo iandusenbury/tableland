@@ -54,7 +54,7 @@ const Navbar = props => {
         <ToolbarGroup style={styles.toolbarGroupRight}>
           <SearchBarForm />
           {signedIn && (
-            <Link to={'/profile'}>
+            <Link to={`/profile`}>
               <Avatar style={styles.avatar} size={48} src={media.image.url} />
             </Link>
           )}

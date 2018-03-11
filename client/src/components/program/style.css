@@ -1,0 +1,141 @@
+.organizationMainDiv {
+  width: 100%;
+  height: calc(100vh - 56px);
+  background-color: white;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 0% auto;
+  grid-template-areas:
+    'tab   tab '
+    'image text'
+    ;
+}
+
+.organization-video-wrapper {
+  height: 0;
+  position: relative;
+  padding-bottom: 60%;
+}
+
+.organizationVideo {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+
+.organizationImage {
+  grid-area: image;
+  overflow: hidden;
+  height: calc(100vh - 56px);
+  background-color: white;
+}
+
+.organizationText {
+  height: calc(100vh - 56px);
+  background-color: white;
+  grid-area: text;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.organizationName {
+  height: auto;
+  width: auto;
+  margin: 28px 23px 0px;
+  font-size: 36px;
+}
+
+.organizationContact {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 50% 50%;
+  grid-template-areas:
+    'address'
+    'url    '
+    ;
+}
+
+.organizationUrl {
+  height: auto;
+  width: auto;
+  margin: 18px 18px 0px;
+  grid-area: url;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.organizationUrl p {
+  margin: 0px;
+  margin-top: 2px;
+}
+
+.organizationAddress {
+  height: auto;
+  width: auto;
+  margin: 18px 18px 0px;
+  grid-area: address;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.organizationAddress p {
+  margin: 0px;
+}
+
+.organizationDescription {
+  height: auto;
+  width: auto;
+  margin: 18px 21px 0px;
+}
+
+.organizationDescription p {
+  margin-left: 21px;
+}
+
+.organizationDescription div {
+  margin-left: 21px;
+  margin-bottom: 18px;
+}
+
+.organizationDescription div video {
+  margin-left: 0px;
+  margin-top: 0px;
+  width: 33vw !important;
+  height: auto !important;
+  background-size: cover;
+  background-color: gray;
+}
+
+.organizationEmployees {
+  height: auto;
+  width: auto;
+  margin: 2%;
+}
+
+.organizationHeader3 {
+  margin-left: 18px;
+  margin-right: 2%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.organizationImg {
+  object-fit:cover;
+  padding: 0;
+  display: block;
+  margin: 0 auto;
+  height: calc(100vh - 56px);
+  width: 100%;
+}
+
+.organizationTopTab {
+  grid-area: tab;
+}
+
+.organizationTableRow:hover {
+  cursor: pointer;
+}

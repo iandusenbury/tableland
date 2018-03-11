@@ -52,7 +52,6 @@ class Organization extends Component {
 
     return (
       <div className='organizationMainDiv'>
-        <TopTab className='organizationTopTab' />
         <div className='organizationImage'>
           <Card>
             <CardMedia
@@ -155,7 +154,7 @@ function createEmployeeTable(employees) {
       imageUrl = imageUrl.image.url
     else
       imageUrl = null
- 
+
     return (
       <TableRow key={id} className='organizationTableRow' hoverable>
         <TableRowColumn style={orgPage.tableRowColAvatar}>

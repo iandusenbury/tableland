@@ -49,6 +49,19 @@ export function fetchProfessional(userID = 'current') {
   return dispatch => dispatch(callApi(callDescriptor))
 }
 
+export function fetchProgram(progID) {
+  const callDescriptor = {
+    endpoint: `/programs/${progID}`,
+    types: [
+      ActionTypes.REQUEST_PROGRAM,
+      ActionTypes.RECIEVE_PROGRAM,
+      ActionTypes.FAILURE_PROGRAM
+    ]
+  }
+
+  return dispatch => dispatch(callApi(callDescriptor))
+}
+
 export function fetchResults(values) {
   const { searchKey } = values
   // trim leading and trailing spaces, replace spaces with '+' sign

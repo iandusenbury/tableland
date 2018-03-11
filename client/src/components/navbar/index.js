@@ -7,7 +7,8 @@ import {
   FlatButton,
   Divider,
   Toolbar,
-  ToolbarGroup
+  ToolbarGroup,
+  Avatar
 } from 'material-ui'
 import PropTypes from 'prop-types'
 import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/menu'
@@ -28,7 +29,15 @@ import Dialog from '../../containers/dialog'
    "About"
 */
 const Navbar = props => {
-  const { authorizeUser, fetchUser, logoutUser, dialogIsOpen } = props
+  const {
+    authorizeUser,
+    fetchUser,
+    logoutUser,
+    dialogIsOpen,
+    fetchMapProfessional,
+    media,
+    signedIn
+  } = props
 
   return (
     <header>
@@ -36,13 +45,17 @@ const Navbar = props => {
       <Toolbar style={styles.toolbar}>
         <ToolbarGroup style={styles.toolbarGroupLeft}>
           <FlatButton
+            onClick={() => fetchMapProfessional('random')}
             style={styles.toolbarGroupLeft.flatButton}
-            containerElement={<Link to={mesaMenuButton.path} />}
+            // containerElement={<Link to={mesaMenuButton.path} />}
             label={mesaMenuButton.label}
           />
         </ToolbarGroup>
         <ToolbarGroup style={styles.toolbarGroupRight}>
           <SearchBarForm />
+          {signedIn && (
+            <Avatar style={styles.avatar} size={48} src={media.image.url} />
+          )}
           <IconMenu
             iconButtonElement={
               <IconButton touch>
@@ -96,7 +109,10 @@ Navbar.propTypes = {
   authorizeUser: PropTypes.func.isRequired,
   fetchUser: PropTypes.func.isRequired,
   logoutUser: PropTypes.func.isRequired,
-  dialogIsOpen: PropTypes.bool.isRequired
+  dialogIsOpen: PropTypes.bool.isRequired,
+  fetchMapProfessional: PropTypes.func.isRequired,
+  media: PropTypes.object, // eslint-disable-line
+  signedIn: PropTypes.bool.isRequired
 }
 
 export default muiThemeable()(Navbar)

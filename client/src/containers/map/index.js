@@ -1,20 +1,13 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { toggleMarker, fetchProfessional } from '../../actions'
+import { toggleMarker } from '../../actions/gmap'
+import { fetchProfessional } from '../../actions'
 import { buildBounds } from '../../components/map/build'
 
 import Map from '../../components/map'
 
 const mapStateToProps = state => {
-  // Determines current user or other profile's roadmap
-  const { signedIn } = state.app.user
-  const { loading } = state.app.isLoading
-  const profile =
-    !loading && signedIn && state.routing.location.pathname === '/'
-      ? state.app.user
-      : state.app.professionalPage
-
-  const { experiences, media: { image: { url } } } = profile
+  const { experiences } = state.app.professionalPage
 
   const refs = {
     map: undefined
@@ -46,14 +39,14 @@ const mapStateToProps = state => {
   }
 
   return {
-    profileImage: url,
-    profile,
+    ...state.app.professionalPage,
     sortedExperiences,
     ...state.app.isLoading,
     ...state.app.roadmap,
     onPanTo,
     onPanOut,
-    onMapMounted
+    onMapMounted,
+    path: state.routing.location.pathname
   }
 }
 

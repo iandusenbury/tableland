@@ -21,12 +21,10 @@ const firstMarkerImg = require('../../assets/icons/first.png')
 const currentMarkerImg = require('../../assets/icons/current.png')
 
 class MyMapComponent extends Component {
-  componentDidMount() {
+  componentWillMount() {
     const { fetchProfessional, match } = this.props
     if (match) {
       fetchProfessional(match.params.id)
-    } else {
-      fetchProfessional('random') // Fetch random user
     }
   }
 
@@ -35,8 +33,11 @@ class MyMapComponent extends Component {
     if (loading) return <Loading />
 
     const {
-      profile: { id, firstName, lastName, mainTitle },
-      profileImage,
+      id,
+      firstName,
+      lastName,
+      mainTitle,
+      media: { image },
       sortedExperiences,
       currentMarker,
       isMarkerOpen,
@@ -176,7 +177,7 @@ class MyMapComponent extends Component {
             <Avatar
               style={styleJS.styles.avatar}
               size={styleJS.avatarSize}
-              src={profileImage}
+              src={image.url}
             />
           </div>
           <div className="mapProfilePreviewInfo">
@@ -195,11 +196,14 @@ class MyMapComponent extends Component {
 }
 
 MyMapComponent.propTypes = {
+  id: PropTypes.number.isRequired,
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
+  mainTitle: PropTypes.string.isRequired,
   match: PropTypes.object, // eslint-disable-line
-  profile: PropTypes.object.isRequired, // eslint-disable-line
+  media: PropTypes.object.isRequired, // eslint-disable-line
   sortedExperiences: PropTypes.array.isRequired, // eslint-disable-line
   fetchProfessional: PropTypes.func.isRequired,
-  profileImage: PropTypes.string.isRequired,
   currentMarker: PropTypes.number.isRequired,
   isMarkerOpen: PropTypes.array.isRequired, // eslint-disable-line
   toggleMarker: PropTypes.func.isRequired,

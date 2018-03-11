@@ -3,6 +3,7 @@ import { push } from 'react-router-redux'
 import ActionTypes from '../constants/actionTypes'
 import callApi from '../utils/api'
 import { authorizeOAuth } from './oauth'
+import { initMap, initUserMap } from './gmap'
 
 // fetch User
 export function fetchUser() {
@@ -15,7 +16,8 @@ export function fetchUser() {
     ]
   }
 
-  return dispatch => dispatch(callApi(callDescriptor, { onSuccess: initMap }))
+  return dispatch =>
+    dispatch(callApi(callDescriptor, { onSuccess: initUserMap }))
 }
 
 // Fetch Organization
@@ -65,42 +67,6 @@ export function fetchResults(values) {
 
 function loadResultsPage(response, dispatch) {
   return dispatch(push('/results'))
-}
-
-function initMap(response, dispatch) {
-  const { payload: { user: { experiences } } } = response
-  const isMarkerOpen = []
-  const sortedExperiences = experiences.sort(
-    (a, b) => Date.parse(a.startDate) - Date.parse(b.startDate)
-  )
-
-  sortedExperiences.forEach(experience => {
-    if (experience.organization) {
-      if (experience.current) {
-        isMarkerOpen.push(true)
-      } else {
-        isMarkerOpen.push(false)
-      }
-    }
-  })
-
-  const initMarkers = markerArray => ({
-    type: ActionTypes.INIT_MAP_INFO,
-    payload: {
-      isMarkerOpen: markerArray
-    }
-  })
-
-  return dispatch(initMarkers(isMarkerOpen))
-}
-
-export function toggleMarker(index) {
-  return {
-    type: ActionTypes.UPDATE_OPEN_MARKERS,
-    payload: {
-      index
-    }
-  }
 }
 
 export function adminChangeTableTo(index) {

@@ -51,8 +51,10 @@ export function fetchProfessional(userID = 'current') {
 
 export function fetchResults(values) {
   const { searchKey } = values
+  // trim leading and trailing spaces, replace spaces with '+' sign
+  const term = searchKey.trim().replace(/ /g, '+')
   const callDescriptor = {
-    endpoint: `/search?key=${searchKey}`,
+    endpoint: `/search?term=${term}`,
     types: [
       ActionTypes.REQUEST_SEARCH,
       ActionTypes.RECIEVE_SEARCH,

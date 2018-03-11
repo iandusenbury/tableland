@@ -1,13 +1,14 @@
 module Api::V1
   class UsersController < ApiBaseController
     before_action :set_user, only: [:show, :update, :destroy]
-    before_action :validate_permission, only: [:index, :permissions]
+    before_action :validate_index, only: :index
+    before_action :validate_permissions, only: :permissions
     before_action :validate_destroy, if: -> { @user.id != current_user.id }, only: :destroy
 
     # GET /v1/users
     def index
       @users = index_query || User.all
-      render json: @users, include: 'media', status: :ok
+      render json: @users, include: '', status: :ok
     end
 
     # GET /v1/users/current/permissions
@@ -62,11 +63,17 @@ module Api::V1
         @user = User.find(params[:id])
       end
 
-      # For certain actions, assert admin access only
-      def validate_permission
+      # For the index action, assert super_admin access only
+      def validate_index
+        raise ExceptionTypes::UnauthorizedError.new("You do not have permission to view all users") unless current_user.super_admin?
+      end
+
+      # For the permissions action, assert admin access only
+      def validate_permissions
         raise ExceptionTypes::UnauthorizedError.new("Admin access only") if current_user.user?
       end
 
+      # For the destroy acton, only allow super admins to delete a user other than themselves.
       def validate_destroy
         raise ExceptionTypes::UnauthorizedError.new("You do not have permission to delete the user with ID #{@user.id}") unless current_user.super_admin?
       end
@@ -93,44 +100,36 @@ module Api::V1
         params_filter = nil
 
         if @user.id != current_user.id
-          params_filter = validate_mismatch
+          params_filter = validate_id_mismatch
         else
-          params_filter = validate_match
+          params_filter = validate_id_match
         end
 
         params_filter ||= :user_params
       end
 
       # If the update is for a user that does not match the current user,
-      # determine if permission should be granted for the update and for
-      # which params.
-      def validate_mismatch
-        if current_user.user?
-          raise ExceptionTypes::UnauthorizedError.new("You do not have permission to modify the attributes of the user with ID #{@user.id}")
-        end
-        if current_user.admin?
-          raise ExceptionTypes::UnauthorizedError.new("Your admin account is blocked") unless current_user.visible?
-          validate_role([:user, :admin])
-          return :admin_elevate_params
-        end
+      # determine if permission should be granted for the update
+      def validate_id_mismatch
         if current_user.super_admin?
           validate_role([:user, :admin, :super_admin])
           validate_visible
           return :super_admin_params
+        else
+          raise ExceptionTypes::UnauthorizedError.new("You do not have permission to modify the attributes of the user with ID #{@user.id}")
         end
       end
 
       # If the update is for a user that does match the current user,
       # determine which params should be permitted.
-      def validate_match
+      def validate_id_match
         if current_user.admin?
           validate_role([:user, :admin])
           return :admin_params
         end
         if current_user.super_admin?
-          validate_role([:user, :admin, :super_admin])
           validate_visible
-          return :super_admin_params
+          return :super_admin_self_params
         end
       end
 
@@ -154,7 +153,7 @@ module Api::V1
         if visible && visible.to_s != "true" && visible.to_s != "false"
           raise ExceptionTypes::BadRequestError.new("Invalid format for visible: #{visible}, must be boolean true or false")
         end
-        
+
         visible
       end
 
@@ -168,12 +167,12 @@ module Api::V1
         params.require(:user).permit(:first_name, :last_name, :description, :role)
       end
 
-      # Permit the appropriate attributes when an admin is updating a user other than themselves
-      def admin_elevate_params
-        params.require(:user).permit(:role)
+      # Permit the appropriate attributes when a super_admin is updating themselves
+      def super_admin_self_params
+        params.require(:user).permit(:first_name, :last_name, :description, :visible)
       end
 
-      # Permit the appropriate attributes when a super_admin is updating themselves or others
+      # Permit the appropriate attributes when a super_admin is updating others
       def super_admin_params
         params.require(:user).permit(:first_name, :last_name, :description, :role, :visible)
       end

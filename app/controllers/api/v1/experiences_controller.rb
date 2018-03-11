@@ -118,7 +118,7 @@ module Api::V1
       def validate_current
         current = params[:current] || params[:experience][:current]
 
-        if current && current != true && current != false
+        if current && current.to_s != "true" && current.to_s != "false"
           raise ExceptionTypes::BadRequestError.new("Invalid format for current: #{current}, must be boolean true or false")
         end
       end

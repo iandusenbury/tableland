@@ -28,11 +28,8 @@ module Api::V1
 
     # PATCH/PUT /v1/{mediable}/{mediable_id}/media/{id}
     def update
-      if @medium.update(medium_params)
-        render json: @medium, include: '', status: :ok
-      else
-        render json: @medium.errors, status: :unprocessable_entity
-      end
+      @medium.update!(medium_params)
+      render json: @medium, include: '', status: :ok
     end
 
     # DELETE /v1/{mediable}/{mediable_id}/media/{id}

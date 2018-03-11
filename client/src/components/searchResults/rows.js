@@ -28,7 +28,7 @@ const tableRow = profile => {
           </FlatButton>
         </div>
         <div className="search-table-about">{info}</div>
-        <ul className="search-table-contact">Contact: {contact}</ul>
+        <ul className="search-table-contact">{contact}</ul>
       </TableRowColumn>
     </TableRow>
   )
@@ -128,10 +128,7 @@ export const renderUser = user => {
     </h2>
   )
   const info = (
-    <ul>
-      <li>{mainTitle}</li>
-      <li>Working at: {mainLocation}</li>
-    </ul>
+      <p>{mainTitle} working at {mainLocation}</p>
   )
   const contact = <a href={contactUrl}>{contactUrl}</a>
   const rowInfo = {

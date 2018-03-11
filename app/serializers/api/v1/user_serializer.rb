@@ -13,6 +13,8 @@ module Api::V1
                 :visible,
                 :link
 
+    attribute   :email, if: :super_admin?
+
     # Methods for custom attributes
     def type
       object.class.name
@@ -27,6 +29,9 @@ module Api::V1
     end
     def link
       view_context.v1_user_url(object)
+    end
+    def super_admin?
+      view_context.current_user && view_context.current_user.super_admin?
     end
 
     # Available associations

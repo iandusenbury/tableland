@@ -4,5 +4,5 @@ class Sponsor < ApplicationRecord
   belongs_to :program
 
   # Validations
-  validates :organization_id, :program_id, presence: true
+  validates :organization_id, :program_id, presence: { message: "%{attribute} must be present" }
 end

@@ -16,7 +16,7 @@ import {
 import AddAdminDialog from '../../containers/admin/dialogs/addAdminDialog'
 import './style.css'
 
-export default class OrganizationList extends Component {
+export default class ProgramList extends Component {
   constructor(props) {
     super(props)
 
@@ -25,27 +25,23 @@ export default class OrganizationList extends Component {
   }
 
   renderRows() {
-    const {
-      organizations,
-      toggleOrganizationVisibility,
-      openDialog
-    } = this.props
+    const { programs, toggleProgramVisibility, openDialog } = this.props
 
-    return organizations.map(organization => {
-      const { id, name, visible } = organization
+    return programs.map(program => {
+      const { id, name, visible } = program
 
       const blockedCheckbox = (
         <Checkbox
           checked={!visible}
-          onCheck={() => toggleOrganizationVisibility(id, visible)}
+          onCheck={() => toggleProgramVisibility(id, visible)}
         />
       )
 
-      const editOrganizationButton = (
+      const editProgramButton = (
         <RaisedButton
           backgroundColor="#8195b1"
           label="Edit"
-          containerElement={<Link to={`/organization/edit/${id}`} />}
+          containerElement={<Link to={`/program/edit/${id}`} />}
         />
       )
       const addAdminButton = (
@@ -55,7 +51,7 @@ export default class OrganizationList extends Component {
           onClick={() =>
             openDialog(2, {
               message: `Add Admin to ${name}`,
-              type: 'organizations',
+              type: 'programs',
               typeId: id
             })
           }
@@ -66,7 +62,7 @@ export default class OrganizationList extends Component {
         <TableRow key={id}>
           <TableRowColumn>{name}</TableRowColumn>
           <TableRowColumn>{blockedCheckbox}</TableRowColumn>
-          <TableRowColumn>{editOrganizationButton}</TableRowColumn>
+          <TableRowColumn>{editProgramButton}</TableRowColumn>
           <TableRowColumn>{addAdminButton}</TableRowColumn>
         </TableRow>
       )
@@ -105,8 +101,8 @@ export default class OrganizationList extends Component {
   }
 }
 
-OrganizationList.propTypes = {
-  toggleOrganizationVisibility: PropTypes.func.isRequired,
+ProgramList.propTypes = {
+  toggleProgramVisibility: PropTypes.func.isRequired,
   openDialog: PropTypes.func.isRequired,
-  organizations: PropTypes.array.isRequired // eslint-disable-line
+  programs: PropTypes.array.isRequired // eslint-disable-line
 }

@@ -5,19 +5,19 @@ import ActionTypes from '../../constants/actionTypes'
 const initialState = {
   users: [],
   organizations: [],
-  userPermissions: {
-    organizations: []
-  }
+  programs: []
 }
 
 const handlers = {
   // Pattern:
   // [ActionTypes.ACTION_NAME]: actionFunction
   [ActionTypes.RECIEVE_ALL_USERS]: getUsers,
-  [ActionTypes.RECIEVE_ALL_ORGANIZATIONS]: getOrganizations,
-  [ActionTypes.SUCCESS_PATCH_SUPER_ADMIN]: updateUser,
-  [ActionTypes.SUCCESS_PATCH_USER_VISIBILITY]: updateUser,
-  [ActionTypes.SUCCESS_ORGANIZATION_ADD_ADMIN]: updateUser,
+  [ActionTypes.SUCCESS_PUT_SUPER_ADMIN]: updateUser,
+  [ActionTypes.SUCCESS_PUT_USER_VISIBILITY]: updateUser,
+  [ActionTypes.SUCCESS_PUT_ORGANIZATION_VISIBILITY]: updateOrganization,
+  [ActionTypes.SUCCESS_PUT_PROGRAM_VISIBILITY]: updateProgram,
+  [ActionTypes.SUCCESS_ADD_ADMIN]: updateUser,
+  [ActionTypes.SUCCESS_REVOKE_USER_ADMIN]: updateUser,
   [ActionTypes.RECIEVE_USER_PERMISSIONS]: getUserPermissions
 }
 
@@ -32,12 +32,13 @@ function getUsers(state, { payload }) {
   }
 }
 
-function getOrganizations(state, { payload }) {
-  const { organizations } = payload
+function getUserPermissions(state, { payload }) {
+  const { permissions: { organizations, programs } } = payload
 
   return {
     ...state,
-    organizations
+    organizations,
+    programs
   }
 }
 
@@ -53,13 +54,26 @@ function updateUser(state, { payload }) {
   }
 }
 
-function getUserPermissions(state, { payload }) {
-  const { permissions: { organizations } } = payload
+function updateOrganization(state, { payload }) {
+  const { organizations } = state
+  const { organization } = payload
+  const index = findIndex(propEq('id', organization.id))(organizations)
+  const updatedOrganizations = update(index, organization, organizations)
 
   return {
     ...state,
-    userPermissions: {
-      organizations
-    }
+    organizations: [...updatedOrganizations]
+  }
+}
+
+function updateProgram(state, { payload }) {
+  const { programs } = state
+  const { program } = payload
+  const index = findIndex(propEq('id', program.id))(programs)
+  const updatedPrograms = update(index, program, programs)
+
+  return {
+    ...state,
+    programs: [...updatedPrograms]
   }
 }

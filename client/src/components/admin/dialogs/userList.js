@@ -28,7 +28,7 @@ export default class UserTable extends Component {
   }
 
   renderUserRows() {
-    const { users, organizationId, addOrganizationAdmin } = this.props
+    const { users, typeId, type, addAdmin } = this.props
 
     return users.map(user => {
       const { id, firstName, email, lastName, role } = user
@@ -37,7 +37,7 @@ export default class UserTable extends Component {
         <RaisedButton
           backgroundColor="#8195b1"
           label="Add"
-          onClick={() => addOrganizationAdmin(id, organizationId)}
+          onClick={() => addAdmin(id, type, typeId)}
           disabled={role === 'super_admin'}
         />
       )
@@ -92,6 +92,7 @@ export default class UserTable extends Component {
 
 UserTable.propTypes = {
   users: PropTypes.array.isRequired, // eslint-disable-line
-  organizationId: PropTypes.number.isRequired,
-  addOrganizationAdmin: PropTypes.func.isRequired
+  typeId: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
+  addAdmin: PropTypes.func.isRequired
 }

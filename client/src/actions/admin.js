@@ -15,13 +15,13 @@ export function fetchAllUsers() {
   return dispatch => dispatch(callApi(callDescriptor))
 }
 
-export function fetchAllOrganizations() {
+export function fetchUserPermissions() {
   const callDescriptor = {
-    endpoint: `/organizations`,
+    endpoint: `/users/current/permissions`,
     types: [
-      ActionTypes.REQUEST_ALL_ORGANIZATIONS,
-      ActionTypes.RECIEVE_ALL_ORGANIZATIONS,
-      ActionTypes.FAILURE_ALL_ORGANIZATIONS
+      ActionTypes.REQUEST_USER_PERMISSIONS,
+      ActionTypes.RECIEVE_USER_PERMISSIONS,
+      ActionTypes.FAILURE_USER_PERMISSIONS
     ]
   }
 
@@ -34,9 +34,39 @@ export function toggleUserVisibility(id, visible) {
     endpoint: `/users/${id}`,
     method: 'PUT',
     types: [
-      ActionTypes.REQUEST_PATCH_USER_VISIBILITY,
-      ActionTypes.SUCCESS_PATCH_USER_VISIBILITY,
-      ActionTypes.FAILURE_PATCH_USER_VISIBILITY
+      ActionTypes.REQUEST_PUT_USER_VISIBILITY,
+      ActionTypes.SUCCESS_PUT_USER_VISIBILITY,
+      ActionTypes.FAILURE_PUT_USER_VISIBILITY
+    ]
+  }
+
+  return dispatch => dispatch(callApi(callDescriptor))
+}
+
+export function toggleOrganizationVisibility(id, visible) {
+  const callDescriptor = {
+    body: { visible: !visible },
+    endpoint: `/organizations/${id}`,
+    method: 'PUT',
+    types: [
+      ActionTypes.REQUEST_PUT_ORGANIZATION_VISIBILITY,
+      ActionTypes.SUCCESS_PUT_ORGANIZATION_VISIBILITY,
+      ActionTypes.FAILURE_PUT_ORGANIZATION_VISIBILITY
+    ]
+  }
+
+  return dispatch => dispatch(callApi(callDescriptor))
+}
+
+export function toggleProgramVisibility(id, visible) {
+  const callDescriptor = {
+    body: { visible: !visible },
+    endpoint: `/programs/${id}`,
+    method: 'PUT',
+    types: [
+      ActionTypes.REQUEST_PUT_PROGRAM_VISIBILITY,
+      ActionTypes.SUCCESS_PUT_PROGRAM_VISIBILITY,
+      ActionTypes.FAILURE_PUT_PROGRAM_VISIBILITY
     ]
   }
 
@@ -50,24 +80,24 @@ export function toggleUserSuperAdmin(id, role) {
     endpoint: `/users/${id}`,
     method: 'PUT',
     types: [
-      ActionTypes.REQUEST_PATCH_SUPER_ADMIN,
-      ActionTypes.SUCCESS_PATCH_SUPER_ADMIN,
-      ActionTypes.FAILURE_PATCH_SUPER_ADMIN
+      ActionTypes.REQUEST_PUT_SUPER_ADMIN,
+      ActionTypes.SUCCESS_PUT_SUPER_ADMIN,
+      ActionTypes.FAILURE_PUT_SUPER_ADMIN
     ]
   }
 
   return dispatch => dispatch(callApi(callDescriptor))
 }
 
-export function addOrganizationAdmin(id, organizationId) {
+export function addAdmin(id, type, typeId) {
   const callDescriptor = {
-    body: { admin: { user_id: id } },
-    endpoint: `/organizations/${organizationId}/permissions`,
+    body: { userId: id },
+    endpoint: `/${type}/${typeId}/permissions`,
     method: 'POST',
     types: [
-      ActionTypes.REQUEST_ORGANIZATION_ADD_ADMIN,
-      ActionTypes.SUCCESS_ORGANIZATION_ADD_ADMIN,
-      ActionTypes.FAILURE_ORGANIZATION_ADD_ADMIN
+      ActionTypes.REQUEST_ADD_ADMIN,
+      ActionTypes.SUCCESS_ADD_ADMIN,
+      ActionTypes.FAILURE_ADD_ADMIN
     ]
   }
 
@@ -77,7 +107,6 @@ export function addOrganizationAdmin(id, organizationId) {
   return dispatch => dispatch(callApi(callDescriptor, { onSuccess }))
 }
 
-// TODO: change 'current' to 'id' when proper endpoint exists
 export function fetchUserAdminPermissions(id) { // eslint-disable-line
   const callDescriptor = {
     endpoint: `/users/current/permissions`,
@@ -91,16 +120,20 @@ export function fetchUserAdminPermissions(id) { // eslint-disable-line
   return dispatch => dispatch(callApi(callDescriptor))
 }
 
-// TODO: make post
-export function revokeOrganizationAdmin(id) {
+export function revokeAdmin(id) {
   const callDescriptor = {
-    endpoint: `/users/${id}/permissions`,
+    body: { role: 'user' },
+    endpoint: `/users/${id}`,
+    method: 'PUT',
     types: [
-      ActionTypes.REQUEST_USER_PERMISSIONS,
-      ActionTypes.RECIEVE_USER_PERMISSIONS,
-      ActionTypes.FAILURE_USER_PERMISSIONS
+      ActionTypes.REQUEST_REVOKE_USER_ADMIN,
+      ActionTypes.SUCCESS_REVOKE_USER_ADMIN,
+      ActionTypes.FAILURE_REVOKE_USER_ADMIN
     ]
   }
 
-  return dispatch => dispatch(callApi(callDescriptor))
+  const onSuccess = (response, dispatch) =>
+    dispatch(openDialog(1, { message: 'Success' }))
+
+  return dispatch => dispatch(callApi(callDescriptor, { onSuccess }))
 }

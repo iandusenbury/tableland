@@ -1,14 +1,41 @@
 .about-main-div {
-  width: 90%;
+  width: 100%;
   height: calc(100vh - 56px - 2%);
   background-color: white;
+}
+
+.about-inner-div {
+  width: 95vw;
   padding: 5%;
+  margin: 0 auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .about-header-one {
+  text-align:center;
+}
+
+.about-header-three {
+  text-align:center;
+}
+
+.about-mesa-button-wrapper {
+  margin: 0 auto;
+  max-width: 500px;
 }
 
 .about-text {
+  text-align:center;
+}
+
+.about-mission {
+  text-align: center;
+}
+
+.about-mesa-logo {
+  max-height: 150px;
+  max-width: auto;
 }
 
 .about-github-icon {

@@ -1,34 +1,44 @@
 import React from 'react'
+import { RaisedButton, Paper } from 'material-ui'
+
 import './style.css'
 
 const githubIcon = require('../../assets/icons/GitHub-Mark-32px.png')
+const MESAIcon = require('../../assets/images/MESA_logo.svg')
 
 export default () => (
-  <div className="about-main-div">
-    <h1 className="about-header-one">About MESA</h1>
-    <p className="about-text">
-      <b>M</b>athematics<br />
-      <b>E</b>ngineering<br />
-      <b>S</b>cience<br />
-      <b>A</b>chievement<br />
-    </p>
+  <div className='about-main-div'>
+    <Paper className='about-inner-div' zDepth={2}>
+      <h1 className='about-header-one'>About MESA</h1>
 
-    <p className="about-text">
-      [[Something from the MESA About page here??]]
-    </p>
+      <h3 className='about-header-three'>Mission</h3>
+      <p className='about-mission'>
+        To provide students underrepresented in the fields of mathematics, engineering, science, and technology with the skills, knowledge, and opportunities to develop their talents, explore technology-based careers, enter college, and compete successfully in the workforce.
+      </p>
 
-    <p className="about-text">
-      <a href='http://oregonmesa.org/'>MESA Homepage</a>
-    </p>
+      <div className="about-mesa-button-wrapper">
+        <RaisedButton backgroundColor='#ff9e15' label='Learn more about MESA' fullWidth={true} />
+      </div>
+      
+    </Paper>
+    <Paper className='about-inner-div'>
+      <h2 className='about-header-one'>About This App</h2>
+      <p className='about-text'>
+        MESA Roadmaps lets users plot out their career, including education and work experiences, as well as clubs, activities, and other programs they were involved in at these institutions. The user's career is then laid out on a Google Maps interface. The app is designed for students interested in STEM to see just how professionals in the field got to where they are and to see all the different routes that lead to success.
+      </p>
 
-    <h2 className="about-header-one">About This App</h2>
-    <p className="about-text">
-      MESA Roadmaps lets users plot out their career and view their career history on a Google Maps interface. The app is designed for students interested in STEM to see just how professionals in the field got to where they are. 
-    </p>
+    </Paper>
+    <Paper className='about-inner-div'>
+      <h2 className='about-header-one'>About Us</h2>
 
-    <h2 className="about-header-one">About Us</h2>
-    <p className="about-text">
-      View us on Github <a href="https://github.com/iandusenbury/tableland"><img className="about-github-icon" src={githubIcon} alt="" /></a>
-    </p>
+    </Paper>
+    <Paper className='about-inner-div'>
+      <p className='about-text'>
+        <a href='https://oregonmesa.org'><img className='about-mesa-logo' src={MESAIcon} alt='' /></a>
+      </p>
+      <p className='about-text'>
+        View us on Github <a href='https://github.com/iandusenbury/tableland'><img className='about-github-icon' src={githubIcon} alt='' /></a>
+      </p>
+    </Paper>
   </div>
 )

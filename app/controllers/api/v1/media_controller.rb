@@ -2,6 +2,7 @@ module Api::V1
   class MediaController < ApiBaseController
     before_action :set_mediable, only: [:create, :update, :destroy]
     before_action :set_medium, only: [:update, :destroy]
+    before_action :check_size_limit, only: :create
 
     # Unreachable
     # GET /media
@@ -20,15 +21,9 @@ module Api::V1
 
     # POST /v1/{mediable}/{mediable_id}/media
     def create
-      # Check for existence of mediable here or in the set method?
       @medium = @mediable.media.new(medium_params)
-      # @medium = Medium.new(medium_params)
-
-      if @mediable.save
-        render json: @medium, include: '', status: :created
-      else
-        render json: @mediable.errors, status: :unprocessable_entity
-      end
+      @medium.save!
+      render json: @medium, include: '', status: :created
     end
 
     # PATCH/PUT /v1/{mediable}/{mediable_id}/media/{id}
@@ -46,25 +41,41 @@ module Api::V1
     end
 
     private
+      # Determine which type of parent resource was specified in the path to modifying
+      # their media collection and check that the current_user has permission to do so
       def set_mediable
         @mediable = nil
         if params[:user_id]
           @mediable = User.find(params[:user_id])
+          restrict_action(@mediable) unless @mediable.id == current_user.id
         elsif params[:organization_id]
           @mediable = Organization.find(params[:organization_id])
+          restrict_action(@mediable) unless current_user.super_admin? || current_user.admin? && @mediable.admins.exists?(current_user.id)
         elsif params[:program_id]
           @mediable = Program.find(params[:program_id])
+          restrict_action(@mediable) unless current_user.super_admin? || current_user.admin? && @mediable.admins.exists?(current_user.id)
         end
       end
 
-      # Use callbacks to share common setup or constraints between actions.
       def set_medium
         @medium = @mediable.media.find(params[:id]) if @mediable
       end
 
-      # Never trust parameters from the scary internet, only allow the white list through.
+      # Prevent more than two media items for any parent resource
+      def check_size_limit
+        if @mediable && @mediable.media.size >= 2
+          raise ExceptionTypes::BadRequestError.new("You have already reached the limit of 2 media items, please delete one before attempting to create another.")
+        end
+      end
+
+      # Raise an exception if the current_user failed the permissions check
+      def restrict_action(parent_resource)
+        raise ExceptionTypes::UnauthorizedError.new("You do not have permission to modify the media for the #{parent_resource.class.name} with ID #{parent_resource.id}")
+      end
+
+      # Permit only the appropriate attributes when creating and updating media
       def medium_params
-        params.require(:medium).permit(:mediable_id, :mediable_type, :category, :description, :url)
+        params.require(:medium).permit(:category, :url)
       end
   end
 end

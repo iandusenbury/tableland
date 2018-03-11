@@ -4,40 +4,25 @@ import { TableRow, TableRowColumn, FlatButton } from 'material-ui'
 import PropTypes from 'prop-types'
 import '../../components/searchResults/style.css'
 
-const getButton = (type, id, fetchMapProfessional) => {
+const getUrl = type => {
   if (type === 'User') {
-    return (
-      <FlatButton
-        onClick={() => fetchMapProfessional(id)}
-        className="search-table-flatbutton"
-        hoverColor="#e7e0d7">
-        View Roadmap
-      </FlatButton>
-    )
+    return 'roadmap'
   }
   if (type === 'Organization') {
-    return (
-      <FlatButton
-        containerElement={<Link to={`/organization/${id}`} />}
-        className="search-table-flatbutton"
-        hoverColor="#e7e0d7">
-        View Profile
-      </FlatButton>
-    )
+    return 'organization'
+  }
+  if (type === 'Program') {
+    return 'program'
   }
   return null
 }
 
 const SearchResultRow = props => {
-  const {
-    type,
-    id,
-    profileName,
-    avatar,
-    info,
-    contact,
-    fetchMapProfessional
-  } = props
+  const { type, id, profileName, avatar, info, contact } = props
+
+  const profileType = getUrl(type)
+  const buttonText = profileType === 'roadmap' ? 'View Roadmap' : 'View Profile'
+
   return (
     <TableRow className="search-table-row-stripe">
       <TableRowColumn className="search-table-cell">
@@ -46,7 +31,12 @@ const SearchResultRow = props => {
         </div>
         <div className="search-table-icon search-table-border">
           <div className="search-table-avatar">{avatar}</div>
-          {getButton(type, id, fetchMapProfessional)}
+          <FlatButton
+            containerElement={<Link to={`/${profileType}/${id}`} />}
+            className="search-table-flatbutton"
+            hoverColor="#e7e0d7">
+            {buttonText}
+          </FlatButton>
         </div>
         <div className="search-table-about">{info}</div>
         <ul className="search-table-contact">Contact: {contact}</ul>
@@ -61,8 +51,7 @@ SearchResultRow.propTypes = {
   profileName: PropTypes.element.isRequired,
   avatar: PropTypes.element.isRequired,
   info: PropTypes.element.isRequired,
-  contact: PropTypes.element.isRequired,
-  fetchMapProfessional: PropTypes.func.isRequired
+  contact: PropTypes.element.isRequired
 }
 
 export default SearchResultRow

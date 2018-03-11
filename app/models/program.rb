@@ -24,8 +24,9 @@ class Program < ApplicationRecord
   has_many :admins, -> { distinct }, through: :permissions, source: :user
 
   # Validations
-  validates :name, presence: true
-  validates :visible, inclusion: { in: [true, false] }
+  validates :name,    presence:   { message: "%{attribute} must be present" }
+  validates :name,    length:     { maximum: 100, message: "%{attribute} must not be longer than %{count} characters" }
+  validates :visible, inclusion:  { in: [true, false] }
 
   private
     def set_default_attributes

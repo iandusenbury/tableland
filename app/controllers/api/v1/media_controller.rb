@@ -3,6 +3,7 @@ module Api::V1
     before_action :set_mediable, only: [:create, :update, :destroy]
     before_action :set_medium, only: [:update, :destroy]
     before_action :check_size_limit, only: :create
+    before_action :validate_medium_url, only: [:create, :update]
 
     # Unreachable
     # GET /media
@@ -63,6 +64,35 @@ module Api::V1
         if @mediable && @mediable.media.size >= 2
           raise ExceptionTypes::BadRequestError.new("You have already reached the limit of 2 media items, please delete one before attempting to create another.")
         end
+      end
+
+      # Enforce that a new video link is from YouTube or that a new image
+      # link is from the LinkedIn API
+      def validate_medium_url
+        category = nil
+        if @medium
+          category = params[:category] || params[:medium][:category] || @medium.category
+        else
+          category = params[:category] || params[:medium][:category]
+        end
+        
+        url = params[:url] || params[:medium][:url]
+
+        if url && category
+          begin
+            url = URI.parse(url)
+            if category == "video"
+              raise ExceptionTypes::BadRequestError.new("Video link must be from https://www.youtube.com") unless url.host == "www.youtube.com"
+              raise ExceptionTypes::BadRequestError.new("Video link must support https scheme") unless url.scheme == "https"
+            elsif category == "image"
+              raise ExceptionTypes::BadRequestError.new("Image link must be from https://media.licdn.com") unless url.host == "media.licdn.com"
+              raise ExceptionTypes::BadRequestError.new("Image link must support https scheme") unless url.scheme == "https"
+            end
+          rescue URI::InvalidURIError
+            raise ExceptionTypes::BadRequestError.new("Invalid characters used in URL: #{url}")
+          end
+        end
+
       end
 
       # Raise an exception if the current_user failed the permissions check

@@ -4,7 +4,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add'
 import { style } from './styles'
 
 export const AddButton = props => {
-  const { label } = props
+  const { label, onClick } = props
 
   return (
     <RaisedButton
@@ -15,6 +15,7 @@ export const AddButton = props => {
       style={style.addButton}
       buttonStyle={style.buttonStyle}
       type="submit"
+      onClick={onClick}
     />
   )
 }

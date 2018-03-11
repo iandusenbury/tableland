@@ -7,8 +7,13 @@ import { style } from '../../widgets/styles'
 import Avatar from 'material-ui/Avatar'
 import Person from 'material-ui/svg-icons/social/person'
 import {RaisedButton} from "material-ui";
+import Experiences from './Experiences'
 
 export async function showResults(values) {
+    console.log(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
+}
+
+export async function printResults(values) {
     console.log(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
 }
 
@@ -54,10 +59,10 @@ class EditProfile extends Component {
                       <Media video={profileVideo}/>
                   </div>
                   <div className="EditExperience">
-                      <Experience experiences={experiences}/>
+                      <Experiences onSubmit={printResults}/>
+
                   </div>
               </div>
-              <RaisedButton label="save" onClick={() => submit('personal')} fullWidth={true} secondary={true}/>
           </div>
           }
       </div>

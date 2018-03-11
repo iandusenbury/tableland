@@ -2,11 +2,19 @@
   width: 100%;
   height: calc(100vh - 72px);
   background-color: white;
-  overflow: scroll;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
+/*
 .about-inner-div {
+  height: auto;
+  width: 100%;
+  overflow: scroll;
+}
+*/
+
+.about-paper{
   width: 95vw;
   padding: 5%;
   margin: 0 auto;

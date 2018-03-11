@@ -1,7 +1,9 @@
 .about-main-div {
   width: 100%;
-  height: calc(100vh - 56px - 2%);
+  height: calc(100vh - 72px);
   background-color: white;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 .about-inner-div {

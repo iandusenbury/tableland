@@ -1,5 +1,12 @@
 import React, { Component } from 'react'
-import { Card, CardMedia, Divider, List, ListItem, Avatar } from 'material-ui'
+import { 
+  Card, 
+  CardMedia, 
+  Divider, 
+  List, 
+  ListItem, 
+  Avatar 
+} from 'material-ui'
 import LanguageIcon from 'material-ui/svg-icons/action/language'
 import Group from 'material-ui/svg-icons/social/group'
 import Domain from 'material-ui/svg-icons/social/domain'

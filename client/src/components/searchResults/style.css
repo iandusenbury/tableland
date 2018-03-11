@@ -20,8 +20,17 @@
 
 /* search page */
 
-.search-body {
-  height: calc(100vh - 56px);
+@media (max-width: 620px) {
+  .search-body {
+    overflow-y: hidden;
+  }
+}
+
+@media (min-width: 620px) {
+  .search-body {
+    height: calc(100vh - 56px);
+    overflow: hidden;
+  }
 }
 
 .search-header {
@@ -39,6 +48,10 @@
 .search-box {
   margin: 0 5%;
   max-height: 90vh;
+}
+
+.search-box-list {
+  height: 75vh;
 }
 
 /* table of list of results */
@@ -129,6 +142,7 @@
   border-right-color: white;
 }
 
+/*
 @media only screen and (max-width: 700px) {
   .search-box {
     margin: 0 8px;
@@ -182,3 +196,4 @@
     margin-left: 8px;
   }
 }
+*/

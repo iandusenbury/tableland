@@ -1,5 +1,8 @@
+import { find, propEq } from 'ramda'
 import createReducer from '../../utils/createReducer'
 import ActionTypes from '../../constants/actionTypes'
+
+const portraitImg = require('../../assets/images/portrait.png')
 
 const initialState = {
   id: 0,
@@ -34,14 +37,22 @@ function requestOrganization(state, data) {
   const { payload: { organization } } = data
   const { media } = organization
 
+  const image = find(propEq('category', 'image'))(media)
+  const video = find(propEq('category', 'video'))(media)
+
+  /*
   const reducedMedia = media.reduce((obj, item) => {
     obj[item.category] = item // eslint-disable-line
     return obj
   }, {})
+  */
   
   return {
     ...state,
     ...organization,
-    media: reducedMedia
+    media: {
+      image: image || { url: portraitImg },
+      video: video || { url: '' }
+    }
   }
 }

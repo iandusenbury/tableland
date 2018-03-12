@@ -169,7 +169,11 @@ function createProgramTable(name, experience) {
   const end = getDate(endDate)
 
   return (
-    <ListItem key={id} leftIcon={<Group />}>
+    <ListItem 
+      key={id} 
+      leftIcon={<Group />}
+      containerElement={<Link to={`/program/${id}`} />}
+    >
       <h4>
         {name} - {title}
       </h4>

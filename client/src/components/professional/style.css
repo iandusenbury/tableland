@@ -166,6 +166,7 @@
 
 .professionalTopTab {
   grid-area: tab;
+  text-decoration: none;
 }
 
 .professionalTableRow:hover {

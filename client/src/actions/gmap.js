@@ -12,7 +12,7 @@ export function initUserMap(response, dispatch, getState) {
   })
 }
 
-export function fetchMapProfessional(userID = 'current') {
+export function fetchMapProfessional(userID = 'random') {
   const callDescriptor = {
     endpoint: `/users/${userID}`,
     types: [

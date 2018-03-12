@@ -34,7 +34,8 @@ const styles = {
   },
   avatar: {
     marginLeft: '12px',
-    marginRight: '6px'
+    marginRight: '6px',
+    marginTop: '4px'
   }
 }
 

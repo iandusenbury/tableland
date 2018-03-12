@@ -85,6 +85,28 @@
   margin: 0px 8px 16px;
 }
 
+.mapLegendFirstIcon {
+  width: 40px;
+  height: 40px;
+}
+
+.mapLegendFirstIcon img {
+  width: 100%;
+  height: auto;
+  position: relative;
+  right: 4px;
+}
+
+.mapLegendSecondIcon {
+  width: 32px;
+  height: 32px;
+}
+
+.mapLegendSecondIcon img {
+  width: 100%;
+  height: auto;
+}
+
 .mapLegend h3 {
   margin-top: 4px;
   margin-bottom: 10px;

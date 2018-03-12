@@ -96,21 +96,25 @@ class MyMapComponent extends Component {
               <tbody>
                 <tr>
                   <td>
-                    <img src={firstMarkerImg} alt="first marker" />
+                    <div className="mapLegendFirstIcon">
+                      <img src={firstMarkerImg} alt="first marker" />
+                    </div>
                   </td>
                   <td>First Experience</td>
                 </tr>
                 <tr>
                   <td>
-                    <img src={currentMarkerImg} alt="current marker" />
+                    <div className="mapLegendSecondIcon">
+                      <img src={currentMarkerImg} alt="current marker" />
+                    </div>
                   </td>
                   <td>Current Experience</td>
                 </tr>
                 <tr>
                   <td>
-                    <svg height="5" width="28">
+                    <svg height="5" width="32">
                       <path
-                        d="M0 0 L28 0 Z"
+                        d="M0 0 L32 0 Z"
                         style={{ stroke: 'orange', strokeWidth: '5' }}
                       />
                     </svg>
@@ -119,11 +123,11 @@ class MyMapComponent extends Component {
                 </tr>
                 <tr>
                   <td className="mapLegendConcurrent">
-                    <svg height="5" width="28">
-                      <path d="M0 0 L7 0 Z" />
-                      <path d="M7 0 L14 0 Z" />
-                      <path d="M14 0 L21 0 Z" />
-                      <path d="M21 0 L28 0 Z" />
+                    <svg height="5" width="32">
+                      <path d="M0 0 L8 0 Z" />
+                      <path d="M8 0 L16 0 Z" />
+                      <path d="M16 0 L24 0 Z" />
+                      <path d="M24 0 L32 0 Z" />
                     </svg>
                   </td>
                   <td>Concurrent Experience Paths</td>

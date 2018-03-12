@@ -1,16 +1,11 @@
 import React , {Component} from 'react'
-import { AppBar, IconButton } from 'material-ui'
-import {connect } from 'react-redux'
 import './experience.css'
 import { style } from '../../widgets/styles'
-import Location from 'material-ui/svg-icons/communication/location-on'
-import { StyledPaper } from '../../widgets/StyledPaper'
 import {FieldArray, Field, reduxForm, getFormValues, } from 'redux-form'
 import {StyledSelectField} from "../../widgets/StyledSelectField";
 import {StyledTextField} from "../../widgets/StyledTextField";
 import { DatePicker } from 'redux-form-material-ui'
 import MenuItem from 'material-ui/MenuItem'
-import {AddButton} from "../../widgets/AddButton";
 import {RaisedButton } from 'material-ui'
 import {printResults} from "./index";
 
@@ -167,6 +162,7 @@ const renderExistingExp = ({ fields }) => (
                             component={StyledTextField}
                             text="Address"
                             multiLine
+                            disabled
                         />
                     </div>
                     <div>
@@ -213,9 +209,8 @@ const renderExistingExp = ({ fields }) => (
 
 const renderPrograms = ({ fields }) => (
     <div>
-        <div style={{width: "75vw"}}>
-            <RaisedButton  onClick={() => fields.push()} label="Add Program" style={{marginTop:'3%',
-                marginBottom: '3%'}} fullWidth={true} secondary={true}/>
+        <div style={{width: "50vw", marginLeft:'15%', marginRight: '15%'}}>
+            <RaisedButton  onClick={() => fields.push()} label="Add Program" primary={true} fullWidth={true} />
         </div>
         {fields.map((program, index) => (
             <div key={index} style={{width: "75vw", marginBottom: '2%', marginTop:'2%'}}>
@@ -274,8 +269,6 @@ const renderPrograms = ({ fields }) => (
 
 
 
-
-
 class ExistingExperiences extends Component {
 
     componentDidMount(){
@@ -290,14 +283,11 @@ class ExistingExperiences extends Component {
     }
 
     render() {
-        const {handleSubmit, submit} = this.props
+        const {handleSubmit} = this.props
         return (
 
                 <form onSubmit={handleSubmit}>
-
                         <FieldArray name="existingExp" component={renderExistingExp} />
-
-                    <RaisedButton label="update" onClick={() => submit('experience')}/>
                 </form>
 
         )
@@ -310,3 +300,9 @@ ExistingExperiences = reduxForm({
 })(ExistingExperiences)
 
 export default ExistingExperiences;
+
+/*
+<div style={{width: "75vw", marginTop: '3%', marginBottom: '3%'}}>
+    <RaisedButton label="update" onClick={() => submit('existingExperiences')} primary={true} fullWidth={true}/>
+</div>
+*/

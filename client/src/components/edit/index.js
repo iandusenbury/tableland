@@ -1,20 +1,32 @@
 import React, { Component } from 'react'
 import Experience from './Experience'
 import './edit.css'
-import Personal from './Personal'
-import Media from './Media'
+import Personal from '../../containers/personal'
+import Media from '../../containers/media'
 import { style } from '../../widgets/styles'
 import Avatar from 'material-ui/Avatar'
-import Person from 'material-ui/svg-icons/social/person'
 import {RaisedButton} from "material-ui";
 import Experiences from './Experiences'
 
+
+
+//function for the update of existing information
 export async function showResults(values) {
     console.log(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
 }
 
+//function for the post of new experiences
 export async function printResults(values) {
-    console.log(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
+    console.log(`halala submitted:\n\n${JSON.stringify(values, null, 2)}`);
+}
+
+function clickFunction(submit){
+  //update
+    submit('personal');
+    submit('existingExperiences')
+    submit('media')
+
+    submit('newExperiences'); //post
 }
 
 class EditProfile extends Component {
@@ -26,12 +38,7 @@ class EditProfile extends Component {
   render() {
     const {
       firstName,
-      lastName,
-      description,
-      mainTitle,
       profileImage,
-      profileVideo,
-      experiences,
       submit
     } = this.props
 
@@ -48,20 +55,20 @@ class EditProfile extends Component {
               <div className="EditMainGrid">
                   <div className="EditPersonal">
                       <Personal
-                          first={firstName}
-                          last={lastName}
-                          about={description}
-                          title={mainTitle}
                           onSubmit={showResults}
                       />
                   </div>
                   <div className="EditMedia">
-                      <Media video={profileVideo}/>
+                      <Media onSubmit={showResults}/>
                   </div>
                   <div className="EditExperience">
-                      <Experiences onSubmit={printResults}/>
-
+                      <Experiences />
                   </div>
+              </div>
+              <div style={{ margin:".5%"}}>
+              <RaisedButton label="Update" onClick={() => clickFunction(submit)}
+                             fullWidth={true} primary={true}
+                            />
               </div>
           </div>
           }

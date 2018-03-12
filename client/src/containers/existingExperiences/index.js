@@ -3,20 +3,19 @@ import { connect } from 'react-redux'
 import { fetchProfessional } from '../../actions'
 import {submit} from 'redux-form'
 
-import EditProfile from '../../components/edit'
+import ExistingExperiences from '../../components/edit/ExistingExperiences'
 
 const mapStateToProps = state => ({
-    profileImage: state.app.professionalPage.media.image.url,
-    firstName: state.app.professionalPage.firstName
+    experiences: state.app.professionalPage.experiences
 })
 
 const mapDispatchToProps = dispatch =>
     bindActionCreators(
         {
             fetchProfessional,
-            submit
+            submit,
         },
         dispatch
     )
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditProfile)
+export default connect(mapStateToProps, mapDispatchToProps)(ExistingExperiences)

@@ -6,13 +6,13 @@ import './edit.css'
 import { style } from '../../widgets/styles'
 import Person from 'material-ui/svg-icons/social/person'
 import { StyledPaper } from '../../widgets/StyledPaper'
-import { fetchProfessional } from '../../actions'
-import {AddButton} from "../../widgets/AddButton";
 import {showResults} from "./index";
 
 class Personal extends Component {
   componentDidMount() {
-    this.props.initialize({ ...this.props })
+      const {fetchProfessional} = this.props
+      fetchProfessional(3)
+      this.props.initialize({ ...this.props })
   }
 
   render() {
@@ -35,21 +35,21 @@ class Personal extends Component {
             <div className="EditFieldsGrid">
               <div>
                 <Field
-                  name="first"
+                  name="firstName"
                   component={StyledTextField}
                   text="First Name"
                 />
               </div>
               <div>
                 <Field
-                  name="last"
+                  name="lastName"
                   component={StyledTextField}
                   text="Last Name"
                 />
               </div>
               <div>
                 <Field
-                  name="about"
+                  name="description"
                   component={StyledTextField}
                   text="About"
                   multiLine
@@ -57,7 +57,7 @@ class Personal extends Component {
               </div>
               <div>
                 <Field
-                  name="title"
+                  name="mainTitle"
                   component={StyledTextField}
                   text="Current Job Title"
                   disabled

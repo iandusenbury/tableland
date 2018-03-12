@@ -37,7 +37,7 @@ export default class UserTable extends Component {
         <RaisedButton
           backgroundColor="#8195b1"
           label="Add"
-          onClick={() => addAdmin(id, type, typeId)}
+          onClick={() => addAdmin(email, type, typeId)}
           disabled={role === 'super_admin'}
         />
       )

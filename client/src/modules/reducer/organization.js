@@ -38,7 +38,7 @@ function requestOrganization(state, data) {
     obj[item.category] = item // eslint-disable-line
     return obj
   }, {})
-  
+
   return {
     ...state,
     ...organization,

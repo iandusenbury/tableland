@@ -89,9 +89,9 @@ export function toggleUserSuperAdmin(id, role) {
   return dispatch => dispatch(callApi(callDescriptor))
 }
 
-export function addAdmin(id, type, typeId) {
+export function addAdmin(email, type, typeId) {
   const callDescriptor = {
-    body: { userId: id },
+    body: { email },
     endpoint: `/${type}/${typeId}/permissions`,
     method: 'POST',
     types: [

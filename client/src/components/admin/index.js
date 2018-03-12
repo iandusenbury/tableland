@@ -51,6 +51,7 @@ class AdminPage extends Component {
 }
 
 AdminPage.propTypes = {
+  fetchUserPermissions: PropTypes.func.isRequired,
   isSuperAdmin: PropTypes.bool.isRequired
 }
 

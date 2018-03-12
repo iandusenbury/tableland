@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { MuiThemeProvider, getMuiTheme } from 'material-ui/styles'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {

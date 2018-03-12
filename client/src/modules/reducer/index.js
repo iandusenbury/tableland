@@ -8,6 +8,7 @@ import professionalPage from './professional'
 import dialog from './dialog'
 import isLoading from './isLoading'
 import admin from './admin'
+import search from './search'
 import roadmap from './roadmap'
 
 export default combineReducers({
@@ -19,5 +20,6 @@ export default combineReducers({
   dialog,
   isLoading,
   admin,
+  search,
   roadmap
 })

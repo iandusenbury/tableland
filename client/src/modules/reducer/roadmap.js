@@ -3,14 +3,16 @@ import ActionTypes from '../../constants/actionTypes'
 
 const initialState = {
   isMarkerOpen: [],
-  currentMarker: 0
+  currentMarker: 0,
+  isLegendShown: true
 }
 
 const handlers = {
   // Pattern:
   // [ActionTypes.ACTION_NAME]: actionFunction
   [ActionTypes.UPDATE_OPEN_MARKERS]: updateMarkers,
-  [ActionTypes.INIT_MAP_INFO]: initMarkers
+  [ActionTypes.INIT_MAP_INFO]: initMarkers,
+  [ActionTypes.TOGGLE_LEGEND]: toggleLegend
 }
 
 export default createReducer(initialState, handlers)
@@ -41,5 +43,13 @@ function updateMarkers(state, data) {
     ...state,
     isMarkerOpen,
     currentMarker: index
+  }
+}
+
+function toggleLegend(state) {
+  const { isLegendShown } = state
+  return {
+    ...state,
+    isLegendShown: !isLegendShown
   }
 }

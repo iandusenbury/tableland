@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { Avatar, Paper, RaisedButton } from 'material-ui'
+import { Avatar, Paper, RaisedButton, IconButton } from 'material-ui'
 import ChevronLeft from 'material-ui/svg-icons/navigation/chevron-left'
 import ChevronRight from 'material-ui/svg-icons/navigation/chevron-right'
+import ExpandMore from 'material-ui/svg-icons/navigation/expand-more'
 import GMap from './gmap'
 import mapStyle from './style.json'
 import BottomTab from '../../constants/tabs/tabViewProfile'
@@ -22,9 +23,12 @@ const currentMarkerImg = require('../../assets/icons/current.png')
 
 class MyMapComponent extends Component {
   componentWillMount() {
-    const { fetchProfessional, match } = this.props
+    const { fetchProfessional, match, toggleLegend, isLegendShown } = this.props
     if (match) {
       fetchProfessional(match.params.id)
+    }
+    if (isLegendShown && window.innerWidth < 620) {
+      toggleLegend()
     }
   }
 
@@ -44,7 +48,9 @@ class MyMapComponent extends Component {
       toggleMarker,
       onPanTo,
       onPanOut,
-      onMapMounted
+      onMapMounted,
+      toggleLegend,
+      isLegendShown
     } = this.props
 
     const experienceOrgs = sortedExperiences.filter(
@@ -91,49 +97,61 @@ class MyMapComponent extends Component {
         />
         <Paper style={styleJS.styles.legend} zDepth={3}>
           <div className="mapLegend">
-            <h3>Legend</h3>
-            <table>
-              <tbody>
-                <tr>
-                  <td>
-                    <div className="mapLegendFirstIcon">
-                      <img src={firstMarkerImg} alt="first marker" />
-                    </div>
-                  </td>
-                  <td>First Experience</td>
-                </tr>
-                <tr>
-                  <td>
-                    <div className="mapLegendSecondIcon">
-                      <img src={currentMarkerImg} alt="current marker" />
-                    </div>
-                  </td>
-                  <td>Current Experience</td>
-                </tr>
-                <tr>
-                  <td>
-                    <svg height="5" width="32">
-                      <path
-                        d="M0 0 L32 0 Z"
-                        style={{ stroke: 'orange', strokeWidth: '5' }}
-                      />
-                    </svg>
-                  </td>
-                  <td>Main Experience Path</td>
-                </tr>
-                <tr>
-                  <td className="mapLegendConcurrent">
-                    <svg height="5" width="32">
-                      <path d="M0 0 L8 0 Z" />
-                      <path d="M8 0 L16 0 Z" />
-                      <path d="M16 0 L24 0 Z" />
-                      <path d="M24 0 L32 0 Z" />
-                    </svg>
-                  </td>
-                  <td>Concurrent Experience Paths</td>
-                </tr>
-              </tbody>
-            </table>
+            <div className="mapLegendHeader">
+              <h3>Legend</h3>
+              <div>
+                <IconButton
+                  onClick={() => toggleLegend()}
+                  disableTouchRipple
+                  style={styleJS.styles.legend.iconButton}>
+                  <ExpandMore />
+                </IconButton>
+              </div>
+            </div>
+            {isLegendShown && (
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div className="mapLegendFirstIcon">
+                        <img src={firstMarkerImg} alt="first marker" />
+                      </div>
+                    </td>
+                    <td>First Experience</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div className="mapLegendSecondIcon">
+                        <img src={currentMarkerImg} alt="current marker" />
+                      </div>
+                    </td>
+                    <td>Current Experience</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <svg height="5" width="32">
+                        <path
+                          d="M0 0 L32 0 Z"
+                          style={{ stroke: 'orange', strokeWidth: '5' }}
+                        />
+                      </svg>
+                    </td>
+                    <td>Main Path</td>
+                  </tr>
+                  <tr>
+                    <td className="mapLegendConcurrent">
+                      <svg height="5" width="32">
+                        <path d="M0 0 L8 0 Z" />
+                        <path d="M8 0 L16 0 Z" />
+                        <path d="M16 0 L24 0 Z" />
+                        <path d="M24 0 L32 0 Z" />
+                      </svg>
+                    </td>
+                    <td>Concurrent Paths</td>
+                  </tr>
+                </tbody>
+              </table>
+            )}
           </div>
         </Paper>
         {expLength > 0 && (
@@ -214,7 +232,9 @@ MyMapComponent.propTypes = {
   onPanTo: PropTypes.func.isRequired,
   onPanOut: PropTypes.func.isRequired,
   onMapMounted: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  toggleLegend: PropTypes.func.isRequired,
+  isLegendShown: PropTypes.bool.isRequired
 }
 
 export default MyMapComponent

@@ -1,4 +1,5 @@
 const avatarSize = 64
+const smallerButton = window.innerWidth < 650
 const styles = {
   avatar: {
     size: avatarSize,
@@ -9,25 +10,31 @@ const styles = {
     width: 'auto',
     position: 'absolute',
     top: '72px',
-    left: '16px'
+    left: '16px',
+    iconButton: {
+      float: 'right',
+      position: 'relative',
+      bottom: '6px',
+      height: '16px'
+    }
   },
   panButtonTo: {
-    width: '150px',
+    width: smallerButton ? '120px' : '150px',
     float: 'left',
     borderRadius: '15px 0px 0px 0px'
   },
   panButtonOut: {
-    width: '150px',
+    width: smallerButton ? '120px' : '150px',
     float: 'right',
     borderRadius: '0px 15px 0px 0px'
   },
   navButtonLeft: {
-    width: '150px',
+    width: smallerButton ? '120px' : '150px',
     float: 'left',
     borderRadius: '0px 0px 0px 15px'
   },
   navButtonRight: {
-    width: '150px',
+    width: smallerButton ? '120px' : '150px',
     float: 'right',
     borderRadius: '0px 0px 15px 0px'
   },

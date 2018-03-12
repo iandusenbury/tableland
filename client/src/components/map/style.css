@@ -52,9 +52,9 @@
   overflow: hidden;
   z-index: 9;
   background-color: #ff9e15;
-  display: grid;
+  /* display: grid;
   grid-template-columns: 20% auto;
-  grid-template-areas: 'avatar info';
+  grid-template-areas: 'avatar info'; */
 }
 
 .mapProfilePreviewInfo {
@@ -73,16 +73,32 @@
 }
 
 .mapProfilePreviewAvatar {
-  grid-area: avatar;
+  position: absolute;
 }
 
 .mapLegend {
   height: auto;
-  width: auto;
+  width: 180px;
   position: relative;
   top: 8px;
   margin: auto;
   margin: 0px 8px 16px;
+}
+
+.mapLegendHeader {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    'header button'
+  ;
+}
+
+.mapLegendHeader h3 {
+  grid-area: header;
+}
+
+.mapLegendHeader div {
+  grid-area: button;
 }
 
 .mapLegendFirstIcon {
@@ -108,7 +124,7 @@
 }
 
 .mapLegend h3 {
-  margin-top: 4px;
+  margin-top: 8px;
   margin-bottom: 10px;
   margin-left: 4px;
 }
@@ -134,4 +150,45 @@
 
 .mapLegendConcurrent svg path:nth-child(even){
   stroke-opacity: 0.3;
+}
+
+@media only screen and (max-width: 650px) {
+  .mapMainDiv {
+    height: calc(100vh - 56px - 100px);
+  }
+
+  .mapProfilePreviewTab {
+    width: 100vw;
+    border-radius: 0;
+  }
+
+  .mapNavigation {
+    width: 240px;
+  }
+
+  .mapPanNavigation {
+    width: 240px;
+  }
+
+  .mapProfilePreviewAvatar {
+    left: 8px;
+    top: 12px;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .mapNavigation {
+    bottom: 122px;
+  }
+
+  .mapPanNavigation {
+    bottom: 158px;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .mapProfilePreviewAvatar {
+    left: 0px;
+    top: 0px;
+  }
 }

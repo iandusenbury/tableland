@@ -67,3 +67,9 @@ export function toggleMarker(index) {
     }
   }
 }
+
+export function toggleLegend() {
+  return {
+    type: ActionTypes.TOGGLE_LEGEND
+  }
+}

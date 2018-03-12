@@ -25,8 +25,8 @@ const sampleImg = require('./sample.jpg')
 
 class Organization extends Component {
   componentWillMount() {
-    const { fetchOrganization } = this.props
-    fetchOrganization(13)
+    const { fetchOrganization, match } = this.props
+    fetchOrganization(match.params.id)
   }
   render() {
     const {

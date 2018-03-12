@@ -15,12 +15,12 @@ import {
 import PropTypes from 'prop-types'
 import BusinessIcon from 'material-ui/svg-icons/communication/business'
 import LanguageIcon from 'material-ui/svg-icons/action/language'
+import { Link } from 'react-router-dom'
 
-import TopTab from '../../constants/tabs/tabViewMap'
-import { orgPage } from '../../constants/viewStyles'
+import { progPage } from '../../constants/viewStyles'
 import './style.css'
 
-const sampleImg = require('./sample.jpg')
+const sampleImg = require('../../assets/images/profileBackground.jpg')
 
 class Program extends Component {
   componentWillMount() {
@@ -33,8 +33,7 @@ class Program extends Component {
       description,
       url,
       media: { video },
-      // sponsors,
-      parentOrganizationNames,
+      sponsors,
       users
     } = this.props
 
@@ -44,6 +43,9 @@ class Program extends Component {
       videoUrl = video.url.replace('watch?v=', 'embed/')
       hasVideo = true
     }
+
+    const parentOrgDisplay =
+      sponsors.length > 1 ? 'Parent Organizations' : 'Parent Organization'
 
     return (
       <div className="organizationMainDiv">
@@ -61,14 +63,26 @@ class Program extends Component {
           </div>
           <div className="organizationContact">
             <div className="organizationAddress">
-              <BusinessIcon style={orgPage.businessIcon} />
+              <BusinessIcon style={progPage.businessIcon} />
               <div>
-                <p>{`Parent Organization(s): ${parentOrganizationNames}`}</p>
+                <p>
+                  {`${parentOrgDisplay}: `}
+                  {sponsors.map((sponsor, index) => {
+                    const { id, name: orgName } = sponsor
+                    if (index > 0)
+                      return (
+                        <Link to={`/organization/${id}`}>{`, ${orgName}`}</Link>
+                      )
+                    return (
+                      <Link to={`/organization/${id}`}>{`${orgName}`}</Link>
+                    )
+                  })}
+                </p>
               </div>
             </div>
             <div className="organizationUrl">
               <div>
-                <LanguageIcon style={orgPage.urlIcon} />
+                <LanguageIcon style={progPage.urlIcon} />
               </div>
               <div>
                 <p>{url}</p>
@@ -91,14 +105,17 @@ class Program extends Component {
             )}
             <Divider />
           </div>
-          {/*users.length > 0 && */(
+          {users.length > 0 && (
             <div className="organizationEmployees">
+              <h2 style={{ textAlign: 'center' }}>Members</h2>
               <Table>
                 <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
                   <TableRow>
-                    <TableHeaderColumn style={orgPage.tableHeaderCol} />
-                    <TableHeaderColumn>Name</TableHeaderColumn>
-                    <TableHeaderColumn>Position</TableHeaderColumn>
+                    <TableHeaderColumn style={progPage.tableHeaderCol} />
+                    <TableHeaderColumn style={progPage.tableRowColName}>
+                      Name
+                    </TableHeaderColumn>
+                    <TableHeaderColumn>Current Position</TableHeaderColumn>
                   </TableRow>
                 </TableHeader>
                 <TableBody showRowHover displayRowCheckbox={false}>
@@ -121,23 +138,26 @@ Program.propTypes = {
   fetchProgram: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired, // eslint-disable-line
   media: PropTypes.object.isRequired, // eslint-disable-line
-  sponsors: PropTypes.array.isRequired, // eslint-disable-line
-  parentOrganizationNames: PropTypes.string.isRequired
+  sponsors: PropTypes.array.isRequired // eslint-disable-line
 }
 
 function createUserTable(users) {
   return users.map(user => {
-    const { id, firstName, lastName, mainTitle, media } = user
+    const { id, firstName, lastName, mainTitle, mainLocation, imageUrl } = user
 
     return (
       <TableRow key={id} className="organizationTableRow" hoverable>
-        <TableRowColumn style={orgPage.tableRowColAvatar}>
-          <Avatar size={32} src={media.image.url} />
+        <TableRowColumn style={progPage.tableRowColAvatar}>
+          <Link to={`/professional/${id}`}>
+            <Avatar size={32} src={imageUrl} />
+          </Link>
         </TableRowColumn>
-        <TableRowColumn>
+        <TableRowColumn style={progPage.tableRowColName}>
           {firstName} {lastName}
         </TableRowColumn>
-        <TableRowColumn>[Position here]</TableRowColumn>
+        <TableRowColumn>
+          {mainTitle} - {mainLocation}
+        </TableRowColumn>
       </TableRow>
     )
   })

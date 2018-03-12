@@ -16,7 +16,7 @@ const initialState = {
   },
   users: [],
   sponsors: [],
-  parentOrganizationNames: ''
+  parentOrganizationNames: []
 }
 
 const handlers = {
@@ -29,7 +29,7 @@ export default createReducer(initialState, handlers)
 
 function requestProgram(state, data) {
   const { payload: { program } } = data
-  const { media, users, parentOrganizationNames } = program
+  const { media, users } = program
 
   const image = find(propEq('category', 'image'))(media)
   const video = find(propEq('category', 'video'))(media)
@@ -50,7 +50,6 @@ function requestProgram(state, data) {
       image: image || { url: portraitImg },
       video: video || { url: '' }
     },
-    users: mediaReducedUsers,
-    parentOrganizationNames: parentOrganizationNames.join(', ')
+    users: mediaReducedUsers
   }
 }

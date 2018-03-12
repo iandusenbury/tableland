@@ -34,7 +34,7 @@ export default () => (
         <p className='about-text'>
           Created by 
         </p>
-        <p className='about-text'>
+        <div className='about-text'>
           <p>Ian Dusenbury</p>
           <p>Theodore Mason</p>
           <p>Matthew Balleza</p>
@@ -42,7 +42,7 @@ export default () => (
           <p>Halala Khoshnaw</p>
           <p>Evan White</p>
           <p>Daniel J. Arredondo</p>
-        </p>
+        </div>
         <p className='about-text'>
           for capstone senior project at Portland State University for OregonMESA
         </p>

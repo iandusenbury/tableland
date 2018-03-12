@@ -1,5 +1,11 @@
 import React from 'react'
-import { TableRow, TableRowColumn, Avatar, FlatButton } from 'material-ui'
+import { 
+  TableRow, 
+  TableRowColumn, 
+  Avatar, 
+  FlatButton,
+  RaisedButton
+} from 'material-ui'
 
 // Returns an Avatar component with either a photo or icon
 const getAvatar = url => {
@@ -44,7 +50,8 @@ export const renderProgram = program => {
       <li>{description}</li>
     </ul>
   )
-  const contact = <a href={contactUrl}>{contactUrl}</a>
+  //const contact = <a href={contactUrl}>{contactUrl}</a>
+  const contact = <RaisedButton linkButton={true} href={contactUrl} label='View Website' />
   const rowInfo = {
     id,
     type,
@@ -95,9 +102,10 @@ export const renderOrganization = organization => {
   const avatar = getAvatar(imageUrl)
   const profileName = <h2>{name}</h2>
   const info = (
-    <ul>{address.map((line, index) => <li key={index}>{line}</li>)}</ul> // eslint-disable-line
+    <div className='search-table-address'>{address.map((line, index) => <p key={index}>{line}</p>)}</div> // eslint-disable-line
   )
-  const contact = <a href={contactUrl}>{contactUrl}</a>
+  //const contact = <a href={contactUrl}>{contactUrl}</a>
+  const contact = <RaisedButton linkButton={true} href={contactUrl} label='View Website' />
   const rowInfo = {
     id,
     type,
@@ -130,7 +138,8 @@ export const renderUser = user => {
   const info = (
       <p>{mainTitle} working at {mainLocation}</p>
   )
-  const contact = <p><a href={contactUrl}>{contactUrl}</a></p>
+  //const contact = <p><a href={contactUrl}>{contactUrl}</a></p>
+  const contact = <RaisedButton linkButton={true} href={contactUrl} label='View on LinkedIn' />
   const rowInfo = {
     id,
     type,

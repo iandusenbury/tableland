@@ -5,18 +5,11 @@ import { fetchProfessional } from '../../actions'
 import Personal from '../../components/edit/Personal'
 
 const mapStateToProps = state => ({
-    firstName: state.app.professionalPage.firstName,
-    lastName: state.app.professionalPage.lastName,
-    description: state.app.professionalPage.description,
-    mainTitle: state.app.professionalPage.mainTitle
+    firstName: state.app.user.firstName,
+    lastName: state.app.user.lastName,
+    description: state.app.user.description,
+    mainTitle: state.app.user.mainTitle
 })
 
-const mapDispatchToProps = dispatch =>
-    bindActionCreators(
-        {
-            fetchProfessional
-        },
-        dispatch
-    )
 
-export default connect(mapStateToProps, mapDispatchToProps)(Personal)
+export default connect(mapStateToProps)(Personal)

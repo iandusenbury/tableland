@@ -6,13 +6,12 @@ import {submit} from 'redux-form'
 import ExistingExperiences from '../../components/edit/ExistingExperiences'
 
 const mapStateToProps = state => ({
-    experiences: state.app.professionalPage.experiences
+    experiences: state.app.user.experiences
 })
 
 const mapDispatchToProps = dispatch =>
     bindActionCreators(
         {
-            fetchProfessional,
             submit,
         },
         dispatch

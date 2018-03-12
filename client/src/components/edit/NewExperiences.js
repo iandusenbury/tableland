@@ -178,25 +178,17 @@ const renderPrograms = ({ fields }) => (
 )
 
 
+const NewExperiences = props => {
 
+    const {handleSubmit} = props
 
-
-
-class NewExperiences extends Component {
-
-    render() {
-        const {handleSubmit} = this.props
-        return (
-            <form onSubmit={handleSubmit}>
-                <FieldArray name="newExp" component={renderNewExp} />
-            </form>
-        )
-    }
+    return (
+        <form onSubmit={handleSubmit}>
+            <FieldArray name="newExp" component={renderNewExp} />
+        </form>
+    )
 }
 
-NewExperiences = reduxForm({
-    form: 'newExperiences',
-    onSubmit: showResults
+export default reduxForm({
+    form: 'newExperiences'
 })(NewExperiences)
-
-export default NewExperiences;

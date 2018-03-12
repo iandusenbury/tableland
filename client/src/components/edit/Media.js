@@ -13,8 +13,6 @@ const videoPlayer = require('./VideoPlaceholder.jpg')
 class Media extends Component {
 
   componentDidMount(){
-    const {fetchProfessional} = this.props
-    fetchProfessional(3)
     this.props.initialize({...this.props})
   }
 

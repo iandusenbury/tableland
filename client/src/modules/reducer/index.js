@@ -16,7 +16,6 @@ export default combineReducers({
   organizationPage,
   professionalPage,
   adminPage,
-  dialog
   dialog,
   isLoading,
   admin,

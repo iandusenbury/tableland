@@ -272,8 +272,6 @@ const renderPrograms = ({ fields }) => (
 class ExistingExperiences extends Component {
 
     componentDidMount(){
-        const { fetchProfessional } = this.props
-        fetchProfessional(3)
         const {experiences} = this.props
         const exp = {
             existingExp: filterExp(experiences)

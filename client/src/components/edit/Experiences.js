@@ -6,12 +6,13 @@ import Location from 'material-ui/svg-icons/communication/location-on'
 import { StyledPaper } from '../../widgets/StyledPaper'
 import ExistingExperiences from '../../containers/existingExperiences'
 import {printResults, showResults} from "./index";
-import NewExperiences from './NewExperiences'
+import NewExperiences from '../../containers/newExperiences'
 
 
 class Experiences extends Component {
 
     render() {
+        const {submitHandler} = this.props
         return (
             <StyledPaper>
                 <div className="EditBoxGrid">
@@ -28,7 +29,7 @@ class Experiences extends Component {
                     </div>
                     <div className="EditRight">
                        <ExistingExperiences onSubmit={printResults}/>
-                        <NewExperiences onSubmit={showResults}/>
+                        <NewExperiences onSubmit={submitHandler}/>
                     </div>
                 </div>
             </StyledPaper>

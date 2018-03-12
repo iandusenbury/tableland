@@ -1,20 +1,22 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { fetchProfessional } from '../../actions'
 import {submit} from 'redux-form'
+import { fetchProfessional } from '../../actions'
+import {createThings} from "../../actions/edit";
 
 import EditProfile from '../../components/edit'
 
 const mapStateToProps = state => ({
     profileImage: state.app.professionalPage.media.image.url,
-    firstName: state.app.professionalPage.firstName
+    userId: state.app.user.id,
+    loading: state.app.isLoading.loading
 })
 
 const mapDispatchToProps = dispatch =>
     bindActionCreators(
         {
-            fetchProfessional,
-            submit
+            submit,
+            createThings
         },
         dispatch
     )

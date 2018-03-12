@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Experience from './Experience'
 import './edit.css'
 import Personal from '../../containers/personal'
 import Media from '../../containers/media'
@@ -15,38 +14,67 @@ export async function showResults(values) {
     console.log(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
 }
 
+
 //function for the post of new experiences
 export async function printResults(values) {
     console.log(`halala submitted:\n\n${JSON.stringify(values, null, 2)}`);
 }
 
+
+
 function clickFunction(submit){
   //update
-    submit('personal');
+    /*submit('personal');
     submit('existingExperiences')
-    submit('media')
+    submit('media')*/
 
     submit('newExperiences'); //post
 }
 
 class EditProfile extends Component {
-  componentDidMount() {
-    const { fetchProfessional } = this.props
-    fetchProfessional(3)
-  }
 
   render() {
     const {
-      firstName,
       profileImage,
-      submit
+      submit,
+      createThings,
+      userId,
+      loading
     } = this.props
 
-    const exists = firstName !== ''
+
+      const submitHandler = values => {
+          values.newExp.forEach(exp => {
+              const {name, position, current,
+                  award, startDate, endDate,
+                    address, city, state, postal, country, programs} = exp
+
+              const organization = {
+                  name,
+                  position,
+                  address,
+                  city,
+                  state,
+                  postal,
+                  country
+              }
+
+              const experience = {
+                  position,
+                  current,
+                  award,
+                  startDate,
+                  endDate
+              }
+
+              createThings(organization, experience, programs, userId)
+          })
+      }
+
     return (
       <div>
-          {exists &&
-          <div className="EditPrimaryDiv">
+          {!loading &&
+            <div className="EditPrimaryDiv">
               <div className="EditHeader">
                   <div className="EditHeaderAvatar">
                       <Avatar src={profileImage} size={100} style={style.avatarIcon}/>
@@ -62,16 +90,16 @@ class EditProfile extends Component {
                       <Media onSubmit={showResults}/>
                   </div>
                   <div className="EditExperience">
-                      <Experiences />
+                      <Experiences submitHandler={submitHandler}/>
                   </div>
               </div>
               <div style={{ margin:".5%"}}>
-              <RaisedButton label="Update" onClick={() => clickFunction(submit)}
+              <RaisedButton label="Save" onClick={() => clickFunction(submit)}
                              fullWidth={true} primary={true}
                             />
               </div>
           </div>
-          }
+              }
       </div>
     )
   }

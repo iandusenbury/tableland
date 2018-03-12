@@ -9,9 +9,7 @@ import { StyledPaper } from '../../widgets/StyledPaper'
 import {showResults} from "./index";
 
 class Personal extends Component {
-  componentDidMount() {
-      const {fetchProfessional} = this.props
-      fetchProfessional(3)
+  componentWillMount() {
       this.props.initialize({ ...this.props })
   }
 

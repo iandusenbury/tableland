@@ -10,7 +10,7 @@ import Home from '../home'
 import About from '../about'
 import SearchResults from '../../containers/searchResults'
 import OrgPage from '../organization'
-import EditProfile from '../edit'
+import EditProfile from '../../containers/edit'
 import Professional from '../../containers/professional'
 import NotFound from '../notFound'
 

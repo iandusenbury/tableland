@@ -48,21 +48,21 @@ class Program extends Component {
       sponsors.length > 1 ? 'Parent Organizations' : 'Parent Organization'
 
     return (
-      <div className="organizationMainDiv">
-        <div className="organizationImage">
+      <div className="programMainDiv">
+        <div className="programImage">
           <Card>
             <CardMedia overlay={<CardTitle id="org_name" title={name} />}>
-              <img className="organizationImg" src={sampleImg} alt="" />
+              <img className="programImg" src={sampleImg} alt="" />
             </CardMedia>
           </Card>
         </div>
-        <div className="organizationText">
-          <div className="organizationName">
-            <h3 className="organizationHeader3">{name}</h3>
+        <div className="programText">
+          <div className="programName">
+            <h3 className="programHeader3">{name}</h3>
             <Divider />
           </div>
-          <div className="organizationContact">
-            <div className="organizationAddress">
+          <div className="programContact">
+            <div className="programAddress">
               <BusinessIcon style={progPage.businessIcon} />
               <div>
                 <p>
@@ -80,7 +80,7 @@ class Program extends Component {
                 </p>
               </div>
             </div>
-            <div className="organizationUrl">
+            <div className="programUrl">
               <div>
                 <LanguageIcon style={progPage.urlIcon} />
               </div>
@@ -89,13 +89,13 @@ class Program extends Component {
               </div>
             </div>
           </div>
-          <div className="organizationDescription">
+          <div className="programDescription">
             <Divider />
             <p>{description}</p>
             {hasVideo && (
-              <div className="organization-video-wrapper">
+              <div className="program-video-wrapper">
                 <iframe
-                  className="organizationVideo"
+                  className="programVideo"
                   title="Organization Video"
                   allow="encrypted-media"
                   frameBorder="0"
@@ -106,7 +106,7 @@ class Program extends Component {
             <Divider />
           </div>
           {users.length > 0 && (
-            <div className="organizationEmployees">
+            <div className="programEmployees">
               <h2 style={{ textAlign: 'center' }}>Members</h2>
               <Table>
                 <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
@@ -146,7 +146,7 @@ function createUserTable(users) {
     const { id, firstName, lastName, mainTitle, mainLocation, imageUrl } = user
 
     return (
-      <TableRow key={id} className="organizationTableRow" hoverable>
+      <TableRow key={id} className="programTableRow" hoverable>
         <TableRowColumn style={progPage.tableRowColAvatar}>
           <Link to={`/professional/${id}`}>
             <Avatar size={32} src={imageUrl} />

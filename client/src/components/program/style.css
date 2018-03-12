@@ -1,4 +1,4 @@
-.organizationMainDiv {
+.programMainDiv {
   width: 100%;
   height: calc(100vh - 56px);
   background-color: white;
@@ -11,13 +11,13 @@
     ;
 }
 
-.organization-video-wrapper {
+.program-video-wrapper {
   height: 0;
   position: relative;
   padding-bottom: 60%;
 }
 
-.organizationVideo {
+.programVideo {
   bottom: 0;
   height: 100%;
   left: 0;
@@ -27,14 +27,14 @@
   width: 100%;
 }
 
-.organizationImage {
+.programImage {
   grid-area: image;
   overflow: hidden;
   height: calc(100vh - 56px);
   background-color: white;
 }
 
-.organizationText {
+.programText {
   height: calc(100vh - 56px);
   background-color: white;
   grid-area: text;
@@ -42,14 +42,14 @@
   overflow-x: hidden;
 }
 
-.organizationName {
+.programName {
   height: auto;
   width: auto;
   margin: 28px 23px 0px;
   font-size: 36px;
 }
 
-.organizationContact {
+.programContact {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 50% 50%;
@@ -59,7 +59,7 @@
     ;
 }
 
-.organizationUrl {
+.programUrl {
   height: auto;
   width: auto;
   margin: 18px 18px 0px;
@@ -68,12 +68,12 @@
   vertical-align: middle;
 }
 
-.organizationUrl p {
+.programUrl p {
   margin: 0px;
   margin-top: 2px;
 }
 
-.organizationAddress {
+.programAddress {
   height: auto;
   width: auto;
   margin: 18px 18px 0px;
@@ -82,26 +82,26 @@
   vertical-align: middle;
 }
 
-.organizationAddress p {
+.programAddress p {
   margin: 0px;
 }
 
-.organizationDescription {
+.programDescription {
   height: auto;
   width: auto;
   margin: 18px 21px 0px;
 }
 
-.organizationDescription p {
+.programDescription p {
   margin-left: 21px;
 }
 
-.organizationDescription div {
+.programDescription div {
   margin-left: 21px;
   margin-bottom: 18px;
 }
 
-.organizationDescription div video {
+.programDescription div video {
   margin-left: 0px;
   margin-top: 0px;
   width: 33vw !important;
@@ -110,20 +110,20 @@
   background-color: gray;
 }
 
-.organizationEmployees {
+.programEmployees {
   height: auto;
   width: auto;
   margin: 2%;
 }
 
-.organizationHeader3 {
+.programHeader3 {
   margin-left: 18px;
   margin-right: 2%;
   margin-top: 2%;
   margin-bottom: 2%;
 }
 
-.organizationImg {
+.programImg {
   object-fit:cover;
   padding: 0;
   display: block;
@@ -132,10 +132,10 @@
   width: 100%;
 }
 
-.organizationTopTab {
+.programTopTab {
   grid-area: tab;
 }
 
-.organizationTableRow:hover {
+.programTableRow:hover {
   cursor: pointer;
 }

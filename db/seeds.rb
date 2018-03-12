@@ -204,15 +204,28 @@ def create_experiences()
       prog_recs_per_user[:MAX])
     
     for j in 0..(max_recs - min_recs) do
-      Experience.create( 
-        user_id:         i,
-        program_id:      Faker::Number.between(1, NUM_PROGS),
-        start_date:      (j*2).years.ago,
-        end_date:        j.years.ago,
-        title:           ["Member", "Chair", "Volunteer", "President"].sample,
-        current:         false,
-        parent_org:      Faker::Number.between(1, total_org_recs)
-      )
+      # this is the most recent experience
+      if j == 0
+        Experience.create( 
+          user_id:         i,
+          program_id:      Faker::Number.between(1, NUM_PROGS),
+          start_date:      1.year.ago,
+          end_date:        nil,
+          title:           ["Member", "Chair", "Volunteer", "President"].sample,
+          current:         false,
+          parent_org:      Faker::Number.between(1, total_org_recs)
+        )
+      else
+        Experience.create( 
+          user_id:         i,
+          program_id:      Faker::Number.between(1, NUM_PROGS),
+          start_date:      (j * 2).years.ago,
+          end_date:        j.years.ago,
+          title:           ["Member", "Chair", "Volunteer", "President"].sample,
+          current:         false,
+          parent_org:      Faker::Number.between(1, total_org_recs)
+        )
+      end
     end
   end
 end

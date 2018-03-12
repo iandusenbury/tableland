@@ -157,7 +157,7 @@ function createEmployeeTable(employees) {
         <TableRowColumn style={OrgPage.tableRowColName}>
           {firstName} {lastName}
         </TableRowColumn>
-        <TableRowColumn>{mainTitle}</TableRowColumn>
+        <TableRowColumn style={OrgPage.tableRowColName}>{mainTitle}</TableRowColumn>
       </TableRow>
     )
   })

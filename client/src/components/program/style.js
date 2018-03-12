@@ -14,6 +14,9 @@ export default {
     width: '9px'
   },
   tableRowColName: {
-    width: '180px'
+    padding: '10px',
+    paddingRight: '0',
+    width: 'auto',
+    whiteSpace: 'normal'
   }
 }

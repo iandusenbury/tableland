@@ -155,7 +155,7 @@ function createUserTable(users) {
         <TableRowColumn style={ProgPage.tableRowColName}>
           {firstName} {lastName}
         </TableRowColumn>
-        <TableRowColumn>
+        <TableRowColumn style={ProgPage.tableRowColName}>
           {mainTitle} - {mainLocation}
         </TableRowColumn>
       </TableRow>

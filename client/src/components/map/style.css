@@ -52,13 +52,10 @@
   overflow: hidden;
   z-index: 9;
   background-color: #ff9e15;
-  /* display: grid;
-  grid-template-columns: 20% auto;
-  grid-template-areas: 'avatar info'; */
 }
 
 .mapProfilePreviewInfo {
-  grid-area: info;
+  margin-left: 40px;
   text-align: center;
 }
 
@@ -155,6 +152,10 @@
 @media only screen and (max-width: 650px) {
   .mapMainDiv {
     height: calc(100vh - 56px - 100px);
+  }
+
+  .mapProfilePreviewInfo {
+    margin-left: 0px;
   }
 
   .mapProfilePreviewTab {

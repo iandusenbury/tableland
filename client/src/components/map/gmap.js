@@ -51,7 +51,7 @@ const GMap = compose(withScriptjs, withGoogleMap)(props => {
         const { location } = experience
         const { organization: { name }, title, startDate, endDate } = experience
         let icon = index === 0 ? firstMarkerImg : defaultMarkerImg
-        if (index === expLength - 1) icon = currentMarkerImg
+        if (experience.current) icon = currentMarkerImg
 
         const count = getExperienceOverlapCount(experienceOrgs, index, location)
 

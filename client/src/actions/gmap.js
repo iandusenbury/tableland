@@ -39,10 +39,12 @@ export function initMap(response, dispatch) {
     (a, b) => Date.parse(a.startDate) - Date.parse(b.startDate)
   )
 
+  let isFirst = true
   sortedExperiences.forEach(experience => {
     if (experience.organization) {
-      if (experience.current) {
+      if (experience.current && isFirst) {
         isMarkerOpen.push(true)
+        isFirst = false
       } else {
         isMarkerOpen.push(false)
       }

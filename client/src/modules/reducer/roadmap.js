@@ -23,7 +23,7 @@ function initMarkers(state, data) {
   return {
     ...state,
     isMarkerOpen,
-    currentMarker: isMarkerOpen.length - 1
+    currentMarker: isMarkerOpen.indexOf(true)
   }
 }
 

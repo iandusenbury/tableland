@@ -31,7 +31,21 @@ export default () => (
       </Paper>
       <Paper className='about-paper'>
         <h2 className='about-header-one'>About Us</h2>
-
+        <p className='about-text'>
+          Created by 
+        </p>
+        <p className='about-text'>
+          <p>Ian Dusenbury</p>
+          <p>Theodore Mason</p>
+          <p>Matthew Balleza</p>
+          <p>Dan Crayne</p>
+          <p>Halala Khoshnaw</p>
+          <p>Evan White</p>
+          <p>Daniel J. Arredondo</p>
+        </p>
+        <p className='about-text'>
+          for capstone senior project at Portland State University for OregonMESA
+        </p>
       </Paper>
       <Paper className='about-paper'>
         <p className='about-text'>

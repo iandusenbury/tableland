@@ -39,6 +39,11 @@
   text-align:center;
 }
 
+.about-text p {
+  margin: 0;
+  text-align:center;
+}
+
 .about-mission {
   text-align: center;
 }

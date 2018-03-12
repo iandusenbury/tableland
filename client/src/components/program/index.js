@@ -17,7 +17,7 @@ import BusinessIcon from 'material-ui/svg-icons/communication/business'
 import LanguageIcon from 'material-ui/svg-icons/action/language'
 import { Link } from 'react-router-dom'
 
-import { progPage } from '../../constants/viewStyles'
+import ProgPage from './style'
 import './style.css'
 
 const sampleImg = require('../../assets/images/profileBackground.jpg')
@@ -63,7 +63,7 @@ class Program extends Component {
           </div>
           <div className="programContact">
             <div className="programAddress">
-              <BusinessIcon style={progPage.businessIcon} />
+              <BusinessIcon style={ProgPage.businessIcon} />
               <div>
                 <p>
                   {`${parentOrgDisplay}: `}
@@ -82,7 +82,7 @@ class Program extends Component {
             </div>
             <div className="programUrl">
               <div>
-                <LanguageIcon style={progPage.urlIcon} />
+                <LanguageIcon style={ProgPage.urlIcon} />
               </div>
               <div>
                 <p>{url}</p>
@@ -111,8 +111,8 @@ class Program extends Component {
               <Table>
                 <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
                   <TableRow>
-                    <TableHeaderColumn style={progPage.tableHeaderCol} />
-                    <TableHeaderColumn style={progPage.tableRowColName}>
+                    <TableHeaderColumn style={ProgPage.tableHeaderCol} />
+                    <TableHeaderColumn style={ProgPage.tableRowColName}>
                       Name
                     </TableHeaderColumn>
                     <TableHeaderColumn>Current Position</TableHeaderColumn>
@@ -147,12 +147,12 @@ function createUserTable(users) {
 
     return (
       <TableRow key={id} className="programTableRow" hoverable>
-        <TableRowColumn style={progPage.tableRowColAvatar}>
+        <TableRowColumn style={ProgPage.tableRowColAvatar}>
           <Link to={`/professional/${id}`}>
             <Avatar size={32} src={imageUrl} />
           </Link>
         </TableRowColumn>
-        <TableRowColumn style={progPage.tableRowColName}>
+        <TableRowColumn style={ProgPage.tableRowColName}>
           {firstName} {lastName}
         </TableRowColumn>
         <TableRowColumn>

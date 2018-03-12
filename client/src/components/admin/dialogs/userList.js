@@ -11,8 +11,6 @@ import {
   RaisedButton
 } from 'material-ui'
 
-import '../style.css'
-
 const muiTheme = getMuiTheme({
   palette: {
     primary1Color: '#ea4e46'
@@ -68,7 +66,7 @@ export default class UserTable extends Component {
     ))
 
     return (
-      <div className="table-container">
+      <div>
         <Table height="300px">
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>{mapHeaderValues}</TableRow>

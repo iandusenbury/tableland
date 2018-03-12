@@ -5,8 +5,6 @@ import Dialog from '../../../containers/dialog'
 import UserList from '../../../containers/admin/dialogs/userList'
 import AddAdminForm from '../../../containers/admin/dialogs/addAdminForm'
 
-import '../style.css'
-
 const AddAdminDialog = props => {
   const { dialogIsOpen, isSuperAdmin } = props
 

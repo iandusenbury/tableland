@@ -27,7 +27,7 @@ class AdminPage extends Component {
 
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
-        <div className="table-container">
+        <div className="admin-table-container">
           <h1 className="admin-title">Admin Center</h1>
           <Paper>
             <Tabs>

@@ -13,7 +13,6 @@ import {
 } from 'material-ui'
 
 import AddAdminDialog from '../../containers/admin/dialogs/addAdminDialog'
-import './style.css'
 
 export default class ProgramList extends Component {
   constructor(props) {

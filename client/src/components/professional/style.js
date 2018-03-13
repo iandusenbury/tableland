@@ -1,4 +1,4 @@
-export const orgPage = {
+export default {
   businessIcon: {
     marginRight: '18px',
     marginLeft: '22px'
@@ -12,14 +12,8 @@ export const orgPage = {
   },
   tableRowColAvatar: {
     width: '9px'
-  }
-}
-
-export const profPage = {}
-
-export default {
-  styles: {
-    orgPage,
-    profPage
+  },
+  tableRowColName: {
+    width: '180px'
   }
 }

@@ -18,7 +18,7 @@ module Api::V1
       view_context.v1_program_url(object)
     end
     def parent_organization_names
-      object.organizations.where(visible: true).pluck(:name)
+      object.organizations.where(visible: true).pluck(:name, :address_line_1, :address_line_2)
     end
 
     # Available associations

@@ -32,6 +32,7 @@ const AddExperience = props => {
       <div>
         <DatePicker
           style={style.datePicker}
+          textFieldStyle={{width: 'auto'}}
           hintText="Start Date"
           mode="landscape"
         />
@@ -39,6 +40,7 @@ const AddExperience = props => {
       <div>
         <DatePicker
           style={style.datePicker}
+          textFieldStyle={{width: 'auto'}}
           hintText="End Date"
           mode="landscape"
         />

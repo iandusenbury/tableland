@@ -29,7 +29,6 @@
 @media (max-width: 660px) {
   .EditPersonal {
       height: auto;
-      width: 100vw;
       margin-bottom: .75%;
   }
 }
@@ -37,7 +36,6 @@
 @media (min-width: 660px) {
   .EditPersonal {
       height: 35vh;
-      width: 100vw;
       margin-bottom: .75%;
   }
 }

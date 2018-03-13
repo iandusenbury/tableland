@@ -9,7 +9,7 @@ import { StyledPaper } from '../../widgets/StyledPaper'
 export const Personal = props => (
   <StyledPaper>
     <div className="EditSectionGrid">
-      <div>
+      <div className="edit-personal-left">
         <AppBar
           iconElementLeft={
             <IconButton>

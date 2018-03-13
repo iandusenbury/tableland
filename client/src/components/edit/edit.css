@@ -26,17 +26,41 @@
     grid-template-areas: "personal" "media" "experience";
 }
 
-.EditPersonal {
-    height: 35vh;
-    width: 100vw;
-    margin-bottom: .75%;
+@media (max-width: 660px) {
+  .EditPersonal {
+      height: auto;
+      width: 100vw;
+      margin-bottom: .75%;
+  }
 }
 
-.EditMedia {
-    height: 35vh;
-    margin-bottom: .75%;
+@media (min-width: 660px) {
+  .EditPersonal {
+      height: 35vh;
+      width: 100vw;
+      margin-bottom: .75%;
+  }
 }
 
+.edit-personal-left {
+    height: auto;
+    border-right: 2px solid lightblue;
+}
+
+
+@media (max-width: 660px) {
+  .EditMedia {
+      height: 35vh;
+      margin-bottom: .75%;
+  }
+}
+
+@media (min-width: 660px) {
+  .EditMedia {
+      height: auto;
+      margin-bottom: .75%;
+  }
+}
 
 .EditExperience {
     height: auto;
@@ -47,6 +71,7 @@
 .EditSectionGrid {
     display: grid;
     grid-template-columns: 20% 80%;
+    grid-template-areas: "left" "right";
     grid-column-gap: 2%;
     margin-right: 2%;
 }
@@ -84,7 +109,7 @@
   }
 }
 
-@media (min-width: 661px) {
+@media (min-width: 660px) {
   .EditFieldsGrid {
       display: grid;
       height: 35vh;
@@ -106,7 +131,7 @@
   }
 }
 
-@media (min-width: 661px) {
+@media (min-width: 660px) {
   .EditMediaGrid {
     height: auto;
     display: grid;
@@ -128,11 +153,11 @@
   }
 }
 
-@media (max-width: 661px) {
+@media (max-width: 660px) {
   .EditImageWrapper {
     height: 20vh;
-    max-width: 270px;
-    max-height: 200px;
+    max-width: 250px;
+    max-height: 210px;
     position: relative;
     border: solid 1px grey;
     margin: 2%;
@@ -151,7 +176,7 @@
   }
 }
 
-@media (max-width: 661px) {
+@media (max-width: 660px) {
   .EditImage {
     bottom: 0;
     max-height: 100%;
@@ -173,7 +198,7 @@
   }
 }
 
-@media (max-width: 661px) {
+@media (max-width: 660px) {
   .EditImage {
     width: 350px;
     height: 31vh;

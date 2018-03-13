@@ -14,10 +14,19 @@
     height: auto;
 }
 
-.EditOuterDiv {
-    display: grid;
-    height: auto;
-    grid-template-columns: 1fr 1fr 1fr;
+@media (max-width: 660px) {
+  .EditOuterDiv {
+      display: grid;
+      height: auto;
+  }
+}
+
+@media (min-width: 660px) {
+  .EditOuterDiv {
+      display: grid;
+      height: auto;
+      grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 
 .EditOuterDiv > div {

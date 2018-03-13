@@ -1,32 +1,14 @@
 .wholeTabTop {
-    grid-area: tab;
-    width: 50%;
-    height: 26px;
-    top: 0px;
-    margin: auto;
-    position: relative;
-    overflow: hidden;
-    opacity: 0.75;
-    z-index: 10;
+  grid-area: tab;
+  width: 50%;
+  height: 26px;
+  top: 0px;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+  opacity: 0.75;
+  z-index: 10;
 }
-/*
-.wholeTabTop:hover {
-    height: 32px;
-    opacity: 0.75;
-}
-
-.wholeTabTop:hover > .topTab {
-  visibility: visible;
-  height: 10px;
-}
-
-.wholeTabTop:hover > .stubTabTop > p {
-  visibility: visible;
-}
-
-.wholeTabTop:hover .arrowTop {
-  visibility: hidden;
-} */
 
 .topTab {
   width: 50%;
@@ -38,12 +20,12 @@
 
 .stubTabTop
 {
-    height: 26px;
-    width: 50%;
-    border-radius: 0px 0px 40px 40px;
-    background-color: black;
-    position: relative;
-    margin: auto;
+  height: 26px;
+  width: 50%;
+  border-radius: 0px 0px 40px 40px;
+  background-color: black;
+  position: relative;
+  margin: auto;
 }
 
 .stubTabTop > p {
@@ -99,52 +81,26 @@
 }
 
 .wholeTabBottom {
-    grid-area: btab;
-    width: 50%;
-    height: 26px;
-    top: -26px;
-    margin: auto;
-    position: relative;
-    overflow: hidden;
-    opacity: 0.75;
-    z-index: 10;
-}
-
-/* .wholeTabBottom:hover {
-    height: 32px;
-    opacity: 0.75;
-    top: -32px;
-}
-
-.wholeTabBottom:hover > .bottomTab {
-  visibility: visible;
-  height: 10px;
-}
-
-.wholeTabBottom:hover > .stubTabBottom > p {
-  visibility: visible;
-}
-
-.wholeTabBottom:hover .arrowBottom {
-  visibility: hidden;
-} */
-
-.bottomTab {
-  width: 50%;
-  height: 0px;
-  background-color: black;
-  visibility: hidden;
+  width: 300px;
+  height: 26px;
+  bottom: 0px;
+  left: 0;
+  right: 0;
   margin: auto;
+  position: absolute;
+  overflow: hidden;
+  opacity: 0.75;
+  z-index: 10;
 }
 
 .stubTabBottom
 {
-    height: 26px;
-    width: 50%;
-    border-radius: 40px 40px 0px 0px;
-    background-color: black;
-    position: relative;
-    margin: auto;
+  height: 26px;
+  width: 90%;
+  border-radius: 40px 40px 0px 0px;
+  background-color: black;
+  position: relative;
+  margin: auto;
 }
 
 .stubTabBottom > p {

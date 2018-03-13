@@ -116,7 +116,9 @@ class Program extends Component {
                     <TableHeaderColumn style={ProgPage.tableRowColName}>
                       Name
                     </TableHeaderColumn>
-                    <TableHeaderColumn style={ProgPage.tableRowColName}>Current Position</TableHeaderColumn>
+                    <TableHeaderColumn style={ProgPage.tableRowColName}>
+                      Current Position
+                    </TableHeaderColumn>
                   </TableRow>
                 </TableHeader>
                 <TableBody showRowHover displayRowCheckbox={false}>
@@ -140,7 +142,7 @@ Program.propTypes = {
   match: PropTypes.object.isRequired, // eslint-disable-line
   media: PropTypes.object.isRequired, // eslint-disable-line
   sponsors: PropTypes.array.isRequired, // eslint-disable-line
-  fetchProgram: PropTypes.func.isRequired // eslint-disable-line
+  navigateToProfessional: PropTypes.func.isRequired // eslint-disable-line
 }
 
 function createUserTable(users) {

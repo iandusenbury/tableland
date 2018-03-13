@@ -1,0 +1,195 @@
+.mapMainDiv {
+  height: calc(100vh - 56px);
+}
+
+.mapLoadingElement {
+  height: 100%;
+}
+
+.mapContainerElement {
+  height: 100%;
+}
+
+.mapMapElement {
+  height: 100%;
+}
+
+.gMapInfoWindowP {
+  position: absolute;
+  right: 2px;
+  bottom: 4px;
+}
+
+.mapPanNavigation {
+  height: 36px;
+  width: 300px;
+  position: absolute;
+  bottom: 138px;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.mapNavigation {
+  height: 36px;
+  width: 300px;
+  position: absolute;
+  bottom: 102px;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.mapProfilePreviewTab {
+  height: 100px;
+  width: 320px;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  border-radius: 12px 12px 0px 0px;
+  margin: auto;
+  position: absolute;
+  overflow: hidden;
+  z-index: 9;
+  background-color: #ff9e15;
+}
+
+.mapProfilePreviewInfo {
+  margin-left: 40px;
+  text-align: center;
+}
+
+.mapProfilePreviewInfo h3 {
+  margin: 0px;
+  margin-top: 8px;
+}
+
+.mapProfilePreviewInfo p {
+  margin: 0px;
+  margin-top: 8px;
+}
+
+.mapProfilePreviewAvatar {
+  position: absolute;
+}
+
+.mapLegend {
+  height: auto;
+  width: 180px;
+  position: relative;
+  top: 8px;
+  margin: auto;
+  margin: 0px 8px 16px;
+}
+
+.mapLegendHeader {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    'header button'
+  ;
+}
+
+.mapLegendHeader h3 {
+  grid-area: header;
+}
+
+.mapLegendHeader div {
+  grid-area: button;
+}
+
+.mapLegendFirstIcon {
+  width: 40px;
+  height: 40px;
+}
+
+.mapLegendFirstIcon img {
+  width: 100%;
+  height: auto;
+  position: relative;
+  right: 4px;
+}
+
+.mapLegendSecondIcon {
+  width: 32px;
+  height: 32px;
+}
+
+.mapLegendSecondIcon img {
+  width: 100%;
+  height: auto;
+}
+
+.mapLegend h3 {
+  margin-top: 8px;
+  margin-bottom: 10px;
+  margin-left: 4px;
+}
+
+.mapLegend table tbody tr {
+  margin: 14px 0px 14px;
+}
+
+.mapLegend table tbody tr td {
+  height: 32px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.mapLegendConcurrent svg path {
+  stroke: green;
+  stroke-width: 5;
+}
+
+.mapLegendConcurrent svg path:nth-child(odd){
+  stroke-opacity: 1;
+}
+
+.mapLegendConcurrent svg path:nth-child(even){
+  stroke-opacity: 0.3;
+}
+
+@media only screen and (max-width: 650px) {
+  .mapMainDiv {
+    height: calc(100vh - 56px - 100px);
+  }
+
+  .mapProfilePreviewInfo {
+    margin-left: 0px;
+  }
+
+  .mapProfilePreviewTab {
+    width: 100vw;
+    border-radius: 0;
+  }
+
+  .mapNavigation {
+    width: 240px;
+  }
+
+  .mapPanNavigation {
+    width: 240px;
+  }
+
+  .mapProfilePreviewAvatar {
+    left: 8px;
+    top: 12px;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .mapNavigation {
+    bottom: 122px;
+  }
+
+  .mapPanNavigation {
+    bottom: 158px;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .mapProfilePreviewAvatar {
+    left: 0px;
+    top: 0px;
+  }
+}

@@ -8,11 +8,14 @@ Rails.application.routes.draw do
         get 'search', to: 'api_base#search'
         # Get all users (super_admin), Get a specific user with all their media and experiences, update a specific user, destroy a specific user
         resources :users, only: [:index, :show, :update, :destroy] do
-          # Get a random user, Get the current user, Get the current user's permissions
+          # Get a random user, Get the current user
           collection do
             get 'random'
             get 'current'
-            get 'current/permissions', to: 'users#permissions'
+          end
+          # Get the permissions for a user
+          member do
+            get 'permissions'
           end
           # Create experiences for a user, update experiences for a user, destory experiences for a user
           resources :experiences, only: [:create, :update, :destroy]

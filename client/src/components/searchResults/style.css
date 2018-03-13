@@ -70,6 +70,7 @@
 @media (max-width: 450px) {
   .search-table-cell {
     padding-bottom: 15px;
+    padding-left: 0px;
     min-height: 130px;
     display: grid;
     grid-template-columns: 1fr 3fr 4fr;
@@ -111,7 +112,6 @@
     grid-area: icon;
     margin-top: 10px;
     padding-top: 8px;
-    padding-right: 10px;
     border-right-style: solid;
   }
 }
@@ -142,7 +142,7 @@
 @media (max-width: 450px) {
   .search-table-about {
     grid-area: about;
-    margin-top: 4px;
+    margin-top: 12px;
     padding-left: 10px;
     max-height: 140px;
   }

@@ -235,12 +235,13 @@
   padding: 0;
   display: block;
   margin: 0 auto;
-  height: 92.4vh;
+  height: calc(100vh - 56px);
   width: 100%;
 }
 
 .professionalTopTab {
   grid-area: tab;
+  text-decoration: none;
 }
 
 .professionalTableRow:hover {

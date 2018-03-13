@@ -10,32 +10,26 @@ const initialState = {
   name: '',
   description: '',
   url: '',
-  category: '',
-  addressLine1: '',
-  addressLine2: '',
-  city: '',
-  state: '',
-  postalCode: '',
-  country: '',
-  link: '',
   media: {
     image: {},
     video: {}
   },
-  users: []
+  users: [],
+  sponsors: [],
+  parentOrganizationNames: []
 }
 
 const handlers = {
   // Pattern:
   // [ActionTypes.ACTION_NAME]: actionFunction
-  [ActionTypes.RECIEVE_ORGANIZATION]: requestOrganization
+  [ActionTypes.RECIEVE_PROGRAM]: requestProgram
 }
 
 export default createReducer(initialState, handlers)
 
-function requestOrganization(state, data) {
-  const { payload: { organization } } = data
-  const { media, users } = organization
+function requestProgram(state, data) {
+  const { payload: { program } } = data
+  const { media, users } = program
 
   const image = find(propEq('category', 'image'))(media)
   const video = find(propEq('category', 'video'))(media)
@@ -51,7 +45,7 @@ function requestOrganization(state, data) {
 
   return {
     ...state,
-    ...organization,
+    ...program,
     media: {
       image: image || { url: portraitImg },
       video: video || { url: '' }

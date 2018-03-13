@@ -159,6 +159,17 @@
     ;
 }
 
+@media (max-width: 350px) {
+  .professional-url-icon {
+  }
+}
+
+@media (min-width: 350px) {
+  .professional-url-icon {
+    margin-left: 22px;
+  }
+}
+
 .professionalUrl {
   height: auto;
   width: auto;
@@ -171,6 +182,7 @@
 .professionalUrl p {
   margin: 0px;
   margin-top: 2px;
+  margin-left: 12px;
 }
 
 .professionalAddress {

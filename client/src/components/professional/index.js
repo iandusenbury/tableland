@@ -76,8 +76,8 @@ class Professional extends Component {
           </div>
           <div className="professionalContact">
             <div className="professionalUrl">
-              <div>
-                <LanguageIcon style={ProfPage.urlIcon} />
+              <div className="professional-url-icon">
+                <LanguageIcon />
               </div>
               <div>
                 <p>{contactUrl}</p>

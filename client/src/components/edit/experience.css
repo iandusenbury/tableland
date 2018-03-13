@@ -1,6 +1,6 @@
 .EditBoxGrid {
     display: grid;
-    grid-template-columns: 20% 80%;
+    grid-template-columns: 20% 70%;
     grid-template-areas: "left" "right";
     grid-column-gap: 2%;
 }
@@ -14,6 +14,7 @@
     height: auto;
 }
 
+/* Mobile view */
 @media (max-width: 660px) {
   .EditOuterDiv {
       display: grid;
@@ -21,7 +22,17 @@
   }
 }
 
-@media (min-width: 660px) {
+/* Small view */
+@media (min-width: 660px) and (max-width: 1000px) {
+  .EditOuterDiv {
+      display: grid;
+      height: auto;
+      grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Large view */
+@media (min-width: 1000px) {
   .EditOuterDiv {
       display: grid;
       height: auto;

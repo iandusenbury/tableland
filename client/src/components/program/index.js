@@ -34,7 +34,8 @@ class Program extends Component {
       url,
       media: { video },
       sponsors,
-      users
+      users,
+      navigateToProfessional
     } = this.props
 
     let videoUrl = ''
@@ -108,7 +109,7 @@ class Program extends Component {
           {users.length > 0 && (
             <div className="programEmployees">
               <h2 style={{ textAlign: 'center' }}>Members</h2>
-              <Table>
+              <Table onRowSelection={id => navigateToProfessional(id, users)}>
                 <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
                   <TableRow>
                     <TableHeaderColumn style={ProgPage.tableHeaderCol} />
@@ -138,7 +139,8 @@ Program.propTypes = {
   fetchProgram: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired, // eslint-disable-line
   media: PropTypes.object.isRequired, // eslint-disable-line
-  sponsors: PropTypes.array.isRequired // eslint-disable-line
+  sponsors: PropTypes.array.isRequired, // eslint-disable-line
+  fetchProgram: PropTypes.func.isRequired // eslint-disable-line
 }
 
 function createUserTable(users) {

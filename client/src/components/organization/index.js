@@ -15,7 +15,6 @@ import {
 import PropTypes from 'prop-types'
 import BusinessIcon from 'material-ui/svg-icons/communication/business'
 import LanguageIcon from 'material-ui/svg-icons/action/language'
-import { Link } from 'react-router-dom'
 
 import OrgPage from './style'
 import './style.css'
@@ -39,7 +38,8 @@ class Organization extends Component {
       postalCode,
       country,
       organizationVideo,
-      users
+      users,
+      navigateToProfessional
     } = this.props
 
     let videoUrl = ''
@@ -105,14 +105,16 @@ class Organization extends Component {
           {users.length > 0 && (
             <div className="organizationEmployees">
               <h2 style={{ textAlign: 'center' }}>Employees</h2>
-              <Table>
+              <Table onRowSelection={id => navigateToProfessional(id, users)}>
                 <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
                   <TableRow>
                     <TableHeaderColumn style={OrgPage.tableHeaderCol} />
                     <TableHeaderColumn style={OrgPage.tableRowColName}>
                       Employee
                     </TableHeaderColumn>
-                    <TableHeaderColumn style={OrgPage.tableRowColName}>Job Title</TableHeaderColumn>
+                    <TableHeaderColumn style={OrgPage.tableRowColName}>
+                      Job Title
+                    </TableHeaderColumn>
                   </TableRow>
                 </TableHeader>
                 <TableBody showRowHover displayRowCheckbox={false}>
@@ -140,7 +142,8 @@ Organization.propTypes = {
   organizationVideo: PropTypes.string, // eslint-disable-line
   users: PropTypes.array.isRequired, // eslint-disable-line
   fetchOrganization: PropTypes.func.isRequired,
-  match: PropTypes.bool.isRequired
+  match: PropTypes.bool.isRequired,
+  navigateToProfessional: PropTypes.func.isRequired
 }
 
 function createEmployeeTable(employees) {
@@ -148,16 +151,22 @@ function createEmployeeTable(employees) {
     const { id, firstName, lastName, mainTitle, imageUrl } = employee
 
     return (
-      <TableRow key={id} className="organizationTableRow" hoverable>
+      <TableRow
+        key={id}
+        style={{ width: '100%' }}
+        className="organizationTableRow"
+        hoverable>
         <TableRowColumn style={OrgPage.tableRowColAvatar}>
-          <Link to={`/professional/${id}`}>
-            <Avatar size={32} src={imageUrl} />
-          </Link>
+          <Avatar size={32} src={imageUrl} />
         </TableRowColumn>
         <TableRowColumn style={OrgPage.tableRowColName}>
-          {firstName} {lastName}
+          <p className="organizationRowLink">
+            {firstName} {lastName}
+          </p>
         </TableRowColumn>
-        <TableRowColumn style={OrgPage.tableRowColName}>{mainTitle}</TableRowColumn>
+        <TableRowColumn style={OrgPage.tableRowColName}>
+          <p>{mainTitle}</p>
+        </TableRowColumn>
       </TableRow>
     )
   })

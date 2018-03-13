@@ -1,3 +1,23 @@
+@media (max-width: 460px) {
+  .navbarSearchForm {
+    height: inherit;
+    grid-area: form;
+    display: inline-grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: 'search';
+  }
+}
+
+@media (min-width: 460px) {
+  .navbarSearchForm {
+    height: inherit;
+    grid-area: form;
+    display: inline-grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas: 'search submit';
+  }
+}
+
 .navbarSearch {
   grid-area: search;
   height: 48px;
@@ -9,19 +29,19 @@
   padding-left: 14px;
 }
 
-.navbarSearchForm {
-  height: inherit;
-  grid-area: form;
-  display: inline-grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-areas: 'search submit';
+@media (max-width: 460px) {
+  .navbar-submit-wrapper {
+    display: none;
+  }
 }
 
-.navbarSubmit {
-  height: 38px;
-  grid-area: submit;
-  margin-top: auto;
-  margin-bottom: auto;
-  margin-left: 8px;
-  margin-right: 4px;
+@media (min-width: 460px) {
+  .navbar-submit-wrapper {
+    grid-area: submit;
+    height: 38px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 8px;
+    margin-right: 4px;
+  }
 }

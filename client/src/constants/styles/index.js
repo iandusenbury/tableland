@@ -31,6 +31,11 @@ const styles = {
     width: '33vw',
     maxWidth: '300px',
     marginRight: '14px'
+  },
+  avatar: {
+    marginLeft: '12px',
+    marginRight: '6px',
+    marginTop: '4px'
   }
 }
 

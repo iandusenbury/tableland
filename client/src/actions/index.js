@@ -3,6 +3,7 @@ import { push } from 'react-router-redux'
 import ActionTypes from '../constants/actionTypes'
 import callApi from '../utils/api'
 import { authorizeOAuth } from './oauth'
+import { initMap, initUserMap } from './gmap'
 
 // fetch User
 export function fetchUser() {
@@ -15,7 +16,8 @@ export function fetchUser() {
     ]
   }
 
-  return dispatch => dispatch(callApi(callDescriptor))
+  return dispatch =>
+    dispatch(callApi(callDescriptor, { onSuccess: initUserMap }))
 }
 
 // Fetch Organization
@@ -46,7 +48,7 @@ export function fetchProfessional(userID = 'current') {
     ]
   }
 
-  return dispatch => dispatch(callApi(callDescriptor))
+  return dispatch => dispatch(callApi(callDescriptor, { onSuccess: initMap }))
 }
 
 export function fetchProgram(progID) {

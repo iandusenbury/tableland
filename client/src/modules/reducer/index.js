@@ -10,6 +10,7 @@ import isLoading from './isLoading'
 import admin from './admin'
 import search from './search'
 import program from './program'
+import roadmap from './roadmap'
 
 export default combineReducers({
   example,
@@ -21,5 +22,6 @@ export default combineReducers({
   isLoading,
   admin,
   search,
-  program
+  program,
+  roadmap
 })

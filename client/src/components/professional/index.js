@@ -148,7 +148,7 @@ function createExperienceTable(experiences) {
       <ListItem 
         key={id} 
         leftIcon={<Domain />}
-        containerElement={<Link to={`/organization/${id}`} />}
+        containerElement={<Link to={`/organization/${organization.id}`} />}
       >
         <h4>
           {name} - {title}
@@ -163,7 +163,7 @@ function createExperienceTable(experiences) {
 }
 
 function createProgramTable(name, experience) {
-  const { id, startDate, endDate, title, award } = experience
+  const { id, startDate, endDate, title, award, program } = experience
 
   const start = getDate(startDate)
   const end = getDate(endDate)
@@ -172,7 +172,7 @@ function createProgramTable(name, experience) {
     <ListItem 
       key={id} 
       leftIcon={<Group />}
-      containerElement={<Link to={`/program/${id}`} />}
+      containerElement={<Link to={`/program/${program.id}`} />}
     >
       <h4>
         {name} - {title}

@@ -1,14 +1,32 @@
-.programMainDiv {
-  width: 100%;
-  height: calc(100vh - 56px);
-  background-color: white;
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 0% auto;
-  grid-template-areas:
-    'tab   tab '
-    'image text'
-    ;
+@media (max-width: 620px) {
+  .programMainDiv {
+    width: 100%;
+    height: calc(100vh - 56px);
+    background-color: white;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 0% auto;
+    grid-template-areas:
+      'tab'
+      'image'
+      'text'
+      ;
+  }
+}
+
+@media (min-width: 620px) {
+  .programMainDiv {
+    width: 100%;
+    height: calc(100vh - 56px);
+    background-color: white;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 0% auto;
+    grid-template-areas:
+      'tab   tab '
+      'image text'
+      ;
+  }
 }
 
 .program-video-wrapper {
@@ -27,19 +45,39 @@
   width: 100%;
 }
 
-.programImage {
-  grid-area: image;
-  overflow: hidden;
-  height: calc(100vh - 56px);
-  background-color: white;
+@media (max-width: 620px) {
+  .programImage {
+    grid-area: image;
+    overflow: hidden;
+    height: calc(80vh - 56px);
+    background-color: white;
+  }
 }
 
-.programText {
-  height: calc(100vh - 56px);
-  background-color: white;
-  grid-area: text;
-  overflow-y: scroll;
-  overflow-x: hidden;
+@media (min-width: 620px) {
+  .programImage {
+    grid-area: image;
+    overflow: hidden;
+    height: calc(100vh - 56px);
+    background-color: white;
+  }
+}
+
+@media (max-width: 620px) {
+  .programText {
+    grid-area: text;
+    height: calc(100vh - 56px);
+  }
+}
+
+@media (min-width: 620px) {
+  .programText {
+    grid-area: text;
+    height: calc(100vh - 56px);
+    background-color: white;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
 }
 
 .programName {

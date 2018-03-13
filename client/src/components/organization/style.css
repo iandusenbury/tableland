@@ -1,4 +1,3 @@
-
 @media (max-width: 620px) {
   .organizationMainDiv {
     width: 100%;
@@ -82,16 +81,6 @@
     overflow-x: hidden;
   }
 }
-
-/*
-.organizationText {
-  height: calc(100vh - 56px);
-  background-color: white;
-  grid-area: text;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-*/
 
 .organizationName {
   height: auto;

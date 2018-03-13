@@ -1,5 +1,5 @@
 import React from 'react'
-import BottomTab from '../../constants/tabs/tabViewProfile'
+import BottomTab from '../../widgets/tabs/tabViewProfile'
 import Map from '../map'
 
 const Home = () => (

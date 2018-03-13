@@ -39,14 +39,7 @@ function requestOrganization(state, data) {
 
   const image = find(propEq('category', 'image'))(media)
   const video = find(propEq('category', 'video'))(media)
-
-  /*
-  const reducedMedia = media.reduce((obj, item) => {
-    obj[item.category] = item // eslint-disable-line
-    return obj
-  }, {})
-  */
-  
+ 
   return {
     ...state,
     ...organization,

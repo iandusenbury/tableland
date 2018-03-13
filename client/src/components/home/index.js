@@ -1,11 +1,9 @@
 import React from 'react'
-import BottomTab from '../../constants/tabs/tabViewProfile'
-import Map from '../map'
+import Map from '../../containers/map'
 
 const Home = () => (
   <div style={{ height: 'calc(100vh - 56px)' }}>
     <Map />
-    <BottomTab />
   </div>
 )
 

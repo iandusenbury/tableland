@@ -12,6 +12,8 @@ import SearchResults from '../../containers/searchResults'
 import OrgPage from '../../containers/organization'
 import EditProfile from '../edit'
 import Professional from '../../containers/professional'
+import ProgramPage from '../../containers/program'
+import GMap from '../../containers/map'
 import NotFound from '../notFound'
 
 const App = () => (
@@ -25,6 +27,8 @@ const App = () => (
       <Route exact path="/organization/:id" component={OrgPage} />
       <Route exact path="/profile" component={Professional} />
       <Route exact path="/professional/:id" component={Professional} />
+      <Route exact path="/program/:id" component={ProgramPage} />
+      <Route exact path="/roadmap/:id" component={GMap} />
       <Route exact path="/edit" component={EditProfile} />
       <Route component={NotFound} />
     </Switch>

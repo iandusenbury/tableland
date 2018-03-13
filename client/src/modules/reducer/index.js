@@ -9,6 +9,8 @@ import dialog from './dialog'
 import isLoading from './isLoading'
 import admin from './admin'
 import search from './search'
+import program from './program'
+import roadmap from './roadmap'
 
 export default combineReducers({
   example,
@@ -19,5 +21,7 @@ export default combineReducers({
   dialog,
   isLoading,
   admin,
-  search
+  search,
+  program,
+  roadmap
 })

@@ -115,7 +115,7 @@ class Program extends Component {
                     <TableHeaderColumn style={ProgPage.tableRowColName}>
                       Name
                     </TableHeaderColumn>
-                    <TableHeaderColumn>Current Position</TableHeaderColumn>
+                    <TableHeaderColumn style={ProgPage.tableRowColName}>Current Position</TableHeaderColumn>
                   </TableRow>
                 </TableHeader>
                 <TableBody showRowHover displayRowCheckbox={false}>

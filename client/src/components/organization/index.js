@@ -112,7 +112,7 @@ class Organization extends Component {
                     <TableHeaderColumn style={OrgPage.tableRowColName}>
                       Employee
                     </TableHeaderColumn>
-                    <TableHeaderColumn>Job Title</TableHeaderColumn>
+                    <TableHeaderColumn style={OrgPage.tableRowColName}>Job Title</TableHeaderColumn>
                   </TableRow>
                 </TableHeader>
                 <TableBody showRowHover displayRowCheckbox={false}>

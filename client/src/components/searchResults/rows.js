@@ -16,7 +16,6 @@ const getAvatar = url => {
 
 const tableRow = profile => {
   const { id, type, profileName, avatar, info, contact } = profile
-  console.log('profile type: ', type)
   return (
     <TableRow className="search-table-row-stripe" key={`${type}_${id}`}>
       <TableRowColumn className="search-table-cell">

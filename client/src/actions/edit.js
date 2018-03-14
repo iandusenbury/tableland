@@ -10,7 +10,7 @@ export function createThings(organization, experience, programs, userId){
        //const { payload: {organization: {id as orgId} }} = response
         const orgId = response.payload.organization.id
         if(!isEmpty(programs)) {
-            programs.map(program => {
+            programs.forEach(program => {
                 return dispatch(createProgram(program, orgId)).then(response => {
                     console.log(response)
                     const { payload:{program: {id}}} = response

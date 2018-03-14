@@ -83,12 +83,6 @@ class EditProfile extends Component {
           })
       }
 
-      const savePersonalInfo = values => {
-
-        console.log(values)
-
-      }
-
     return (
       <div>
           {!loading &&

@@ -2,10 +2,9 @@ module Api::V1
   class OrganizationsController < ApiBaseController
     before_action :set_organization, only: [:show, :update, :grant_permission, :admins, :revoke_permission]
     before_action :allow_if_visible, except: [:index, :show] 
-    before_action :require_correct_admin, only: [:update, :grant_permission, :revoke_permission]
+    before_action :require_correct_admin, only: [:update, :grant_permission, :admins, :revoke_permission]
     before_action :validate_update_params, only: :update
     before_action :check_index_permission, only: :index
-    before_action :check_get_admins_permission, only: :admins
 
     # GET /v1/organizations
     def index
@@ -82,11 +81,6 @@ module Api::V1
       # Ensure that only super admins can view all organizations
       def check_index_permission
         raise ExceptionTypes::UnauthorizedError.new("You do not have permission to view all organizations") unless current_user.super_admin?
-      end
-
-      # Ensure that only super admins can view all admins for a specific organization
-      def check_get_admins_permission
-        raise ExceptionTypes::UnauthorizedError.new("You do not have permission to view all admins for the specified organization") unless current_user.super_admin?
       end
 
       # Verify that the newly created organization is valid and if it is, check to

@@ -3,10 +3,9 @@ module Api::V1
     before_action :set_organization, only: :create
     before_action :set_program, only: [:show, :update, :grant_permission, :admins, :revoke_permission]
     before_action :allow_if_visible, except: [:index, :show]
-    before_action :require_correct_admin, only: [:update, :grant_permission, :revoke_permission]
+    before_action :require_correct_admin, only: [:update, :grant_permission, :admins, :revoke_permission]
     before_action :validate_update_params, only: :update
     before_action :check_index_permission, only: :index
-    before_action :check_get_admins_permission, only: :admins
 
     # GET /v1/programs
     def index
@@ -86,11 +85,6 @@ module Api::V1
       # Ensure that only super admins can view all programs
       def check_index_permission
         raise ExceptionTypes::UnauthorizedError.new("You do not have permission to view all programs") unless current_user.super_admin?
-      end
-
-      # Ensure that only super admins can view all admins for a specific program
-      def check_get_admins_permission
-        raise ExceptionTypes::UnauthorizedError.new("You do not have permission to view all admins for the specified program") unless current_user.super_admin?
       end
 
       # Verify that the newly created program is valid and if it is, check to

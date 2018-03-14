@@ -163,13 +163,26 @@
   margin-bottom: 2%;
 }
 
-.organizationImg {
-  object-fit:cover;
-  padding: 0;
-  display: block;
-  margin: 0 auto;
-  height: calc(100vh - 56px);
-  width: 100%;
+@media (max-width: 620px) {
+  .organizationImg {
+    object-fit:cover;
+    padding: 0;
+    display: block;
+    margin: 0 auto;
+    height: calc(80vh - 56px);
+    width: 100%;
+  }
+}
+
+@media (min-width: 620px) {
+  .organizationImg {
+    object-fit:cover;
+    padding: 0;
+    display: block;
+    margin: 0 auto;
+    height: calc(100vh - 56px);
+    width: 100%;
+  }
 }
 
 .organizationTopTab {

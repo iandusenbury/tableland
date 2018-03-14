@@ -23,9 +23,12 @@ const currentMarkerImg = require('../../assets/icons/current.png')
 
 class MyMapComponent extends Component {
   componentWillMount() {
-    const { fetchProfessional, match, toggleLegend, isLegendShown } = this.props
-    if (match) {
+    const { fetchProfessional, match, toggleLegend, isLegendShown, loading } = this.props
+    // if (!loading) {
+    if (match && match.params) {
       fetchProfessional(match.params.id)
+    } else {
+      fetchProfessional('random')
     }
     if (isLegendShown && window.innerWidth < 620) {
       toggleLegend()
@@ -37,11 +40,7 @@ class MyMapComponent extends Component {
     if (loading) return <Loading />
 
     const {
-      id,
-      firstName,
-      lastName,
-      mainTitle,
-      media: { image },
+      profile: { id, firstName, lastName, mainTitle, media: { image } },
       sortedExperiences,
       currentMarker,
       isMarkerOpen,
@@ -87,7 +86,7 @@ class MyMapComponent extends Component {
           containerElement={<div className="mapContainerElement" />}
           mapElement={<div className="mapMapElement" />}
           defaultZoom={12}
-          defaultCenter={{ lat: 45.516, lng: -122.679565 }}
+          defaultCenter={{ lng: -122.6765, lat: 45.5231 }}
           defaultOptions={{
             styles: mapStyle,
             streetViewControl: false,

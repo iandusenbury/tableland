@@ -26,9 +26,11 @@ Rails.application.routes.draw do
         # Get all orgs (super_admin/optional), Get a specific organization with all their media, users, and programs, create a new organization,
         # Update an org (admins)
         resources :organizations, except: :destroy do
-          # Assign an admin to an org for permission to edit (super_admin), get all admins for an org (super_admin)
+          # Assign an admin to an org for permission to edit, revoke the permission for an admin to edit an org, 
+          # and get all admins for an org
           member do
             post 'permissions', to: 'organizations#grant_permission'
+            delete 'revoke', to: 'organizations#revoke_permission'
             get 'admins'
           end
           # Create programs for an organization
@@ -40,9 +42,11 @@ Rails.application.routes.draw do
         # Get all progs (super_admin/optional), Get a specific program with all their media, users, and parent organizations,
         # Update a prog (admins)
         resources :programs, only: [:index, :show, :update] do
-          # Assign an admin to a program for permission to edit (super_admin), get all admins for a program (super_admin)
+          # Assign an admin to a program for permission to edit, revoke the permission for an admin to edit a prog,
+          # and get all admins for a program (super_admin)
           member do
             post 'permissions', to: 'programs#grant_permission'
+            delete 'revoke', to: 'programs#revoke_permission'
             get 'admins'
           end
           # Create media for progs (admins), update media for progs (admins), and destroy media for progs (admins)

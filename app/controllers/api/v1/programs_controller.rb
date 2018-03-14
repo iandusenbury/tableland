@@ -1,9 +1,9 @@
 module Api::V1
   class ProgramsController < ApiBaseController
     before_action :set_organization, only: :create
-    before_action :set_program, only: [:show, :update, :grant_permission, :admins]
+    before_action :set_program, only: [:show, :update, :grant_permission, :admins, :revoke_permission]
     before_action :allow_if_visible, except: [:index, :show]
-    before_action :require_correct_admin, only: [:update, :grant_permission]
+    before_action :require_correct_admin, only: [:update, :grant_permission, :revoke_permission]
     before_action :validate_update_params, only: :update
     before_action :check_index_permission, only: :index
     before_action :check_get_admins_permission, only: :admins
@@ -43,6 +43,12 @@ module Api::V1
     # GET /v1/programs/{id}/admins
     def admins
       render json: @program, include: 'admins', status: :ok
+    end
+
+    # DELETE /v1/programs/{id}/revoke
+    def revoke_permission
+      permissions_to_destroy = find_permissions_to_revoke(@program)
+      permissions_to_destroy.destroy_all
     end
 
     # Unreachable

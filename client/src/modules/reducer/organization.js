@@ -35,7 +35,7 @@ export default createReducer(initialState, handlers)
 
 function requestOrganization(state, data) {
   const { payload: { organization } } = data
-  const { media, users } = organization
+  const { media } = organization
 
   const image = find(propEq('category', 'image'))(media)
   const video = find(propEq('category', 'video'))(media)

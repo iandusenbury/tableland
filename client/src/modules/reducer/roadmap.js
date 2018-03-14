@@ -35,23 +35,38 @@ const handlers = {
   // Pattern:
   // [ActionTypes.ACTION_NAME]: actionFunction
   [ActionTypes.UPDATE_OPEN_MARKERS]: updateMarkers,
-  [ActionTypes.INIT_MAP_INFO]: initMarkers,
   [ActionTypes.TOGGLE_LEGEND]: toggleLegend,
-  // [ActionTypes.RECIEVE_USER]: loadProfile,
-  [ActionTypes.RECIEVE_PROFESSIONAL]: loadProfile
+  [ActionTypes.RECIEVE_PROFESSIONAL]: loadMap
 }
 
 export default createReducer(initialState, handlers)
 
-function loadProfile(state, data) {
+function loadMap(state, data) {
   const { payload: { user } } = data
-  const { media } = user
+  const { media, experiences } = user
+  const isMarkerOpen = []
+  const sortedExperiences = experiences.sort(
+    (a, b) => Date.parse(a.startDate) - Date.parse(b.startDate)
+  )
+
+  let isFirst = true
+  sortedExperiences.forEach(experience => {
+    if (experience.organization) {
+      if (experience.current && isFirst) {
+        isMarkerOpen.push(true)
+        isFirst = false
+      } else {
+        isMarkerOpen.push(false)
+      }
+    }
+  })
 
   const image = find(propEq('category', 'image'))(media)
   const video = find(propEq('category', 'video'))(media)
 
   return {
     ...state,
+    isMarkerOpen,
     profile: {
       ...user,
       media: {
@@ -59,16 +74,6 @@ function loadProfile(state, data) {
         video: video || { url: '' }
       }
     }
-  }
-}
-
-function initMarkers(state, data) {
-  const { payload: { isMarkerOpen } } = data
-
-  return {
-    ...state,
-    isMarkerOpen,
-    currentMarker: isMarkerOpen.indexOf(true)
   }
 }
 

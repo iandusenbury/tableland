@@ -22,9 +22,8 @@ const firstMarkerImg = require('../../assets/icons/first.png')
 const currentMarkerImg = require('../../assets/icons/current.png')
 
 class MyMapComponent extends Component {
-  componentWillMount() {
-    const { fetchProfessional, match, toggleLegend, isLegendShown, loading } = this.props
-    // if (!loading) {
+  componentDidMount() {
+    const { fetchProfessional, match, toggleLegend, isLegendShown } = this.props
     if (match && match.params) {
       fetchProfessional(match.params.id)
     } else {
@@ -217,12 +216,8 @@ class MyMapComponent extends Component {
 }
 
 MyMapComponent.propTypes = {
-  id: PropTypes.number.isRequired,
-  firstName: PropTypes.string.isRequired,
-  lastName: PropTypes.string.isRequired,
-  mainTitle: PropTypes.string.isRequired,
+  profile: PropTypes.object.isRequired, // eslint-disable-line
   match: PropTypes.object, // eslint-disable-line
-  media: PropTypes.object.isRequired, // eslint-disable-line
   sortedExperiences: PropTypes.array.isRequired, // eslint-disable-line
   fetchProfessional: PropTypes.func.isRequired,
   currentMarker: PropTypes.number.isRequired,

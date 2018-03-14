@@ -39,7 +39,6 @@ const mapStateToProps = state => {
   }
 
   return {
-    // ...state.app.professionalPage,
     sortedExperiences,
     ...state.app.isLoading,
     ...state.app.roadmap,

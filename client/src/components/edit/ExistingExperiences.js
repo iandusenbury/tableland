@@ -61,7 +61,7 @@ function filterExp(experiences){
                 description: organization.description,
                 position: title,
                 award: award,
-                id: id,
+                id: organization.id,
                 current: current,
                 endDate: endDate,
                 startDate: startDate,

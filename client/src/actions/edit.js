@@ -7,17 +7,18 @@ import {isEmpty} from 'ramda'
 export function createThings(organization, experience, programs, userId){
     return dispatch => dispatch(createOrganization(organization)).then(response => {
        console.log(response)
-       const { payload: {organization: {id} }} = response
+       //const { payload: {organization: {id as orgId} }} = response
+        const orgId = response.payload.organization.id
         if(!isEmpty(programs)) {
             programs.map(program => {
-                return dispatch(createProgram(program)).then(({error, response}) => {
+                return dispatch(createProgram(program, orgId)).then(response => {
                     console.log(response)
                     const { payload:{program: {id}}} = response
-                    return dispatch(createExperience(experience, userId, {programId: id}))
+                    return dispatch(createExperience(experience, userId, {programId: id, parentOrg: orgId}))
                 })
             })
         }
-        return dispatch(createExperience(experience, userId, {organizationId:id}))
+        return dispatch(createExperience(experience, userId, {organizationId:orgId}))
     })
 }
 
@@ -40,10 +41,10 @@ export function createOrganization(organization) {
 
 
 
-export function createProgram(program) {
+export function createProgram(program, orgID) {
     const callDescriptor = {
         body: { program },
-        endpoint: `/programs`,
+        endpoint: `/organizations/${orgID}/programs`,
         method: 'POST',
         types: [
             ActionTypes.REQUEST_CREATE_PROGRAM,

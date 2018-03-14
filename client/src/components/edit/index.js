@@ -72,13 +72,21 @@ class EditProfile extends Component {
                   current
               }
 
-              const progName = programs[0].name;
-              const program = {name: progName}
+              const allPrograms = []
 
-              const sample = [ program ]
+              programs.forEach(program => {
+                  const prog = { name: program.name }
+                  allPrograms.push(prog)
+              })
 
-              createThings(organization, experience, sample, userId)
+              createThings(organization, experience, allPrograms, userId)
           })
+      }
+
+      const savePersonalInfo = values => {
+
+        console.log(values)
+
       }
 
     return (

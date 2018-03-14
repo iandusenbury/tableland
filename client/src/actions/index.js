@@ -84,6 +84,10 @@ function loadResultsPage(response, dispatch) {
   return dispatch(push('/results'))
 }
 
+export function navigateToProfessional(index, users) {
+  return dispatch => dispatch(push(`/professional/${users[index[0]].id}`))
+}
+
 export function adminChangeTableTo(index) {
   return {
     type: ActionTypes.ADMIN_CHANGE_TABLE,

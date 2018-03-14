@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { 
   Card, 
   CardMedia, 
@@ -7,7 +8,6 @@ import {
   ListItem, 
   Avatar 
 } from 'material-ui'
-import { Link } from 'react-router-dom'
 import LanguageIcon from 'material-ui/svg-icons/action/language'
 import Group from 'material-ui/svg-icons/social/group'
 import Domain from 'material-ui/svg-icons/social/domain'
@@ -150,7 +150,11 @@ function createExperienceTable(experiences) {
     const end = getDate(endDate)
 
     return (
-      <ListItem key={id} leftIcon={<Domain />}>
+      <ListItem 
+        key={id} 
+        leftIcon={<Domain />}
+        containerElement={<Link to={`/organization/${organization.id}`} />}
+      >
         <h4>
           {name} - {title}
         </h4>
@@ -164,13 +168,17 @@ function createExperienceTable(experiences) {
 }
 
 function createProgramTable(name, experience) {
-  const { id, startDate, endDate, title, award } = experience
+  const { id, startDate, endDate, title, award, program } = experience
 
   const start = getDate(startDate)
   const end = getDate(endDate)
 
   return (
-    <ListItem key={id} leftIcon={<Group />}>
+    <ListItem 
+      key={id} 
+      leftIcon={<Group />}
+      containerElement={<Link to={`/program/${program.id}`} />}
+    >
       <h4>
         {name} - {title}
       </h4>

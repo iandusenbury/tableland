@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   # Callback for setting defaults, defined below
   after_initialize :set_default_attributes, if: :new_record?
+  # Callback for clearing permissions if an admin is demoted
+  after_update :check_demotion
   acts_as_token_authenticatable
 
   enum role: [:user, :admin, :super_admin]
@@ -68,5 +70,12 @@ class User < ApplicationRecord
     def set_default_attributes
       self.role ||= :user
       self.visible = true
+    end
+
+    def check_demotion
+      if  self.saved_change_to_role?(from: "admin", to: "user") || 
+          self.saved_change_to_role?(from: "super_admin", to: "user")
+        self.permissions.destroy_all
+      end
     end
 end

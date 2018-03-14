@@ -78,7 +78,7 @@ const renderNewExp = ({ fields }) => (
                                 name={`${exp}.city`}
                                 component={StyledTextField}
                                 text="City"
-                                disabled
+
                             />
                         </div>
                         <div>
@@ -86,7 +86,7 @@ const renderNewExp = ({ fields }) => (
                                 name={`${exp}.state`}
                                 component={StyledTextField}
                                 text="State"
-                                disabled
+
                             />
                         </div>
                         <div>
@@ -94,7 +94,7 @@ const renderNewExp = ({ fields }) => (
                                 name={`${exp}.postal`}
                                 component={StyledTextField}
                                 text="Postal Code"
-                                disabled
+
                             />
                         </div>
                         <div>
@@ -102,7 +102,7 @@ const renderNewExp = ({ fields }) => (
                                 name={`${exp}.country`}
                                 component={StyledTextField}
                                 text="Country"
-                                disabled
+
                             />
                         </div>
                     </div>

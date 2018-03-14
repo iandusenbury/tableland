@@ -44,6 +44,8 @@ class EditProfile extends Component {
 
 
       const submitHandler = values => {
+          if(!values.newExp) return
+
           values.newExp.forEach(exp => {
               const {name, position, current,
                   award, startDate, endDate,
@@ -51,23 +53,31 @@ class EditProfile extends Component {
 
               const organization = {
                   name,
-                  position,
-                  address,
+                  addressLine_1: address,
+                  addressLine_2: '123',
                   city,
                   state,
-                  postal,
-                  country
+                  postalCode: postal,
+                  country,
+                  lat: 1.7,
+                  lng: 2.5
               }
+
 
               const experience = {
-                  position,
-                  current,
+                  title: position,
                   award,
                   startDate,
-                  endDate
+                  endDate,
+                  current
               }
 
-              createThings(organization, experience, programs, userId)
+              const progName = programs[0].name;
+              const program = {name: progName}
+
+              const sample = [ program ]
+
+              createThings(organization, experience, sample, userId)
           })
       }
 

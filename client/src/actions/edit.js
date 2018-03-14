@@ -5,12 +5,14 @@ import {isEmpty} from 'ramda'
 
 
 export function createThings(organization, experience, programs, userId){
-    return dispatch => dispatch(createOrganization(organization)).then(({error, response}) => {
-        const {organization: {id} } = response
+    return dispatch => dispatch(createOrganization(organization)).then(response => {
+       console.log(response)
+       const { payload: {organization: {id} }} = response
         if(!isEmpty(programs)) {
-            programs.forEach(program => {
+            programs.map(program => {
                 return dispatch(createProgram(program)).then(({error, response}) => {
-                    const {program: {id}} = response
+                    console.log(response)
+                    const { payload:{program: {id}}} = response
                     return dispatch(createExperience(experience, userId, {programId: id}))
                 })
             })

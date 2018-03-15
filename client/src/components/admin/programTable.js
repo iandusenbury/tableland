@@ -13,6 +13,7 @@ import {
 } from 'material-ui'
 
 import AddAdminDialog from '../../containers/admin/dialogs/addAdminDialog'
+import AssocOrgListDialog from '../../containers/admin/dialogs/assocOrgListDialog'
 
 export default class ProgramList extends Component {
   constructor(props) {
@@ -26,12 +27,25 @@ export default class ProgramList extends Component {
     const { programs, toggleProgramVisibility, openDialog } = this.props
 
     return programs.map(program => {
-      const { id, name, visible } = program
+      const { id, name, visible, parentOrganizationNames } = program
 
       const blockedCheckbox = (
         <Checkbox
           checked={!visible}
           onCheck={() => toggleProgramVisibility(id, visible)}
+        />
+      )
+
+      const assocOrgButton = (
+        <RaisedButton
+          backgroundColor="#8195b1"
+          label="View"
+          onClick={() =>
+            openDialog(3, {
+              message: `Associated Organizations for ${name}`,
+              parentOrganizations: parentOrganizationNames
+            })
+          }
         />
       )
 
@@ -42,6 +56,7 @@ export default class ProgramList extends Component {
           containerElement={<Link to={`/program/edit/${id}`} />}
         />
       )
+
       const addAdminButton = (
         <RaisedButton
           backgroundColor="#8195b1"
@@ -60,6 +75,7 @@ export default class ProgramList extends Component {
         <TableRow key={id}>
           <TableRowColumn>{name}</TableRowColumn>
           <TableRowColumn>{blockedCheckbox}</TableRowColumn>
+          <TableRowColumn>{assocOrgButton}</TableRowColumn>
           <TableRowColumn>{editProgramButton}</TableRowColumn>
           <TableRowColumn>{addAdminButton}</TableRowColumn>
         </TableRow>
@@ -70,7 +86,8 @@ export default class ProgramList extends Component {
   renderTable() {
     const headerValues = [
       { tooltip: 'Name', value: 'Name' },
-      { tooltip: 'Block/Unblock', value: 'Blocked' }
+      { tooltip: 'Block/Unblock', value: 'Blocked' },
+      { tooltip: 'Associated Organizations', value: 'Assoc Orgs' }
     ]
 
     const mapHeaderValues = headerValues.map(({ tooltip, value }) => (
@@ -82,6 +99,7 @@ export default class ProgramList extends Component {
     return (
       <div>
         <AddAdminDialog />
+        <AssocOrgListDialog />
         <Table fixedHeader={false} style={{ tableLayout: 'auto' }}>
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>{mapHeaderValues}</TableRow>

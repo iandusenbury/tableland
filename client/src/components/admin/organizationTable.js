@@ -30,7 +30,7 @@ export default class OrganizationList extends Component {
     } = this.props
 
     return organizations.map(organization => {
-      const { id, name, visible } = organization
+      const { id, name, addressLine1, addressLine2, visible } = organization
 
       const blockedCheckbox = (
         <Checkbox
@@ -63,6 +63,7 @@ export default class OrganizationList extends Component {
       return (
         <TableRow key={id}>
           <TableRowColumn>{name}</TableRowColumn>
+          <TableRowColumn>{`${addressLine1} ${addressLine2}`}</TableRowColumn>
           <TableRowColumn>{blockedCheckbox}</TableRowColumn>
           <TableRowColumn>{editOrganizationButton}</TableRowColumn>
           <TableRowColumn>{addAdminButton}</TableRowColumn>
@@ -74,6 +75,7 @@ export default class OrganizationList extends Component {
   renderTable() {
     const headerValues = [
       { tooltip: 'Name', value: 'Name' },
+      { tooltip: 'Address', value: 'Address' },
       { tooltip: 'Block/Unblock', value: 'Blocked' }
     ]
 

@@ -118,6 +118,11 @@ export function authorizeUser() {
 export function logoutUser() {
   Cookies.expire('X-User-Email')
   Cookies.expire('X-User-Token')
+  window.open(
+    'https://www.linkedin.com/m/logout/',
+    'Logout',
+    'width=1000 height=800'
+  )
 
   const onSuccess = () => ({
     type: ActionTypes.LOGOUT_USER

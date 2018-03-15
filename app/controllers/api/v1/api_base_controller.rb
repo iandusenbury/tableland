@@ -48,6 +48,18 @@ module Api::V1
         found_user
       end
 
+      # Attempt to find admin permissions matching the specified user for the specified resource
+      def find_permissions_to_revoke(resource)
+        raise ExceptionTypes::BadRequestError.new("user_id must be present") unless params[:user_id].present?
+        
+        found_user = User.find(params[:user_id])
+        raise ExceptionTypes::UnauthorizedError.new("You are not authorized to modify the permissions for the user with ID #{found_user.id}") if found_user.super_admin?
+
+        found_permissions = resource.permissions.where(user_id: found_user.id)
+
+        found_permissions
+      end
+
     private
       # Helps all controllers implicitly locate the serializers
       def set_serializer_namespace

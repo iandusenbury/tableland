@@ -60,6 +60,8 @@ NUM_COMPS = STEM_COMPANIES.length
 NUM_INSTS = 15
 NUM_ORGS  = 15
 NUM_PROGS = 20
+PDX_COORDS = { lng: -122.6765, lat: 45.5231 }
+COORDS_STD_DEV = 0.5
 
 
 def create_users()
@@ -93,8 +95,8 @@ def create_companies()
       state:          Faker::Address.state_abbr,
       postal_code:    Faker::Address.postcode,
       country:        Faker::Address.country,
-      lat:            Faker::Address.latitude,
-      lng:            Faker::Address.longitude
+      lat:            Faker::Number.normal(PDX_COORDS[:lat], COORDS_STD_DEV),
+      lng:            Faker::Number.normal(PDX_COORDS[:lng], COORDS_STD_DEV)
     )
   end
 
@@ -115,8 +117,8 @@ def create_institutions()
       state:          Faker::Address.state_abbr,
       postal_code:    Faker::Address.postcode,
       country:        Faker::Address.country,
-      lat:            Faker::Address.latitude,
-      lng:            Faker::Address.longitude
+      lat:            Faker::Number.normal(PDX_COORDS[:lat], COORDS_STD_DEV),
+      lng:            Faker::Number.normal(PDX_COORDS[:lng], COORDS_STD_DEV)
     )
   end
 
@@ -138,8 +140,8 @@ def create_organizations()
       state:          Faker::Address.state_abbr,
       postal_code:    Faker::Address.postcode,
       country:        Faker::Address.country,
-      lat:            Faker::Address.latitude,
-      lng:            Faker::Address.longitude
+      lat:            Faker::Number.normal(PDX_COORDS[:lat], COORDS_STD_DEV),
+      lng:            Faker::Number.normal(PDX_COORDS[:lng], COORDS_STD_DEV)
     )
   end
 
@@ -204,15 +206,28 @@ def create_experiences()
       prog_recs_per_user[:MAX])
     
     for j in 0..(max_recs - min_recs) do
-      Experience.create( 
-        user_id:         i,
-        program_id:      Faker::Number.between(1, NUM_PROGS),
-        start_date:      (j*2).years.ago,
-        end_date:        j.years.ago,
-        title:           ["Member", "Chair", "Volunteer", "President"].sample,
-        current:         false,
-        parent_org:      Faker::Number.between(1, total_org_recs)
-      )
+      # this is the most recent experience
+      if j == 0
+        Experience.create( 
+          user_id:         i,
+          program_id:      Faker::Number.between(1, NUM_PROGS),
+          start_date:      1.year.ago,
+          end_date:        nil,
+          title:           ["Member", "Chair", "Volunteer", "President"].sample,
+          current:         false,
+          parent_org:      Faker::Number.between(1, total_org_recs)
+        )
+      else
+        Experience.create( 
+          user_id:         i,
+          program_id:      Faker::Number.between(1, NUM_PROGS),
+          start_date:      (j * 2).years.ago,
+          end_date:        j.years.ago,
+          title:           ["Member", "Chair", "Volunteer", "President"].sample,
+          current:         false,
+          parent_org:      Faker::Number.between(1, total_org_recs)
+        )
+      end
     end
   end
 end
@@ -253,7 +268,9 @@ def create_media()
       mediable_type:  "User",
       category:       "image",
       description:    Faker::Lorem.sentence,
-      url:            Faker::LoremPixel.image("100x100", false, 'people')
+#      url:            Faker::LoremPixel.image("100x100", false, 'people')
+      url:            "https://randomuser.me/api/portraits/women/" + 
+                        Faker::Number.between(1, 70).to_s + ".jpg"
     )
     
     Medium.create(

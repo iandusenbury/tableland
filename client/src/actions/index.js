@@ -3,6 +3,7 @@ import { push } from 'react-router-redux'
 import ActionTypes from '../constants/actionTypes'
 import callApi from '../utils/api'
 import { authorizeOAuth } from './oauth'
+import { initMap, initUserMap } from './gmap'
 
 // fetch User
 export function fetchUser() {
@@ -15,7 +16,8 @@ export function fetchUser() {
     ]
   }
 
-  return dispatch => dispatch(callApi(callDescriptor))
+  return dispatch =>
+    dispatch(callApi(callDescriptor, { onSuccess: initUserMap }))
 }
 
 // Fetch Organization
@@ -46,13 +48,28 @@ export function fetchProfessional(userID = 'current') {
     ]
   }
 
+  return dispatch => dispatch(callApi(callDescriptor, { onSuccess: initMap }))
+}
+
+export function fetchProgram(progID) {
+  const callDescriptor = {
+    endpoint: `/programs/${progID}`,
+    types: [
+      ActionTypes.REQUEST_PROGRAM,
+      ActionTypes.RECIEVE_PROGRAM,
+      ActionTypes.FAILURE_PROGRAM
+    ]
+  }
+
   return dispatch => dispatch(callApi(callDescriptor))
 }
 
 export function fetchResults(values) {
   const { searchKey } = values
+  // trim leading and trailing spaces, replace spaces with '+' sign
+  const term = searchKey.trim().replace(/ /g, '+')
   const callDescriptor = {
-    endpoint: `/search?key=${searchKey}`,
+    endpoint: `/search?term=${term}`,
     types: [
       ActionTypes.REQUEST_SEARCH,
       ActionTypes.RECIEVE_SEARCH,
@@ -65,6 +82,10 @@ export function fetchResults(values) {
 
 function loadResultsPage(response, dispatch) {
   return dispatch(push('/results'))
+}
+
+export function navigateToProfessional(index, users) {
+  return dispatch => dispatch(push(`/professional/${users[index[0]].id}`))
 }
 
 export function adminChangeTableTo(index) {

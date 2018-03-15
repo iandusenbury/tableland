@@ -1,4 +1,4 @@
-.professionalMainDiv {
+.programMainDiv {
   width: 100%;
   height: calc(100vh - 56px);
   background-color: white;
@@ -11,71 +11,45 @@
     ;
 }
 
-.professionalAvatarDiv {
-  height: calc(100vh - 56px);
-  width: 100%;
-}
-
-.professionalAvatarStyle {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-}
-
-.professionalPaperStyle {
-  background-color: rgba(231,224,215,0.5);
-  border-radius: 10px;
-  position: relative;
-  top: 65vh;
-  bottom: 0;
-  width: 65%;
-  margin: auto;
-}
-
-.professionalVideoWrapper {
+.program-video-wrapper {
   height: 0;
   position: relative;
   padding-bottom: 60%;
 }
 
-.professionalVideo {
+.programVideo {
   bottom: 0;
   height: 100%;
   left: 0;
   position: absolute;
-  rigth: 0;
+  right: 0;
   top: 0;
   width: 100%;
 }
 
-.professionalImg {
-  object-fit:cover;
-}
-
-.professionalImage {
+.programImage {
   grid-area: image;
   overflow: hidden;
   height: calc(100vh - 56px);
+  background-color: white;
 }
 
-.professionalText {
+.programText {
+  height: calc(100vh - 56px);
+  background-color: white;
   grid-area: text;
   overflow-y: scroll;
   overflow-x: hidden;
-  height: calc(100vh - 56px);
 }
 
-.professionalName {
+.programName {
   height: auto;
   width: auto;
   margin: 28px 23px 0px;
   font-size: 36px;
 }
 
-.professionalContact {
+.programContact {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 50% 50%;
@@ -85,7 +59,7 @@
     ;
 }
 
-.professionalUrl {
+.programUrl {
   height: auto;
   width: auto;
   margin: 18px 18px 0px;
@@ -94,12 +68,12 @@
   vertical-align: middle;
 }
 
-.professionalUrl p {
+.programUrl p {
   margin: 0px;
   margin-top: 2px;
 }
 
-.professionalAddress {
+.programAddress {
   height: auto;
   width: auto;
   margin: 18px 18px 0px;
@@ -108,55 +82,49 @@
   vertical-align: middle;
 }
 
-.professionalAddress p {
+.programAddress p {
   margin: 0px;
 }
 
-.professionalDescription {
+.programDescription {
   height: auto;
   width: auto;
   margin: 18px 21px 0px;
 }
 
-.professionalDescription p {
+.programDescription p {
   margin-left: 21px;
 }
 
-.professionalDescription div {
+.programDescription div {
   margin-left: 21px;
   margin-bottom: 18px;
 }
 
-.professionalExperiences {
+.programDescription div video {
+  margin-left: 0px;
+  margin-top: 0px;
+  width: 33vw !important;
+  height: auto !important;
+  background-size: cover;
+  background-color: gray;
+}
+
+.programEmployees {
   height: auto;
   width: auto;
   margin: 2%;
 }
 
-.professionalExperiences p {
-  margin-top: 2px;
-  margin-bottom: 2px;
-}
-
-.professionalExperiences h4 {
-  margin-top: 2px;
-  margin-bottom: 5px;
-}
-
-.professionalHeader1 {
-  font-size: 20px;
-  color: black;
-}
-
-.professionalHeader3 {
-  font-size: 36px;
+.programHeader3 {
   margin-left: 18px;
   margin-right: 2%;
   margin-top: 2%;
   margin-bottom: 2%;
 }
 
-.professionalImg {
+.programImg {
+  object-fit:cover;
   padding: 0;
   display: block;
   margin: 0 auto;
@@ -164,11 +132,10 @@
   width: 100%;
 }
 
-.professionalTopTab {
+.programTopTab {
   grid-area: tab;
-  text-decoration: none;
 }
 
-.professionalTableRow:hover {
+.programTableRow:hover {
   cursor: pointer;
 }

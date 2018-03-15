@@ -1,6 +1,6 @@
 module Api::V1
   class UsersController < ApiBaseController
-    before_action :set_user, only: [:show, :update, :destroy]
+    before_action :set_user, only: [:permissions, :show, :update, :destroy]
     before_action :validate_index, only: :index
     before_action :validate_permissions, only: :permissions
     before_action :validate_destroy, if: -> { @user.id != current_user.id }, only: :destroy
@@ -11,9 +11,9 @@ module Api::V1
       render json: @users, include: '', status: :ok
     end
 
-    # GET /v1/users/current/permissions
+    # GET /v1/users/{id}/permissions
     def permissions
-      render json: current_user, serializer: PermissionsSerializer, status: :ok
+      render json: @user, serializer: PermissionsSerializer, status: :ok
     end
 
     # GET /v1/users/{id}
@@ -68,9 +68,11 @@ module Api::V1
         raise ExceptionTypes::UnauthorizedError.new("You do not have permission to view all users") unless current_user.super_admin?
       end
 
-      # For the permissions action, assert admin access only
+      # For the permissions action, assert admin access only and only allow the super
+      # admin to view the permissions of anyone other than themselves.
       def validate_permissions
         raise ExceptionTypes::UnauthorizedError.new("Admin access only") if current_user.user?
+        raise ExceptionTypes::UnauthorizedError.new("You are not authorized to view the permissions of the user with ID #{@user.id}") if @user.id != current_user.id && current_user.admin?
       end
 
       # For the destroy acton, only allow super admins to delete a user other than themselves.

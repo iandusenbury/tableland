@@ -16,17 +16,15 @@ import PropTypes from 'prop-types'
 import BusinessIcon from 'material-ui/svg-icons/communication/business'
 import LanguageIcon from 'material-ui/svg-icons/action/language'
 
-import TopTab from '../../constants/tabs/tabViewMap'
-import { orgPage } from '../../constants/viewStyles'
+import OrgPage from './style'
 import './style.css'
 
-const portraitImg = require('./portrait.png')
-const sampleImg = require('./sample.jpg')
+const sampleImg = require('../../assets/images/profileBackground.jpg')
 
 class Organization extends Component {
   componentWillMount() {
-    const { fetchOrganization } = this.props
-    fetchOrganization(13)
+    const { fetchOrganization, match } = this.props
+    fetchOrganization(match.params.id)
   }
   render() {
     const {
@@ -40,7 +38,8 @@ class Organization extends Component {
       postalCode,
       country,
       organizationVideo,
-      users
+      users,
+      navigateToProfessional
     } = this.props
 
     let videoUrl = ''
@@ -67,7 +66,7 @@ class Organization extends Component {
           </div>
           <div className="organizationContact">
             <div className="organizationAddress">
-              <BusinessIcon style={orgPage.businessIcon} />
+              <BusinessIcon style={OrgPage.businessIcon} />
               <div>
                 <p>{addressLine1}</p>
                 <p>
@@ -81,7 +80,7 @@ class Organization extends Component {
             </div>
             <div className="organizationUrl">
               <div>
-                <LanguageIcon style={orgPage.urlIcon} />
+                <LanguageIcon style={OrgPage.urlIcon} />
               </div>
               <div>
                 <p>{url}</p>
@@ -104,20 +103,27 @@ class Organization extends Component {
             )}
             <Divider />
           </div>
-          <div className="organizationEmployees">
-            <Table>
-              <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
-                <TableRow>
-                  <TableHeaderColumn style={orgPage.tableHeaderCol} />
-                  <TableHeaderColumn>Employee</TableHeaderColumn>
-                  <TableHeaderColumn>Job Title</TableHeaderColumn>
-                </TableRow>
-              </TableHeader>
-              <TableBody showRowHover displayRowCheckbox={false}>
-                {createEmployeeTable(users)}
-              </TableBody>
-            </Table>
-          </div>
+          {users.length > 0 && (
+            <div className="organizationEmployees">
+              <h2 style={{ textAlign: 'center' }}>Employees</h2>
+              <Table onRowSelection={id => navigateToProfessional(id, users)}>
+                <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
+                  <TableRow>
+                    <TableHeaderColumn style={OrgPage.tableHeaderCol} />
+                    <TableHeaderColumn style={OrgPage.tableRowColName}>
+                      Employee
+                    </TableHeaderColumn>
+                    <TableHeaderColumn style={OrgPage.tableRowColName}>
+                      Job Title
+                    </TableHeaderColumn>
+                  </TableRow>
+                </TableHeader>
+                <TableBody showRowHover displayRowCheckbox={false}>
+                  {createEmployeeTable(users)}
+                </TableBody>
+              </Table>
+            </div>
+          )}
         </div>
       </div>
     )
@@ -134,32 +140,34 @@ Organization.propTypes = {
   state: PropTypes.string.isRequired,
   postalCode: PropTypes.string.isRequired,
   country: PropTypes.string.isRequired,
-  organizationVideo: PropTypes.string,
-  users: PropTypes.array.isRequired,
-  fetchOrganization: PropTypes.func.isRequired
+  organizationVideo: PropTypes.string, // eslint-disable-line
+  users: PropTypes.array.isRequired, // eslint-disable-line
+  fetchOrganization: PropTypes.func.isRequired,
+  match: PropTypes.bool.isRequired,
+  navigateToProfessional: PropTypes.func.isRequired
 }
 
 function createEmployeeTable(employees) {
   return employees.map(employee => {
-    const { id, firstName, lastName, mainTitle, media } = employee
-
-    let imageUrl = media.reduce((obj, item) => {
-      obj[item.category] = item
-      return obj
-    }, {})
-
-    if (imageUrl.image) imageUrl = imageUrl.image.url
-    else imageUrl = null
+    const { id, firstName, lastName, mainTitle, imageUrl } = employee
 
     return (
-      <TableRow key={id} className="organizationTableRow" hoverable>
-        <TableRowColumn style={orgPage.tableRowColAvatar}>
-          <Avatar size={32} src={imageUrl || portraitImg} />
+      <TableRow
+        key={id}
+        style={{ width: '100%' }}
+        className="organizationTableRow"
+        hoverable>
+        <TableRowColumn style={OrgPage.tableRowColAvatar}>
+          <Avatar size={32} src={imageUrl} />
         </TableRowColumn>
-        <TableRowColumn>
-          {firstName} {lastName}
+        <TableRowColumn style={OrgPage.tableRowColName}>
+          <p className="organizationRowLink">
+            {firstName} {lastName}
+          </p>
         </TableRowColumn>
-        <TableRowColumn>{mainTitle}</TableRowColumn>
+        <TableRowColumn style={OrgPage.tableRowColName}>
+          <p>{mainTitle}</p>
+        </TableRowColumn>
       </TableRow>
     )
   })

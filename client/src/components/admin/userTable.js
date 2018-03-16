@@ -32,7 +32,7 @@ export default class UserTable extends Component {
       users,
       toggleUserVisibility,
       toggleUserSuperAdmin,
-      revokeAdmin
+      revokeAllUserAdminPermissions
     } = this.props
 
     return users.map(user => {
@@ -52,12 +52,12 @@ export default class UserTable extends Component {
         />
       )
 
-      const revokeAdminButton = (
+      const revokeAllUserAdminPermissionsButton = (
         <RaisedButton
           disabled={role !== 'admin'}
           backgroundColor="#8195b1"
           label="Revoke"
-          onClick={() => revokeAdmin(id)}
+          onClick={() => revokeAllUserAdminPermissions(id)}
         />
       )
 
@@ -69,7 +69,7 @@ export default class UserTable extends Component {
           <TableRowColumn>{email}</TableRowColumn>
           <TableRowColumn>{blockedCheckbox}</TableRowColumn>
           <TableRowColumn>{superAdminCheckbox}</TableRowColumn>
-          <TableRowColumn>{revokeAdminButton}</TableRowColumn>
+          <TableRowColumn>{revokeAllUserAdminPermissionsButton}</TableRowColumn>
         </TableRow>
       )
     })
@@ -113,6 +113,6 @@ UserTable.propTypes = {
   fetchAllUsers: PropTypes.func.isRequired,
   toggleUserVisibility: PropTypes.func.isRequired,
   toggleUserSuperAdmin: PropTypes.func.isRequired,
-  revokeAdmin: PropTypes.func.isRequired,
+  revokeAllUserAdminPermissions: PropTypes.func.isRequired,
   users: PropTypes.array.isRequired // eslint-disable-line
 }

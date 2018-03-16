@@ -15,13 +15,27 @@ export function fetchAllUsers() {
   return dispatch => dispatch(callApi(callDescriptor))
 }
 
-export function fetchUserPermissions() {
+export function fetchUserPermissions(id) {
   const callDescriptor = {
-    endpoint: `/users/current/permissions`,
+    endpoint: `/users/${id}/permissions`,
     types: [
       ActionTypes.REQUEST_USER_PERMISSIONS,
       ActionTypes.RECIEVE_USER_PERMISSIONS,
       ActionTypes.FAILURE_USER_PERMISSIONS
+    ]
+  }
+
+  return dispatch => dispatch(callApi(callDescriptor))
+}
+
+// type: organizations/programs
+export function fetchTypePermissions(type, typeId) {
+  const callDescriptor = {
+    endpoint: `/${type}/${typeId}/admins`,
+    types: [
+      ActionTypes.REQUEST_TYPE_PERMISSIONS,
+      ActionTypes.RECIEVE_TYPE_PERMISSIONS,
+      ActionTypes.FAILURE_TYPE_PERMISSIONS
     ]
   }
 
@@ -107,33 +121,40 @@ export function addAdmin(email, type, typeId) {
   return dispatch => dispatch(callApi(callDescriptor, { onSuccess }))
 }
 
-export function fetchUserAdminPermissions(id) { // eslint-disable-line
-  const callDescriptor = {
-    endpoint: `/users/current/permissions`,
-    types: [
-      ActionTypes.REQUEST_USER_PERMISSIONS,
-      ActionTypes.RECIEVE_USER_PERMISSIONS,
-      ActionTypes.FAILURE_USER_PERMISSIONS
-    ]
-  }
-
-  return dispatch => dispatch(callApi(callDescriptor))
-}
-
-export function revokeAdmin(id) {
+export function revokeAllUserAdminPermissions(id) {
   const callDescriptor = {
     body: { role: 'user' },
     endpoint: `/users/${id}`,
     method: 'PUT',
     types: [
-      ActionTypes.REQUEST_REVOKE_USER_ADMIN,
-      ActionTypes.SUCCESS_REVOKE_USER_ADMIN,
-      ActionTypes.FAILURE_REVOKE_USER_ADMIN
+      ActionTypes.REQUEST_REVOKE_ALL_USER_PERMISSIONS,
+      ActionTypes.SUCCESS_REVOKE_ALL_USER_PERMISSIONS,
+      ActionTypes.FAILURE_REVOKE_ALL_USER_PERMISSIONS
     ]
   }
 
   const onSuccess = (response, dispatch) =>
     dispatch(openDialog(1, { message: 'Success' }))
+
+  return dispatch => dispatch(callApi(callDescriptor, { onSuccess }))
+}
+
+export function revokeAdmin(userId, type, typeId) {
+  const callDescriptor = {
+    body: { userId },
+    endpoint: `/${type}/${typeId}/revoke`,
+    method: 'DELETE',
+    types: [
+      ActionTypes.REQUEST_REVOKE_ADMIN,
+      ActionTypes.SUCCESS_REVOKE_ADMIN,
+      ActionTypes.FAILURE_REVOKE_ADMIN
+    ]
+  }
+
+  const onSuccess = (response, dispatch) => {
+    console.log('here')
+    return dispatch(openDialog(1, { message: 'Success' }))
+  }
 
   return dispatch => dispatch(callApi(callDescriptor, { onSuccess }))
 }

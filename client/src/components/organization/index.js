@@ -51,7 +51,6 @@ class Organization extends Component {
 
     return (
       <div className="organizationMainDiv">
-        <TopTab className="organizationTopTab" />
         <div className="organizationImage">
           <Card>
             <CardMedia overlay={<CardTitle id="org_name" title={name} />}>

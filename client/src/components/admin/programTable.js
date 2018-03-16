@@ -13,7 +13,14 @@ import {
 } from 'material-ui'
 
 import AddAdminDialog from '../../containers/admin/dialogs/addAdminDialog'
-import AssocOrgListDialog from '../../containers/admin/dialogs/assocOrgListDialog'
+import AdminPermissionsDialog from '../../containers/admin/dialogs/adminPermissionsDialog'
+
+const truncate = string => {
+  const maxLen = 14
+  if (string.length <= maxLen) return string
+
+  return `${string.substring(0, maxLen)}...`
+}
 
 export default class ProgramList extends Component {
   constructor(props) {
@@ -28,24 +35,16 @@ export default class ProgramList extends Component {
 
     return programs.map(program => {
       const { id, name, visible, parentOrganizationNames } = program
+      const mappedNames = parentOrganizationNames.map(org => {
+        const [orgName, orgAddressLine1, orgAddressLine2] = org
+
+        return `${orgName} ${orgAddressLine1} ${orgAddressLine2}`
+      })
 
       const blockedCheckbox = (
         <Checkbox
           checked={!visible}
           onCheck={() => toggleProgramVisibility(id, visible)}
-        />
-      )
-
-      const assocOrgButton = (
-        <RaisedButton
-          backgroundColor="#8195b1"
-          label="View"
-          onClick={() =>
-            openDialog(3, {
-              message: `Associated Organizations for ${name}`,
-              parentOrganizations: parentOrganizationNames
-            })
-          }
         />
       )
 
@@ -71,12 +70,29 @@ export default class ProgramList extends Component {
         />
       )
 
+      const viewAdminListButton = (
+        <RaisedButton
+          backgroundColor="#8195b1"
+          label="View"
+          onClick={() =>
+            openDialog(4, {
+              message: `Showing admins for ${name}`,
+              type: 'programs',
+              typeId: id
+            })
+          }
+        />
+      )
+
       return (
         <TableRow key={id}>
           <TableRowColumn>{name}</TableRowColumn>
+          <TableHeaderColumn tooltip={mappedNames.join()}>
+            {truncate(mappedNames.join())}
+          </TableHeaderColumn>
           <TableRowColumn>{blockedCheckbox}</TableRowColumn>
-          <TableRowColumn>{assocOrgButton}</TableRowColumn>
           <TableRowColumn>{editProgramButton}</TableRowColumn>
+          <TableRowColumn>{viewAdminListButton}</TableRowColumn>
           <TableRowColumn>{addAdminButton}</TableRowColumn>
         </TableRow>
       )
@@ -86,8 +102,10 @@ export default class ProgramList extends Component {
   renderTable() {
     const headerValues = [
       { tooltip: 'Name', value: 'Name' },
+      { tooltip: 'Associated Organizations', value: 'Assoc Orgs' },
       { tooltip: 'Block/Unblock', value: 'Blocked' },
-      { tooltip: 'Associated Organizations', value: 'Assoc Orgs' }
+      { tooltip: 'Goto edit page', value: 'Edit' },
+      { tooltip: 'View/Edit admins', value: 'Admins' }
     ]
 
     const mapHeaderValues = headerValues.map(({ tooltip, value }) => (
@@ -99,7 +117,7 @@ export default class ProgramList extends Component {
     return (
       <div>
         <AddAdminDialog />
-        <AssocOrgListDialog />
+        <AdminPermissionsDialog />
         <Table fixedHeader={false} style={{ tableLayout: 'auto' }}>
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>{mapHeaderValues}</TableRow>

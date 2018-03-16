@@ -13,6 +13,7 @@ import {
 } from 'material-ui'
 
 import AddAdminDialog from '../../containers/admin/dialogs/addAdminDialog'
+import AdminPermissionsDialog from '../../containers/admin/dialogs/adminPermissionsDialog'
 
 export default class OrganizationList extends Component {
   constructor(props) {
@@ -60,12 +61,27 @@ export default class OrganizationList extends Component {
         />
       )
 
+      const viewAdminListButton = (
+        <RaisedButton
+          backgroundColor="#8195b1"
+          label="View"
+          onClick={() =>
+            openDialog(4, {
+              message: `Showing admins for ${name}`,
+              type: 'organizations',
+              typeId: id
+            })
+          }
+        />
+      )
+
       return (
         <TableRow key={id}>
           <TableRowColumn>{name}</TableRowColumn>
           <TableRowColumn>{`${addressLine1} ${addressLine2}`}</TableRowColumn>
           <TableRowColumn>{blockedCheckbox}</TableRowColumn>
           <TableRowColumn>{editOrganizationButton}</TableRowColumn>
+          <TableRowColumn>{viewAdminListButton}</TableRowColumn>
           <TableRowColumn>{addAdminButton}</TableRowColumn>
         </TableRow>
       )
@@ -76,7 +92,9 @@ export default class OrganizationList extends Component {
     const headerValues = [
       { tooltip: 'Name', value: 'Name' },
       { tooltip: 'Address', value: 'Address' },
-      { tooltip: 'Block/Unblock', value: 'Blocked' }
+      { tooltip: 'Block/Unblock', value: 'Blocked' },
+      { tooltip: 'Goto edit page', value: 'Edit' },
+      { tooltip: 'View/Remove admins', value: 'Admins' }
     ]
 
     const mapHeaderValues = headerValues.map(({ tooltip, value }) => (
@@ -88,6 +106,7 @@ export default class OrganizationList extends Component {
     return (
       <div>
         <AddAdminDialog />
+        <AdminPermissionsDialog />
         <Table fixedHeader={false} style={{ tableLayout: 'auto' }}>
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>{mapHeaderValues}</TableRow>

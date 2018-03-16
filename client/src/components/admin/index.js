@@ -17,9 +17,9 @@ const muiTheme = getMuiTheme({
 
 class AdminPage extends Component {
   componentWillMount() {
-    const { fetchUserPermissions } = this.props
+    const { fetchUserPermissions, userId } = this.props
 
-    fetchUserPermissions()
+    fetchUserPermissions(userId)
   }
 
   render() {

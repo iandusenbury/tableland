@@ -4,7 +4,7 @@ import {
   fetchAllUsers,
   toggleUserVisibility,
   toggleUserSuperAdmin,
-  revokeAdmin
+  revokeAllUserAdminPermissions
 } from '../../actions/admin'
 
 import UserTable from '../../components/admin/userTable'
@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch =>
       fetchAllUsers,
       toggleUserVisibility,
       toggleUserSuperAdmin,
-      revokeAdmin
+      revokeAllUserAdminPermissions
     },
     dispatch
   )

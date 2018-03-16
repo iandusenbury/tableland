@@ -4,19 +4,21 @@ import { openDialog } from './index'
 import {isEmpty} from 'ramda'
 
 
+
 export function createThings(organization, experience, programs, userId){
     return dispatch => dispatch(createOrganization(organization)).then(response => {
        console.log(response)
        //const { payload: {organization: {id as orgId} }} = response
         const orgId = response.payload.organization.id
+
         if(!isEmpty(programs)) {
-            programs.forEach(program => {
-                return dispatch(createProgram(program, orgId)).then(response => {
+            Promise.all(programs.map(program => {
+                dispatch(createProgram(program, orgId)).then(response => {
                     console.log(response)
                     const { payload:{program: {id}}} = response
-                    return dispatch(createExperience(experience, userId, {programId: id, parentOrg: orgId}))
+                    dispatch(createExperience(experience, userId, {programId: id, parentOrg: orgId}))
                 })
-            })
+            }))
         }
         return dispatch(createExperience(experience, userId, {organizationId:orgId}))
     })
@@ -75,4 +77,27 @@ export function createExperience(experience, userId, id){
         dispatch(openDialog(1, { message: 'Success' }))
 
     return dispatch => dispatch(callApi(callDescriptor, { onSuccess }))
+}
+
+
+/* an action that PUTS/PATCH data for user's personal information*/
+///users/{id} --is that the user's id??
+export function updateUserInfo(info, userId){
+
+    const callDescriptor = {
+        body: { ...info },
+        endpoint: `/users/${userId}`,
+        method: 'PUT/PATCH',
+        types: [
+            ActionTypes.REQUEST_UPDATE_USER,
+            ActionTypes.SUCCESS_UPDATE_USER,
+            ActionTypes.FAILURE_UPDATE_USER
+        ]
+    }
+
+    const onSuccess = (response, dispatch) =>
+        dispatch(openDialog(1, { message: 'Success' }))
+
+    return dispatch => dispatch(callApi(callDescriptor, { onSuccess }))
+
 }

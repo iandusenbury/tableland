@@ -29,6 +29,7 @@ function clickFunction(submit){
     submit('media')*/
 
     submit('newExperiences'); //post
+    submit('personal');
 }
 
 class EditProfile extends Component {
@@ -38,6 +39,7 @@ class EditProfile extends Component {
       profileImage,
       submit,
       createThings,
+      updateUserInfo,
       userId,
       loading
     } = this.props
@@ -79,11 +81,26 @@ class EditProfile extends Component {
                   allPrograms.push(prog)
               })
 
+
               createThings(organization, experience, allPrograms, userId)
           })
       }
 
-    return (
+
+      const savePersonalInfo = values => {
+          const { firstName, lastName, description, mainTitle } = values
+          const info = {
+              firstName,
+              lastName,
+              description,
+              mainTitle
+          }
+
+          updateUserInfo(info, userId)
+      }
+
+
+      return (
       <div>
           {!loading &&
             <div className="EditPrimaryDiv">
@@ -95,7 +112,7 @@ class EditProfile extends Component {
               <div className="EditMainGrid">
                   <div className="EditPersonal">
                       <Personal
-                          onSubmit={showResults}
+                          onSubmit={savePersonalInfo}
                       />
                   </div>
                   <div className="EditMedia">

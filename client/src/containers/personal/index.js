@@ -1,7 +1,6 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { fetchProfessional } from '../../actions'
-
+import {updateUserInfo} from "../../actions/edit";
 import Personal from '../../components/edit/Personal'
 
 const mapStateToProps = state => ({
@@ -12,4 +11,14 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps)(Personal)
+const mapDispatchToProps = dispatch =>
+    bindActionCreators(
+        {
+            updateUserInfo
+        },
+        dispatch
+    )
+
+
+
+export default connect(mapDispatchToProps,mapStateToProps)(Personal)

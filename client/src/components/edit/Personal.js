@@ -70,6 +70,5 @@ class Personal extends Component {
 }
 
 export default reduxForm({
-  form: 'personal',
-  onSubmit: showResults
+  form: 'personal'
 })(Personal)

@@ -49,15 +49,19 @@ module Api::V1
       end
 
       # Attempt to find admin permissions matching the specified user for the specified resource
-      def find_permissions_to_revoke(resource)
-        raise ExceptionTypes::BadRequestError.new("user_id must be present") unless params[:user_id].present?
-        
-        found_user = User.find(params[:user_id])
+      def find_permissions_to_revoke(resource, found_user)
         raise ExceptionTypes::UnauthorizedError.new("You are not authorized to modify the permissions for the user with ID #{found_user.id}") if found_user.super_admin?
 
         found_permissions = resource.permissions.where(user_id: found_user.id)
 
         found_permissions
+      end
+
+      # Determine whether or not an admin should be demoted after a revoked permission
+      def consider_demotion(admin_to_check)
+        if admin_to_check && admin_to_check.permissions.empty?
+          admin_to_check.update_columns(role: "user")
+        end
       end
 
     private

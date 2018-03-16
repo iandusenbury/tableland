@@ -1,13 +1,19 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import {submit} from 'redux-form'
-import {createThings, updateUserInfo} from "../../actions/edit";
+import {createThings,
+        updateUserExperience,
+        updateUserInfo,
+        changeUserVideo
+} from "../../actions/edit";
 
 import EditProfile from '../../components/edit'
 
 const mapStateToProps = state => ({
-    profileImage: state.app.professionalPage.media.image.url,
+    profileImage: state.app.user.media.image.url,
+    hasVideo: state.app.user.media.video.url ? true : false,
     userId: state.app.user.id,
+    videoId: state.app.user.media.video.id,
     loading: state.app.isLoading.loading
 })
 
@@ -16,7 +22,9 @@ const mapDispatchToProps = dispatch =>
         {
             submit,
             createThings,
-            updateUserInfo
+            updateUserInfo,
+            updateUserExperience,
+            changeUserVideo
         },
         dispatch
     )

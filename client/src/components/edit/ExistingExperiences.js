@@ -51,6 +51,7 @@ function filterExp(experiences){
                 address = ''
             }
 
+            //clean this up
             orgExp = {
                 name: organization.name,
                 address: address,
@@ -66,6 +67,7 @@ function filterExp(experiences){
                 endDate: endDate,
                 startDate: startDate,
                 type: type,
+                expId: id,
                 programs: []
             }
 
@@ -84,7 +86,8 @@ function filterExp(experiences){
                 current: current,
                 endDate: endDate,
                 startDate: startDate,
-                type: type
+                type: type,
+                expId: id
             }
 
             programs.push(progExp)
@@ -293,8 +296,7 @@ class ExistingExperiences extends Component {
 }
 
 ExistingExperiences = reduxForm({
-    form: 'existingExperiences',
-    onSubmit: printResults
+    form: 'existingExperiences'
 })(ExistingExperiences)
 
 export default ExistingExperiences;

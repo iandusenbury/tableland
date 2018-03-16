@@ -1,9 +1,9 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { fetchProfessional } from '../../actions'
-import {submit} from 'redux-form'
+
 
 import ExistingExperiences from '../../components/edit/ExistingExperiences'
+import {updateUserExperience} from "../../actions/edit";
 
 const mapStateToProps = state => ({
     experiences: state.app.user.experiences
@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
     bindActionCreators(
         {
-            submit,
+            updateUserExperience
         },
         dispatch
     )

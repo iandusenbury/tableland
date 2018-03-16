@@ -12,7 +12,7 @@ import NewExperiences from '../../containers/newExperiences'
 class Experiences extends Component {
 
     render() {
-        const {submitHandler} = this.props
+        const {submitHandler, saveUpdatedExperiences} = this.props
         return (
             <StyledPaper>
                 <div className="EditBoxGrid">
@@ -28,7 +28,7 @@ class Experiences extends Component {
                         />
                     </div>
                     <div className="EditRight">
-                       <ExistingExperiences onSubmit={printResults}/>
+                       <ExistingExperiences onSubmit={saveUpdatedExperiences}/>
                         <NewExperiences onSubmit={submitHandler}/>
                     </div>
                 </div>

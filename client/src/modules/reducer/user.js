@@ -17,7 +17,8 @@ const initialState = {
             url: ''
         },
         video: {
-            url: ''
+            url: '',
+            id: ''
         }
     },
     experiences: []

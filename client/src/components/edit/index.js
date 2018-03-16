@@ -30,6 +30,8 @@ function clickFunction(submit){
 
     submit('newExperiences'); //post
     submit('personal');
+    submit('existingExperiences');
+    submit('media');
 }
 
 class EditProfile extends Component {
@@ -40,6 +42,10 @@ class EditProfile extends Component {
       submit,
       createThings,
       updateUserInfo,
+      updateUserExperience,
+      changeUserVideo,
+      hasVideo,
+      videoId,
       userId,
       loading
     } = this.props
@@ -100,6 +106,65 @@ class EditProfile extends Component {
       }
 
 
+      const saveUpdatedExperiences = values => {
+        if(!values) return
+
+        values.existingExp.forEach(exp => {
+            const {
+                position,
+                award,
+                startDate,
+                endDate,
+                programs,
+                current,
+                expId
+            } = exp
+
+            const experience = {
+                startDate: startDate.toString(),
+                endDate: endDate.toString(),
+                title: position,
+                award,
+                current
+            }
+
+            console.log('startDate', startDate)
+            updateUserExperience(experience, userId, expId)
+
+            if(programs){
+                programs.forEach(prog => {
+                    const {
+                        startDate,
+                        endDate,
+                        position,
+                        expId,
+                        award,
+                        current
+                    } = prog
+
+
+                    const program = {
+                        startDate: startDate.toString(),
+                        endDate: endDate.toString(),
+                        title: position,
+                        award,
+                        current
+                    }
+
+                    updateUserExperience(program, userId, expId)
+                })
+            }
+        })
+
+
+      }
+
+
+      const saveUpdatedVideoLink = value => {
+        const { profileVideo } = value
+        changeUserVideo(profileVideo, userId, videoId, hasVideo)
+      }
+
       return (
       <div>
           {!loading &&
@@ -116,10 +181,10 @@ class EditProfile extends Component {
                       />
                   </div>
                   <div className="EditMedia">
-                      <Media onSubmit={showResults}/>
+                      <Media onSubmit={saveUpdatedVideoLink}/>
                   </div>
                   <div className="EditExperience">
-                      <Experiences submitHandler={submitHandler}/>
+                      <Experiences submitHandler={submitHandler} saveUpdatedExperiences={saveUpdatedExperiences}/>
                   </div>
               </div>
               <div style={{ margin:".5%"}}>

@@ -57,8 +57,7 @@ class Media extends Component {
 }
 
 Media = reduxForm({
-  form: 'media',
-  onSubmit: showResults
+  form: 'media'
 })(Media)
 
 export default Media

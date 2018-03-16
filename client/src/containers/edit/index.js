@@ -1,7 +1,6 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import {submit} from 'redux-form'
-import { fetchProfessional } from '../../actions'
 import {createThings, updateUserInfo} from "../../actions/edit";
 
 import EditProfile from '../../components/edit'

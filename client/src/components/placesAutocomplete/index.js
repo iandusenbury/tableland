@@ -40,7 +40,7 @@ class GooglePlaceAutocomplete extends Component {
   }
 
   render() {
-    const { data, searchText, results: resultsCallback } = this.props
+    const { data, searchText, resultsCallback } = this.props
     return (
       <div>
         <AutoComplete
@@ -52,14 +52,14 @@ class GooglePlaceAutocomplete extends Component {
             if (!item) {
               item = data[0] // eslint-disable-line
             }
-            this.getLatLng(item.place_id, results => {
-              resultsCallback(results)
+            this.getLatLng(item.place_id, (results, status) => {
+              resultsCallback(results, status)
             })
           }}
           dataSource={data.map((item, i, array) => {
             if (i === array.length - 1) {
               return {
-                text: '',
+                text: 'hi',
                 value: (
                   <MenuItem style={{ cursor: 'default' }} disabled>
                     <div style={{ paddingTop: '20' }}>
@@ -107,7 +107,7 @@ GooglePlaceAutocomplete.propTypes = {
   searchText: PropTypes.string.isRequired,
   placesUpdateSearchText: PropTypes.func.isRequired,
   placesUpdateData: PropTypes.func.isRequired,
-  results: PropTypes.object.isRequired // eslint-disable-line
+  resultsCallback: PropTypes.object.isRequired // eslint-disable-line
 }
 
 export default GooglePlaceAutocomplete

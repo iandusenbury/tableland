@@ -14,7 +14,7 @@ import EditProfile from '../edit'
 import Professional from '../../containers/professional'
 import ProgramPage from '../../containers/program'
 import GMap from '../../containers/map'
-import PlacesExample from '../../containers/placesExample'
+import PlacesExample from '../../containers/placesAutocompleteForm'
 import NotFound from '../notFound'
 
 const App = () => (
@@ -31,7 +31,7 @@ const App = () => (
       <Route exact path="/program/:id" component={ProgramPage} />
       <Route exact path="/roadmap/:id" component={GMap} />
       <Route exact path="/edit" component={EditProfile} />
-      <Route exact path="/example" component={PlacesExample} />
+      <Route exact path="/places-example" component={PlacesExample} />
       <Route component={NotFound} />
     </Switch>
   </div>

@@ -9,6 +9,7 @@ import dialog from './dialog'
 import isLoading from './isLoading'
 import admin from './admin'
 import search from './search'
+import places from './places'
 
 export default combineReducers({
   example,
@@ -19,5 +20,6 @@ export default combineReducers({
   dialog,
   isLoading,
   admin,
-  search
+  search,
+  places
 })

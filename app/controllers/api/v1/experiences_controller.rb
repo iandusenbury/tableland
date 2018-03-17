@@ -42,6 +42,7 @@ module Api::V1
     # DELETE /v1/users/{user_id}/experiences/{id}
     def destroy
       @experience.destroy
+      render json: @experience, include: '', status: :ok
     end
 
     private

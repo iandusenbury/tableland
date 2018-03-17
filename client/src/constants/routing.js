@@ -14,7 +14,7 @@ export const routePathToComponent = [
   },
   {
     name: 'About',
-    path: '/about-us',
+    path: '/about',
     component: About
   },
   {

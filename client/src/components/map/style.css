@@ -163,6 +163,10 @@
     border-radius: 0;
   }
 
+  .map-navigation-toggle {
+    display: none;
+  }
+
   .mapNavigation {
     width: 240px;
   }

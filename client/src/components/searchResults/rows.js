@@ -1,11 +1,6 @@
 import React from 'react'
-import { 
-  TableRow, 
-  TableRowColumn, 
-  Avatar, 
-  FlatButton,
-  RaisedButton
-} from 'material-ui'
+import { Link } from 'react-router-dom'
+import { TableRow, TableRowColumn, Avatar, FlatButton, RaisedButton } from 'material-ui'
 
 // Returns an Avatar component with either a photo or icon
 const getAvatar = url => {
@@ -29,9 +24,33 @@ const tableRow = profile => {
         </div>
         <div className="search-table-icon search-table-border">
           <div className="search-table-avatar">{avatar}</div>
-          <FlatButton className="search-table-flatbutton" hoverColor="#e7e0d7">
-            View profile
-          </FlatButton>
+          {type === 'User' &&
+            <FlatButton 
+              className="search-table-flatbutton" 
+              hoverColor="#e7e0d7"
+              containerElement={<Link to={`/roadmap/${id}`} />} 
+            >   
+              View profile
+              </FlatButton>
+          }   
+          {type === 'Organization' &&
+            <FlatButton 
+              className="search-table-flatbutton" 
+              hoverColor="#e7e0d7"
+              containerElement={<Link to={`/organization/${id}`} />} 
+            >   
+              View profile
+              </FlatButton>
+          }   
+          {type === 'Program' &&
+            <FlatButton 
+              className="search-table-flatbutton" 
+              hoverColor="#e7e0d7"
+              containerElement={<Link to={`/program/${id}`} />} 
+            >   
+              View profile
+              </FlatButton>
+          }   
         </div>
         <div className="search-table-about">{info}</div>
         <div className="search-table-contact">{contact}</div>
@@ -39,6 +58,7 @@ const tableRow = profile => {
     </TableRow>
   )
 }
+
 
 export const renderProgram = program => {
   const { id, type, name, description, imageUrl, url: contactUrl } = program

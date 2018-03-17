@@ -36,6 +36,7 @@ module Api::V1
     # DELETE /v1/{mediable}/{mediable_id}/media/{id}
     def destroy
       @medium.destroy
+      render json: @medium, include: '', status: :ok
     end
 
     private

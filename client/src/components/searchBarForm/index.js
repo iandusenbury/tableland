@@ -7,7 +7,12 @@ import '../navbar/style.css'
 
 const renderTextField = ({ input }) => (
   <div className="navbarSearch">
-    <TextField style={styleJS.searchBar} inputStyle={styleJS.searchBar.inputStyle} hintText="Search" {...input} />
+    <TextField
+      style={styleJS.searchBar}
+      inputStyle={styleJS.searchBar.inputStyle}
+      hintText="Search"
+      {...input}
+    />
   </div>
 )
 

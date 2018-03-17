@@ -12,15 +12,16 @@ const initialState = {
   signedIn: false,
   isAdmin: false,
   isSuperAdmin: false,
-    media: {
-        image: {
-            url: ''
-        },
-        video: {
-            url: ''
-        }
+  media: {
+    image: {
+      url: ''
     },
-    experiences: []
+    video: {
+      url: '',
+      id: ''
+    }
+  },
+  experiences: []
 }
 
 const handlers = {
@@ -35,15 +36,17 @@ export default createReducer(initialState, handlers)
 function requestUser(state, { payload }) {
   const { user } = payload
 
-    const { media } = user
-    const image = find(propEq('category', 'image'))(media)
-    const video = find(propEq('category', 'video'))(media)
+  const { media } = user
+  const image = find(propEq('category', 'image'))(media)
+  const video = find(propEq('category', 'video'))(media)
 
   return {
     ...state,
     ...user,
-    media: { image: image || { url: portraitImg },
-        video: video || { url: '' }  },
+    media: {
+      image: image || { url: portraitImg },
+      video: video || { url: '' }
+    },
     signedIn: true,
     isAdmin: user.role !== 'user',
     isSuperAdmin: user.role === 'super_admin'

@@ -51,32 +51,35 @@ class Organization extends Component {
     }
 
     return (
-      <div className='organizationMainDiv'>
-        <TopTab className='organizationTopTab' />
-        <div className='organizationImage'>
+      <div className="organizationMainDiv">
+        <TopTab className="organizationTopTab" />
+        <div className="organizationImage">
           <Card>
-            <CardMedia
-              overlay={<CardTitle id='org_name' title={name} />}>
-              <img className='organizationImg' src={sampleImg} alt='' />
+            <CardMedia overlay={<CardTitle id="org_name" title={name} />}>
+              <img className="organizationImg" src={sampleImg} alt="" />
             </CardMedia>
           </Card>
         </div>
-        <div className='organizationText'>
-          <div className='organizationName'>
-            <h3 className='organizationHeader3'>{name}</h3>
+        <div className="organizationText">
+          <div className="organizationName">
+            <h3 className="organizationHeader3">{name}</h3>
             <Divider />
           </div>
-          <div className='organizationContact'>
-            <div className='organizationAddress'>
+          <div className="organizationContact">
+            <div className="organizationAddress">
               <BusinessIcon style={orgPage.businessIcon} />
               <div>
                 <p>{addressLine1}</p>
-                <p>{city}, {state}</p>
-                <p>{country} {postalCode}</p>
+                <p>
+                  {city}, {state}
+                </p>
+                <p>
+                  {country} {postalCode}
+                </p>
                 <p>{addressLine2}</p>
               </div>
             </div>
-            <div className='organizationUrl'>
+            <div className="organizationUrl">
               <div>
                 <LanguageIcon style={orgPage.urlIcon} />
               </div>
@@ -85,23 +88,23 @@ class Organization extends Component {
               </div>
             </div>
           </div>
-          <div className='organizationDescription'>
+          <div className="organizationDescription">
             <Divider />
             <p>{description}</p>
             {hasVideo && (
               <div className="organization-video-wrapper">
                 <iframe
-                  className='organizationVideo'
-                  title='Organization Video'
-                  allow='encrypted-media'
-                  frameBorder='0'
+                  className="organizationVideo"
+                  title="Organization Video"
+                  allow="encrypted-media"
+                  frameBorder="0"
                   src={videoUrl}
                 />
               </div>
             )}
             <Divider />
           </div>
-          <div className='organizationEmployees'>
+          <div className="organizationEmployees">
             <Table>
               <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
                 <TableRow>
@@ -138,30 +141,24 @@ Organization.propTypes = {
 
 function createEmployeeTable(employees) {
   return employees.map(employee => {
-    const {
-      id,
-      firstName,
-      lastName,
-      mainTitle,
-      media
-    } = employee
+    const { id, firstName, lastName, mainTitle, media } = employee
 
-    var imageUrl = media.reduce((obj, item) => {
+    let imageUrl = media.reduce((obj, item) => {
       obj[item.category] = item
       return obj
     }, {})
 
-    if (imageUrl.image)
-      imageUrl = imageUrl.image.url
-    else
-      imageUrl = null
- 
+    if (imageUrl.image) imageUrl = imageUrl.image.url
+    else imageUrl = null
+
     return (
-      <TableRow key={id} className='organizationTableRow' hoverable>
+      <TableRow key={id} className="organizationTableRow" hoverable>
         <TableRowColumn style={orgPage.tableRowColAvatar}>
           <Avatar size={32} src={imageUrl || portraitImg} />
         </TableRowColumn>
-        <TableRowColumn>{firstName} {lastName}</TableRowColumn>
+        <TableRowColumn>
+          {firstName} {lastName}
+        </TableRowColumn>
         <TableRowColumn>{mainTitle}</TableRowColumn>
       </TableRow>
     )

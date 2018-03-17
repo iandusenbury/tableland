@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
-import './edit.css'
+import PropTypes from 'prop-types'
+import Avatar from 'material-ui/Avatar'
+import { RaisedButton } from 'material-ui'
+
 import Personal from '../../containers/personal'
 import Media from '../../containers/media'
 import { style } from '../../widgets/styles'
-import Avatar from 'material-ui/Avatar'
-import { RaisedButton } from 'material-ui'
 import Experiences from './Experiences'
+
+import './edit.css'
 
 // function for the update of existing information
 export async function showResults(values) {
@@ -18,13 +21,10 @@ export async function printResults(values) {
 }
 
 function clickFunction(submit) {
-  // update
-  /* submit('personal');
-    submit('existingExperiences')
-    submit('media') */
-
   submit('newExperiences') // post
   submit('personal')
+  submit('existingExperiences')
+  submit('media')
 }
 
 class EditProfile extends Component {
@@ -34,16 +34,18 @@ class EditProfile extends Component {
       submit,
       createThings,
       updateUserInfo,
+      updateUserExperience,
+      changeUserVideo,
+      hasVideo,
+      videoId,
       userId,
       loading
     } = this.props
 
     const submitHandler = values => {
-      const { newExp } = values
+      if (!values.newExp) return
 
-      if (!newExp) return
-
-      newExp.forEach(exp => {
+      values.newExp.forEach(exp => {
         const {
           name,
           position,
@@ -101,6 +103,53 @@ class EditProfile extends Component {
       updateUserInfo(info, userId)
     }
 
+    const saveUpdatedExperiences = values => {
+      if (!values) return
+
+      values.existingExp.forEach(exp => {
+        const {
+          position,
+          award,
+          startDate,
+          endDate,
+          programs,
+          current,
+          expId
+        } = exp
+
+        const experience = {
+          startDate: startDate.toString(),
+          endDate: endDate.toString(),
+          title: position,
+          award,
+          current
+        }
+
+        updateUserExperience(experience, userId, expId)
+
+        if (programs) {
+          programs.forEach(prog => {
+            const { startDate, endDate, position, expId, award, current } = prog
+
+            const program = {
+              startDate: startDate.toString(),
+              endDate: endDate.toString(),
+              title: position,
+              award,
+              current
+            }
+
+            updateUserExperience(program, userId, expId)
+          })
+        }
+      })
+    }
+
+    const saveUpdatedVideoLink = value => {
+      const { profileVideo } = value
+      changeUserVideo(profileVideo, userId, videoId, hasVideo)
+    }
+
     return (
       <div>
         {!loading && (
@@ -119,10 +168,13 @@ class EditProfile extends Component {
                 <Personal onSubmit={savePersonalInfo} />
               </div>
               <div className="EditMedia">
-                <Media onSubmit={showResults} />
+                <Media onSubmit={saveUpdatedVideoLink} />
               </div>
               <div className="EditExperience">
-                <Experiences submitHandler={submitHandler} />
+                <Experiences
+                  submitHandler={submitHandler}
+                  saveUpdatedExperiences={saveUpdatedExperiences}
+                />
               </div>
             </div>
             <div style={{ margin: '.5%' }}>
@@ -138,6 +190,19 @@ class EditProfile extends Component {
       </div>
     )
   }
+}
+
+EditProfile.propTypes = {
+  profileImage: PropTypes.string.isRequired,
+  submit: PropTypes.func.isRequired,
+  createThings: PropTypes.func.isRequired,
+  updateUserInfo: PropTypes.func.isRequired,
+  updateUserExperience: PropTypes.func.isRequired,
+  changeUserVideo: PropTypes.func.isRequired,
+  hasVideo: PropTypes.bool.isRequired,
+  videoId: PropTypes.number.isRequired,
+  userId: PropTypes.number.isRequired,
+  loading: PropTypes.bool.isRequired
 }
 
 export default EditProfile

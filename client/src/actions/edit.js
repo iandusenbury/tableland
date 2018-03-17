@@ -94,11 +94,73 @@ export function updateUserInfo(info, userId) {
   const callDescriptor = {
     body: { ...info },
     endpoint: `/users/${userId}`,
-    method: 'PUT/PATCH',
+    method: 'PUT',
     types: [
       ActionTypes.REQUEST_UPDATE_USER,
       ActionTypes.SUCCESS_UPDATE_USER,
       ActionTypes.FAILURE_UPDATE_USER
+    ]
+  }
+
+  const onSuccess = (response, dispatch) =>
+    dispatch(openDialog(1, { message: 'Success' }))
+
+  return dispatch => dispatch(callApi(callDescriptor, { onSuccess }))
+}
+
+/* an action that PUTS/PATCH data for user's existing exp information */
+export function updateUserExperience(experience, userId, expId) {
+  const callDescriptor = {
+    body: { ...experience },
+    endpoint: `/users/${userId}/experiences/${expId}`,
+    method: 'PUT',
+    types: [
+      ActionTypes.REQUEST_UPDATE_EXP,
+      ActionTypes.SUCCESS_UPDATE_EXP,
+      ActionTypes.FAILURE_UPDATE_EXP
+    ]
+  }
+
+  const onSuccess = (response, dispatch) =>
+    dispatch(openDialog(1, { message: 'Success' }))
+
+  return dispatch => dispatch(callApi(callDescriptor, { onSuccess }))
+}
+
+export function changeUserVideo(link, userId, videoId, update) {
+  if (update) {
+    return dispatch => dispatch(updateUserVideo(link, userId, videoId))
+  }
+  return dispatch => dispatch(createUserVideo(link, userId))
+}
+
+export function createUserVideo(link, userId) {
+  const callDescriptor = {
+    body: { medium: { category: 'video', url: link } },
+    endpoint: `/users/${userId}/media`,
+    method: 'POST',
+    types: [
+      ActionTypes.REQUEST_CREATE_USER_VIDEO,
+      ActionTypes.SUCCESS_CREATE_USER_VIDEO,
+      ActionTypes.FAILURE_CREATE_USER_VIDEO
+    ]
+  }
+
+  const onSuccess = (response, dispatch) =>
+    dispatch(openDialog(1, { message: 'Success' }))
+
+  return dispatch => dispatch(callApi(callDescriptor, { onSuccess }))
+}
+
+export function updateUserVideo(link, userId, videoId) {
+  const callDescriptor = {
+    body: { url: link },
+    endpoint: `/users/${userId}/media/${videoId}`,
+    method: 'PUT',
+    types: [
+      ActionTypes.REQUEST_UPDATE_USER_VIDEO,
+      ActionTypes.SUCCESS_UPDATE_USER_VIDEO,
+      ActionTypes.FAILURE_UPDATE_USER_VIDEO
     ]
   }
 

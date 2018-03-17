@@ -6,19 +6,20 @@ import { style } from '../../widgets/styles'
 import Photo from 'material-ui/svg-icons/image/add-a-photo'
 import { StyledPaper } from '../../widgets/StyledPaper'
 import { StyledTextField } from '../../widgets/StyledTextField'
-import {showResults} from "./index";
+import { showResults } from './index'
 
 const videoPlayer = require('./VideoPlaceholder.jpg')
 
 class Media extends Component {
-
-  componentDidMount(){
-    this.props.initialize({...this.props})
+  componentDidMount() {
+    this.props.initialize({ ...this.props })
   }
 
   render() {
-    const {handleSubmit} = this.props
-    const videoImage = this.props.profileVideo ? 'EditImageWithVideo' : 'EditImageNoVideo'
+    const { handleSubmit } = this.props
+    const videoImage = this.props.profileVideo
+      ? 'EditImageWithVideo'
+      : 'EditImageNoVideo'
     return (
       <StyledPaper>
         <div className="EditSectionGrid">
@@ -57,8 +58,7 @@ class Media extends Component {
 }
 
 Media = reduxForm({
-  form: 'media',
-  onSubmit: showResults
+  form: 'media'
 })(Media)
 
 export default Media

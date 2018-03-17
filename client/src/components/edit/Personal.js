@@ -6,15 +6,15 @@ import './edit.css'
 import { style } from '../../widgets/styles'
 import Person from 'material-ui/svg-icons/social/person'
 import { StyledPaper } from '../../widgets/StyledPaper'
-import {showResults} from "./index";
+import { showResults } from './index'
 
 class Personal extends Component {
   componentWillMount() {
-      this.props.initialize({ ...this.props })
+    this.props.initialize({ ...this.props })
   }
 
   render() {
-    const {handleSubmit} = this.props
+    const { handleSubmit } = this.props
     return (
       <StyledPaper>
         <div className="EditSectionGrid">

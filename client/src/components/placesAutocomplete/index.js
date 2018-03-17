@@ -22,10 +22,9 @@ class GooglePlaceAutocomplete extends Component {
   }
 
   updateInput(searchText) {
-    const { placesUpdateSearchText, placesUpdateData } = this.props
+    const { placesUpdateData } = this.props
     const { service } = this
     if (searchText.length > 0) {
-      placesUpdateSearchText(searchText)
       service.getPlacePredictions(
         {
           input: searchText
@@ -40,13 +39,13 @@ class GooglePlaceAutocomplete extends Component {
   }
 
   render() {
-    const { placesData, resultsCallback } = this.props
+    const { placesData, resultsCallback, fullWidth } = this.props
     return (
       <div>
         <AutoComplete
           onUpdateInput={this.updateInput}
           onChange={this.updateInput}
-          fullWidth
+          fullWidth={fullWidth || false}
           onNewRequest={(request, index) => {
             let item = placesData[index]
             if (!item) {
@@ -104,9 +103,9 @@ class GooglePlaceAutocomplete extends Component {
 
 GooglePlaceAutocomplete.propTypes = {
   placesData: PropTypes.array.isRequired, // eslint-disable-line
-  placesUpdateSearchText: PropTypes.func.isRequired,
   placesUpdateData: PropTypes.func.isRequired,
-  resultsCallback: PropTypes.object.isRequired // eslint-disable-line
+  resultsCallback: PropTypes.object.isRequired, // eslint-disable-line
+  fullWidth: PropTypes.bool // eslint-disable-line
 }
 
 export default GooglePlaceAutocomplete

@@ -56,6 +56,7 @@ module Api::V1
     # DELETE /v1/users/{id}
     def destroy
       @user.destroy
+      render json: @user, include: '', status: :ok
     end
 
     private

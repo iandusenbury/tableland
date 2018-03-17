@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import {
   fetchAllUsers,
   toggleUserVisibility,
-  toggleUserSuperAdmin
+  toggleUserSuperAdmin,
+  revokeAllUserAdminPermissions
 } from '../../actions/admin'
-import { openDialog } from '../../actions'
 
 import UserTable from '../../components/admin/userTable'
 
@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch =>
       fetchAllUsers,
       toggleUserVisibility,
       toggleUserSuperAdmin,
-      openDialog
+      revokeAllUserAdminPermissions
     },
     dispatch
   )

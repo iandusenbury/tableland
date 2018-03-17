@@ -151,8 +151,12 @@ export function revokeAdmin(userId, type, typeId) {
     ]
   }
 
-  const onSuccess = (response, dispatch) => {
-    console.log('here')
+  const onSuccess = ({ payload }, dispatch, getState) => {
+    const { app: { user: { isSuperAdmin } } } = getState()
+
+    if (isSuperAdmin) {
+      dispatch({ type: ActionTypes.UPDATE_USER, payload })
+    }
     return dispatch(openDialog(1, { message: 'Success' }))
   }
 

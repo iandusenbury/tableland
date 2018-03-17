@@ -20,6 +20,7 @@ const handlers = {
   [ActionTypes.SUCCESS_PUT_ORGANIZATION_VISIBILITY]: updateOrganization,
   [ActionTypes.SUCCESS_PUT_PROGRAM_VISIBILITY]: updateProgram,
   [ActionTypes.SUCCESS_ADD_ADMIN]: updateUser,
+  [ActionTypes.UPDATE_USER]: updateUser,
   [ActionTypes.SUCCESS_REVOKE_ALL_USER_PERMISSIONS]: updateUser,
   [ActionTypes.RECIEVE_USER_PERMISSIONS]: getUserPermissions,
   [ActionTypes.RECIEVE_TYPE_PERMISSIONS]: getTypePermissions

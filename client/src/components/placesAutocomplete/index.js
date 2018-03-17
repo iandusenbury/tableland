@@ -104,7 +104,7 @@ class GooglePlaceAutocomplete extends Component {
 GooglePlaceAutocomplete.propTypes = {
   placesData: PropTypes.array.isRequired, // eslint-disable-line
   placesUpdateData: PropTypes.func.isRequired,
-  resultsCallback: PropTypes.object.isRequired, // eslint-disable-line
+  resultsCallback: PropTypes.func, // eslint-disable-line
   fullWidth: PropTypes.bool // eslint-disable-line
 }
 

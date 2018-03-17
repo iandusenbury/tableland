@@ -40,7 +40,6 @@ const GMap = compose(withScriptjs, withGoogleMap)(props => {
     ...otherProps
   } = props
   const polylines = buildPolylines(experienceOrgs)
-  const expLength = experienceOrgs.length
   return (
     <GoogleMap
       ref={props.onMapMounted}

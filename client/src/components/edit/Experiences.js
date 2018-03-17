@@ -5,7 +5,6 @@ import { style } from '../../widgets/styles'
 import Location from 'material-ui/svg-icons/communication/location-on'
 import { StyledPaper } from '../../widgets/StyledPaper'
 import ExistingExperiences from '../../containers/existingExperiences'
-import { printResults, showResults } from './index'
 import NewExperiences from '../../containers/newExperiences'
 
 class Experiences extends Component {

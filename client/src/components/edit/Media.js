@@ -6,7 +6,7 @@ import { style } from '../../widgets/styles'
 import Photo from 'material-ui/svg-icons/image/add-a-photo'
 import { StyledPaper } from '../../widgets/StyledPaper'
 import { StyledTextField } from '../../widgets/StyledTextField'
-import { showResults } from './index'
+
 
 
 class Media extends Component {

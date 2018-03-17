@@ -9,113 +9,6 @@ import MenuItem from 'material-ui/MenuItem'
 import { RaisedButton } from 'material-ui'
 import GooglePlacesAutocomplete from '../../containers/placesAutocomplete'
 
-/*
-const renderNewExp = ({ fields }) => (
-    <div>
-        <div style={{marginTop: "4%", marginBottom: "4%", width: "75vw"}}>
-            <RaisedButton onClick={() => fields.push({})} label="Add Experiences"  fullWidth={true} secondary={true}
-                          style={{marginRight:'10%'}}/>
-        </div>
-        <div>
-            {fields.map((exp, index) => (
-                <div key={index}>
-                    <div className="EditOuterDiv">
-                        <div>
-                            <Field name={`${exp}.name`} component={StyledTextField} text="Name of Organization" />
-                        </div>
-                        <div>
-                            <Field
-                                name={`${exp}.position`}
-                                component={StyledTextField}
-                                text="Position/Role"
-                            />
-                        </div>
-                        <div>
-                            <Field
-                                name={`${exp}.current`}
-                                component={StyledSelectField}
-                                text="Current Position?">
-                                <MenuItem value={false} primaryText="No" />
-                                <MenuItem value={true} primaryText="Yes" />
-                            </Field>
-                        </div>
-                        <div>
-                            <Field
-                                name={`${exp}.award`}
-                                component={StyledTextField}
-                                text="Awards Received"
-                                multiLine
-                            />
-                        </div>
-                        <div style={{marginTop: '6%'}}>
-                            <Field
-                                name={`${exp}.startDate`}
-                                component={DatePicker}
-                                style={style.datePicker}
-                                hintText="Start Date"
-                                mode="landscape"
-                            />
-                        </div>
-                        <div style={{marginTop: '6%'}}>
-                            <Field
-                                name={`${exp}.endDate`}
-                                component={DatePicker}
-                                style={style.datePicker}
-                                hintText="End Date"
-                                mode="landscape"
-                            />
-                        </div>
-                        <div>
-                            <Field
-                                name={`${exp}.address`}
-                                component={Places}
-                                updateAutocompleteField={updateAutocompleteField}
-                                text="Address"
-                            />
-                        </div>
-                        <div>
-                            <Field
-                                name={`${exp}.city`}
-                                component={StyledTextField}
-                                text="City"
-
-                            />
-                        </div>
-                        <div>
-                            <Field
-                                name={`${exp}.state`}
-                                component={StyledTextField}
-                                text="State"
-
-                            />
-                        </div>
-                        <div>
-                            <Field
-                                name={`${exp}.postal`}
-                                component={StyledTextField}
-                                text="Postal Code"
-
-                            />
-                        </div>
-                        <div>
-                            <Field
-                                name={`${exp}.country`}
-                                component={StyledTextField}
-                                text="Country"
-
-                            />
-                        </div>
-                    </div>
-                    <div>
-                        <FieldArray name={`${exp}.programs`} component={renderPrograms} />
-                    </div>
-                </div>
-            ))}
-        </div>
-    </div>
-)
-
-*/
 
 const renderPrograms = ({ fields }) => (
   <div>
@@ -196,7 +89,6 @@ const NewExperiences = props => {
 
   const updateAutocompleteField = (data, exp) => {
     change(`${exp}.address`, data)
-    // change('city', data.city)
   }
 
   const renderNewExp = ({ fields }) => (
@@ -264,7 +156,7 @@ const NewExperiences = props => {
                 />
               </div>
             </div>
-              <div style={{width: '60vw'}}>
+              <div style={{width: '73vw'}}>
                   <Field
                       name={`${exp}.address`}
                       component={Places}

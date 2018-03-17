@@ -6,7 +6,7 @@ import './edit.css'
 import { style } from '../../widgets/styles'
 import Person from 'material-ui/svg-icons/social/person'
 import { StyledPaper } from '../../widgets/StyledPaper'
-import { showResults } from './index'
+
 
 class Personal extends Component {
   componentWillMount() {

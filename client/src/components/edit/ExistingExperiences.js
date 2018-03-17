@@ -7,7 +7,7 @@ import { StyledTextField } from '../../widgets/StyledTextField'
 import { DatePicker } from 'redux-form-material-ui'
 import MenuItem from 'material-ui/MenuItem'
 import { RaisedButton } from 'material-ui'
-import { printResults } from './index'
+
 
 function filterExp(experiences) {
   const organizations = []
@@ -136,7 +136,7 @@ const renderExistingExp = ({ fields }) => (
             />
           </div>
         </div>
-          <div style={{width: '60vw'}}>
+          <div style={{width: '73vw'}}>
               <Field
                   name={`${exp}.address`}
                   component={StyledTextField}

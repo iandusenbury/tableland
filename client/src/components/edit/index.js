@@ -10,16 +10,6 @@ import Experiences from './Experiences'
 
 import './edit.css'
 
-// function for the update of existing information
-export async function showResults(values) {
-  console.log(`You submitted:\n\n${JSON.stringify(values, null, 2)}`)
-}
-
-// function for the post of new experiences
-export async function printResults(values) {
-  console.log(`halala submitted:\n\n${JSON.stringify(values, null, 2)}`)
-}
-
 function clickFunction(submit) {
   submit('personal')
   submit('media')
@@ -44,7 +34,7 @@ class EditProfile extends Component {
     const submitHandler = values => {
       if (!values.newExp) return
 
-      console.log(values.address)
+
       values.newExp.forEach(exp => {
         const {
           name,

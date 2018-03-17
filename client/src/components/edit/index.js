@@ -21,10 +21,10 @@ export async function printResults(values) {
 }
 
 function clickFunction(submit) {
-  submit('newExperiences') // post
   submit('personal')
-  submit('existingExperiences')
   submit('media')
+  submit('existingExperiences')
+  submit('newExperiences') // post
 }
 
 class EditProfile extends Component {
@@ -35,8 +35,7 @@ class EditProfile extends Component {
       createThings,
       updateUserInfo,
       updateUserExperience,
-      changeUserVideo,
-      hasVideo,
+      updateUserVideo,
       videoId,
       userId,
       loading
@@ -45,6 +44,7 @@ class EditProfile extends Component {
     const submitHandler = values => {
       if (!values.newExp) return
 
+      console.log(values.address)
       values.newExp.forEach(exp => {
         const {
           name,
@@ -54,50 +54,76 @@ class EditProfile extends Component {
           startDate,
           endDate,
           address,
-          city,
-          state,
-          postal,
-          country,
           programs
         } = exp
 
+        let addressLine_1, addressLine_2, city, state, postalCode, country;
+
+        address.results[0].address_components.forEach(item => {
+          item.types.forEach(type => {
+            if(type === "postal_code"){
+              postalCode = item.long_name
+            }
+            if(type === "country"){
+              country = item.long_name
+            }
+            if(type === 'locality'){
+              city = item.long_name
+            }
+            if(type === 'administrative_area_level_1'){
+                  state = item.long_name
+            }
+            if(type === 'floor'){
+              addressLine_1 += item.long_name
+            }
+            if(type === "administrative_area_level_2"){
+                addressLine_2 = item.long_name
+            }
+          })
+
+        });
+
+
         const organization = {
           name,
-          addressLine_1: address,
-          addressLine_2: '123',
+          addressLine_1: address.results[0].formatted_address,
+          addressLine_2,
           city,
           state,
-          postalCode: postal,
+          postalCode,
           country,
-          lat: 1.7,
-          lng: 2.5
+          lat: address.results[0].geometry.location.lat(),
+          lng: address.results[0].geometry.location.lng()
         }
 
         const experience = {
           title: position,
           award,
-          startDate,
-          endDate,
+          startDate: startDate.toString(),
+          endDate: endDate.toString(),
           current
         }
 
-        const allPrograms = programs.map(program => {
-          const { name: progName } = program
 
-          return { name: progName }
-        })
+        let allPrograms = []
 
-        createThings(organization, experience, allPrograms, userId)
+          if(programs) {
+              programs.forEach(program => {
+                  const prog = {name: program.name}
+                  allPrograms.push(prog)
+              })
+          }
+
+          createThings(organization, experience, allPrograms, userId)
       })
     }
 
     const savePersonalInfo = values => {
-      const { firstName, lastName, description, mainTitle } = values
+      const { firstName, lastName, description } = values
       const info = {
         firstName,
         lastName,
-        description,
-        mainTitle
+        description
       }
 
       updateUserInfo(info, userId)
@@ -147,7 +173,7 @@ class EditProfile extends Component {
 
     const saveUpdatedVideoLink = value => {
       const { profileVideo } = value
-      changeUserVideo(profileVideo, userId, videoId, hasVideo)
+      updateUserVideo(profileVideo, userId, videoId)
     }
 
     return (

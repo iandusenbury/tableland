@@ -5,14 +5,13 @@ import {
   createThings,
   updateUserExperience,
   updateUserInfo,
-  changeUserVideo
+  updateUserVideo
 } from '../../actions/edit'
 
 import EditProfile from '../../components/edit'
 
 const mapStateToProps = state => ({
   profileImage: state.app.user.media.image.url,
-  hasVideo: !!state.app.user.media.video.url,
   userId: state.app.user.id,
   videoId: state.app.user.media.video.id,
   loading: state.app.isLoading.loading
@@ -25,7 +24,7 @@ const mapDispatchToProps = dispatch =>
       createThings,
       updateUserInfo,
       updateUserExperience,
-      changeUserVideo
+      updateUserVideo
     },
     dispatch
   )

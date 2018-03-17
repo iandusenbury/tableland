@@ -26,37 +26,13 @@ function filterExp(experiences) {
     startDate = new Date(startDate)
     let orgExp
     let progExp
-    let address
+
     if (organization) {
-      if (
-        organization.addressLine1 &&
-        organization.addressLine2 &&
-        organization.addressLine3
-      ) {
-        address =
-          organization.addressLine1 +
-          organization.addressLine2 +
-          organization.addressLine3
-      } else if (
-        organization.addressLine1 &&
-        organization.addressLine2 &&
-        !organization.addressLine3
-      ) {
-        address = organization.addressLine1 + organization.addressLine2
-      } else if (
-        organization.addressLine1 &&
-        !organization.addressLine2 &&
-        !organization.addressLine3
-      ) {
-        address = organization.addressLine1
-      } else {
-        address = ''
-      }
 
       // clean this up
       orgExp = {
         name: organization.name,
-        address,
+        address: organization.addressLine1,
         city: organization.city,
         country: organization.country,
         state: organization.state,
@@ -114,6 +90,7 @@ const renderExistingExp = ({ fields }) => (
               name={`${exp}.name`}
               component={StyledTextField}
               text="Name of Organization"
+              disabled
             />
           </div>
           <div>
@@ -140,7 +117,7 @@ const renderExistingExp = ({ fields }) => (
               multiLine
             />
           </div>
-          <div style={{ marginTop: '6%' }}>
+          <div >
             <Field
               name={`${exp}.startDate`}
               component={DatePicker}
@@ -149,7 +126,7 @@ const renderExistingExp = ({ fields }) => (
               mode="landscape"
             />
           </div>
-          <div style={{ marginTop: '6%' }}>
+          <div >
             <Field
               name={`${exp}.endDate`}
               component={DatePicker}
@@ -158,48 +135,16 @@ const renderExistingExp = ({ fields }) => (
               mode="landscape"
             />
           </div>
-          <div>
-            <Field
-              name={`${exp}.address`}
-              component={StyledTextField}
-              text="Address"
-              multiLine
-              disabled
-            />
-          </div>
-          <div>
-            <Field
-              name={`${exp}.city`}
-              component={StyledTextField}
-              text="City"
-              disabled
-            />
-          </div>
-          <div>
-            <Field
-              name={`${exp}.state`}
-              component={StyledTextField}
-              text="State"
-              disabled
-            />
-          </div>
-          <div>
-            <Field
-              name={`${exp}.postal`}
-              component={StyledTextField}
-              text="Postal Code"
-              disabled
-            />
-          </div>
-          <div>
-            <Field
-              name={`${exp}.country`}
-              component={StyledTextField}
-              text="Country"
-              disabled
-            />
-          </div>
         </div>
+          <div style={{width: '60vw'}}>
+              <Field
+                  name={`${exp}.address`}
+                  component={StyledTextField}
+                  text="Address"
+                  disabled
+                  fullWidth
+              />
+          </div>
         <div>
           <FieldArray name={`${exp}.programs`} component={renderPrograms} />
         </div>
@@ -213,9 +158,10 @@ const renderPrograms = ({ fields }) => (
     <div style={{ width: '50vw', marginLeft: '15%', marginRight: '15%' }}>
       <RaisedButton
         onClick={() => fields.push()}
-        label="Add Program"
+        label="Associated Programs"
         primary
         fullWidth
+        disabled={true}
       />
     </div>
     {fields.map((program, index) => (

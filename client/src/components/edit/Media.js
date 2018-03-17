@@ -8,7 +8,6 @@ import { StyledPaper } from '../../widgets/StyledPaper'
 import { StyledTextField } from '../../widgets/StyledTextField'
 import { showResults } from './index'
 
-const videoPlayer = require('./VideoPlaceholder.jpg')
 
 class Media extends Component {
   componentDidMount() {
@@ -17,9 +16,7 @@ class Media extends Component {
 
   render() {
     const { handleSubmit } = this.props
-    const videoImage = this.props.profileVideo
-      ? 'EditImageWithVideo'
-      : 'EditImageNoVideo'
+
     return (
       <StyledPaper>
         <div className="EditSectionGrid">
@@ -43,11 +40,6 @@ class Media extends Component {
                   component={StyledTextField}
                   multiLine
                 />
-              </div>
-              <div>
-                <div className="EditVideo">
-                  <img className={videoImage} src={videoPlayer} />
-                </div>
               </div>
             </div>
           </form>

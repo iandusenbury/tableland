@@ -3,7 +3,7 @@ import TextField from 'material-ui/TextField'
 import { style } from './styles'
 
 export const StyledTextField = props => {
-  const { text, multiLine, disabled, input, required } = props
+  const { text, multiLine, disabled, input, required, fullWidth } = props
   const isMultiLine = !!multiLine
   const errorStyle = required ? style.error : {}
   const errorText = required ? 'This field is required' : ''
@@ -17,6 +17,7 @@ export const StyledTextField = props => {
       multiLine={isMultiLine}
       floatingLabelText={text}
       disabled={disabled}
+      fullWidth={fullWidth}
       errorText={errorText}
       errorStyle={errorStyle}
       {...input}

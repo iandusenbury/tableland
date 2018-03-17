@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { AutoComplete, MenuItem } from 'material-ui'
 import Marker from 'material-ui/svg-icons/maps/place'
 import PropTypes from 'prop-types'
+import {style} from "../../widgets/styles";
 
 class GooglePlaceAutocomplete extends Component {
   constructor(props) {
@@ -46,6 +47,7 @@ class GooglePlaceAutocomplete extends Component {
         <AutoComplete
           searchText={text}
           fullWidth
+          hintText="Address"
           onUpdateInput={this.updateInput}
           onChange={this.updateInput}
           onNewRequest={(request, index) => {

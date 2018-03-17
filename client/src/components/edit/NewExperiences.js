@@ -152,15 +152,6 @@ const renderPrograms = ({ fields }) => (
           </div>
           <div>
             <Field
-              name={`${program}.current`}
-              component={StyledSelectField}
-              text="Current Position?">
-              <MenuItem value={false} primaryText="No" />
-              <MenuItem value primaryText="Yes" />
-            </Field>
-          </div>
-          <div>
-            <Field
               name={`${program}.award`}
               component={StyledTextField}
               text="Awards Received"
@@ -254,7 +245,7 @@ const NewExperiences = props => {
                   multiLine
                 />
               </div>
-              <div style={{ marginTop: '6%' }}>
+              <div >
                 <Field
                   name={`${exp}.startDate`}
                   component={DatePicker}
@@ -263,7 +254,7 @@ const NewExperiences = props => {
                   mode="landscape"
                 />
               </div>
-              <div style={{ marginTop: '6%' }}>
+              <div >
                 <Field
                   name={`${exp}.endDate`}
                   component={DatePicker}
@@ -272,16 +263,16 @@ const NewExperiences = props => {
                   mode="landscape"
                 />
               </div>
-              <div>
-                <Field
-                  name={`${exp}.address`}
-                  component={Places}
-                  updateAutocompleteField={data =>
-                    updateAutocompleteField(data, exp)
-                  }
-                />
-              </div>
             </div>
+              <div style={{width: '60vw'}}>
+                  <Field
+                      name={`${exp}.address`}
+                      component={Places}
+                      updateAutocompleteField={data =>
+                          updateAutocompleteField(data, exp)
+                      }
+                  />
+              </div>
             <div>
               <FieldArray name={`${exp}.programs`} component={renderPrograms} />
             </div>

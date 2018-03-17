@@ -127,12 +127,16 @@ export function updateUserExperience(experience, userId, expId) {
   return dispatch => dispatch(callApi(callDescriptor, { onSuccess }))
 }
 
+
+
+/*
 export function changeUserVideo(link, userId, videoId, update) {
   if (update) {
     return dispatch => dispatch(updateUserVideo(link, userId, videoId))
   }
   return dispatch => dispatch(createUserVideo(link, userId))
 }
+
 
 export function createUserVideo(link, userId) {
   const callDescriptor = {
@@ -151,6 +155,8 @@ export function createUserVideo(link, userId) {
 
   return dispatch => dispatch(callApi(callDescriptor, { onSuccess }))
 }
+*/
+
 
 export function updateUserVideo(link, userId, videoId) {
   const callDescriptor = {

@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Media from '../../components/edit/Media'
-import { changeUserVideo } from '../../actions/edit'
+import { updateUserVideo } from '../../actions/edit'
 
 const mapStateToProps = state => ({
   profileVideo: state.app.user.media.video.url
@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      changeUserVideo
+      updateUserVideo
     },
     dispatch
   )

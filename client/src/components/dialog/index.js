@@ -4,7 +4,7 @@ import { Dialog as MaterialDialog, FlatButton } from 'material-ui'
 import PropTypes from 'prop-types'
 
 const Dialog = props => {
-  const { message, open, closeDialog, children, ...rest } = props
+  const { message, description, open, closeDialog, children, ...rest } = props
 
   const actions = [
     <FlatButton label="Close" primary onClick={() => closeDialog()} />
@@ -18,6 +18,7 @@ const Dialog = props => {
       modal={false}
       open={open}
       onRequestClose={() => closeDialog()}>
+      {description}
       {children}
     </MaterialDialog>
   )

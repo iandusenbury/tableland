@@ -11,54 +11,57 @@ import {
   RaisedButton
 } from 'material-ui'
 
-import '../style.css'
-
 const muiTheme = getMuiTheme({
   palette: {
     primary1Color: '#ea4e46'
   }
 })
 
-export default class RevokeAdminList extends Component {
+export default class AdminTable extends Component {
   constructor(props) {
     super(props)
 
-    this.renderOrganizationTable = this.renderOrganizationTable.bind(this)
-    this.renderOrganizationRows = this.renderOrganizationRows.bind(this)
+    this.renderTable = this.renderTable.bind(this)
+    this.renderRows = this.renderRows.bind(this)
   }
 
   componentWillMount() {
-    const { userId, fetchUserAdminPermissions } = this.props
-    fetchUserAdminPermissions(userId)
+    const { type, typeId, fetchTypePermissions } = this.props
+
+    fetchTypePermissions(type, typeId)
   }
 
-  renderOrganizationRows() {
-    const { organizations, userId, revokeOrganizationAdmin } = this.props
+  renderRows() {
+    const { admins, typeId, type, revokeAdmin } = this.props
 
-    return organizations.map(organization => {
-      const { id, name } = organization
+    return admins.map(admin => {
+      const { id, firstName, email, lastName } = admin
 
       const revokeAdminButton = (
         <RaisedButton
           backgroundColor="#8195b1"
           label="Revoke"
-          onClick={() => revokeOrganizationAdmin(id, userId)}
+          onClick={() => revokeAdmin(id, type, typeId)}
         />
       )
 
       return (
         <TableRow key={id}>
-          <TableRowColumn>{name}</TableRowColumn>
+          <TableRowColumn>
+            {firstName} {lastName}
+          </TableRowColumn>
+          <TableRowColumn>{email}</TableRowColumn>
           <TableRowColumn>{revokeAdminButton}</TableRowColumn>
         </TableRow>
       )
     })
   }
 
-  renderOrganizationTable() {
+  renderTable() {
     const headerValues = [
-      { tooltip: 'Name', value: 'Name' },
-      { tooltip: 'Revoke admin access', value: '' }
+      { tooltip: 'Full Name', value: 'Name' },
+      { tooltip: 'Email', value: 'Email' },
+      { tooltip: 'Revoke', value: 'Revoke' }
     ]
 
     const mapHeaderValues = headerValues.map(({ tooltip, value }) => (
@@ -68,13 +71,13 @@ export default class RevokeAdminList extends Component {
     ))
 
     return (
-      <div className="table-container">
+      <div>
         <Table height="300px">
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>{mapHeaderValues}</TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false} stripedRows>
-            {this.renderOrganizationRows()}
+            {this.renderRows()}
           </TableBody>
         </Table>
       </div>
@@ -84,15 +87,16 @@ export default class RevokeAdminList extends Component {
   render() {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
-        {this.renderOrganizationTable()}
+        {this.renderTable()}
       </MuiThemeProvider>
     )
   }
 }
 
-RevokeAdminList.propTypes = {
-  organizations: PropTypes.array.isRequired, // eslint-disable-line
-  userId: PropTypes.number.isRequired,
-  revokeOrganizationAdmin: PropTypes.func.isRequired,
-  fetchUserAdminPermissions: PropTypes.func.isRequired
+AdminTable.propTypes = {
+  admins: PropTypes.array.isRequired, // eslint-disable-line
+  typeId: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
+  revokeAdmin: PropTypes.func.isRequired,
+  fetchTypePermissions: PropTypes.func.isRequired
 }

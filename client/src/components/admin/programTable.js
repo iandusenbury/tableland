@@ -15,7 +15,14 @@ import {
 import AddAdminDialog from '../../containers/admin/dialogs/addAdminDialog'
 import AdminPermissionsDialog from '../../containers/admin/dialogs/adminPermissionsDialog'
 
-export default class OrganizationList extends Component {
+const truncate = string => {
+  const maxLen = 14
+  if (string.length <= maxLen) return string
+
+  return `${string.substring(0, maxLen)}...`
+}
+
+export default class ProgramList extends Component {
   constructor(props) {
     super(props)
 
@@ -24,29 +31,31 @@ export default class OrganizationList extends Component {
   }
 
   renderRows() {
-    const {
-      organizations,
-      toggleOrganizationVisibility,
-      openDialog
-    } = this.props
+    const { programs, toggleProgramVisibility, openDialog } = this.props
 
-    return organizations.map(organization => {
-      const { id, name, addressLine1, addressLine2, visible } = organization
+    return programs.map(program => {
+      const { id, name, visible, parentOrganizationNames } = program
+      const mappedNames = parentOrganizationNames.map(org => {
+        const [orgName, orgAddressLine1, orgAddressLine2] = org
+
+        return `${orgName} ${orgAddressLine1} ${orgAddressLine2}`
+      })
 
       const blockedCheckbox = (
         <Checkbox
           checked={!visible}
-          onCheck={() => toggleOrganizationVisibility(id, visible)}
+          onCheck={() => toggleProgramVisibility(id, visible)}
         />
       )
 
-      const editOrganizationButton = (
+      const editProgramButton = (
         <RaisedButton
           backgroundColor="#8195b1"
           label="Edit"
-          containerElement={<Link to={`/organization/edit/${id}`} />}
+          containerElement={<Link to={`/program/edit/${id}`} />}
         />
       )
+
       const addAdminButton = (
         <RaisedButton
           backgroundColor="#8195b1"
@@ -54,7 +63,7 @@ export default class OrganizationList extends Component {
           onClick={() =>
             openDialog(2, {
               message: `Add Admin to ${name}`,
-              type: 'organizations',
+              type: 'programs',
               typeId: id
             })
           }
@@ -68,7 +77,7 @@ export default class OrganizationList extends Component {
           onClick={() =>
             openDialog(4, {
               message: `Showing admins for ${name}`,
-              type: 'organizations',
+              type: 'programs',
               typeId: id
             })
           }
@@ -78,9 +87,11 @@ export default class OrganizationList extends Component {
       return (
         <TableRow key={id}>
           <TableRowColumn>{name}</TableRowColumn>
-          <TableRowColumn>{`${addressLine1} ${addressLine2}`}</TableRowColumn>
+          <TableHeaderColumn tooltip={mappedNames.join()}>
+            {truncate(mappedNames.join())}
+          </TableHeaderColumn>
           <TableRowColumn>{blockedCheckbox}</TableRowColumn>
-          <TableRowColumn>{editOrganizationButton}</TableRowColumn>
+          <TableRowColumn>{editProgramButton}</TableRowColumn>
           <TableRowColumn>{viewAdminListButton}</TableRowColumn>
           <TableRowColumn>{addAdminButton}</TableRowColumn>
         </TableRow>
@@ -91,10 +102,10 @@ export default class OrganizationList extends Component {
   renderTable() {
     const headerValues = [
       { tooltip: 'Name', value: 'Name' },
-      { tooltip: 'Address', value: 'Address' },
+      { tooltip: 'Associated Organizations', value: 'Assoc Orgs' },
       { tooltip: 'Block/Unblock', value: 'Blocked' },
       { tooltip: 'Goto edit page', value: 'Edit' },
-      { tooltip: 'View/Remove admins', value: 'Admins' }
+      { tooltip: 'View/Edit admins', value: 'Admins' }
     ]
 
     const mapHeaderValues = headerValues.map(({ tooltip, value }) => (
@@ -124,8 +135,8 @@ export default class OrganizationList extends Component {
   }
 }
 
-OrganizationList.propTypes = {
-  toggleOrganizationVisibility: PropTypes.func.isRequired,
+ProgramList.propTypes = {
+  toggleProgramVisibility: PropTypes.func.isRequired,
   openDialog: PropTypes.func.isRequired,
-  organizations: PropTypes.array.isRequired // eslint-disable-line
+  programs: PropTypes.array.isRequired // eslint-disable-line
 }

@@ -21,14 +21,14 @@ class GooglePlaceAutocomplete extends Component {
     })
   }
 
-  updateInput(text) {
+  updateInput(searchText) {
     const { placesUpdateSearchText, placesUpdateData } = this.props
     const { service } = this
-    if (text.length > 0) {
-      placesUpdateSearchText(text)
+    if (searchText.length > 0) {
+      placesUpdateSearchText(searchText)
       service.getPlacePredictions(
         {
-          input: text
+          input: searchText
         },
         predictions => {
           if (predictions) {
@@ -40,26 +40,26 @@ class GooglePlaceAutocomplete extends Component {
   }
 
   render() {
-    const { data, searchText, resultsCallback } = this.props
+    const { placesData, resultsCallback } = this.props
     return (
       <div>
         <AutoComplete
-          searchText={searchText}
           onUpdateInput={this.updateInput}
           onChange={this.updateInput}
+          fullWidth
           onNewRequest={(request, index) => {
-            let item = data[index]
+            let item = placesData[index]
             if (!item) {
-              item = data[0] // eslint-disable-line
+              item = placesData[0] // eslint-disable-line
             }
             this.getLatLng(item.place_id, (results, status) => {
               resultsCallback(results, status)
             })
           }}
-          dataSource={data.map((item, i, array) => {
+          dataSource={placesData.map((item, i, array) => {
             if (i === array.length - 1) {
               return {
-                text: 'hi',
+                text: item.description,
                 value: (
                   <MenuItem style={{ cursor: 'default' }} disabled>
                     <div style={{ paddingTop: '20' }}>
@@ -103,8 +103,7 @@ class GooglePlaceAutocomplete extends Component {
 }
 
 GooglePlaceAutocomplete.propTypes = {
-  data: PropTypes.array.isRequired, // eslint-disable-line
-  searchText: PropTypes.string.isRequired,
+  placesData: PropTypes.array.isRequired, // eslint-disable-line
   placesUpdateSearchText: PropTypes.func.isRequired,
   placesUpdateData: PropTypes.func.isRequired,
   resultsCallback: PropTypes.object.isRequired // eslint-disable-line

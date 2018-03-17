@@ -2,7 +2,7 @@ import createReducer from '../../utils/createReducer'
 import ActionTypes from '../../constants/actionTypes'
 
 const initialState = {
-  data: [],
+  placesData: [],
   text: ''
 }
 
@@ -25,10 +25,10 @@ function updateText(state, data) {
 }
 
 function updateData(state, { payload }) {
-  const { data } = payload
+  const { placesData } = payload
 
   return {
     ...state,
-    data
+    placesData
   }
 }

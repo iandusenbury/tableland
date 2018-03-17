@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { AutoComplete, MenuItem } from 'material-ui'
 import Marker from 'material-ui/svg-icons/maps/place'
 import PropTypes from 'prop-types'
+import { camelizeKeys } from 'humps'
 
 class GooglePlaceAutocomplete extends Component {
   constructor(props) {
@@ -52,7 +53,7 @@ class GooglePlaceAutocomplete extends Component {
               item = placesData[0] // eslint-disable-line
             }
             this.getLatLng(item.place_id, (results, status) => {
-              resultsCallback(results, status)
+              resultsCallback(camelizeKeys(results[0]), status)
             })
           }}
           dataSource={placesData.map((item, i, array) => {

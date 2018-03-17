@@ -3,6 +3,7 @@ module Api::V1
     before_action :set_organization, only: [:show, :update, :grant_permission, :admins, :revoke_permission]
     before_action :allow_if_visible, except: [:index, :show] 
     before_action :require_correct_admin, only: [:update, :grant_permission, :admins, :revoke_permission]
+    before_action :find_user, only: :revoke_permission
     before_action :validate_update_params, only: :update
     before_action :check_index_permission, only: :index
 
@@ -46,8 +47,10 @@ module Api::V1
 
     # DELETE /v1/organizations/{id}/revoke
     def revoke_permission
-      permissions_to_destroy = find_permissions_to_revoke(@organization)
+      permissions_to_destroy = find_permissions_to_revoke(@organization, @user)
       permissions_to_destroy.destroy_all
+      consider_demotion(@user)
+      render json: @user, include: '', status: :ok
     end
 
     # Unreachable
@@ -70,6 +73,13 @@ module Api::V1
         if current_user.admin?
           raise ExceptionTypes::UnauthorizedError.new("You do not have permission to modify the organization with ID #{@organization.id}") unless @organization.admins.exists? current_user.id
         end
+      end
+
+      # Find the specified user when preparing to revoke their permission 
+      def find_user
+        raise ExceptionTypes::BadRequestError.new("user_id must be present") unless params[:user_id].present?
+        
+        @user = User.find(params[:user_id])
       end
 
       # Validate the request payload when updating an existing organization

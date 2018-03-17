@@ -180,19 +180,19 @@ const renderPrograms = ({ fields }) => (
 
 
 
-const Places = ({ input, updateAutocompleteField }) => (
-    <GooglePlacesAutocomplete
-        {...input}
-        resultsCallback={(results, status) =>
-            updateAutocompleteField({ results, status })
-        }
-    />
-)
-
 
 const NewExperiences = props => {
 
     const {handleSubmit, change} = props
+
+    const Places = ({ input, updateAutocompleteField }) => (
+        <GooglePlacesAutocomplete
+            {...input}
+            resultsCallback={(results, status) =>
+                updateAutocompleteField({ results, status })
+            }
+        />
+    )
 
     const updateAutocompleteField = (data, exp) => {
         change(`${exp}.address`, data)
@@ -258,14 +258,7 @@ const NewExperiences = props => {
                                 <Field
                                     name={`${exp}.address`}
                                     component={Places}
-                                    updateAutocompleteField={updateAutocompleteField(exp)}
-                                />
-                            </div>
-                            <div>
-                                <Field
-                                    name={`${exp}.city`}
-                                    component={StyledTextField}
-                                    text="city"
+                                    updateAutocompleteField={data => updateAutocompleteField(data, exp)}
                                 />
                             </div>
                         </div>

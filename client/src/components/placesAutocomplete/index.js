@@ -45,6 +45,7 @@ class GooglePlaceAutocomplete extends Component {
             <div>
                 <AutoComplete
                     searchText={text}
+                    fullWidth={true}
                     onUpdateInput={this.updateInput}
                     onChange={this.updateInput}
                     onNewRequest={(request, index) => {

@@ -54,6 +54,7 @@ class EditProfile extends Component {
       const submitHandler = values => {
           if(!values.newExp) return
 
+          console.log(values)
           values.newExp.forEach(exp => {
               const {name, position, current,
                   award, startDate, endDate,

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { RaisedButton, Paper } from 'material-ui'
 
 import './style.css'
@@ -18,7 +19,12 @@ export default () => (
         </p>
 
         <div className="about-mesa-button-wrapper">
-          <RaisedButton backgroundColor='#ff9e15' label='Learn more about MESA' fullWidth={true} />
+          <RaisedButton 
+            href='http://oregonmesa.org/about-mesa'
+            backgroundColor='#ff9e15' 
+            label='Learn more about MESA' 
+            fullWidth={true} 
+          />
         </div>
         
       </Paper>

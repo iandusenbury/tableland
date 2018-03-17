@@ -15,11 +15,11 @@
 */
 
 .about-paper{
-  width: 95vw;
+  width: 90vw;
   padding: 5%;
   margin: 0 auto;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .about-header-one {

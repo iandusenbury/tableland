@@ -156,7 +156,9 @@
     max-height: 210px;
     position: relative;
     border: solid 1px grey;
-    margin: 2%;
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-right: 10px;
   }
 }
 

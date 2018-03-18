@@ -7,7 +7,12 @@ import '../navbar/style.css'
 
 const renderTextField = ({ input }) => (
   <div className="navbarSearch">
-    <TextField style={styleJS.searchBar} inputStyle={styleJS.searchBar.inputStyle} hintText="Search" {...input} />
+    <TextField
+      style={styleJS.searchBar}
+      inputStyle={styleJS.searchBar.inputStyle}
+      hintText="Search"
+      {...input}
+    />
   </div>
 )
 
@@ -29,7 +34,7 @@ SearchBar.propTypes = {
 }
 
 renderTextField.propTypes = {
-  input: PropTypes.object.isRequired // eslint-disable-line react/forbid-prop-types
+  input: PropTypes.object.isRequired // eslint-disable-line
 }
 
 export default reduxForm({

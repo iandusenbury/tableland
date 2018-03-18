@@ -1,0 +1,59 @@
+.about-main-div {
+  width: 100%;
+  height: calc(100vh - 72px);
+  background-color: white;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/*
+.about-inner-div {
+  height: auto;
+  width: 100%;
+  overflow: scroll;
+}
+*/
+
+.about-paper{
+  width: 90vw;
+  padding: 5%;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.about-header-one {
+  text-align:center;
+}
+
+.about-header-three {
+  text-align:center;
+}
+
+.about-mesa-button-wrapper {
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+.about-text {
+  text-align:center;
+}
+
+.about-text p {
+  margin: 0;
+  text-align:center;
+}
+
+.about-mission {
+  text-align: center;
+}
+
+.about-mesa-logo {
+  max-height: 150px;
+  max-width: auto;
+}
+
+.about-github-icon {
+  height: 16px;
+  width: 16px;
+}

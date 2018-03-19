@@ -1,12 +1,21 @@
 import React, { Component } from 'react'
-import { Card, CardMedia, Divider, List, ListItem, Avatar } from 'material-ui'
+import { Link } from 'react-router-dom'
+import { 
+  Card, 
+  CardMedia, 
+  Divider, 
+  List, 
+  ListItem, 
+  Avatar 
+} from 'material-ui'
 import LanguageIcon from 'material-ui/svg-icons/action/language'
 import Group from 'material-ui/svg-icons/social/group'
 import Domain from 'material-ui/svg-icons/social/domain'
 import PropTypes from 'prop-types'
 
-import TopTab from '../../constants/tabs/tabViewMap'
-import { orgPage } from '../../constants/viewStyles'
+import TopTab from '../../widgets/tabs/tabViewMap'
+import ProfPage from './style'
+import { getDate } from '../../constants/dates'
 import './style.css'
 
 // const hasVideo = true // this will be passed as props
@@ -20,6 +29,7 @@ class Professional extends Component {
 
   render() {
     const {
+      id,
       firstName,
       lastName,
       description,
@@ -40,7 +50,9 @@ class Professional extends Component {
 
     return (
       <div className="professionalMainDiv">
-        <TopTab className="professionalTopTab" />
+        <Link to={`/roadmap/${id}`} className="professionalTopTab">
+          <TopTab />
+        </Link>
         <div className="professionalImage">
           <Card>
             <CardMedia
@@ -72,7 +84,7 @@ class Professional extends Component {
           <div className="professionalContact">
             <div className="professionalUrl">
               <div>
-                <LanguageIcon style={orgPage.urlIcon} />
+                <LanguageIcon style={ProfPage.urlIcon} />
               </div>
               <div>
                 <p>{contactUrl}</p>
@@ -105,6 +117,7 @@ class Professional extends Component {
 }
 
 Professional.propTypes = {
+  id: PropTypes.number.isRequired,
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
@@ -137,7 +150,11 @@ function createExperienceTable(experiences) {
     const end = getDate(endDate)
 
     return (
-      <ListItem key={id} leftIcon={<Domain />}>
+      <ListItem 
+        key={id} 
+        leftIcon={<Domain />}
+        containerElement={<Link to={`/organization/${organization.id}`} />}
+      >
         <h4>
           {name} - {title}
         </h4>
@@ -151,13 +168,17 @@ function createExperienceTable(experiences) {
 }
 
 function createProgramTable(name, experience) {
-  const { id, startDate, endDate, title, award } = experience
+  const { id, startDate, endDate, title, award, program } = experience
 
   const start = getDate(startDate)
   const end = getDate(endDate)
 
   return (
-    <ListItem key={id} leftIcon={<Group />}>
+    <ListItem 
+      key={id} 
+      leftIcon={<Group />}
+      containerElement={<Link to={`/program/${program.id}`} />}
+    >
       <h4>
         {name} - {title}
       </h4>
@@ -167,30 +188,6 @@ function createProgramTable(name, experience) {
       <p>{award}</p>
     </ListItem>
   )
-}
-
-// This const defines months for use in following function
-const monthNames = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec'
-]
-// This function takes a date string as an argument and returns a string in the format
-// [mon] [year]
-function getDate(date) {
-  if (date === null) return 'current'
-
-  const initDate = new Date(date.toString())
-  return `${monthNames[initDate.getMonth()]} ${initDate.getFullYear()}`
 }
 
 export default Professional

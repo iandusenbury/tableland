@@ -3,6 +3,7 @@ import { push } from 'react-router-redux'
 import ActionTypes from '../constants/actionTypes'
 import callApi from '../utils/api'
 import { authorizeOAuth } from './oauth'
+import { initMap, initUserMap } from './gmap'
 
 
 export function placesUpdateData(placesData) {
@@ -25,7 +26,8 @@ export function fetchUser() {
     ]
   }
 
-  return dispatch => dispatch(callApi(callDescriptor))
+  return dispatch =>
+    dispatch(callApi(callDescriptor, { onSuccess: initUserMap }))
 }
 
 // Fetch Organization
@@ -56,6 +58,19 @@ export function fetchProfessional(userID = 'current') {
     ]
   }
 
+  return dispatch => dispatch(callApi(callDescriptor, { onSuccess: initMap }))
+}
+
+export function fetchProgram(progID) {
+  const callDescriptor = {
+    endpoint: `/programs/${progID}`,
+    types: [
+      ActionTypes.REQUEST_PROGRAM,
+      ActionTypes.RECIEVE_PROGRAM,
+      ActionTypes.FAILURE_PROGRAM
+    ]
+  }
+
   return dispatch => dispatch(callApi(callDescriptor))
 }
 
@@ -77,6 +92,10 @@ export function fetchResults(values) {
 
 function loadResultsPage(response, dispatch) {
   return dispatch(push('/results'))
+}
+
+export function navigateToProfessional(index, users) {
+  return dispatch => dispatch(push(`/professional/${users[index[0]].id}`))
 }
 
 export function adminChangeTableTo(index) {
@@ -130,6 +149,11 @@ export function authorizeUser() {
 export function logoutUser() {
   Cookies.expire('X-User-Email')
   Cookies.expire('X-User-Token')
+  window.open(
+    'https://www.linkedin.com/m/logout/',
+    'Logout',
+    'width=1000 height=800'
+  )
 
   const onSuccess = () => ({
     type: ActionTypes.LOGOUT_USER

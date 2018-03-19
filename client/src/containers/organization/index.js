@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { fetchOrganization } from '../../actions'
+import { fetchOrganization, navigateToProfessional } from '../../actions'
 
 import Organization from '../../components/organization'
 
@@ -15,7 +15,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      fetchOrganization
+      fetchOrganization,
+      navigateToProfessional
     },
     dispatch
   )

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { MuiThemeProvider, getMuiTheme } from 'material-ui/styles'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {
@@ -14,30 +13,17 @@ import {
 } from 'material-ui'
 
 import AddAdminDialog from '../../containers/admin/dialogs/addAdminDialog'
-
-import './style.css'
-
-const muiTheme = getMuiTheme({
-  palette: {
-    primary1Color: '#ea4e46'
-  }
-})
+import AdminPermissionsDialog from '../../containers/admin/dialogs/adminPermissionsDialog'
 
 export default class OrganizationList extends Component {
   constructor(props) {
     super(props)
 
-    this.renderOrganizationRows = this.renderOrganizationRows.bind(this)
-    this.renderOrganizationTable = this.renderOrganizationTable.bind(this)
+    this.renderRows = this.renderRows.bind(this)
+    this.renderTable = this.renderTable.bind(this)
   }
 
-  componentWillMount() {
-    const { fetchAllOrganizations } = this.props
-
-    fetchAllOrganizations()
-  }
-
-  renderOrganizationRows() {
+  renderRows() {
     const {
       organizations,
       toggleOrganizationVisibility,
@@ -45,7 +31,7 @@ export default class OrganizationList extends Component {
     } = this.props
 
     return organizations.map(organization => {
-      const { id, name, visible } = organization
+      const { id, name, addressLine1, addressLine2, visible } = organization
 
       const blockedCheckbox = (
         <Checkbox
@@ -68,7 +54,22 @@ export default class OrganizationList extends Component {
           onClick={() =>
             openDialog(2, {
               message: `Add Admin to ${name}`,
-              organizationId: id
+              type: 'organizations',
+              typeId: id
+            })
+          }
+        />
+      )
+
+      const viewAdminListButton = (
+        <RaisedButton
+          backgroundColor="#8195b1"
+          label="View"
+          onClick={() =>
+            openDialog(4, {
+              message: `Showing admins for ${name}`,
+              type: 'organizations',
+              typeId: id
             })
           }
         />
@@ -77,20 +78,23 @@ export default class OrganizationList extends Component {
       return (
         <TableRow key={id}>
           <TableRowColumn>{name}</TableRowColumn>
+          <TableRowColumn>{`${addressLine1} ${addressLine2}`}</TableRowColumn>
           <TableRowColumn>{blockedCheckbox}</TableRowColumn>
           <TableRowColumn>{editOrganizationButton}</TableRowColumn>
+          <TableRowColumn>{viewAdminListButton}</TableRowColumn>
           <TableRowColumn>{addAdminButton}</TableRowColumn>
         </TableRow>
       )
     })
   }
 
-  renderOrganizationTable() {
+  renderTable() {
     const headerValues = [
       { tooltip: 'Name', value: 'Name' },
+      { tooltip: 'Address', value: 'Address' },
       { tooltip: 'Block/Unblock', value: 'Blocked' },
-      { tooltip: 'Edit org/prog', value: '' },
-      { tooltip: 'Add admin to org/prog', value: '' }
+      { tooltip: 'Goto edit page', value: 'Edit' },
+      { tooltip: 'View/Remove admins', value: 'Admins' }
     ]
 
     const mapHeaderValues = headerValues.map(({ tooltip, value }) => (
@@ -102,32 +106,25 @@ export default class OrganizationList extends Component {
     return (
       <div>
         <AddAdminDialog />
-        <div className="table-container">
-          <Table height="300px">
-            <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-              <TableRow>{mapHeaderValues}</TableRow>
-            </TableHeader>
-            <TableBody displayRowCheckbox={false} stripedRows>
-              {this.renderOrganizationRows()}
-            </TableBody>
-          </Table>
-        </div>
+        <AdminPermissionsDialog />
+        <Table fixedHeader={false} style={{ tableLayout: 'auto' }}>
+          <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+            <TableRow>{mapHeaderValues}</TableRow>
+          </TableHeader>
+          <TableBody displayRowCheckbox={false} stripedRows>
+            {this.renderRows()}
+          </TableBody>
+        </Table>
       </div>
     )
   }
 
   render() {
-    return (
-      <MuiThemeProvider muiTheme={muiTheme}>
-        <h1 className="admin-title">Organizations</h1>
-        {this.renderOrganizationTable()}
-      </MuiThemeProvider>
-    )
+    return <div>{this.renderTable()}</div>
   }
 }
 
 OrganizationList.propTypes = {
-  fetchAllOrganizations: PropTypes.func.isRequired,
   toggleOrganizationVisibility: PropTypes.func.isRequired,
   openDialog: PropTypes.func.isRequired,
   organizations: PropTypes.array.isRequired // eslint-disable-line

@@ -1,6 +1,8 @@
 import createReducer from '../../utils/createReducer'
 import ActionTypes from '../../constants/actionTypes'
 
+const portraitImg = require('../../assets/images/portrait.png')
+
 const initialState = {
   id: 0,
   type: '',
@@ -32,16 +34,26 @@ export default createReducer(initialState, handlers)
 
 function requestOrganization(state, data) {
   const { payload: { organization } } = data
-  const { media } = organization
+  const { media, users } = organization
 
-  const reducedMedia = media.reduce((obj, item) => {
-    obj[item.category] = item // eslint-disable-line
-    return obj
-  }, {})
+  const image = find(propEq('category', 'image'))(media)
+  const video = find(propEq('category', 'video'))(media)
 
+  const mediaReducedUsers = users.map(user => {
+    const { media: userMedia } = user
+    const userImage = find(propEq('category', 'image'))(userMedia)
+    return {
+      ...user,
+      imageUrl: userImage && userImage.url ? userImage.url : portraitImg
+    }
+  })
   return {
     ...state,
     ...organization,
-    media: reducedMedia
+    media: {
+      image: image || { url: portraitImg },
+      video: video || { url: '' }
+    },
+    users: mediaReducedUsers
   }
 }

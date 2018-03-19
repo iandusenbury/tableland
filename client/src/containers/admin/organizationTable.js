@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { fetchAllOrganizations } from '../../actions/admin'
 import { openDialog } from '../../actions'
+import { toggleOrganizationVisibility } from '../../actions/admin'
 
 import OrganizationTable from '../../components/admin/organizationTable'
 
@@ -12,8 +12,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      fetchAllOrganizations,
-      openDialog
+      openDialog,
+      toggleOrganizationVisibility
     },
     dispatch
   )

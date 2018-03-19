@@ -1,11 +1,11 @@
 module Api::V1
   class OrganizationsController < ApiBaseController
-    before_action :set_organization, only: [:show, :update, :grant_permission, :admins]
+    before_action :set_organization, only: [:show, :update, :grant_permission, :admins, :revoke_permission]
     before_action :allow_if_visible, except: [:index, :show] 
-    before_action :require_correct_admin, only: [:update, :grant_permission]
+    before_action :require_correct_admin, only: [:update, :grant_permission, :admins, :revoke_permission]
+    before_action :find_user, only: :revoke_permission
     before_action :validate_update_params, only: :update
     before_action :check_index_permission, only: :index
-    before_action :check_get_admins_permission, only: :admins
 
     # GET /v1/organizations
     def index
@@ -45,6 +45,14 @@ module Api::V1
       render json: @organization, include: 'admins', status: :ok
     end
 
+    # DELETE /v1/organizations/{id}/revoke
+    def revoke_permission
+      permissions_to_destroy = find_permissions_to_revoke(@organization, @user)
+      permissions_to_destroy.destroy_all
+      consider_demotion(@user)
+      render json: @user, include: '', status: :ok
+    end
+
     # Unreachable
     # DELETE /organizations/1
     # DELETE /organizations/1.json
@@ -67,6 +75,13 @@ module Api::V1
         end
       end
 
+      # Find the specified user when preparing to revoke their permission 
+      def find_user
+        raise ExceptionTypes::BadRequestError.new("user_id must be present") unless params[:user_id].present?
+        
+        @user = User.find(params[:user_id])
+      end
+
       # Validate the request payload when updating an existing organization
       def validate_update_params
         validate_url
@@ -76,11 +91,6 @@ module Api::V1
       # Ensure that only super admins can view all organizations
       def check_index_permission
         raise ExceptionTypes::UnauthorizedError.new("You do not have permission to view all organizations") unless current_user.super_admin?
-      end
-
-      # Ensure that only super admins can view all admins for a specific organization
-      def check_get_admins_permission
-        raise ExceptionTypes::UnauthorizedError.new("You do not have permission to view all admins for the specified organization") unless current_user.super_admin?
       end
 
       # Verify that the newly created organization is valid and if it is, check to

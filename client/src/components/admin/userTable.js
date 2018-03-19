@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { MuiThemeProvider, getMuiTheme } from 'material-ui/styles'
 import PropTypes from 'prop-types'
 import {
   Table,
@@ -12,14 +11,7 @@ import {
   RaisedButton
 } from 'material-ui'
 
-import RevokeAdminDialog from '../../containers/admin/dialogs/revokeAdminDialog'
 import './style.css'
-
-const muiTheme = getMuiTheme({
-  palette: {
-    primary1Color: '#ea4e46'
-  }
-})
 
 export default class UserTable extends Component {
   constructor(props) {
@@ -40,7 +32,7 @@ export default class UserTable extends Component {
       users,
       toggleUserVisibility,
       toggleUserSuperAdmin,
-      openDialog
+      revokeAllUserAdminPermissions
     } = this.props
 
     return users.map(user => {
@@ -60,17 +52,12 @@ export default class UserTable extends Component {
         />
       )
 
-      const revokeAdminButton = (
+      const revokeAllUserAdminPermissionsButton = (
         <RaisedButton
           disabled={role !== 'admin'}
           backgroundColor="#8195b1"
           label="Revoke"
-          onClick={() =>
-            openDialog(3, {
-              message: `Revoke admin status for ${firstName} ${lastName}`,
-              userId: id
-            })
-          }
+          onClick={() => revokeAllUserAdminPermissions(id)}
         />
       )
 
@@ -82,7 +69,7 @@ export default class UserTable extends Component {
           <TableRowColumn>{email}</TableRowColumn>
           <TableRowColumn>{blockedCheckbox}</TableRowColumn>
           <TableRowColumn>{superAdminCheckbox}</TableRowColumn>
-          <TableRowColumn>{revokeAdminButton}</TableRowColumn>
+          <TableRowColumn>{revokeAllUserAdminPermissionsButton}</TableRowColumn>
         </TableRow>
       )
     })
@@ -104,9 +91,8 @@ export default class UserTable extends Component {
     ))
 
     return (
-      <div className="table-container">
-        <RevokeAdminDialog />
-        <Table height="300px">
+      <div>
+        <Table fixedHeader={false} style={{ tableLayout: 'auto' }}>
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>{mapHeaderValues}</TableRow>
           </TableHeader>
@@ -119,12 +105,7 @@ export default class UserTable extends Component {
   }
 
   render() {
-    return (
-      <MuiThemeProvider muiTheme={muiTheme}>
-        <h1 className="admin-title">Users</h1>
-        {this.renderUserTable()}
-      </MuiThemeProvider>
-    )
+    return <div>{this.renderUserTable()}</div>
   }
 }
 
@@ -132,6 +113,6 @@ UserTable.propTypes = {
   fetchAllUsers: PropTypes.func.isRequired,
   toggleUserVisibility: PropTypes.func.isRequired,
   toggleUserSuperAdmin: PropTypes.func.isRequired,
-  openDialog: PropTypes.func.isRequired,
+  revokeAllUserAdminPermissions: PropTypes.func.isRequired,
   users: PropTypes.array.isRequired // eslint-disable-line
 }

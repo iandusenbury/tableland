@@ -10,7 +10,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      placesUpdateSearchText,
       placesUpdateData
     },
     dispatch

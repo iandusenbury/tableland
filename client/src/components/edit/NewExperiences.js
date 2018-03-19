@@ -34,6 +34,7 @@ const renderPrograms = ({ fields }) => (
               name={`${program}.name`}
               component={StyledTextField}
               text="Name of Program"
+              required
             />
           </div>
           <div>
@@ -41,6 +42,7 @@ const renderPrograms = ({ fields }) => (
               name={`${program}.position`}
               component={StyledTextField}
               text="Position/Role"
+              required
             />
           </div>
           <div>
@@ -49,6 +51,7 @@ const renderPrograms = ({ fields }) => (
               component={StyledTextField}
               text="Awards Received"
               multiLine
+              required
             />
           </div>
           <div>
@@ -111,6 +114,7 @@ const NewExperiences = props => {
                   name={`${exp}.name`}
                   component={StyledTextField}
                   text="Name of Organization"
+                  required
                 />
               </div>
               <div>
@@ -118,6 +122,7 @@ const NewExperiences = props => {
                   name={`${exp}.position`}
                   component={StyledTextField}
                   text="Position/Role"
+                  required
                 />
               </div>
               <div>
@@ -135,6 +140,7 @@ const NewExperiences = props => {
                   component={StyledTextField}
                   text="Awards Received"
                   multiLine
+                  required
                 />
               </div>
               <div >

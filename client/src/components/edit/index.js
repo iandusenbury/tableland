@@ -36,6 +36,8 @@ class EditProfile extends Component {
 
 
       values.newExp.forEach(exp => {
+        if(exp === {}) return
+
         const {
           name,
           position,
@@ -49,25 +51,25 @@ class EditProfile extends Component {
 
         let addressLine_1, addressLine_2, city, state, postalCode, country;
 
-        address.results[0].address_components.forEach(item => {
+        address.results.addressComponents.forEach(item => {
           item.types.forEach(type => {
             if(type === "postal_code"){
-              postalCode = item.long_name
+              postalCode = item.longName
             }
             if(type === "country"){
-              country = item.long_name
+              country = item.longName
             }
             if(type === 'locality'){
-              city = item.long_name
+              city = item.longName
             }
             if(type === 'administrative_area_level_1'){
-                  state = item.long_name
+                  state = item.longName
             }
             if(type === 'floor'){
-              addressLine_1 += item.long_name
+              addressLine_1 += item.longName
             }
             if(type === "administrative_area_level_2"){
-                addressLine_2 = item.long_name
+                addressLine_2 = item.longName
             }
           })
 
@@ -99,6 +101,8 @@ class EditProfile extends Component {
 
           if(programs) {
               programs.forEach(program => {
+                  if(program === {}) return
+
                   const prog = {name: program.name}
                   allPrograms.push(prog)
               })

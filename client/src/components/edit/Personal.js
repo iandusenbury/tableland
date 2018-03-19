@@ -36,6 +36,7 @@ class Personal extends Component {
                   name="firstName"
                   component={StyledTextField}
                   text="First Name"
+                  required
                 />
               </div>
               <div>
@@ -43,6 +44,7 @@ class Personal extends Component {
                   name="lastName"
                   component={StyledTextField}
                   text="Last Name"
+                  required
                 />
               </div>
               <div>

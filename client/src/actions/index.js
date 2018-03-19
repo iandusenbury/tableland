@@ -4,20 +4,12 @@ import ActionTypes from '../constants/actionTypes'
 import callApi from '../utils/api'
 import { authorizeOAuth } from './oauth'
 
-export function placesUpdateSearchText(text) {
-  return {
-    type: ActionTypes.PLACES_UPDATE_TEXT,
-    payload: {
-      text
-    }
-  }
-}
 
-export function placesUpdateData(data) {
+export function placesUpdateData(placesData) {
   return {
     type: ActionTypes.PLACES_UPDATE_DATA,
     payload: {
-      data
+      placesData
     }
   }
 }

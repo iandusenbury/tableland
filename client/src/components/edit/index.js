@@ -93,7 +93,7 @@ class EditProfile extends Component {
           title: position,
           award,
           startDate: startDate.toString(),
-          endDate: endDate ? endDate.toString(): '',
+          endDate: endDate ? endDate.toString(): null,
           current
         }
 

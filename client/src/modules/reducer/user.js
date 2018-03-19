@@ -40,9 +40,6 @@ function requestUser(state, { payload }) {
   const image = find(propEq('category', 'image'))(media)
   const video = find(propEq('category', 'video'))(media)
 
-  const { media } = user
-  const image = find(propEq('category', 'image'))(media)
-  const video = find(propEq('category', 'video'))(media)
 
   return {
     ...state,

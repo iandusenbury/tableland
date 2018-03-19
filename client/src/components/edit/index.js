@@ -36,7 +36,6 @@ class EditProfile extends Component {
 
 
       values.newExp.forEach(exp => {
-        if(exp === {}) return
 
         const {
           name,
@@ -50,6 +49,8 @@ class EditProfile extends Component {
         } = exp
 
         let addressLine_1, addressLine_2, city, state, postalCode, country;
+
+        if(!address) return
 
         address.results.addressComponents.forEach(item => {
           item.types.forEach(type => {
@@ -78,14 +79,14 @@ class EditProfile extends Component {
 
         const organization = {
           name,
-          addressLine_1: address.results[0].formatted_address,
+          addressLine_1: address.results.formattedAddress,
           addressLine_2,
           city,
           state,
           postalCode,
           country,
-          lat: address.results[0].geometry.location.lat(),
-          lng: address.results[0].geometry.location.lng()
+          lat: address.results.geometry.location.lat(),
+          lng: address.results.geometry.location.lng()
         }
 
         const experience = {

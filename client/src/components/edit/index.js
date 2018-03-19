@@ -10,12 +10,11 @@ import Experiences from './Experiences'
 
 import './edit.css'
 
-function clickFunction(submit, initializeApp) {
+function clickFunction(submit) {
   submit('personal')
   submit('media')
   submit('existingExperiences')
   submit('newExperiences') // post
-  initializeApp();
 }
 
 class EditProfile extends Component {
@@ -27,7 +26,6 @@ class EditProfile extends Component {
       updateUserInfo,
       updateUserExperience,
       updateUserVideo,
-      initializeApp,
       videoId,
       userId,
       loading
@@ -201,7 +199,7 @@ class EditProfile extends Component {
             <div style={{ margin: '.5%' }}>
               <RaisedButton
                 label="Save"
-                onClick={() => clickFunction(submit, initializeApp)}
+                onClick={() => clickFunction(submit)}
                 fullWidth
                 primary
               />

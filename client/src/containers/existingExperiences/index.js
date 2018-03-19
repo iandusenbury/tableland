@@ -5,7 +5,10 @@ import ExistingExperiences from '../../components/edit/ExistingExperiences'
 import { updateUserExperience } from '../../actions/edit'
 
 const mapStateToProps = state => ({
-  experiences: state.app.user.experiences
+  experiences: state.app.user.experiences,
+  initialValues: {
+    existingExp: state.app.edit.existingExp
+  }
 })
 
 const mapDispatchToProps = dispatch =>

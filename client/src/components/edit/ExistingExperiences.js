@@ -8,78 +8,6 @@ import { DatePicker } from 'redux-form-material-ui'
 import MenuItem from 'material-ui/MenuItem'
 import { RaisedButton } from 'material-ui'
 
-
-function filterExp(experiences) {
-  const organizations = []
-  const programs = []
-
-  experiences.map((exp, index) => {
-    const { award, current, id, title, type, organization, program } = exp
-
-    let { endDate, startDate } = exp
-    if (!endDate) {
-      endDate = ''
-    } else {
-      endDate = new Date(endDate)
-    }
-
-    startDate = new Date(startDate)
-    let orgExp
-    let progExp
-
-    if (organization) {
-
-      // clean this up
-      orgExp = {
-        name: organization.name,
-        address: organization.addressLine1,
-        city: organization.city,
-        country: organization.country,
-        state: organization.state,
-        postal: organization.postalCode,
-        description: organization.description,
-        position: title,
-        award,
-        id: organization.id,
-        current,
-        endDate,
-        startDate,
-        type,
-        expId: id,
-        programs: []
-      }
-
-      organizations.push(orgExp)
-    } else if (program) {
-      progExp = {
-        name: program.name,
-        description: program.description,
-        parentOrganization: exp.parentOrganization,
-        position: title,
-        award,
-        id,
-        current,
-        endDate,
-        startDate,
-        type,
-        expId: id
-      }
-
-      programs.push(progExp)
-    }
-  })
-
-  programs.map((prog, index) => {
-    organizations.map((org, index) => {
-      if (prog.parentOrganization == org.id) {
-        org.programs.push(prog)
-      }
-    })
-  })
-
-  return organizations
-}
-
 const renderExistingExp = ({ fields }) => (
   <div>
     {fields.map((exp, index) => (
@@ -226,12 +154,7 @@ const renderPrograms = ({ fields }) => (
 
 class ExistingExperiences extends Component {
   componentDidMount() {
-    const { experiences } = this.props
-    const exp = {
-      existingExp: filterExp(experiences)
-    }
 
-    this.props.initialize(exp)
   }
 
   render() {
@@ -244,11 +167,10 @@ class ExistingExperiences extends Component {
   }
 }
 
-ExistingExperiences = reduxForm({
-  form: 'existingExperiences'
+export default reduxForm({
+  form: 'existingExperiences',
+  enableReinitialize: true
 })(ExistingExperiences)
-
-export default ExistingExperiences
 
 /*
 <div style={{width: "75vw", marginTop: '3%', marginBottom: '3%'}}>

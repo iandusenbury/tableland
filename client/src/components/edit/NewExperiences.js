@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './experience.css'
 import { style } from '../../widgets/styles'
-import { FieldArray, Field, reduxForm, change } from 'redux-form'
+import { FieldArray, Field, reduxForm, reset } from 'redux-form'
 import { StyledSelectField } from '../../widgets/StyledSelectField'
 import { StyledTextField } from '../../widgets/StyledTextField'
 import { DatePicker } from 'redux-form-material-ui'
@@ -9,6 +9,8 @@ import MenuItem from 'material-ui/MenuItem'
 import { RaisedButton } from 'material-ui'
 import GooglePlacesAutocomplete from '../../containers/placesAutocomplete'
 
+const afterSubmit = (result, dispatch) =>
+  dispatch(reset('newExperiences'))
 
 const renderPrograms = ({ fields }) => (
   <div>
@@ -186,5 +188,6 @@ const NewExperiences = props => {
 }
 
 export default reduxForm({
-  form: 'newExperiences'
+  form: 'newExperiences',
+  onSubmitSuccess: afterSubmit
 })(NewExperiences)

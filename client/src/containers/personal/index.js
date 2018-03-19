@@ -4,10 +4,12 @@ import { updateUserInfo } from '../../actions/edit'
 import Personal from '../../components/edit/Personal'
 
 const mapStateToProps = state => ({
-  firstName: state.app.user.firstName,
-  lastName: state.app.user.lastName,
-  description: state.app.user.description,
-  mainTitle: state.app.user.mainTitle
+  initialValues: {
+    firstName: state.app.user.firstName,
+    lastName: state.app.user.lastName,
+    description: state.app.user.description,
+    mainTitle: state.app.user.mainTitle
+  }
 })
 
 const mapDispatchToProps = dispatch =>

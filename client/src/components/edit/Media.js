@@ -50,7 +50,8 @@ class Media extends Component {
 }
 
 Media = reduxForm({
-  form: 'media'
+  form: 'media',
+  enableReinitialize: true
 })(Media)
 
 export default Media

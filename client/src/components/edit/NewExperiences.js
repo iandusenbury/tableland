@@ -51,7 +51,6 @@ const renderPrograms = ({ fields }) => (
               component={StyledTextField}
               text="Awards Received"
               multiLine
-              required
             />
           </div>
           <div>
@@ -140,7 +139,6 @@ const NewExperiences = props => {
                   component={StyledTextField}
                   text="Awards Received"
                   multiLine
-                  required
                 />
               </div>
               <div >

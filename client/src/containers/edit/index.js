@@ -7,6 +7,7 @@ import {
   updateUserInfo,
   updateUserVideo
 } from '../../actions/edit'
+import {initializeApp} from "../../actions";
 
 import EditProfile from '../../components/edit'
 
@@ -24,7 +25,8 @@ const mapDispatchToProps = dispatch =>
       createThings,
       updateUserInfo,
       updateUserExperience,
-      updateUserVideo
+      updateUserVideo,
+      initializeApp
     },
     dispatch
   )

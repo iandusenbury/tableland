@@ -10,11 +10,12 @@ import Experiences from './Experiences'
 
 import './edit.css'
 
-function clickFunction(submit) {
+function clickFunction(submit, initializeApp) {
   submit('personal')
   submit('media')
   submit('existingExperiences')
   submit('newExperiences') // post
+  initializeApp();
 }
 
 class EditProfile extends Component {
@@ -26,6 +27,7 @@ class EditProfile extends Component {
       updateUserInfo,
       updateUserExperience,
       updateUserVideo,
+      initializeApp,
       videoId,
       userId,
       loading
@@ -50,7 +52,7 @@ class EditProfile extends Component {
 
         let addressLine_1, addressLine_2, city, state, postalCode, country;
 
-        if(!address) return
+        if(!address || !position || !startDate || !name) return
 
         address.results.addressComponents.forEach(item => {
           item.types.forEach(type => {
@@ -93,7 +95,7 @@ class EditProfile extends Component {
           title: position,
           award,
           startDate: startDate.toString(),
-          endDate: endDate.toString(),
+          endDate: endDate ? endDate.toString(): '',
           current
         }
 
@@ -102,8 +104,6 @@ class EditProfile extends Component {
 
           if(programs) {
               programs.forEach(program => {
-                  if(program === {}) return
-
                   const prog = {name: program.name}
                   allPrograms.push(prog)
               })
@@ -201,7 +201,7 @@ class EditProfile extends Component {
             <div style={{ margin: '.5%' }}>
               <RaisedButton
                 label="Save"
-                onClick={() => clickFunction(submit)}
+                onClick={() => clickFunction(submit, initializeApp)}
                 fullWidth
                 primary
               />

@@ -10,13 +10,15 @@ export function createThings(organization, experience, programs, userId) {
 
       /* eslint-disable */
       if (!isEmpty(programs)) {
-        return async () => {
+        const savePrograms =  async () => {
           for (const program of programs) {
             await dispatch(
               createProgramExperience(program, experience, orgId, userId)
             )
           }
         }
+
+        savePrograms()
       }
       /* eslint-enable */
 

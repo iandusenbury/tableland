@@ -87,7 +87,7 @@ export function createExperience(experience, userId, id) {
   const onSuccess = (response, dispatch) =>
     dispatch(openDialog(1, { message: 'Success' }))
 
-  return dispatch => dispatch(callApi(callDescriptor, { onSuccess }))
+  return dispatch => dispatch(callApi(callDescriptor))
 }
 
 /* an action that PUTS/PATCH data for user's personal information */
@@ -107,7 +107,7 @@ export function updateUserInfo(info, userId) {
   const onSuccess = (response, dispatch) =>
     dispatch(openDialog(1, { message: 'Success' }))
 
-  return dispatch => dispatch(callApi(callDescriptor, { onSuccess }))
+  return dispatch => dispatch(callApi(callDescriptor))
 }
 
 /* an action that PUTS/PATCH data for user's existing exp information */
@@ -126,7 +126,7 @@ export function updateUserExperience(experience, userId, expId) {
   const onSuccess = (response, dispatch) =>
     dispatch(openDialog(1, { message: 'Success' }))
 
-  return dispatch => dispatch(callApi(callDescriptor, { onSuccess }))
+  return dispatch => dispatch(callApi(callDescriptor))
 }
 
 
@@ -175,5 +175,5 @@ export function updateUserVideo(link, userId, videoId) {
   const onSuccess = (response, dispatch) =>
     dispatch(openDialog(1, { message: 'Success' }))
 
-  return dispatch => dispatch(callApi(callDescriptor, { onSuccess }))
+  return dispatch => dispatch(callApi(callDescriptor))
 }

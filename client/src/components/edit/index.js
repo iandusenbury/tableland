@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Avatar from 'material-ui/Avatar'
 import { RaisedButton } from 'material-ui'
-
 import Personal from '../../containers/personal'
 import Media from '../../containers/media'
 import { style } from '../../widgets/styles'
@@ -10,11 +9,51 @@ import Experiences from './Experiences'
 
 import './edit.css'
 
-function clickFunction(submit) {
+let errorMessages = []
+
+const checkRequiredExperienceFields = experience => {
+  let error = true
+  const { name, position, startDate, address } = experience
+
+  if (!!name && !!position && !!startDate && !!address) error = false
+  else errorMessages.push(`Experiences`)
+
+  return error
+}
+
+const checkRequiredPersonalFields = personalInfo => {
+  let error = true
+  const { firstName, lastName } = personalInfo
+
+  if (!!firstName && !!lastName) error = false
+  else errorMessages.push(`Personal`)
+
+  return error
+}
+
+const checkCorrectVideoUrl = url => {
+  let error = true
+
+  console.log(url)
+
+  if (!!url && !url.includes('youtube.com') && !url.includes('watch?v=')) {
+    errorMessages.push('Media')
+  } else error = false
+
+  return error
+}
+
+function clickFunction(submit, displayErrorMessage) {
   submit('personal')
-  submit('media')
-  submit('existingExperiences')
-  submit('newExperiences') // post
+    .then(() => submit('media'))
+    .then(() => submit('existingExperiences'))
+    .then(() => submit('newExperiences')) // post
+    .then(() => {
+      if (errorMessages.length > 0) {
+        displayErrorMessage(errorMessages)
+      }
+      errorMessages = []
+    })
 }
 
 class EditProfile extends Component {
@@ -28,15 +67,24 @@ class EditProfile extends Component {
       updateUserVideo,
       videoId,
       userId,
-      loading
+      loading,
+      displayErrorMessage
     } = this.props
 
     const submitHandler = values => {
+      let returnEarly = false
       if (!values.newExp) return
 
+      values.newExp.forEach(exp => {
+        if (checkRequiredExperienceFields(exp)) {
+          // openDialog(1, { message: 'Missing some required fields' })
+          returnEarly = true
+        }
+      })
+
+      if (returnEarly) return
 
       values.newExp.forEach(exp => {
-
         const {
           name,
           position,
@@ -48,34 +96,32 @@ class EditProfile extends Component {
           programs
         } = exp
 
-        let addressLine_1, addressLine_2, city, state, postalCode, country;
+        let addressLine_1, addressLine_2, city, state, postalCode, country
 
-        if(!address || !position || !startDate || !name) return
+        if (!address || !position || !startDate || !name) return
 
         address.results.addressComponents.forEach(item => {
           item.types.forEach(type => {
-            if(type === "postal_code"){
+            if (type === 'postal_code') {
               postalCode = item.longName
             }
-            if(type === "country"){
+            if (type === 'country') {
               country = item.longName
             }
-            if(type === 'locality'){
+            if (type === 'locality') {
               city = item.longName
             }
-            if(type === 'administrative_area_level_1'){
-                  state = item.longName
+            if (type === 'administrative_area_level_1') {
+              state = item.longName
             }
-            if(type === 'floor'){
+            if (type === 'floor') {
               addressLine_1 += item.longName
             }
-            if(type === "administrative_area_level_2"){
-                addressLine_2 = item.longName
+            if (type === 'administrative_area_level_2') {
+              addressLine_2 = item.longName
             }
           })
-
-        });
-
+        })
 
         const organization = {
           name,
@@ -93,21 +139,20 @@ class EditProfile extends Component {
           title: position,
           award,
           startDate: startDate.toString(),
-          endDate: endDate ? endDate.toString(): null,
+          endDate: endDate ? endDate.toString() : null,
           current
         }
 
+        const allPrograms = []
 
-        let allPrograms = []
+        if (programs) {
+          programs.forEach(program => {
+            const prog = { name: program.name }
+            allPrograms.push(prog)
+          })
+        }
 
-          if(programs) {
-              programs.forEach(program => {
-                  const prog = {name: program.name}
-                  allPrograms.push(prog)
-              })
-          }
-
-          createThings(organization, experience, allPrograms, userId)
+        createThings(organization, experience, allPrograms, userId)
       })
     }
 
@@ -118,12 +163,23 @@ class EditProfile extends Component {
         lastName,
         description
       }
+      if (checkRequiredPersonalFields(values)) return
 
       updateUserInfo(info, userId)
     }
 
     const saveUpdatedExperiences = values => {
-      if (!values) return
+      let returnEarly = false
+      if (!values.existingExp) return
+
+      values.existingExp.forEach(exp => {
+        if (checkRequiredExperienceFields(exp)) {
+          // openDialog(1, { message: 'Missing some required fields' })
+          returnEarly = true
+        }
+      })
+
+      if (returnEarly) return
 
       values.existingExp.forEach(exp => {
         const {
@@ -164,8 +220,10 @@ class EditProfile extends Component {
       })
     }
 
-    const saveUpdatedVideoLink = value => {
-      const { profileVideo } = value
+    const saveUpdatedVideoLink = values => {
+      const { profileVideo } = values
+      console.log(values)
+      if (checkCorrectVideoUrl(profileVideo)) return
       updateUserVideo(profileVideo, userId, videoId)
     }
 
@@ -199,7 +257,7 @@ class EditProfile extends Component {
             <div style={{ margin: '.5%' }}>
               <RaisedButton
                 label="Save"
-                onClick={() => clickFunction(submit)}
+                onClick={() => clickFunction(submit, displayErrorMessage)}
                 fullWidth
                 primary
               />

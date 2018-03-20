@@ -4,7 +4,9 @@ import Media from '../../components/edit/Media'
 import { updateUserVideo } from '../../actions/edit'
 
 const mapStateToProps = state => ({
-  profileVideo: state.app.user.media.video.url
+  initialValues: {
+    profileVideo: state.app.user.media.video.url
+  }
 })
 
 const mapDispatchToProps = dispatch =>

@@ -11,7 +11,7 @@ import { StyledTextField } from '../../widgets/StyledTextField'
 
 class Media extends Component {
   componentDidMount() {
-    this.props.initialize({ ...this.props })
+    // this.props.initialize({ ...this.props })
   }
 
   render() {

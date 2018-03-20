@@ -36,7 +36,8 @@ const Navbar = props => {
     dialogIsOpen,
     fetchMapProfessional,
     media,
-    signedIn
+    signedIn,
+    isAdmin
   } = props
 
   return (
@@ -64,37 +65,45 @@ const Navbar = props => {
                 <NavigationExpandMoreIcon />
               </IconButton>
             }>
-            <MenuItem
-              onClick={() => authorizeUser()}
-              value="sign_in"
-              primaryText="Sign In"
-            />
-            <MenuItem
-              onClick={() => fetchUser()}
-              value="fetch_user"
-              primaryText="Fetch User"
-            />
-            <MenuItem
-              onClick={() => logoutUser()}
-              value="logout_user"
-              primaryText="Logout"
-            />
+            {!signedIn && (
+              <MenuItem
+                onClick={() => authorizeUser()}
+                value="sign_in"
+                primaryText="Sign In"
+              />
+            )}
+            {signedIn && (
+              <MenuItem
+                containerElement={<Link to="/profile" />}
+                value={navbarPaths.view_profile.value}
+                primaryText={navbarPaths.view_profile.primaryText}
+              />
+            )}
+            {signedIn && (
+              <MenuItem
+                containerElement={<Link to={navbarPaths.edit_profile.path} />}
+                value={navbarPaths.edit_profile.value}
+                primaryText={navbarPaths.edit_profile.primaryText}
+              />
+            )}
             <Divider />
-            <MenuItem
-              containerElement={<Link to="/profile" />}
-              value={navbarPaths.view_profile.value}
-              primaryText={navbarPaths.view_profile.primaryText}
-            />
-            <MenuItem
-              containerElement={<Link to={navbarPaths.edit_profile.path} />}
-              value={navbarPaths.edit_profile.value}
-              primaryText={navbarPaths.edit_profile.primaryText}
-            />
-            <MenuItem
-              containerElement={<Link to={navbarPaths.admin_page.path} />}
-              value={navbarPaths.admin_page.value}
-              primaryText={navbarPaths.admin_page.primaryText}
-            />
+            {isAdmin && (
+              <MenuItem
+                containerElement={<Link to={navbarPaths.admin_page.path} />}
+                value={navbarPaths.admin_page.value}
+                primaryText={navbarPaths.admin_page.primaryText}
+              />
+            )}
+            {signedIn && (
+              <MenuItem
+                onClick={() => logoutUser()}
+                value="logout_user"
+                primaryText="Logout"
+              />
+            )}
+            {signedIn && (
+              <Divider />
+            )}
             <MenuItem
               containerElement={<Link to={navbarPaths.about.path} />}
               value={navbarPaths.about.value}

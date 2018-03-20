@@ -8,23 +8,27 @@ export function createThings(organization, experience, programs, userId) {
     dispatch(createOrganization(organization)).then(response => {
       const { payload: { organization: { id: orgId } } } = response
 
-      /* eslint-disable */
-      if (!isEmpty(programs)) {
-        const savePrograms =  async () => {
-          for (const program of programs) {
-            await dispatch(
-              createProgramExperience(program, experience, orgId, userId)
-            )
-          }
-        }
-
-        savePrograms()
-      }
-      /* eslint-enable */
-
       return dispatch(
         createExperience(experience, userId, { organizationId: orgId })
-      )
+      ).then(() => {
+        const promises = []
+
+        /* eslint-disable */
+        if (!isEmpty(programs)) {
+          const savePrograms =  async () => {
+            for (const program of programs) {
+              promises.push(await dispatch(
+                createProgramExperience(program, experience, orgId, userId)
+              ))
+            }
+          }
+
+          savePrograms()
+        }
+        /* eslint-enable */
+
+        return Promise.all(promises)
+      })
     })
 }
 
@@ -84,9 +88,12 @@ export function createExperience(experience, userId, id) {
     ]
   }
 
+<<<<<<< HEAD
   const onSuccess = (response, dispatch) =>
     dispatch(openDialog(1, { message: 'Success' }))
 
+=======
+>>>>>>> prof_edit_functionality
   return dispatch => dispatch(callApi(callDescriptor))
 }
 
@@ -129,8 +136,6 @@ export function updateUserExperience(experience, userId, expId) {
   return dispatch => dispatch(callApi(callDescriptor))
 }
 
-
-
 /*
 export function changeUserVideo(link, userId, videoId, update) {
   if (update) {
@@ -158,7 +163,6 @@ export function createUserVideo(link, userId) {
   return dispatch => dispatch(callApi(callDescriptor, { onSuccess }))
 }
 */
-
 
 export function updateUserVideo(link, userId, videoId) {
   const callDescriptor = {

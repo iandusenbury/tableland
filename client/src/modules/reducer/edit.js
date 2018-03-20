@@ -1,4 +1,4 @@
-import { find, propEq, dissoc, isEmpty, append } from 'ramda'
+import { find, propEq, update, findIndex, dissoc, isEmpty, append } from 'ramda'
 import createReducer from '../../utils/createReducer'
 import ActionTypes from '../../constants/actionTypes'
 
@@ -85,12 +85,15 @@ function addExistingExp(state, { payload }) {
 
   if (orgId) {
     const exp = find(propEq('id', orgId))(existingExp)
+    const expIndex = findIndex(propEq('id', orgId))(existingExp)
     const { programs } = exp
     const mergedPrograms = append(program, programs)
     const newExp = { ...exp, programs: mergedPrograms }
+    const updatedExp = update(expIndex, newExp, existingExp)
+
     return {
       ...state,
-      existingExp: [...existingExp, newExp]
+      existingExp: [...updatedExp]
     }
   }
 

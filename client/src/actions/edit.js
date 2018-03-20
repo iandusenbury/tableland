@@ -88,12 +88,6 @@ export function createExperience(experience, userId, id) {
     ]
   }
 
-<<<<<<< HEAD
-  const onSuccess = (response, dispatch) =>
-    dispatch(openDialog(1, { message: 'Success' }))
-
-=======
->>>>>>> prof_edit_functionality
   return dispatch => dispatch(callApi(callDescriptor))
 }
 

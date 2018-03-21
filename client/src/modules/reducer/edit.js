@@ -157,8 +157,8 @@ function formatExistingExp(state, { payload }) {
         award,
         id,
         current,
-        endDate,
-        startDate,
+        endDate: dateifiedEndDate,
+        startDate: dateifiedStartDate,
         type,
         expId: id
       }

@@ -15,6 +15,7 @@ import Professional from '../../containers/professional'
 import ProgramPage from '../../containers/program'
 import GMap from '../../containers/map'
 import NotFound from '../notFound'
+import EditOrg from '../editOrganization'
 
 const App = () => (
   <div>
@@ -23,6 +24,7 @@ const App = () => (
       <Route exact path="/" component={Home} />
       <Route exact path="/about" component={About} />
       <PrivateRoute exact path="/admin" component={Admin} />
+      <Route exact path="/editOrganization" component={EditOrg}/>
       <Route exact path="/results" component={SearchResults} />
       <Route exact path="/organization/:id" component={OrgPage} />
       <Route exact path="/profile" component={Professional} />

@@ -5,7 +5,7 @@ import SearchResults from '../containers/searchResults'
 import OrgPage from '../containers/organization'
 import ProfPage from '../containers/professional'
 import EditProfile from '../components/edit'
-import EditOrg from '../components/edit_organization'
+import EditOrg from '../components/editOrganization'
 
 export const routePathToComponent = [
   {
@@ -45,7 +45,7 @@ export const routePathToComponent = [
   },
   {
     name: 'EditOrg',
-    path: '/edit_organization',
+    path: '/editOrganization',
     component: EditOrg
   }
 ]

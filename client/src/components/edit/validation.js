@@ -20,25 +20,61 @@ export const validateExperiences = values => {
   if (existingExp) {
     errors.existingExp = []
     existingExp.forEach(experience => {
-      const { name, position, startDate, address } = experience
+      const { name, position, startDate, address, programs } = experience
       const error = {}
 
       error.name = name ? undefined : 'Required'
       error.position = position ? undefined : 'Required'
       error.startDate = startDate ? undefined : 'Required'
       error.address = address ? undefined : 'Required'
+
+      if (programs.length > 0) {
+        error.programs = []
+        programs.forEach(program => {
+          const {
+            name: progName,
+            position: progPosition,
+            startDate: progStartDate
+          } = program
+          const progError = {}
+
+          progError.name = progName ? undefined : 'Required'
+          progError.position = progPosition ? undefined : 'Required'
+          progError.startDate = progStartDate ? undefined : 'Required'
+          error.programs.push(progError)
+        })
+      }
+
       errors.existingExp.push(error)
     })
   } else if (newExp) {
     errors.newExp = []
     newExp.forEach(experience => {
-      const { name, position, startDate, address } = experience
+      const { name, position, startDate, address, programs } = experience
       const error = {}
 
       error.name = name ? undefined : 'Required'
       error.position = position ? undefined : 'Required'
       error.startDate = startDate ? undefined : 'Required'
       error.address = address ? undefined : 'Required'
+
+      if (programs.length > 0) {
+        error.programs = []
+        programs.forEach(program => {
+          const {
+            name: progName,
+            position: progPosition,
+            startDate: progStartDate
+          } = program
+          const progError = {}
+
+          progError.name = progName ? undefined : 'Required'
+          progError.position = progPosition ? undefined : 'Required'
+          progError.startDate = progStartDate ? undefined : 'Required'
+          error.programs.push(progError)
+        })
+      }
+
       errors.newExp.push(error)
     })
   }

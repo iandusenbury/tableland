@@ -1,109 +1,49 @@
 import React, { Component } from 'react'
 import { MuiThemeProvider, getMuiTheme } from 'material-ui/styles'
-import { Paper, Menu, MenuItem } from 'material-ui'
 import PropTypes from 'prop-types'
+import { Tabs, Tab, Paper } from 'material-ui'
 
-import Users from './users'
+import UserTable from '../../containers/admin/userTable'
+import OrganizationTable from '../../containers/admin/organizationTable'
+import ProgramTable from '../../containers/admin/programTable'
 
 import './style.css'
 
 const muiTheme = getMuiTheme({
   palette: {
-    primary1Color: '#bed62f'
-  },
-  menuItem: {
-    hoverColor: '#bed62f'
+    primary1Color: '#ea4e46'
   }
 })
 
-export default class AdminPage extends Component {
-  constructor(props) {
-    super(props)
+class AdminPage extends Component {
+  componentWillMount() {
+    const { fetchUserPermissions, userId } = this.props
 
-    this.renderAdminList = this.renderAdminList.bind(this)
-    this.renderAdminMenu = this.renderAdminMenu.bind(this)
-    this.renderAdminSection = this.renderAdminSection.bind(this)
-  }
-
-  renderAdminMenu() {
-    const { isAdmin, tables, adminChangeTableTo } = this.props
-
-    if (isAdmin) {
-      const adminMenu = tables.map(table => {
-        const { title, id, buttonIcon } = table
-
-        return (
-          <MenuItem
-            className="admin-menu-bar-item"
-            primaryText={title}
-            onClick={() => adminChangeTableTo(id)}
-            rightIcon={buttonIcon}
-          />
-        )
-      })
-
-      return (
-        <Paper className="admin-menu-bar" zDepth={2}>
-          <Menu>{adminMenu}</Menu>
-        </Paper>
-      )
-    }
-
-    return ''
-  }
-
-  renderAdminList() {
-    const { currentTable, isAdmin, adminChangeTableTo } = this.props
-
-    const { title, list, button1, button2 } = currentTable
-
-    const adminList = () => {
-      if (!isAdmin) {
-        adminChangeTableTo(2) // Hack, for now. This wont get rerendered if non-admin.
-      }
-
-      return (
-        <Users title={title} users={list} button1={button1} button2={button2} />
-      )
-    }
-
-    return adminList()
-  }
-
-  renderAdminSection() {
-    const { isAdmin } = this.props
-
-    if (isAdmin) {
-      return (
-        <div className="admin-section">
-          {this.renderAdminMenu()}
-          {this.renderAdminList()}
-        </div>
-      )
-    }
-
-    return (
-      <div className="non-admin-section">
-        {this.renderAdminMenu()}
-        {this.renderAdminList()}
-      </div>
-    )
+    fetchUserPermissions(userId)
   }
 
   render() {
-    const { adminChangeAdminTo } = this.props
+    const { isSuperAdmin } = this.props
 
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
-        <h1 className="admin-title">Admin Page</h1>
-        {this.renderAdminSection()}
-        <div className="test-buttons">
-          <button onClick={() => adminChangeAdminTo(true)}>
-            TEST: Switch to Admin View
-          </button>
-          <button onClick={() => adminChangeAdminTo(false)}>
-            TEST: Switch to Non Admin View
-          </button>
+        <div className="admin-table-container">
+          <h1 className="admin-title">Admin Center</h1>
+          <Paper>
+            <Tabs>
+              {isSuperAdmin && (
+                <Tab label="Users">
+                  <UserTable />
+                </Tab>
+              )}
+              <Tab label="Organizations">
+                <OrganizationTable />
+              </Tab>
+              <Tab label="Programs">
+                <ProgramTable />
+              </Tab>
+            </Tabs>
+          </Paper>
         </div>
       </MuiThemeProvider>
     )
@@ -111,9 +51,8 @@ export default class AdminPage extends Component {
 }
 
 AdminPage.propTypes = {
-  isAdmin: PropTypes.bool.isRequired,
-  tables: PropTypes.element.isRequired,
-  currentTable: PropTypes.element.isRequired,
-  adminChangeTableTo: PropTypes.func.isRequired,
-  adminChangeAdminTo: PropTypes.func.isRequired
+  fetchUserPermissions: PropTypes.func.isRequired,
+  isSuperAdmin: PropTypes.bool.isRequired
 }
+
+export default AdminPage

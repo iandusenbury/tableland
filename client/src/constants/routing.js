@@ -1,11 +1,11 @@
 import ConnectedAdminPage from '../containers/admin'
 import Home from '../components/home'
 import About from '../components/about'
-import SearchResults from '../components/searchResults'
-import OrgPage from '../components/organization'
+import SearchResults from '../containers/searchResults'
+import OrgPage from '../containers/organization'
+import ProfPage from '../containers/professional'
 import EditProfile from '../components/edit'
 import EditOrg from '../components/edit_organization'
-import ProfPage from '../components/professional'
 
 export const routePathToComponent = [
   {
@@ -15,7 +15,7 @@ export const routePathToComponent = [
   },
   {
     name: 'About',
-    path: '/about-us',
+    path: '/about',
     component: About
   },
   {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import {
   Card,
   CardMedia,
@@ -12,85 +12,164 @@ import {
   TableBody,
   Avatar
 } from 'material-ui'
+import PropTypes from 'prop-types'
 import BusinessIcon from 'material-ui/svg-icons/communication/business'
 import LanguageIcon from 'material-ui/svg-icons/action/language'
-import TopTab from '../../constants/tabs/tabViewMap'
+
+import OrgPage from './style'
 import './style.css'
-import { orgPage } from '../../constants/viewStyles'
-/*
-  Employees should be listed as
-  [icon/photo]  [name]  [position]
-*/
 
-const hasVideo = true // this will be passed as props
-const portraitImg = require('./portrait.png')
-const sampleImg = require('./sample.jpg')
+const sampleImg = require('../../assets/images/profileBackground.jpg')
 
-export default () => (
-  <div className="organizationMainDiv">
-    <TopTab className="organizationTopTab" />
-    <div className="organizationImage">
-      <Card>
-        <CardMedia
-          overlay={<CardTitle id="org_name" title="Organization name here" />}>
-          <img className="organizationImg" src={sampleImg} alt="" />
-        </CardMedia>
-      </Card>
-    </div>
-    <div className="organizationText">
-      <div className="organizationName">
-        <h3 className="organizationHeader3">Organization Name</h3>
-        <Divider />
-      </div>
-      <div className="organizationContact">
-        <div className="organizationAddress">
-          <BusinessIcon style={orgPage.businessIcon} />
-          <div>
-            <p>123 company rd</p>
-            <p>Portland, OR 97006</p>
-          </div>
+class Organization extends Component {
+  componentWillMount() {
+    const { fetchOrganization, match } = this.props
+    fetchOrganization(match.params.id)
+  }
+  render() {
+    const {
+      name,
+      description,
+      url,
+      addressLine1,
+      addressLine2,
+      city,
+      state,
+      postalCode,
+      country,
+      organizationVideo,
+      users,
+      navigateToProfessional
+    } = this.props
+
+    let videoUrl = ''
+    let hasVideo = false
+    if (organizationVideo) {
+      videoUrl = organizationVideo.replace('watch?v=', 'embed/')
+      hasVideo = true
+    }
+
+    return (
+      <div className="organizationMainDiv">
+        <div className="organizationImage">
+          <Card>
+            <CardMedia overlay={<CardTitle id="org_name" title={name} />}>
+              <img className="organizationImg" src={sampleImg} alt="" />
+            </CardMedia>
+          </Card>
         </div>
-        <div className="organizationUrl">
-          <div>
-            <LanguageIcon style={orgPage.urlIcon} />
+        <div className="organizationText">
+          <div className="organizationName">
+            <h3 className="organizationHeader3">{name}</h3>
+            <Divider />
           </div>
-          <div>
-            <p>organizationurl.org/about</p>
+          <div className="organizationContact">
+            <div className="organizationAddress">
+              <BusinessIcon style={OrgPage.businessIcon} />
+              <div>
+                <p>{addressLine1}</p>
+                <p>
+                  {city}, {state}
+                </p>
+                <p>
+                  {country} {postalCode}
+                </p>
+                <p>{addressLine2}</p>
+              </div>
+            </div>
+            <div className="organizationUrl">
+              <div>
+                <LanguageIcon style={OrgPage.urlIcon} />
+              </div>
+              <div>
+                <p>{url}</p>
+              </div>
+            </div>
           </div>
+          <div className="organizationDescription">
+            <Divider />
+            <p>{description}</p>
+            {hasVideo && (
+              <div className="organization-video-wrapper">
+                <iframe
+                  className="organizationVideo"
+                  title="Organization Video"
+                  allow="encrypted-media"
+                  frameBorder="0"
+                  src={videoUrl}
+                />
+              </div>
+            )}
+            <Divider />
+          </div>
+          {users.length > 0 && (
+            <div className="organizationEmployees">
+              <h2 style={{ textAlign: 'center' }}>Employees</h2>
+              <Table onRowSelection={id => navigateToProfessional(id, users)}>
+                <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
+                  <TableRow>
+                    <TableHeaderColumn style={OrgPage.tableHeaderCol} />
+                    <TableHeaderColumn style={OrgPage.tableRowColName}>
+                      Employee
+                    </TableHeaderColumn>
+                    <TableHeaderColumn style={OrgPage.tableRowColName}>
+                      Job Title
+                    </TableHeaderColumn>
+                  </TableRow>
+                </TableHeader>
+                <TableBody showRowHover displayRowCheckbox={false}>
+                  {createEmployeeTable(users)}
+                </TableBody>
+              </Table>
+            </div>
+          )}
         </div>
       </div>
-      <div className="organizationDescription">
-        <Divider />
-        <p>Description</p>
-        {hasVideo && (
-          <div>
-            {
-              // eslint-disable-next-line
-            } <video /> {/* TODO: fix linting error */}
-          </div>
-        )}
-        <Divider />
-      </div>
-      <div className="organizationEmployees">
-        <Table>
-          <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
-            <TableRow>
-              <TableHeaderColumn style={orgPage.tableHeaderCol} />
-              <TableHeaderColumn>Employee</TableHeaderColumn>
-              <TableHeaderColumn>Job Title</TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody showRowHover displayRowCheckbox={false}>
-            <TableRow className="organizationTableRow" hoverable>
-              <TableRowColumn style={orgPage.tableRowColAvatar}>
-                <Avatar size={32} src={portraitImg} />
-              </TableRowColumn>
-              <TableRowColumn>Fred Henderson</TableRowColumn>
-              <TableRowColumn>Engineer</TableRowColumn>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </div>
-    </div>
-  </div>
-)
+    )
+  }
+}
+
+Organization.propTypes = {
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  addressLine1: PropTypes.string.isRequired,
+  addressLine2: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
+  state: PropTypes.string.isRequired,
+  postalCode: PropTypes.string.isRequired,
+  country: PropTypes.string.isRequired,
+  organizationVideo: PropTypes.string, // eslint-disable-line
+  users: PropTypes.array.isRequired, // eslint-disable-line
+  fetchOrganization: PropTypes.func.isRequired,
+  match: PropTypes.bool.isRequired,
+  navigateToProfessional: PropTypes.func.isRequired
+}
+
+function createEmployeeTable(employees) {
+  return employees.map(employee => {
+    const { id, firstName, lastName, mainTitle, imageUrl } = employee
+
+    return (
+      <TableRow
+        key={id}
+        style={{ width: '100%' }}
+        className="organizationTableRow"
+        hoverable>
+        <TableRowColumn style={OrgPage.tableRowColAvatar}>
+          <Avatar size={32} src={imageUrl} />
+        </TableRowColumn>
+        <TableRowColumn style={OrgPage.tableRowColName}>
+          <p className="organizationRowLink">
+            {firstName} {lastName}
+          </p>
+        </TableRowColumn>
+        <TableRowColumn style={OrgPage.tableRowColName}>
+          <p>{mainTitle}</p>
+        </TableRowColumn>
+      </TableRow>
+    )
+  })
+}
+
+export default Organization

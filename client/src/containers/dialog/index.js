@@ -5,8 +5,8 @@ import { closeDialog } from '../../actions'
 import Dialog from '../../components/dialog'
 
 const mapStateToProps = state => ({
-  open: state.app.dialog.open,
-  message: state.app.dialog.message
+  message: state.app.dialog.dialogData.message,
+  description: state.app.dialog.dialogData.description
 })
 
 const mapDispatchToProps = dispatch =>

@@ -6,7 +6,9 @@ module Api::V1
                 :name, 
                 :description, 
                 :url,
-                :link
+                :visible,
+                :link,
+                :parent_organization_names
 
     # Methods for custom attributes
     def type
@@ -14,6 +16,9 @@ module Api::V1
     end
     def link
       view_context.v1_program_url(object)
+    end
+    def parent_organization_names
+      object.organizations.where(visible: true).pluck(:name, :address_line_1, :address_line_2)
     end
 
     # Available associations

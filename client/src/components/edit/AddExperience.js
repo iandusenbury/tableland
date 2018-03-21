@@ -1,12 +1,14 @@
 import React from 'react'
+import { DatePicker, MenuItem } from 'material-ui'
+import PropTypes from 'prop-types'
+
 import { StyledTextField } from '../../widgets/StyledTextField'
 import { AddButton } from '../../widgets/AddButton'
 import { StyledSelectField } from '../../widgets/StyledSelectField'
-import { DatePicker, MenuItem } from 'material-ui'
 import { style } from '../../widgets/styles'
 import './edit.css'
 
-export const AddExperience = props => {
+const AddExperience = props => {
   const { type } = props
   const name = `Name of ${type}`
 
@@ -66,3 +68,9 @@ export const AddExperience = props => {
     </div>
   )
 }
+
+AddExperience.propTypes = {
+  type: PropTypes.object.isRequired // eslint-disable-line
+}
+
+export default AddExperience

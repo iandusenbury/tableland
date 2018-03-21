@@ -1,6 +1,6 @@
 .organizationMainDiv {
   width: 100%;
-  height: calc(100vh - 72px);
+  height: calc(100vh - 56px);
   background-color: white;
   display: grid;
   grid-template-columns: 50% 50%;
@@ -11,15 +11,31 @@
     ;
 }
 
+.organization-video-wrapper {
+  height: 0;
+  position: relative;
+  padding-bottom: 60%;
+}
+
+.organizationVideo {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+
 .organizationImage {
   grid-area: image;
   overflow: hidden;
-  height: calc(100vh - 72px);
+  height: calc(100vh - 56px);
   background-color: white;
 }
 
 .organizationText {
-  height: calc(100vh - 72px);
+  height: calc(100vh - 56px);
   background-color: white;
   grid-area: text;
   overflow-y: scroll;
@@ -112,7 +128,7 @@
   padding: 0;
   display: block;
   margin: 0 auto;
-  height: calc(100vh - 72px);
+  height: calc(100vh - 56px);
   width: 100%;
 }
 

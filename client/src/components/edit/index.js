@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Experience } from './Experience'
+import Experience from './Experience'
 import './edit.css'
 import { Personal } from './Personal'
 import { Media } from './Media'

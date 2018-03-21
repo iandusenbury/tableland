@@ -6,10 +6,13 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 import store, { history } from './base/store'
 import App from './containers/app'
-
-// import material-ui theme
+import { initializeApp } from './actions'
 
 const target = document.querySelector('#root')
+
+document.addEventListener('DOMContentLoaded', () => {
+  store.dispatch(initializeApp())
+})
 
 render(
   <Provider store={store}>

@@ -1,7 +1,9 @@
 import Cookies from 'cookies-js'
+import { push } from 'react-router-redux'
 import ActionTypes from '../constants/actionTypes'
 import callApi from '../utils/api'
 import { authorizeOAuth } from './oauth'
+import { initMap, initUserMap } from './gmap'
 
 // fetch User
 export function fetchUser() {
@@ -14,9 +16,76 @@ export function fetchUser() {
     ]
   }
 
+  return dispatch =>
+    dispatch(callApi(callDescriptor, { onSuccess: initUserMap }))
+}
+
+// Fetch Organization
+export function fetchOrganization(orgID) {
+  const callDescriptor = {
+    endpoint: `/organizations/${orgID}`,
+    types: [
+      ActionTypes.REQUEST_ORGANIZATION,
+      ActionTypes.RECIEVE_ORGANIZATION,
+      ActionTypes.FAILURE_ORGANIZATION
+    ]
+  }
+
   return dispatch => {
     dispatch(callApi(callDescriptor))
   }
+}
+
+// Fetch Professional
+// if no argument given, current will be used
+export function fetchProfessional(userID = 'current') {
+  const callDescriptor = {
+    endpoint: `/users/${userID}`,
+    types: [
+      ActionTypes.REQUEST_PROFESSIONAL,
+      ActionTypes.RECIEVE_PROFESSIONAL,
+      ActionTypes.FAILURE_PROFESSIONAL
+    ]
+  }
+
+  return dispatch => dispatch(callApi(callDescriptor, { onSuccess: initMap }))
+}
+
+export function fetchProgram(progID) {
+  const callDescriptor = {
+    endpoint: `/programs/${progID}`,
+    types: [
+      ActionTypes.REQUEST_PROGRAM,
+      ActionTypes.RECIEVE_PROGRAM,
+      ActionTypes.FAILURE_PROGRAM
+    ]
+  }
+
+  return dispatch => dispatch(callApi(callDescriptor))
+}
+
+export function fetchResults(values) {
+  const { searchKey } = values
+  // trim leading and trailing spaces, replace spaces with '+' sign
+  const term = searchKey.trim().replace(/ /g, '+')
+  const callDescriptor = {
+    endpoint: `/search?term=${term}`,
+    types: [
+      ActionTypes.REQUEST_SEARCH,
+      ActionTypes.RECIEVE_SEARCH,
+      ActionTypes.FAILURE_SEARCH
+    ]
+  }
+  return dispatch =>
+    dispatch(callApi(callDescriptor, { onSuccess: loadResultsPage }))
+}
+
+function loadResultsPage(response, dispatch) {
+  return dispatch(push('/results'))
+}
+
+export function navigateToProfessional(index, users) {
+  return dispatch => dispatch(push(`/professional/${users[index[0]].id}`))
 }
 
 export function adminChangeTableTo(index) {
@@ -44,10 +113,10 @@ export function closeDialog() {
   }
 }
 
-export function openDialog(message) {
+export function openDialog(id, data) {
   return {
     type: ActionTypes.OPEN_DIALOG,
-    payload: { message }
+    payload: { id, data }
   }
 }
 
@@ -70,13 +139,29 @@ export function authorizeUser() {
 export function logoutUser() {
   Cookies.expire('X-User-Email')
   Cookies.expire('X-User-Token')
+  window.open(
+    'https://www.linkedin.com/m/logout/',
+    'Logout',
+    'width=1000 height=800'
+  )
 
   const onSuccess = () => ({
     type: ActionTypes.LOGOUT_USER
   })
 
-  return dispatch => {
-    dispatch(onSuccess())
-    dispatch(openDialog('Logout Successful'))
-  }
+  return dispatch =>
+    dispatch(onSuccess()).then(() =>
+      dispatch(openDialog(1, { message: 'Logout Successful' }))
+    )
+}
+
+export function initializeApp() {
+  const onSuccess = () => ({
+    type: ActionTypes.APP_INITIALIZED
+  })
+
+  return dispatch =>
+    dispatch(fetchUser()).then(() => {
+      dispatch(onSuccess())
+    })
 }

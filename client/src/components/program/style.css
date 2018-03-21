@@ -1,0 +1,141 @@
+.programMainDiv {
+  width: 100%;
+  height: calc(100vh - 56px);
+  background-color: white;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 0% auto;
+  grid-template-areas:
+    'tab   tab '
+    'image text'
+    ;
+}
+
+.program-video-wrapper {
+  height: 0;
+  position: relative;
+  padding-bottom: 60%;
+}
+
+.programVideo {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+
+.programImage {
+  grid-area: image;
+  overflow: hidden;
+  height: calc(100vh - 56px);
+  background-color: white;
+}
+
+.programText {
+  height: calc(100vh - 56px);
+  background-color: white;
+  grid-area: text;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.programName {
+  height: auto;
+  width: auto;
+  margin: 28px 23px 0px;
+  font-size: 36px;
+}
+
+.programContact {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 50% 50%;
+  grid-template-areas:
+    'address'
+    'url    '
+    ;
+}
+
+.programUrl {
+  height: auto;
+  width: auto;
+  margin: 18px 18px 0px;
+  grid-area: url;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.programUrl p {
+  margin: 0px;
+  margin-top: 2px;
+}
+
+.programAddress {
+  height: auto;
+  width: auto;
+  margin: 18px 18px 0px;
+  grid-area: address;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.programAddress p {
+  margin: 0px;
+}
+
+.programDescription {
+  height: auto;
+  width: auto;
+  margin: 18px 21px 0px;
+}
+
+.programDescription p {
+  margin-left: 21px;
+}
+
+.programDescription div {
+  margin-left: 21px;
+  margin-bottom: 18px;
+}
+
+.programDescription div video {
+  margin-left: 0px;
+  margin-top: 0px;
+  width: 33vw !important;
+  height: auto !important;
+  background-size: cover;
+  background-color: gray;
+}
+
+.programEmployees {
+  height: auto;
+  width: auto;
+  margin: 2%;
+}
+
+.programHeader3 {
+  margin-left: 18px;
+  margin-right: 2%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.programImg {
+  object-fit:cover;
+  padding: 0;
+  display: block;
+  margin: 0 auto;
+  height: calc(100vh - 56px);
+  width: 100%;
+}
+
+.programTopTab {
+  grid-area: tab;
+}
+
+.programTableRow:hover {
+  cursor: pointer;
+}

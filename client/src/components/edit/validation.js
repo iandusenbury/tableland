@@ -28,7 +28,7 @@ export const validateExperiences = values => {
       error.startDate = startDate ? undefined : 'Required'
       error.address = address ? undefined : 'Required'
 
-      if (programs.length > 0) {
+      if (programs && programs.length > 0) {
         error.programs = []
         programs.forEach(program => {
           const {
@@ -58,7 +58,7 @@ export const validateExperiences = values => {
       error.startDate = startDate ? undefined : 'Required'
       error.address = address ? undefined : 'Required'
 
-      if (programs.length > 0) {
+      if (programs && programs.length > 0) {
         error.programs = []
         programs.forEach(program => {
           const {

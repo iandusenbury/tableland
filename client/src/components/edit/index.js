@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Avatar from 'material-ui/Avatar'
 import { RaisedButton } from 'material-ui'
-
 import Personal from '../../containers/personal'
 import Media from '../../containers/media'
 import { style } from '../../widgets/styles'
@@ -14,7 +13,7 @@ function clickFunction(submit) {
   submit('personal')
   submit('media')
   submit('existingExperiences')
-  submit('newExperiences') // post
+  submit('newExperiences')
 }
 
 class EditProfile extends Component {
@@ -34,9 +33,7 @@ class EditProfile extends Component {
     const submitHandler = values => {
       if (!values.newExp) return
 
-
       values.newExp.forEach(exp => {
-
         const {
           name,
           position,
@@ -48,34 +45,30 @@ class EditProfile extends Component {
           programs
         } = exp
 
-        let addressLine_1, addressLine_2, city, state, postalCode, country;
-
-        if(!address || !position || !startDate || !name) return
+        let addressLine_1, addressLine_2, city, state, postalCode, country
 
         address.results.addressComponents.forEach(item => {
           item.types.forEach(type => {
-            if(type === "postal_code"){
+            if (type === 'postal_code') {
               postalCode = item.longName
             }
-            if(type === "country"){
+            if (type === 'country') {
               country = item.longName
             }
-            if(type === 'locality'){
+            if (type === 'locality') {
               city = item.longName
             }
-            if(type === 'administrative_area_level_1'){
-                  state = item.longName
+            if (type === 'administrative_area_level_1') {
+              state = item.longName
             }
-            if(type === 'floor'){
+            if (type === 'floor') {
               addressLine_1 += item.longName
             }
-            if(type === "administrative_area_level_2"){
-                addressLine_2 = item.longName
+            if (type === 'administrative_area_level_2') {
+              addressLine_2 = item.longName
             }
           })
-
-        });
-
+        })
 
         const organization = {
           name,
@@ -93,21 +86,27 @@ class EditProfile extends Component {
           title: position,
           award,
           startDate: startDate.toString(),
-          endDate: endDate ? endDate.toString(): '',
+          endDate: endDate ? endDate.toString() : null,
           current
         }
 
+        const allPrograms = []
 
-        let allPrograms = []
+        if (programs) {
+          programs.forEach(program => {
+            const prog = {
+              name: program.name,
+              startDate: program.startDate.toString(),
+              endDate: program.endDate ? endDate.toString() : null,
+              title: program.position,
+              award: program.award,
+              current: program.current
+            }
+            allPrograms.push(prog)
+          })
+        }
 
-          if(programs) {
-              programs.forEach(program => {
-                  const prog = {name: program.name}
-                  allPrograms.push(prog)
-              })
-          }
-
-          createThings(organization, experience, allPrograms, userId)
+        createThings(organization, experience, allPrograms, userId)
       })
     }
 
@@ -123,7 +122,7 @@ class EditProfile extends Component {
     }
 
     const saveUpdatedExperiences = values => {
-      if (!values) return
+      if (!values.existingExp) return
 
       values.existingExp.forEach(exp => {
         const {
@@ -138,7 +137,7 @@ class EditProfile extends Component {
 
         const experience = {
           startDate: startDate.toString(),
-          endDate: endDate.toString(),
+          endDate: endDate ? endDate.toString() : null,
           title: position,
           award,
           current
@@ -152,7 +151,7 @@ class EditProfile extends Component {
 
             const program = {
               startDate: startDate.toString(),
-              endDate: endDate.toString(),
+              endDate: endDate ? endDate.toString() : null,
               title: position,
               award,
               current
@@ -164,8 +163,8 @@ class EditProfile extends Component {
       })
     }
 
-    const saveUpdatedVideoLink = value => {
-      const { profileVideo } = value
+    const saveUpdatedVideoLink = values => {
+      const { profileVideo } = values
       updateUserVideo(profileVideo, userId, videoId)
     }
 

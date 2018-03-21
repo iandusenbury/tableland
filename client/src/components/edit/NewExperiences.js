@@ -8,6 +8,7 @@ import { DatePicker } from 'redux-form-material-ui'
 import MenuItem from 'material-ui/MenuItem'
 import { RaisedButton } from 'material-ui'
 import GooglePlacesAutocomplete from '../../containers/placesAutocomplete'
+import { validateExperiences } from './validation'
 
 const afterSubmit = (result, dispatch) =>
   dispatch(reset('newExperiences'))
@@ -62,6 +63,7 @@ const renderPrograms = ({ fields }) => (
               style={style.datePicker}
               hintText="Start Date"
               mode="landscape"
+              required
             />
           </div>
           <div>
@@ -82,12 +84,14 @@ const renderPrograms = ({ fields }) => (
 const NewExperiences = props => {
   const { handleSubmit, change } = props
 
-  const Places = ({ input, updateAutocompleteField }) => (
+  const Places = ({ input, updateAutocompleteField, required, meta: {error: errorText, touched} }) => (
     <GooglePlacesAutocomplete
       {...input}
       resultsCallback={(results, status) =>
         updateAutocompleteField({ results, status })
       }
+      errorText="Required"
+      errorStyle={required ? style.error : {}}
     />
   )
 
@@ -150,6 +154,7 @@ const NewExperiences = props => {
                   style={style.datePicker}
                   hintText="Start Date"
                   mode="landscape"
+                  required
                 />
               </div>
               <div >
@@ -169,6 +174,7 @@ const NewExperiences = props => {
                       updateAutocompleteField={data =>
                           updateAutocompleteField(data, exp)
                       }
+                      required
                   />
               </div>
             <div>
@@ -189,5 +195,6 @@ const NewExperiences = props => {
 
 export default reduxForm({
   form: 'newExperiences',
-  onSubmitSuccess: afterSubmit
+  onSubmitSuccess: afterSubmit,
+  validate: validateExperiences
 })(NewExperiences)

@@ -120,7 +120,7 @@ function formatExistingExp(state, { payload }) {
       program
     } = exp
 
-    const dateifiedEndDate = isEmpty(endDate) ? '' : new Date(endDate)
+    const dateifiedEndDate = endDate === null ? '' : new Date(endDate)
     const dateifiedStartDate = new Date(startDate)
 
     let orgExp
@@ -157,8 +157,8 @@ function formatExistingExp(state, { payload }) {
         award,
         id,
         current,
-        endDate,
-        startDate,
+        endDate: dateifiedEndDate,
+        startDate: dateifiedStartDate,
         type,
         expId: id
       }

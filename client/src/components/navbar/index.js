@@ -32,6 +32,7 @@ const Navbar = props => {
   const {
     authorizeUser,
     fetchUser,
+    fetchProfessional,
     logoutUser,
     dialogIsOpen,
     fetchMapProfessional,
@@ -54,7 +55,9 @@ const Navbar = props => {
         <ToolbarGroup style={styles.toolbarGroupRight}>
           <SearchBarForm />
           {signedIn && (
-            <Link to="/profile">
+            <Link to="/profile"
+              onClick={() => fetchProfessional('current')}
+            >
               <Avatar style={styles.avatar} size={48} src={media.image.url} />
             </Link>
           )}
@@ -81,6 +84,7 @@ const Navbar = props => {
             />
             <Divider />
             <MenuItem
+              onClick={() => fetchProfessional('current')}
               containerElement={<Link to="/profile" />}
               value={navbarPaths.view_profile.value}
               primaryText={navbarPaths.view_profile.primaryText}
@@ -110,6 +114,7 @@ const Navbar = props => {
 Navbar.propTypes = {
   authorizeUser: PropTypes.func.isRequired,
   fetchUser: PropTypes.func.isRequired,
+  fetchProfessional: PropTypes.func.isRequired,
   logoutUser: PropTypes.func.isRequired,
   dialogIsOpen: PropTypes.bool.isRequired,
   fetchMapProfessional: PropTypes.func.isRequired,

@@ -7,7 +7,6 @@ import {
   updateUserInfo,
   updateUserVideo
 } from '../../actions/edit'
-import { openDialog } from '../../actions'
 
 import EditProfile from '../../components/edit'
 
@@ -25,12 +24,7 @@ const mapDispatchToProps = dispatch =>
       createThings,
       updateUserInfo,
       updateUserExperience,
-      updateUserVideo,
-      displayErrorMessage: errorMessages =>
-        openDialog(1, {
-          message: 'Required Fields Missing',
-          description: errorMessages.join(', ')
-        })
+      updateUserVideo
     },
     dispatch
   )

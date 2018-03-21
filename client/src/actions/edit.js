@@ -38,7 +38,7 @@ function createProgramExperience(program, experience, orgId, userId) {
       const { payload: { program: { id } } } = response
 
       return dispatch(
-        createExperience(experience, userId, {
+        createExperience(program, userId, {
           programId: id,
           parentOrg: orgId
         })

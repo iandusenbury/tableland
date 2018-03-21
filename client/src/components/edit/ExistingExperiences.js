@@ -7,6 +7,7 @@ import { StyledTextField } from '../../widgets/StyledTextField'
 import { DatePicker } from 'redux-form-material-ui'
 import MenuItem from 'material-ui/MenuItem'
 import { RaisedButton } from 'material-ui'
+import { validateExperiences} from './validation'
 
 const renderExistingExp = ({ fields }) => (
   <div>
@@ -26,6 +27,7 @@ const renderExistingExp = ({ fields }) => (
               name={`${exp}.position`}
               component={StyledTextField}
               text="Position/Role"
+              required
             />
           </div>
           <div>
@@ -89,7 +91,7 @@ const renderPrograms = ({ fields }) => (
         label="Associated Programs"
         primary
         fullWidth
-        disabled={true}
+        disabled
       />
     </div>
     {fields.map((program, index) => (
@@ -102,6 +104,7 @@ const renderPrograms = ({ fields }) => (
               name={`${program}.name`}
               component={StyledTextField}
               text="Name of Program"
+              required
             />
           </div>
           <div>
@@ -109,6 +112,7 @@ const renderPrograms = ({ fields }) => (
               name={`${program}.position`}
               component={StyledTextField}
               text="Position/Role"
+              required
             />
           </div>
           <div>
@@ -169,7 +173,8 @@ class ExistingExperiences extends Component {
 
 export default reduxForm({
   form: 'existingExperiences',
-  enableReinitialize: true
+  enableReinitialize: true,
+  validate: validateExperiences
 })(ExistingExperiences)
 
 /*

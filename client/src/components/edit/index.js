@@ -9,51 +9,11 @@ import Experiences from './Experiences'
 
 import './edit.css'
 
-let errorMessages = []
-
-const checkRequiredExperienceFields = experience => {
-  let error = true
-  const { name, position, startDate, address } = experience
-
-  if (!!name && !!position && !!startDate && !!address) error = false
-  else errorMessages.push(`Experiences`)
-
-  return error
-}
-
-const checkRequiredPersonalFields = personalInfo => {
-  let error = true
-  const { firstName, lastName } = personalInfo
-
-  if (!!firstName && !!lastName) error = false
-  else errorMessages.push(`Personal`)
-
-  return error
-}
-
-const checkCorrectVideoUrl = url => {
-  let error = true
-
-  console.log(url)
-
-  if (!!url && !url.includes('youtube.com') && !url.includes('watch?v=')) {
-    errorMessages.push('Media')
-  } else error = false
-
-  return error
-}
-
-function clickFunction(submit, displayErrorMessage) {
+function clickFunction(submit) {
   submit('personal')
-    .then(() => submit('media'))
-    .then(() => submit('existingExperiences'))
-    .then(() => submit('newExperiences')) // post
-    .then(() => {
-      if (errorMessages.length > 0) {
-        displayErrorMessage(errorMessages)
-      }
-      errorMessages = []
-    })
+  submit('media')
+  submit('existingExperiences')
+  submit('newExperiences')
 }
 
 class EditProfile extends Component {
@@ -67,22 +27,11 @@ class EditProfile extends Component {
       updateUserVideo,
       videoId,
       userId,
-      loading,
-      displayErrorMessage
+      loading
     } = this.props
 
     const submitHandler = values => {
-      let returnEarly = false
       if (!values.newExp) return
-
-      values.newExp.forEach(exp => {
-        if (checkRequiredExperienceFields(exp)) {
-          // openDialog(1, { message: 'Missing some required fields' })
-          returnEarly = true
-        }
-      })
-
-      if (returnEarly) return
 
       values.newExp.forEach(exp => {
         const {
@@ -97,8 +46,6 @@ class EditProfile extends Component {
         } = exp
 
         let addressLine_1, addressLine_2, city, state, postalCode, country
-
-        if (!address || !position || !startDate || !name) return
 
         address.results.addressComponents.forEach(item => {
           item.types.forEach(type => {
@@ -147,7 +94,14 @@ class EditProfile extends Component {
 
         if (programs) {
           programs.forEach(program => {
-            const prog = { name: program.name }
+            const prog = {
+              name: program.name,
+              startDate: program.startDate.toString(),
+              endDate: program.endDate ? endDate.toString() : null,
+              title: program.position,
+              award: program.award,
+              current: program.current
+            }
             allPrograms.push(prog)
           })
         }
@@ -163,23 +117,12 @@ class EditProfile extends Component {
         lastName,
         description
       }
-      if (checkRequiredPersonalFields(values)) return
 
       updateUserInfo(info, userId)
     }
 
     const saveUpdatedExperiences = values => {
-      let returnEarly = false
       if (!values.existingExp) return
-
-      values.existingExp.forEach(exp => {
-        if (checkRequiredExperienceFields(exp)) {
-          // openDialog(1, { message: 'Missing some required fields' })
-          returnEarly = true
-        }
-      })
-
-      if (returnEarly) return
 
       values.existingExp.forEach(exp => {
         const {
@@ -194,7 +137,7 @@ class EditProfile extends Component {
 
         const experience = {
           startDate: startDate.toString(),
-          endDate: endDate.toString(),
+          endDate: endDate ? endDate.toString() : null,
           title: position,
           award,
           current
@@ -208,7 +151,7 @@ class EditProfile extends Component {
 
             const program = {
               startDate: startDate.toString(),
-              endDate: endDate.toString(),
+              endDate: endDate ? endDate.toString() : null,
               title: position,
               award,
               current
@@ -222,8 +165,6 @@ class EditProfile extends Component {
 
     const saveUpdatedVideoLink = values => {
       const { profileVideo } = values
-      console.log(values)
-      if (checkCorrectVideoUrl(profileVideo)) return
       updateUserVideo(profileVideo, userId, videoId)
     }
 
@@ -257,7 +198,7 @@ class EditProfile extends Component {
             <div style={{ margin: '.5%' }}>
               <RaisedButton
                 label="Save"
-                onClick={() => clickFunction(submit, displayErrorMessage)}
+                onClick={() => clickFunction(submit)}
                 fullWidth
                 primary
               />

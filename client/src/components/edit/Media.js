@@ -6,8 +6,7 @@ import { style } from '../../widgets/styles'
 import Photo from 'material-ui/svg-icons/image/add-a-photo'
 import { StyledPaper } from '../../widgets/StyledPaper'
 import { StyledTextField } from '../../widgets/StyledTextField'
-
-
+import { validateMedia } from './validation'
 
 class Media extends Component {
   componentDidMount() {
@@ -51,7 +50,8 @@ class Media extends Component {
 
 Media = reduxForm({
   form: 'media',
-  enableReinitialize: true
+  enableReinitialize: true,
+  validate: validateMedia
 })(Media)
 
 export default Media

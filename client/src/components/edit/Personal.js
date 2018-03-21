@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import { StyledTextField } from '../../widgets/StyledTextField'
 import { style } from '../../widgets/styles'
 import { StyledPaper } from '../../widgets/StyledPaper'
+import { validatePersonal } from './validation'
 
 import './edit.css'
 
@@ -73,5 +74,6 @@ Personal.propTypes = {
 
 export default reduxForm({
   form: 'personal',
-  enableReinitialize: true
+  enableReinitialize: true,
+  validate: validatePersonal
 })(Personal)

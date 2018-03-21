@@ -77,6 +77,8 @@ export const style = {
   },
 
   organizationAppBar: {
-    backgroundColor: orange400
+    backgroundColor: orange400,
+    pointerEvents: 'none',
+    cursor: 'default'
   }
 }

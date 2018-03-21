@@ -64,9 +64,11 @@ class Professional extends Component {
                     src={profileImage}
                   />
                   <div className="professionalPaperStyle">
-                    <h1 className="professionalHeader1">
-                      {mainTitle} at {mainLocation}
-                    </h1>
+                    {mainTitle && (
+                      <h1 className="professionalHeader1">
+                        {mainTitle} at {mainLocation}
+                      </h1>
+                    )}
                   </div>
                 </div>
               }>

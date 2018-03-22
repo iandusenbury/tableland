@@ -91,7 +91,6 @@ const NewExperiences = props => {
         updateAutocompleteField({ results, status })
       }
       errorText="Required"
-      errorStyle={required ? style.error : {}}
     />
   )
 

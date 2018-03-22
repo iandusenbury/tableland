@@ -28,6 +28,7 @@ const renderExistingExp = ({ fields }) => (
               component={StyledTextField}
               text="Position/Role"
               required
+              dynamicRequired
             />
           </div>
           <div>
@@ -54,6 +55,7 @@ const renderExistingExp = ({ fields }) => (
               style={style.datePicker}
               hintText="Start Date"
               mode="landscape"
+              required
             />
           </div>
           <div >
@@ -105,6 +107,7 @@ const renderPrograms = ({ fields }) => (
               component={StyledTextField}
               text="Name of Program"
               required
+              dynamicRequired
             />
           </div>
           <div>
@@ -113,6 +116,7 @@ const renderPrograms = ({ fields }) => (
               component={StyledTextField}
               text="Position/Role"
               required
+              dynamicRequired
             />
           </div>
           <div>

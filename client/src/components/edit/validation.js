@@ -56,7 +56,7 @@ export const validateExperiences = values => {
       error.name = name ? undefined : 'Required'
       error.position = position ? undefined : 'Required'
       error.startDate = startDate ? undefined : 'Required'
-      error.address = address ? undefined : 'Required'
+      // error.address = address ? undefined : 'Required'
 
       if (programs && programs.length > 0) {
         error.programs = []

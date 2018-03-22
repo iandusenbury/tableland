@@ -35,6 +35,7 @@ const Personal = props => {
                 component={StyledTextField}
                 text="First Name"
                 required
+                dynamicRequired
               />
             </div>
             <div>
@@ -43,6 +44,7 @@ const Personal = props => {
                 component={StyledTextField}
                 text="Last Name"
                 required
+                dynamicRequired
               />
             </div>
             <div>

@@ -231,7 +231,6 @@ DEPENDENCIES
   simple_token_authentication (~> 1.0)
   spring
   spring-watcher-listen (~> 2.0.0)
-  sqlite3
   tzinfo-data
   yaml_db
 

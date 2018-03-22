@@ -24,7 +24,7 @@ production:
   adapter: mysql2
   encoding: utf8
   database: tableland_production
-  username: root
-  password:
+  username: oregonm9_roadmap
+  password: <%= Rails.application.secrets.DB_PASSWORD %>
   host: localhost
   port: 5000

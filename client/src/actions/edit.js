@@ -159,10 +159,17 @@ export function createUserVideo(link, userId) {
 */
 
 export function updateUserVideo(link, userId, videoId) {
+  const body = videoId
+    ? { url: link }
+    : { medium: { category: 'video', url: link } }
+  const endpoint = videoId
+    ? `/users/${userId}/media/${videoId}`
+    : `/users/${userId}/media`
+  const method = videoId ? 'PUT' : 'POST'
   const callDescriptor = {
-    body: { url: link },
-    endpoint: `/users/${userId}/media/${videoId}`,
-    method: 'PUT',
+    body,
+    endpoint,
+    method,
     types: [
       ActionTypes.REQUEST_UPDATE_USER_VIDEO,
       ActionTypes.SUCCESS_UPDATE_USER_VIDEO,

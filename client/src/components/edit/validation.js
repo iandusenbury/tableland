@@ -61,7 +61,6 @@ export const validateExperiences = values => {
       if (programs && programs.length > 0) {
         error.programs = []
         programs.forEach(program => {
-          if(!program) return
           const {
             name: progName,
             position: progPosition,

@@ -17,7 +17,7 @@ const renderPrograms = ({ fields }) => (
   <div>
     <div style={{ width: '50vw', marginLeft: '15%', marginRight: '15%' }}>
       <RaisedButton
-        onClick={() => fields.push()}
+        onClick={() => fields.push({})}
         label="Add Program"
         style={{
           marginTop: '3%',

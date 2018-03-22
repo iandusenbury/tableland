@@ -21,8 +21,7 @@
 .byebug_history
 
 node_modules/
-public/
-!client/public
+client/public
 .tmp/
 coverage/
 

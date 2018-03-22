@@ -23,7 +23,7 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  database: tableland_production
+  database: oregonm9_roadmaps
   username: oregonm9_roadmap
   password: <%= Rails.application.secrets.DB_PASSWORD %>
   host: localhost

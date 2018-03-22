@@ -2,11 +2,12 @@
 {
   "name": "tableland",
   "engines": {
-    "node": "9.3.0"
+    "node": "9.3.0",
+    "yarn": "1.3.2"
   },
   "scripts": {
     "build": "cd client && yarn install && yarn run build && cd ..",
     "deploy": "cp -a client/build/. public/",
-    "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
+    "postinstall": "yarn run build && yarn run deploy && echo 'Client built!'"
   }
 }

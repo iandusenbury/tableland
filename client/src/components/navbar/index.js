@@ -8,7 +8,8 @@ import {
   Divider,
   Toolbar,
   ToolbarGroup,
-  Avatar
+  Avatar,
+  Chip
 } from 'material-ui'
 import PropTypes from 'prop-types'
 import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/menu'
@@ -20,6 +21,8 @@ import './style.css'
 import { mesaMenuButton, navbarPaths } from '../../constants/navbar'
 import Dialog from '../../containers/dialog'
 
+//import MESAIcon from '../../assets/images/MESA_logo.svg'
+const MESAIcon = require('../../assets/images/MESA_logo_white.svg')
 /*
    [Hamburger Menu] (if signed in)
    "View Profile"
@@ -45,11 +48,10 @@ const Navbar = props => {
       <Dialog open={dialogIsOpen} />
       <Toolbar style={styles.toolbar}>
         <ToolbarGroup style={styles.toolbarGroupLeft}>
-          <FlatButton
+          <img 
+            className='navbar-mesa-logo' 
+            src={MESAIcon} 
             onClick={() => fetchMapProfessional('random')}
-            style={styles.toolbarGroupLeft.flatButton}
-            // containerElement={<Link to={mesaMenuButton.path} />}
-            label={mesaMenuButton.label}
           />
         </ToolbarGroup>
         <ToolbarGroup style={styles.toolbarGroupRight}>

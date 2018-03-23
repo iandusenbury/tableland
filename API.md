@@ -2,19 +2,20 @@
 ----
 **Foreword**
 
-* All URLs for endpoints will be displayed as they will look in production (api.roadmaps.mesa.org). To consume the endpoints in your local environment (once they are merged), you must change the hostname portion of the URL to api.roadmaps.lvh.me:5000
+* All URLs for endpoints will be displayed as they will look in production (roadmaps.oregonmesa.org/api/v1/). To consume the endpoints in your local environment, you must change the hostname portion of the URL to localhost:5000
 * Anytime you see a ... symbol being used, it indicates that the payload continues in a similar fashion.
 * Certain field data types and response payload association inclusions are subject to change.
-* If the current user is a super admin and the payload contains a user resource at any level, the user resource will contain an extra attribute specifying their email
+* If the current user is a super admin and the payload contains a user resource at any level, the user resource will contain an extra attribute specifying their email.
+* The links in the example response payloads are not accurate to production.
 
 **1. [super_admin only] Get all users with optional query params on visible and/or role**
 
 * **URLs:**	
    
-  - **GET** `api.roadmaps.mesa.org/v1/users`
-  - **GET** `api.roadmaps.mesa.org/v1/users?role={string}`
-  - **GET** `api.roadmaps.mesa.org/v1/users?visible={boolean}`
-  - **GET** `api.roadmaps.mesa.org/v1/users?visible={boolean}&role={string}`
+  - **GET** `roadmaps.oregonmesa.org/api/v1/users`
+  - **GET** `roadmaps.oregonmesa.org/api/v1/users?role={string}`
+  - **GET** `roadmaps.oregonmesa.org/api/v1/users?visible={boolean}`
+  - **GET** `roadmaps.oregonmesa.org/api/v1/users?visible={boolean}&role={string}`
 
 * **Notes:**
   
@@ -72,7 +73,7 @@
 
 * **URL:**	
   
-  - **GET** `api.roadmaps.mesa.org/v1/users/{id}`
+  - **GET** `roadmaps.oregonmesa.org/api/v1/users/{id}`
 
 * **Notes:**
   
@@ -220,7 +221,7 @@
 
 * **URL:**	
   
-  - **PUT/PATCH** `api.roadmaps.mesa.org/v1/users/{id}`
+  - **PUT/PATCH** `roadmaps.oregonmesa.org/api/v1/users/{id}`
 
 * **Notes:**
   
@@ -264,7 +265,7 @@
 
 * **URL:**	
   
-  - **DELETE** `api.roadmaps.mesa.org/v1/users/{id}`
+  - **DELETE** `roadmaps.oregonmesa.org/api/v1/users/{id}`
 
 * **Notes:**
   
@@ -298,7 +299,7 @@
 
 * **URL:**	
   
-  - **GET** `api.roadmaps.mesa.org/v1/users/{id}/permissions`
+  - **GET** `roadmaps.oregonmesa.org/api/v1/users/{id}/permissions`
 
 * **Notes:**
   
@@ -360,7 +361,7 @@
 
 * **URL:**	
   
-  - **GET** `api.roadmaps.mesa.org/v1/users/random`
+  - **GET** `roadmaps.oregonmesa.org/api/v1/users/random`
 
 * **Notes:**
   
@@ -383,7 +384,7 @@
 
 * **URL:**	
   
-  - **GET** `api.roadmaps.mesa.org/v1/organizations/{id}`
+  - **GET** `roadmaps.oregonmesa.org/api/v1/organizations/{id}`
 
 * **Notes:**
   
@@ -542,7 +543,7 @@
 
 * **URL:**	
   
-  - **POST** `api.roadmaps.mesa.org/v1/organizations`
+  - **POST** `roadmaps.oregonmesa.org/api/v1/organizations`
 
 * **Notes:**
   
@@ -606,7 +607,7 @@
 
 * **URL:**	
   
-  - **PUT/PATCH** `api.roadmaps.mesa.org/v1/organizations/{id}`
+  - **PUT/PATCH** `roadmaps.oregonmesa.org/api/v1/organizations/{id}`
 
 * **Notes:**
   
@@ -655,7 +656,7 @@
 
 * **URL:**
   
-  - **POST** `api.roadmaps.mesa.org/v1/organizations/{organization_id}/programs`
+  - **POST** `roadmaps.oregonmesa.org/api/v1/organizations/{organization_id}/programs`
 
 * **Notes:**
   
@@ -703,7 +704,7 @@
 
 * **URL:**
   
-  - **GET** `api.roadmaps.mesa.org/v1/programs/{id}`
+  - **GET** `roadmaps.oregonmesa.org/api/v1/programs/{id}`
 
 * **Notes:**
   
@@ -831,7 +832,7 @@
 
 * **URL:**
   
-  - **PUT/PATCH** `api.roadmaps.mesa.org/v1/programs/{id}`
+  - **PUT/PATCH** `roadmaps.oregonmesa.org/api/v1/programs/{id}`
 
 * **Notes:**
   
@@ -878,7 +879,7 @@
 
 * **URL:**
   
-  - **POST** `api.roadmaps.mesa.org/v1/organizations/{organization_id}/permissions`
+  - **POST** `roadmaps.oregonmesa.org/api/v1/organizations/{organization_id}/permissions`
 
 * **Notes:**
   
@@ -925,7 +926,7 @@
 
 * **URL:**
   
-  - **POST** `api.roadmaps.mesa.org/v1/programs/{program_id}/permissions`
+  - **POST** `roadmaps.oregonmesa.org/api/v1/programs/{program_id}/permissions`
 
 * **Notes:**
   
@@ -972,9 +973,9 @@
 
 * **URLs:**
   
-  - **POST** `api.roadmaps.mesa.org/v1/users/{user_id}/media`
-  - **POST** `api.roadmaps.mesa.org/v1/organizations/{organization_id}/media`
-  - **POST** `api.roadmaps.mesa.org/v1/programs/{program_id}/media`
+  - **POST** `roadmaps.oregonmesa.org/api/v1/users/{user_id}/media`
+  - **POST** `roadmaps.oregonmesa.org/api/v1/organizations/{organization_id}/media`
+  - **POST** `roadmaps.oregonmesa.org/api/v1/programs/{program_id}/media`
 
 * **Notes:**
   
@@ -1020,9 +1021,9 @@
 
 * **URLs:**
   
-  - **PUT/PATCH** `api.roadmaps.mesa.org/v1/users/{user_id}/media/{id}`
-  - **PUT/PATCH** `api.roadmaps.mesa.org/v1/organizations/{organization_id}/media/{id}`
-  - **PUT/PATCH** `api.roadmaps.mesa.org/v1/programs/{program_id}/media/{id}`
+  - **PUT/PATCH** `roadmaps.oregonmesa.org/api/v1/users/{user_id}/media/{id}`
+  - **PUT/PATCH** `roadmaps.oregonmesa.org/api/v1/organizations/{organization_id}/media/{id}`
+  - **PUT/PATCH** `roadmaps.oregonmesa.org/api/v1/programs/{program_id}/media/{id}`
 
 * **Notes:**
   
@@ -1062,9 +1063,9 @@
 
 * **URLs:**
   
-  - **DELETE** `api.roadmaps.mesa.org/v1/users/{user_id}/media/{id}`
-  - **DELETE** `api.roadmaps.mesa.org/v1/organizations/{organization_id}/media/{id}`
-  - **DELETE** `api.roadmaps.mesa.org/v1/programs/{program_id}/media/{id}`
+  - **DELETE** `roadmaps.oregonmesa.org/api/v1/users/{user_id}/media/{id}`
+  - **DELETE** `roadmaps.oregonmesa.org/api/v1/organizations/{organization_id}/media/{id}`
+  - **DELETE** `roadmaps.oregonmesa.org/api/v1/programs/{program_id}/media/{id}`
 
 * **Notes:**
   
@@ -1094,7 +1095,7 @@
 
 * **URL:**
   
-  - **POST** `api.roadmaps.mesa.org/v1/users/{user_id}/experiences`
+  - **POST** `roadmaps.oregonmesa.org/api/v1/users/{user_id}/experiences`
 
 * **Notes:**
   
@@ -1180,7 +1181,7 @@
 
 * **URL:**
   
-  - **PUT/PATCH** `api.roadmaps.mesa.org/v1/users/{user_id}/experiences/{id}`
+  - **PUT/PATCH** `roadmaps.oregonmesa.org/api/v1/users/{user_id}/experiences/{id}`
 
 * **Notes:**
   
@@ -1255,7 +1256,7 @@
 
 * **URL:**
   
-  - **DELETE** `api.roadmaps.mesa.org/v1/users/{user_id}/experiences/{id}`
+  - **DELETE** `roadmaps.oregonmesa.org/api/v1/users/{user_id}/experiences/{id}`
 
 * **Notes:**
   
@@ -1288,7 +1289,7 @@
 
 * **URL:**
   
-  - **GET** `api.roadmaps.mesa.org/v1/search?term={string}`
+  - **GET** `roadmaps.oregonmesa.org/api/v1/search?term={string}`
 
 * **Notes:**
   
@@ -1298,7 +1299,7 @@
     
 * **Example Request:**
 
-  - **GET** `api.roadmaps.mesa.org/v1/search?term=manager`
+  - **GET** `roadmaps.oregonmesa.org/api/v1/search?term=manager`
   
 * **Example Success Response:**
   
@@ -1378,7 +1379,7 @@
 
 * **URL:**
   
-  - **GET** `api.roadmaps.mesa.org/v1/organizations/{id}/admins`
+  - **GET** `roadmaps.oregonmesa.org/api/v1/organizations/{id}/admins`
 
 * **Notes:**
   
@@ -1434,7 +1435,7 @@
 
 * **URL:**
   
-  - **GET** `api.roadmaps.mesa.org/v1/programs/{id}/admins`
+  - **GET** `roadmaps.oregonmesa.org/api/v1/programs/{id}/admins`
 
 * **Notes:**
   
@@ -1488,7 +1489,7 @@
 
 * **URL:**
   
-  - **GET** `api.roadmaps.mesa.org/v1/users/current`
+  - **GET** `roadmaps.oregonmesa.org/api/v1/users/current`
 
 * **Notes:**
   
@@ -1511,7 +1512,7 @@
 
 * **URL:**
   
-  - **DELETE** `api.roadmaps.mesa.org/v1/organizations/{organization_id}/revoke`
+  - **DELETE** `roadmaps.oregonmesa.org/api/v1/organizations/{organization_id}/revoke`
 
 * **Notes:**
   
@@ -1556,7 +1557,7 @@
 
 * **URL:**
   
-  - **DELETE** `api.roadmaps.mesa.org/v1/programs/{program_id}/revoke`
+  - **DELETE** `roadmaps.oregonmesa.org/api/v1/programs/{program_id}/revoke`
 
 * **Notes:**
   

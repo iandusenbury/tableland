@@ -21,10 +21,11 @@ test:
   database: db/test.sqlite3
 
 production:
-  adapter: mysql2
-  encoding: utf8
-  database: oregonm9_roadmaps
-  username: oregonm9_roadmap
-  password: <%= Rails.application.secrets.DB_PASSWORD %>
-  host: localhost
-  port: 5000
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  database: tableland_production
+  username: tableland
+  password: <%= ENV['TABLELAND_DATABASE_PASSWORD']

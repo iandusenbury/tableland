@@ -10,6 +10,10 @@ export const style = {
     lineHeight: '24px'
   },
 
+  error: {
+    color: grey500
+  },
+
   textHint: {
     color: grey500
   },

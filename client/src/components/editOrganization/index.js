@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import {orange400 } from 'material-ui/styles/colors'
 import './editOrg.css'
 import  About  from '../../containers/about'
-import MediaInfo from './MediaInfo'
+import MediaInfo from '../../containers/mediaInfo'
 import { RaisedButton } from 'material-ui'
 
 
 function clickFunction(submit){
-    //submit('about')
+    submit('about')
     submit('mediaInfo')
 }
 

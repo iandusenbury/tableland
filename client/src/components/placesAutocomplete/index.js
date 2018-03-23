@@ -51,6 +51,8 @@ class GooglePlaceAutocomplete extends Component {
                     onChange={this.updateInput}
                     fullWidth={true}
                     hintText="Address"
+                    errorText='This field is required'
+                    errorStyle={style.error}
                     onNewRequest={(request, index) => {
                         let item = placesData[index]
                         if (!item) {

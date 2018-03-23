@@ -4,15 +4,6 @@ import ActionTypes from '../constants/actionTypes'
 import callApi from '../utils/api'
 import { authorizeOAuth } from './oauth'
 
-export function placesUpdateData(placesData) {
-  return {
-    type: ActionTypes.PLACES_UPDATE_DATA,
-    payload: {
-      placesData
-    }
-  }
-}
-
 export function placesUpdateResult(placesResult) {
   return {
     type: ActionTypes.PLACES_UPDATE_RESULT,

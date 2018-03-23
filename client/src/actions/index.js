@@ -5,6 +5,15 @@ import callApi from '../utils/api'
 import { authorizeOAuth } from './oauth'
 import { initMap, initUserMap } from './gmap'
 
+export function placesUpdateData(placesData) {
+  return {
+    type: ActionTypes.PLACES_UPDATE_DATA,
+    payload: {
+      placesData
+    }
+  }
+}
+
 // fetch User
 export function fetchUser() {
   const callDescriptor = {

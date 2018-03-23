@@ -5,6 +5,24 @@ import callApi from '../utils/api'
 import { authorizeOAuth } from './oauth'
 import { initMap, initUserMap } from './gmap'
 
+export function placesUpdateResult(placesResult) {
+  return {
+    type: ActionTypes.PLACES_UPDATE_RESULT,
+    payload: {
+      placesResult
+    }
+  }
+}
+
+export function placesUpdateText(searchText) {
+  return {
+    type: ActionTypes.PLACES_UPDATE_TEXT,
+    payload: {
+      searchText
+    }
+  }
+}
+
 export function placesUpdateData(placesData) {
   return {
     type: ActionTypes.PLACES_UPDATE_DATA,

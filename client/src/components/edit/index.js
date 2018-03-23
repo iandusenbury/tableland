@@ -27,7 +27,8 @@ class EditProfile extends Component {
       updateUserVideo,
       videoId,
       userId,
-      loading
+      loading,
+      placesResult
     } = this.props
 
     const submitHandler = values => {
@@ -43,13 +44,12 @@ class EditProfile extends Component {
             award,
             startDate,
             endDate,
-            address,
             programs
           } = exp
 
           let addressLine_1, addressLine_2, city, state, postalCode, country
 
-          address.results.addressComponents.forEach(item => {
+          placesResult.addressComponents.forEach(item => {
             item.types.forEach(type => {
               if (type === 'postal_code') {
                 postalCode = item.longName
@@ -74,14 +74,14 @@ class EditProfile extends Component {
 
           const organization = {
             name,
-            addressLine_1: address.results.formattedAddress,
+            addressLine_1: placesResult.formattedAddress,
             addressLine_2,
             city,
             state,
             postalCode,
             country,
-            lat: address.results.geometry.location.lat(),
-            lng: address.results.geometry.location.lng()
+            lat: placesResult.geometry.location.lat(),
+            lng: placesResult.geometry.location.lng()
           }
 
           const experience = {

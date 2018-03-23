@@ -17,14 +17,15 @@ class GooglePlaceAutocomplete extends Component {
   }
 
   getLatLng(placeId, callback) {
-    this.geocoder.geocode({ placeId }, (results, status) => {
-      callback(results, status)
+    this.geocoder.geocode({ placeId }, (results, status, searchText) => {
+      callback(results, status, searchText)
     })
   }
 
   updateInput(searchText) {
-    const { placesUpdateData } = this.props
+    const { placesUpdateData, placesUpdateText } = this.props
     const { service } = this
+    placesUpdateText(searchText)
     if (searchText.length > 0) {
       service.getPlacePredictions(
         {
@@ -45,11 +46,13 @@ class GooglePlaceAutocomplete extends Component {
       resultsCallback,
       required,
       errorStyle,
-      errorText
+      errorText,
+      searchText
     } = this.props
     return (
       <div>
         <AutoComplete
+          searchText={searchText}
           errorText={errorText}
           errorStyle={errorStyle}
           onUpdateInput={this.updateInput}
@@ -62,7 +65,7 @@ class GooglePlaceAutocomplete extends Component {
                             item = placesData[0] // eslint-disable-line
             }
             this.getLatLng(item.place_id, (results, status) => {
-              resultsCallback(camelizeKeys(results[0]), status)
+              resultsCallback(camelizeKeys(results[0]), status, searchText)
             })
           }}
           dataSource={placesData.map((item, i, array) => {

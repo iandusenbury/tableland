@@ -14,7 +14,8 @@ const mapStateToProps = state => ({
   profileImage: state.app.user.media.image.url,
   userId: state.app.user.id,
   videoId: state.app.user.media.video.id,
-  loading: state.app.isLoading.loading
+  loading: state.app.isLoading.loading,
+  placesResult: state.app.places.placesResult
 })
 
 const mapDispatchToProps = dispatch =>

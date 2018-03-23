@@ -10,8 +10,7 @@ import { RaisedButton } from 'material-ui'
 import GooglePlacesAutocomplete from '../../containers/placesAutocomplete'
 import { validateExperiences } from './validation'
 
-const afterSubmit = (result, dispatch) =>
-  dispatch(reset('newExperiences'))
+const afterSubmit = (result, dispatch) => dispatch(reset('newExperiences'))
 
 const renderPrograms = ({ fields }) => (
   <div>
@@ -82,20 +81,25 @@ const renderPrograms = ({ fields }) => (
 )
 
 const NewExperiences = props => {
-  const { handleSubmit, change } = props
+  const { handleSubmit, change, placesUpdateResult } = props
 
-  const Places = ({ input, updateAutocompleteField, required, meta: {error: errorText, touched} }) => (
+  const Places = ({
+    input,
+    updateAutocompleteField,
+    meta: { error: errorText }
+  }) => (
     <GooglePlacesAutocomplete
       {...input}
-      resultsCallback={(results, status) =>
-        updateAutocompleteField({ results, status })
+      resultsCallback={(results, status, searchText) =>
+        updateAutocompleteField({ results, status, searchText })
       }
-      errorText="Required"
+      errorText={errorText}
     />
   )
 
   const updateAutocompleteField = (data, exp) => {
-    change(`${exp}.address`, data)
+    change(`${exp}.address`, data.results.formattedAddress)
+    placesUpdateResult(data.results)
   }
 
   const renderNewExp = ({ fields }) => (
@@ -146,7 +150,7 @@ const NewExperiences = props => {
                   multiLine
                 />
               </div>
-              <div >
+              <div>
                 <Field
                   name={`${exp}.startDate`}
                   component={DatePicker}
@@ -156,7 +160,7 @@ const NewExperiences = props => {
                   required
                 />
               </div>
-              <div >
+              <div>
                 <Field
                   name={`${exp}.endDate`}
                   component={DatePicker}
@@ -166,16 +170,16 @@ const NewExperiences = props => {
                 />
               </div>
             </div>
-              <div style={{width: '73vw'}}>
-                  <Field
-                      name={`${exp}.address`}
-                      component={Places}
-                      updateAutocompleteField={data =>
-                          updateAutocompleteField(data, exp)
-                      }
-                      required
-                  />
-              </div>
+            <div style={{ width: '73vw' }}>
+              <Field
+                name={`${exp}.address`}
+                component={Places}
+                updateAutocompleteField={data =>
+                  updateAutocompleteField(data, exp)
+                }
+                required
+              />
+            </div>
             <div>
               <FieldArray name={`${exp}.programs`} component={renderPrograms} />
             </div>
@@ -195,5 +199,6 @@ const NewExperiences = props => {
 export default reduxForm({
   form: 'newExperiences',
   onSubmitSuccess: afterSubmit,
+  enableReinitialize: true,
   validate: validateExperiences
 })(NewExperiences)

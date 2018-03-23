@@ -25,7 +25,7 @@ export const StyledTextField = props => {
       floatingLabelText={text}
       disabled={disabled}
       fullWidth={fullWidth}
-      errorText={errorText()}
+      errorText={error}
       // errorStyle={errorStyle}
       {...input}
     />

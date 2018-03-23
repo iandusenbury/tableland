@@ -33,81 +33,87 @@ class EditProfile extends Component {
     const submitHandler = values => {
       if (!values.newExp) return
 
-      values.newExp.forEach(exp => {
-        const {
-          name,
-          position,
-          current,
-          award,
-          startDate,
-          endDate,
-          address,
-          programs
-        } = exp
+      /* eslint-disable */
+      const createAllNewExperiences = async() => {
+        for (const exp of values.newExp) {
+          const {
+            name,
+            position,
+            current,
+            award,
+            startDate,
+            endDate,
+            address,
+            programs
+          } = exp
 
-        let addressLine_1, addressLine_2, city, state, postalCode, country
+          let addressLine_1, addressLine_2, city, state, postalCode, country
 
-        address.results.addressComponents.forEach(item => {
-          item.types.forEach(type => {
-            if (type === 'postal_code') {
-              postalCode = item.longName
-            }
-            if (type === 'country') {
-              country = item.longName
-            }
-            if (type === 'locality') {
-              city = item.longName
-            }
-            if (type === 'administrative_area_level_1') {
-              state = item.longName
-            }
-            if (type === 'floor') {
-              addressLine_1 += item.longName
-            }
-            if (type === 'administrative_area_level_2') {
-              addressLine_2 = item.longName
-            }
+          address.results.addressComponents.forEach(item => {
+            item.types.forEach(type => {
+              if (type === 'postal_code') {
+                postalCode = item.longName
+              }
+              if (type === 'country') {
+                country = item.longName
+              }
+              if (type === 'locality') {
+                city = item.longName
+              }
+              if (type === 'administrative_area_level_1') {
+                state = item.longName
+              }
+              if (type === 'floor') {
+                addressLine_1 += item.longName
+              }
+              if (type === 'administrative_area_level_2') {
+                addressLine_2 = item.longName
+              }
+            })
           })
-        })
 
-        const organization = {
-          name,
-          addressLine_1: address.results.formattedAddress,
-          addressLine_2,
-          city,
-          state,
-          postalCode,
-          country,
-          lat: address.results.geometry.location.lat(),
-          lng: address.results.geometry.location.lng()
+          const organization = {
+            name,
+            addressLine_1: address.results.formattedAddress,
+            addressLine_2,
+            city,
+            state,
+            postalCode,
+            country,
+            lat: address.results.geometry.location.lat(),
+            lng: address.results.geometry.location.lng()
+          }
+
+          const experience = {
+            title: position,
+            award,
+            startDate: startDate.toString(),
+            endDate: endDate ? endDate.toString() : null,
+            current
+          }
+
+          const allPrograms = []
+
+          if (programs) {
+            programs.forEach(program => {
+              const prog = {
+                name: program.name,
+                startDate: program.startDate.toString(),
+                endDate: program.endDate ? endDate.toString() : null,
+                title: program.position,
+                award: program.award,
+                current: program.current
+              }
+              allPrograms.push(prog)
+            })
+          }
+
+          await createThings(organization, experience, allPrograms, userId)
         }
+      }
 
-        const experience = {
-          title: position,
-          award,
-          startDate: startDate.toString(),
-          endDate: endDate ? endDate.toString() : null,
-          current
-        }
-
-        const allPrograms = []
-
-        if (programs) {
-          programs.forEach(program => {
-            const prog = {
-              name: program.name,
-              startDate: program.startDate.toString(),
-              endDate: program.endDate ? endDate.toString() : null,
-              title: program.position,
-              award: program.award,
-              current: program.current
-            }
-            allPrograms.push(prog)
-          })
-        }
-
-        createThings(organization, experience, allPrograms, userId)
-      })
+      createAllNewExperiences()
+      /* eslint-enable */
     }
 
     const savePersonalInfo = values => {

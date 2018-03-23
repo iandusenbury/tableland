@@ -27,7 +27,9 @@ export function createThings(organization, experience, programs, userId) {
         }
         /* eslint-enable */
 
-        return Promise.all(promises)
+        const allPromises = Promise.all(promises)
+
+        return allPromises
       })
     })
 }

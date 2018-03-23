@@ -10,11 +10,10 @@ import './editOrg.css'
 
 const About = props => {
   const { handleSubmit, change } = props
-
   const Places = ({ input, updateAutocompleteField }) => (
     <GooglePlacesAutocomplete
-      {...input}
       org
+      {...input}
       resultsCallback={(results, status) =>
         updateAutocompleteField({ results, status })
       }
@@ -22,7 +21,7 @@ const About = props => {
   )
 
   const updateAutocompleteField = data => {
-    change('address', data)
+    change('address', data.results)
   }
 
   return (

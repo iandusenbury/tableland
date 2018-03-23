@@ -146,13 +146,16 @@ export function openDialog(id, data) {
 }
 
 export function authorizeUser() {
+  const windowUrl = window.location.hostname
+  const apiUrl =
+    windowUrl === 'localhost' ? 'http://localhost:5000' : window.location.hostname
   return dispatch => {
     const onSuccess = () => ({
       type: ActionTypes.AUTHORIZED_USER
     })
 
     return dispatch(
-      authorizeOAuth('http://localhost:5000/users/auth/linkedin', {
+      authorizeOAuth(`${apiUrl}/users/auth/linkedin`, {
         integrationName: 'linkedin',
         fetchUser,
         onSuccess

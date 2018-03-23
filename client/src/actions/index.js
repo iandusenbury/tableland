@@ -130,14 +130,15 @@ export function openDialog(id, data) {
 export function authorizeUser() {
   const windowUrl = window.location.hostname
   const apiUrl =
-    windowUrl === 'localhost' ? 'http://localhost:5000' : window.location.hostname
+    windowUrl === 'localhost' ? 'localhost:5000' : window.location.hostname
+  const protocol = window.location.protocol // eslint-disable-line
   return dispatch => {
     const onSuccess = () => ({
       type: ActionTypes.AUTHORIZED_USER
     })
 
     return dispatch(
-      authorizeOAuth(`${apiUrl}/users/auth/linkedin`, {
+      authorizeOAuth(`${protocol}//${apiUrl}/users/auth/linkedin`, {
         integrationName: 'linkedin',
         fetchUser,
         onSuccess

@@ -22,10 +22,12 @@ const firstMarkerImg = require('../../assets/icons/first.png')
 const currentMarkerImg = require('../../assets/icons/current.png')
 
 class MyMapComponent extends Component {
-  componentWillMount() {
+  componentDidMount() {
     const { fetchProfessional, match, toggleLegend, isLegendShown } = this.props
-    if (match) {
+    if (match && match.params) {
       fetchProfessional(match.params.id)
+    } else {
+      fetchProfessional('random')
     }
     if (isLegendShown && window.innerWidth < 620) {
       toggleLegend()
@@ -37,11 +39,7 @@ class MyMapComponent extends Component {
     if (loading) return <Loading />
 
     const {
-      id,
-      firstName,
-      lastName,
-      mainTitle,
-      media: { image },
+      profile: { id, firstName, lastName, mainTitle, media: { image } },
       sortedExperiences,
       currentMarker,
       isMarkerOpen,
@@ -87,7 +85,7 @@ class MyMapComponent extends Component {
           containerElement={<div className="mapContainerElement" />}
           mapElement={<div className="mapMapElement" />}
           defaultZoom={12}
-          defaultCenter={{ lat: 45.516, lng: -122.679565 }}
+          defaultCenter={{ lng: -122.6765, lat: 45.5231 }}
           defaultOptions={{
             styles: mapStyle,
             streetViewControl: false,
@@ -220,12 +218,8 @@ class MyMapComponent extends Component {
 }
 
 MyMapComponent.propTypes = {
-  id: PropTypes.number.isRequired,
-  firstName: PropTypes.string.isRequired,
-  lastName: PropTypes.string.isRequired,
-  mainTitle: PropTypes.string.isRequired,
+  profile: PropTypes.object.isRequired, // eslint-disable-line
   match: PropTypes.object, // eslint-disable-line
-  media: PropTypes.object.isRequired, // eslint-disable-line
   sortedExperiences: PropTypes.array.isRequired, // eslint-disable-line
   fetchProfessional: PropTypes.func.isRequired,
   currentMarker: PropTypes.number.isRequired,

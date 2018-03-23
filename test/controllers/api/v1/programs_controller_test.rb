@@ -9,7 +9,7 @@ module Api::V1
     # TODO: Improve existing tests and add tests for new creation under organization, grant_permission, and admins
 
     test "should get index" do
-      get v1_programs_url, as: :json
+      get api_v1_programs_url, as: :json
       assert_response :success
     end
 
@@ -22,12 +22,12 @@ module Api::V1
     # end
 
     test "should show program" do
-      get v1_program_url(@program), as: :json
+      get api_v1_program_url(@program), as: :json
       assert_response :success
     end
 
     test "should update program" do
-      patch v1_program_url(@program), params: { program: { description: @program.description, name: @program.name, url: @program.url, visible: @program.visible } }, as: :json
+      patch api_v1_program_url(@program), params: { program: { description: @program.description, name: @program.name, url: @program.url, visible: @program.visible } }, as: :json
       assert_response 200
     end
 

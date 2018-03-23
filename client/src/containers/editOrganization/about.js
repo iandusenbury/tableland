@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import About from '../../components/editOrganization/About'
-import { updateOrganization } from '../../actions'
+import { updateOrganization, placesUpdateResult } from '../../actions'
 
 const mapStateToProps = state => ({
   initialValues: {
@@ -15,7 +15,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      updateOrganization
+      updateOrganization,
+      placesUpdateResult
     },
     dispatch
   )

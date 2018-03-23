@@ -25,7 +25,8 @@ class EditOrg extends Component {
       submit,
       updateOrganization,
       updateOrgVideo,
-      videoID
+      videoID,
+      placesResult
     } = this.props
 
     const saveOrganizationInfo = values => {
@@ -35,7 +36,7 @@ class EditOrg extends Component {
 
       let addressLine_2, city, state, postalCode, country
 
-      address.addressComponents.forEach(item => {
+      placesResult.addressComponents.forEach(item => {
         item.types.forEach(type => {
           if (type === 'postal_code') {
             postalCode = item.longName
@@ -59,14 +60,14 @@ class EditOrg extends Component {
         name,
         description,
         url,
-        addressLine_1: address.formattedAddress,
+        addressLine_1: placesResult.formattedAddress,
         addressLine_2,
         city,
         state,
         postalCode,
         country,
-        lat: address.geometry.location.lat(),
-        lng: address.geometry.location.lng()
+        lat: placesResult.geometry.location.lat(),
+        lng: placesResult.geometry.location.lng()
       }
 
       updateOrganization(id, updatedInfo)

@@ -14,14 +14,17 @@ const About = props => {
     <GooglePlacesAutocomplete
       org
       {...input}
-      resultsCallback={(results, status) =>
-        updateAutocompleteField({ results, status })
+      resultsCallback={(results, status, searchText) =>
+        updateAutocompleteField({ results, status, searchText })
       }
+      formIndex={0}
     />
   )
 
   const updateAutocompleteField = data => {
-    change('address', data.results)
+    const { placesUpdateResult } = props
+    change('address', data.results.formattedAddress)
+    placesUpdateResult(data.results, 0)
   }
 
   return (

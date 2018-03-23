@@ -23,7 +23,7 @@
 }
 
 /* Small view */
-@media (min-width: 660px) and (max-width: 810px) {
+@media (min-width: 660px) and (max-width: 1050px) {
   .EditOuterDiv {
       display: grid;
       height: auto;
@@ -32,7 +32,7 @@
 }
 
 /* Large view */
-@media (min-width: 810px) {
+@media (min-width: 1050px) {
   .EditOuterDiv {
       display: grid;
       height: auto;

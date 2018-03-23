@@ -7,7 +7,7 @@ import { buildBounds } from '../../components/map/build'
 import Map from '../../components/map'
 
 const mapStateToProps = state => {
-  const { experiences } = state.app.professionalPage
+  const { experiences } = state.app.roadmap.profile
 
   const refs = {
     map: undefined
@@ -39,7 +39,6 @@ const mapStateToProps = state => {
   }
 
   return {
-    ...state.app.professionalPage,
     sortedExperiences,
     ...state.app.isLoading,
     ...state.app.roadmap,

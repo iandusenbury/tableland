@@ -16,7 +16,7 @@ module Api::V1
 
     test "should create experience" do
       assert_difference('Experience.count') do
-        post v1_user_experiences_url(@user), params: { experience: { award: @experience.award, end_date: @experience.end_date, organization_id: @experience.organization_id, program_id: @experience.program_id, start_date: @experience.start_date, title: @experience.title, user_id: @experience.user_id } }, as: :json
+        post api_v1_user_experiences_url(@user), params: { experience: { award: @experience.award, end_date: @experience.end_date, organization_id: @experience.organization_id, program_id: @experience.program_id, start_date: @experience.start_date, title: @experience.title, user_id: @experience.user_id } }, as: :json
       end
 
       assert_response 201
@@ -28,13 +28,13 @@ module Api::V1
     # end
 
     test "should update experience" do
-      patch v1_user_experience_url(@user, @experience), params: { experience: { award: @experience.award, end_date: @experience.end_date, organization_id: @experience.organization_id, program_id: @experience.program_id, start_date: @experience.start_date, title: @experience.title, user_id: @experience.user_id } }, as: :json
+      patch api_v1_user_experience_url(@user, @experience), params: { experience: { award: @experience.award, end_date: @experience.end_date, organization_id: @experience.organization_id, program_id: @experience.program_id, start_date: @experience.start_date, title: @experience.title, user_id: @experience.user_id } }, as: :json
       assert_response 200
     end
 
     test "should destroy experience" do
       assert_difference('Experience.count', -1) do
-        delete v1_user_experience_url(@user, @experience), as: :json
+        delete api_v1_user_experience_url(@user, @experience), as: :json
       end
 
       assert_response 204

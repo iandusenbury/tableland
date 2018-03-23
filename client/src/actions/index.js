@@ -4,11 +4,38 @@ import ActionTypes from '../constants/actionTypes'
 import callApi from '../utils/api'
 import { authorizeOAuth } from './oauth'
 
-export function placesUpdateData(placesData) {
+export function placesClearAll() {
+  return {
+    type: ActionTypes.PLACES_CLEAR_ALL
+  }
+}
+
+export function placesUpdateResult(placesResult, index = 0) {
+  return {
+    type: ActionTypes.PLACES_UPDATE_RESULT,
+    payload: {
+      placesResult,
+      index
+    }
+  }
+}
+
+export function placesUpdateText(searchText, index = 0) {
+  return {
+    type: ActionTypes.PLACES_UPDATE_TEXT,
+    payload: {
+      searchText,
+      index
+    }
+  }
+}
+
+export function placesUpdateData(places, index = 0) {
   return {
     type: ActionTypes.PLACES_UPDATE_DATA,
     payload: {
-      placesData
+      places,
+      index
     }
   }
 }

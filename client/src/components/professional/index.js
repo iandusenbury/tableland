@@ -27,6 +27,18 @@ class Professional extends Component {
     fetchProfessional(match.params.id)
   }
 
+  componentWillReceiveProps(nextProps) {
+    const {
+      fetchProfessional,
+      location: { pathname: nextPathName }
+    } = nextProps
+    const { location: { pathname } } = this.props
+
+    if (nextPathName !== pathname) {
+      fetchProfessional()
+    }
+  }
+
   render() {
     const {
       id,

@@ -1,4 +1,4 @@
-@media (max-width: 460px) {
+@media (max-width: 600px) {
   .navbarSearchForm {
     height: inherit;
     grid-area: form;
@@ -8,7 +8,7 @@
   }
 }
 
-@media (min-width: 460px) {
+@media (min-width: 600px) {
   .navbarSearchForm {
     height: inherit;
     grid-area: form;
@@ -29,13 +29,13 @@
   padding-left: 14px;
 }
 
-@media (max-width: 460px) {
+@media (max-width: 600px) {
   .navbar-submit-wrapper {
     display: none;
   }
 }
 
-@media (min-width: 460px) {
+@media (min-width: 600px) {
   .navbar-submit-wrapper {
     grid-area: submit;
     height: 38px;
@@ -46,9 +46,54 @@
   }
 }
 
-.navbar-mesa-logo {
-  height: 50px;
-  margin-left: 5px;
-  max-width: auto;
-  cursor: pointer;
+@media (max-width: 620px) {
+  .navbar-mesa-logo {
+    display:none;
+  }
 }
+
+@media (min-width: 620px) {
+  .navbar-mesa-logo {
+    height: 50px;
+    margin-left: 5px;
+    max-width: auto;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 620px) {
+  .navbar-mesa-logo-small {
+    height: 50px;
+    margin-left: 5px;
+    max-width: auto;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 400px) {
+  .navbar-mesa-logo-small {
+    display: none;
+  }
+}
+
+@media (min-width: 620px) {
+  .navbar-mesa-logo-small {
+    display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .navbar-mesa-logo-tiny {
+    height: 50px;
+    margin-left: 5px;
+    max-width: auto;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 400px) {
+  .navbar-mesa-logo-tiny {
+    display: none;
+  }
+}
+

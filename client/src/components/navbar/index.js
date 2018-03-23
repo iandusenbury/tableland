@@ -23,6 +23,8 @@ import Dialog from '../../containers/dialog'
 
 //import MESAIcon from '../../assets/images/MESA_logo.svg'
 const MESAIcon = require('../../assets/images/MESA_logo_white.svg')
+const MESAIconSmall = require('../../assets/images/MESA_logo_white_small.svg')
+const MESAIconTiny = require('../../assets/images/MESA_logo_white_tiny.svg')
 /*
    [Hamburger Menu] (if signed in)
    "View Profile"
@@ -51,6 +53,16 @@ const Navbar = props => {
           <img 
             className='navbar-mesa-logo' 
             src={MESAIcon} 
+            onClick={() => fetchMapProfessional('random')}
+          />
+          <img 
+            className='navbar-mesa-logo-small' 
+            src={MESAIconSmall} 
+            onClick={() => fetchMapProfessional('random')}
+          />
+          <img 
+            className='navbar-mesa-logo-tiny'
+            src={MESAIconTiny} 
             onClick={() => fetchMapProfessional('random')}
           />
         </ToolbarGroup>

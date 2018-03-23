@@ -25,3 +25,10 @@
   margin-left: 8px;
   margin-right: 4px;
 }
+
+.navbar-mesa-logo {
+  height: 50px;
+  margin-left: 5px;
+  max-width: auto;
+  cursor: pointer;
+}

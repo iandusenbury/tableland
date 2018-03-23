@@ -9,6 +9,12 @@ const defaultCallback = { onSuccess: identity }
 export default function callApi(callDescriptor, callbacks = {}) {
   const authEmail = Cookies.get('X-User-Email')
   const authToken = Cookies.get('X-User-Token')
+  const windowUrl = window.location.hostname
+  const protocol = window.location.protocol // eslint-disable-line
+  const apiUrl =
+    windowUrl === 'localhost'
+      ? 'api.roadmaps.lvh.me:5000'
+      : window.location.hostname
   const mergedCallbacks = merge(defaultCallback, callbacks)
   const {
     body,
@@ -21,7 +27,7 @@ export default function callApi(callDescriptor, callbacks = {}) {
     dispatch({
       [RSAA]: {
         body: JSON.stringify(decamelizeKeys(body)) || identity, // TODO test on POST request
-        endpoint: `http://api.roadmaps.lvh.me:5000/v1${endpoint}`,
+        endpoint: `${protocol}//${apiUrl}/api/v1${endpoint}`,
         method: method || 'GET',
         types: [
           request,

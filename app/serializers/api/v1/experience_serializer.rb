@@ -17,7 +17,7 @@ module Api::V1
       object.class.name
     end
     def link
-      view_context.v1_user_experience_url(object.user, object)
+      view_context.api_v1_user_experience_url(object.user, object)
     end
     def program_present?
       object.program.present?

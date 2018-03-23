@@ -3,6 +3,7 @@ import { AutoComplete, MenuItem } from 'material-ui'
 import Marker from 'material-ui/svg-icons/maps/place'
 import PropTypes from 'prop-types'
 import { camelizeKeys } from 'humps'
+import { isEmpty } from 'ramda'
 
 class GooglePlaceAutocomplete extends Component {
   constructor(props) {
@@ -17,9 +18,18 @@ class GooglePlaceAutocomplete extends Component {
   }
 
   componentWillMount() {
-    const { placesUpdateData, placesUpdateText, value, formIndex } = this.props
-    if (value) placesUpdateText(value, formIndex)
-    placesUpdateData([], formIndex)
+    const {
+      placesUpdateData,
+      resultsCallback,
+      placesData,
+      searchTexts,
+      placesUpdateText,
+      value,
+      formIndex
+    } = this.props
+    if (value) {
+      this.updateInput(value, formIndex)
+    } else placesUpdateData([], formIndex)
   }
 
   getLatLng(placeId, callback) {
@@ -55,8 +65,18 @@ class GooglePlaceAutocomplete extends Component {
       errorText,
       searchTexts,
       formIndex,
-      value
+      value,
+      placesResults,
+      placesUpdateResult
     } = this.props
+
+    if (value && placesData[0].length > 0 && isEmpty(placesResults)) {
+      const item = placesData[0]
+      this.geocoder.geocode({ placeId: item[0].place_id }, results => {
+        placesUpdateResult(camelizeKeys(results[0]), 0)
+      })
+    }
+
     return placesData[formIndex] ? (
       <div>
         <AutoComplete
@@ -70,7 +90,7 @@ class GooglePlaceAutocomplete extends Component {
           onNewRequest={(request, index) => {
             let item = placesData[formIndex][index]
             if (!item) {
-                            item = placesData[formIndex][0] // eslint-disable-line
+              item = placesData[formIndex][0] // eslint-disable-line
             }
             this.getLatLng(item.place_id, (results, status) => {
               resultsCallback(

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { placesUpdateData, placesUpdateText } from '../../actions'
+import { placesUpdateData, placesUpdateText, placesUpdateResult } from '../../actions'
 import PlacesExample from '../../components/placesAutocomplete'
 
 const mapStateToProps = state => ({
@@ -11,7 +11,8 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       placesUpdateData,
-      placesUpdateText
+      placesUpdateText,
+      placesUpdateResult
     },
     dispatch
   )

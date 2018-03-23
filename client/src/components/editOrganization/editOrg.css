@@ -57,7 +57,7 @@
 
 .orgFieldsGrid {
     display: grid;
-    height: 35vh;
+    height: auto;
     grid-template-columns: 1fr 1fr;
 }
 
@@ -72,7 +72,7 @@
 
 .orgMediaGrid > div {
     background: transparent;
-    height: auto;
+    height: 35vh;
 }
 
 

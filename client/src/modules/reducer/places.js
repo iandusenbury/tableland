@@ -2,9 +2,9 @@ import createReducer from '../../utils/createReducer'
 import ActionTypes from '../../constants/actionTypes'
 
 const initialState = {
-  placesData: [],
-  placesResult: [],
-  searchText: ''
+  placesData: {},
+  placesResults: {},
+  searchTexts: {}
 }
 
 const handlers = {
@@ -18,28 +18,37 @@ const handlers = {
 export default createReducer(initialState, handlers)
 
 function updateResult(state, { payload }) {
-  const { placesResult } = payload
+  const { placesResult, index } = payload
+  const { placesResults } = state
+  const obj = { ...placesResults }
+  obj[index] = placesResult
 
   return {
     ...state,
-    placesResult
+    placesResults: obj
   }
 }
 
 function updateText(state, { payload }) {
-  const { searchText } = payload
+  const { searchText, index } = payload
+  const { searchTexts } = state
+  const obj = { ...searchTexts }
+  obj[index] = searchText
 
   return {
     ...state,
-    searchText
+    searchTexts: obj
   }
 }
 
 function updateData(state, { payload }) {
-  const { placesData } = payload
+  const { places, index } = payload
+  const { placesData } = state
+  const obj = { ...placesData }
+  obj[index] = places
 
   return {
     ...state,
-    placesData
+    placesData: obj
   }
 }

@@ -82,11 +82,11 @@ const renderPrograms = ({ fields }) => (
 
 const NewExperiences = props => {
   const { handleSubmit, change, placesUpdateResult } = props
-
   const Places = ({
     input,
     updateAutocompleteField,
-    meta: { error: errorText }
+    meta: { error: errorText },
+    formIndex
   }) => (
     <GooglePlacesAutocomplete
       {...input}
@@ -94,12 +94,13 @@ const NewExperiences = props => {
         updateAutocompleteField({ results, status, searchText })
       }
       errorText={errorText}
+      formIndex={formIndex}
     />
   )
 
   const updateAutocompleteField = (data, exp) => {
     change(`${exp}.address`, data.results.formattedAddress)
-    placesUpdateResult(data.results)
+    placesUpdateResult(data.results, `${exp}`)
   }
 
   const renderNewExp = ({ fields }) => (
@@ -178,6 +179,7 @@ const NewExperiences = props => {
                   updateAutocompleteField(data, exp)
                 }
                 required
+                formIndex={`${exp}`}
               />
             </div>
             <div>

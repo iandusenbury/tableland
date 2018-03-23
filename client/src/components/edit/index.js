@@ -28,7 +28,7 @@ class EditProfile extends Component {
       videoId,
       userId,
       loading,
-      placesResult
+      placesResults
     } = this.props
 
     const submitHandler = values => {
@@ -36,6 +36,7 @@ class EditProfile extends Component {
 
       /* eslint-disable */
       const createAllNewExperiences = async() => {
+        let index = 0
         for (const exp of values.newExp) {
           const {
             name,
@@ -46,8 +47,9 @@ class EditProfile extends Component {
             endDate,
             programs
           } = exp
-
+          const placesResult = placesResults[`newExp[${index}]`]
           let addressLine_1, addressLine_2, city, state, postalCode, country
+
 
           placesResult.addressComponents.forEach(item => {
             item.types.forEach(type => {
@@ -107,6 +109,7 @@ class EditProfile extends Component {
               allPrograms.push(prog)
             })
           }
+          index += 1
 
           await createThings(organization, experience, allPrograms, userId)
         }

@@ -15,7 +15,7 @@ const mapStateToProps = state => ({
   userId: state.app.user.id,
   videoId: state.app.user.media.video.id,
   loading: state.app.isLoading.loading,
-  placesResult: state.app.places.placesResult
+  placesResults: state.app.places.placesResults
 })
 
 const mapDispatchToProps = dispatch =>

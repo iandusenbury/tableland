@@ -17,7 +17,8 @@ class GooglePlaceAutocomplete extends Component {
   }
 
   componentWillMount() {
-    const { placesUpdateData, placesUpdateText, formIndex } = this.props
+    const { placesUpdateData, placesUpdateText, value, formIndex } = this.props
+    if (value) placesUpdateText(value, formIndex)
     placesUpdateData([], formIndex)
   }
 
@@ -59,7 +60,7 @@ class GooglePlaceAutocomplete extends Component {
     return placesData[formIndex] ? (
       <div>
         <AutoComplete
-          searchText={searchTexts[formIndex] || value}
+          searchText={searchTexts[formIndex]}
           errorText={errorText}
           errorStyle={errorStyle}
           onUpdateInput={this.updateInput}

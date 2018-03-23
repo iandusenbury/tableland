@@ -10,7 +10,7 @@ export function createThings(organization, experience, programs, userId) {
 
       return dispatch(
         createExperience(experience, userId, { organizationId: orgId })
-      ).then(() => {
+      ).then(() => { // eslint-disable-line
         const promises = []
 
         /* eslint-disable */
@@ -27,9 +27,9 @@ export function createThings(organization, experience, programs, userId) {
         }
         /* eslint-enable */
 
-        const allPromises = Promise.all(promises)
-
-        return allPromises
+        if (promises.length === programs.length) {
+          return Promise.all(promises)
+        }
       })
     })
 }

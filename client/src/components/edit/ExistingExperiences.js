@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
-import './experience.css'
-import { style } from '../../widgets/styles'
 import { FieldArray, Field, reduxForm, getFormValues } from 'redux-form'
-import { StyledSelectField } from '../../widgets/StyledSelectField'
-import { StyledTextField } from '../../widgets/StyledTextField'
+import { RaisedButton } from 'material-ui'
 import { DatePicker } from 'redux-form-material-ui'
 import MenuItem from 'material-ui/MenuItem'
-import { RaisedButton } from 'material-ui'
+
+import { style } from '../../widgets/styles'
+import { StyledSelectField } from '../../widgets/StyledSelectField'
+import { StyledTextField } from '../../widgets/StyledTextField'
+
 import { validateExperiences} from './validation'
+import './experience.css'
 
 const renderExistingExp = ({ fields }) => (
   <div>
@@ -54,7 +56,8 @@ const renderExistingExp = ({ fields }) => (
               component={DatePicker}
               style={style.datePicker}
               hintText="Start Date"
-              mode="landscape"
+              container="inline"
+              mode="portrait"
               required
             />
           </div>
@@ -64,7 +67,8 @@ const renderExistingExp = ({ fields }) => (
               component={DatePicker}
               style={style.datePicker}
               hintText="End Date"
-              mode="landscape"
+              container="inline"
+              mode="portrait"
             />
           </div>
         </div>
@@ -90,7 +94,7 @@ const renderPrograms = ({ fields }) => (
     <div style={{ width: '50vw', marginLeft: '15%', marginRight: '15%' }}>
       <RaisedButton
         onClick={() => fields.push({})}
-        label="Associated Programs"
+        label="Programs"
         primary
         fullWidth
         disabled
@@ -142,7 +146,8 @@ const renderPrograms = ({ fields }) => (
               component={DatePicker}
               style={style.datePicker}
               hintText="Start Date"
-              mode="landscape"
+              container="inline"
+              mode="portrait"
             />
           </div>
           <div>
@@ -151,7 +156,7 @@ const renderPrograms = ({ fields }) => (
               component={DatePicker}
               style={style.datePicker}
               hintText="End Date"
-              mode="landscape"
+              container="inline"
             />
           </div>
         </div>

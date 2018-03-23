@@ -1,126 +1,136 @@
 .EditPrimaryDiv {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 .EditHeader {
-    width: 100%;
-    height: 16vh;
-    margin-top: .5%;
-    background-image: url("stemBackgroundImage.png");
+  width: 100%;
+  height: 16vh;
+  margin-top: .5%;
+  background-image: url("stemBackgroundImage.png");
 
 }
 
-.EditHeaderAvatar {
+@media (max-width: 450px) {
+  .EditHeaderAvatar {
+    margin-left: 40%;
+    height: 200px;
+  }
+}
+
+@media (min-width: 450px) {
+  .EditHeaderAvatar {
     margin-left: 47%;
+    height: 200px;
+  }
 }
 
 .EditMainGrid {
-    overflow-y: scroll;
-    overflow-x: hidden;
-    height: 71vh;
-    margin-top: 1%;
-    display: grid;
-    grid-template-columns: 100%;
-    grid-row-gap: 5%;
-    grid-template-areas: "personal" "media" "experience";
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 71vh;
+  margin-top: 1%;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-row-gap: 5%;
+  grid-template-areas: "personal" "media" "experience";
 }
 
 @media (max-width: 660px) {
   .EditPersonal {
-      height: auto;
-      margin-bottom: .75%;
+    height: auto;
+    margin-bottom: .75%;
   }
 }
 
 @media (min-width: 660px) {
   .EditPersonal {
-      height: 35vh;
-      margin-bottom: .75%;
+    height: 35vh;
+    margin-bottom: .75%;
   }
 }
 
 .edit-personal-left {
-    height: auto;
-    border-right: 2px solid lightblue;
+  height: auto;
+  border-right: 2px solid lightblue;
 }
 
 
 @media (max-width: 660px) {
   .EditMedia {
-      height: 35vh;
-      margin-bottom: .75%;
+    height: 35vh;
+    margin-bottom: .75%;
   }
 }
 
 @media (min-width: 660px) {
   .EditMedia {
-      height: auto;
-      margin-bottom: .75%;
+    height: auto;
+    margin-bottom: .75%;
   }
 }
 
 .EditExperience {
-    height: auto;
-    margin-bottom: .75%;
+  height: auto;
+  margin-bottom: .75%;
 }
 
 
 .EditSectionGrid {
-    display: grid;
-    grid-template-columns: 20% 80%;
-    grid-template-areas: "left" "right";
-    grid-column-gap: 2%;
-    margin-right: 2%;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  grid-template-areas: "left" "right";
+  grid-column-gap: 2%;
+  margin-right: 2%;
 }
 
 .EditSectionGrid > div:nth-child(even){
-    /*height: 35vh;*/
-    height: auto;
+  /*height: 35vh;*/
+  height: auto;
 
 }
 
 .EditSectionGrid > div:nth-child(odd){
-    height: 35vh;
-    border-right: 2px solid lightblue;
+  height: 35vh;
+  border-right: 2px solid lightblue;
 }
 
 .EditGrid {
-    margin-top: 1%;
-    display: grid;
-    grid-template-columns: 20% 80%;
+  margin-top: 1%;
+  display: grid;
+  grid-template-columns: 20% 80%;
 }
 
 
 .EditGrid > div:nth-child(odd){
-    background: transparent;
-    height: 35vh;
+  background: transparent;
+  height: 35vh;
 }
 
 .EditGrid > div:nth-child(even){
-    background: transparent;
+  background: transparent;
 }
 
 @media (max-width: 660px) {
   .EditFieldsGrid {
-      height: 35vh;
+    height: auto;
   }
 }
 
 @media (min-width: 660px) {
   .EditFieldsGrid {
-      display: grid;
-      height: 35vh;
-      grid-template-columns: 1fr 1fr;
+    display: grid;
+    height: 35vh;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
 .EditFieldsGrid > div {
-    background: transparent;
+  background: transparent;
 }
 
 .EditExperiencesFields{
-    height: auto;
+  height: auto;
 }
 
 @media (max-width: 660px) {
@@ -137,8 +147,8 @@
   }
 }
 .EditMediaGrid > div {
-    background: transparent;
-    height: auto;
+  background: transparent;
+  height: auto;
 }
 
 @media (min-width: 660px) {
@@ -190,56 +200,68 @@
 
 /*
 @media (min-width: 660px) {
-  .EditImage {
-    width: 350px;
-    height: 31vh;
-    opacity: 0.5;
-    filter: alpha(opacity=50);
-  }
+.EditImage {
+width: 350px;
+height: 31vh;
+opacity: 0.5;
+filter: alpha(opacity=50);
+}
 }
 
 <<<<<<< HEAD
 @media (max-width: 660px) {
-  .EditImage {
+.EditImage {
 =======
 .EditImageNoVideo {
 >>>>>>> development
+width: 350px;
+height: 31vh;
+opacity: 0.5;
+filter: alpha(opacity=50);
+}
+}
+ */
+
+  .EditImageWithVideo {
     width: 350px;
     height: 31vh;
-    opacity: 0.5;
-    filter: alpha(opacity=50);
   }
-}
-*/
 
-.EditImageWithVideo {
-    width: 350px;
-    height: 31vh;
-}
-
-.EditAvatar {
+  .EditAvatar {
     height: 150px;
     width: 150px;
     display: inline-block;
     margin-left: 15%;
     margin-top: 3%;
-}
+  }
 
-.EditChangeButton {
+  .EditChangeButton {
     height: auto;
     width: auto;
     display: inline-block;
     margin-left: 4%;
-}
+  }
 
-.EditAddVideo {
+  .EditAddVideo {
     height: 40px;
     width: 150px;
     display: inline-block;
     margin-left: 2%;
-}
+  }
 
-.EditGeneric {
+  .EditGeneric {
     height: auto;
     width: auto;
-}
+  }
+
+  @media (max-width: 660px) {
+    .edit-save-button {
+      margin: 2%;
+    }
+  }
+
+  @media (min-width: 660px) {
+    .edit-save-button {
+      margin: .5%;
+    }
+  }

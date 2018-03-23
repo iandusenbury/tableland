@@ -187,7 +187,7 @@ class EditProfile extends Component {
               <div className="EditHeaderAvatar">
                 <Avatar
                   src={profileImage}
-                  size={100}
+                  size={85}
                   style={style.avatarIcon}
                 />
               </div>
@@ -206,7 +206,7 @@ class EditProfile extends Component {
                 />
               </div>
             </div>
-            <div style={{ margin: '.5%' }}>
+            <div className='edit-save-button' >
               <RaisedButton
                 label="Save"
                 onClick={() => clickFunction(submit, placesClearAll)}

@@ -13,7 +13,7 @@ module Api::V1
       object.class.name
     end
     def link
-      view_context.polymorphic_url([:v1, object.mediable, object])
+      view_context.polymorphic_url([:api, :v1, object.mediable, object])
     end
   end
 end

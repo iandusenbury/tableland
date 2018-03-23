@@ -1,7 +1,6 @@
 .EditPrimaryDiv {
     width: 100%;
     height: auto;
-    overflow-y: scroll;
 }
 
 .EditHeader {
@@ -18,7 +17,9 @@
 
 
 .EditMainGrid {
-    overflow: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 71vh;
     margin-top: 1%;
     display: grid;
     grid-template-columns: 100%;
@@ -112,11 +113,16 @@
 }
 
 
-.EditImage {
+.EditImageNoVideo {
     width: 350px;
     height: 31vh;
     opacity: 0.5;
     filter: alpha(opacity=50);
+}
+
+.EditImageWithVideo {
+    width: 350px;
+    height: 31vh;
 }
 
 .EditAvatar {

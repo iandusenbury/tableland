@@ -99,7 +99,7 @@ class EditProfile extends Component {
               const prog = {
                 name: program.name,
                 startDate: program.startDate.toString(),
-                endDate: program.endDate ? endDate.toString() : null,
+                endDate: program.endDate ? program.endDate.toString() : null,
                 title: program.position,
                 award: program.award,
                 current: program.current

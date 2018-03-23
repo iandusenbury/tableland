@@ -63,7 +63,8 @@ export const style = {
   },
 
   datePicker: {
-    marginTop: '7.8%'
+    marginTop: '7.8%',
+    width: '100px'
   },
 
   paper: {

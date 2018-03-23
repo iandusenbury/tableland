@@ -43,3 +43,8 @@
 .EditOuterDiv > div {
     background: transparent;
 }
+
+.edit-experience-date-wrapper {
+  max-width: 191px;
+  overflow-x: hidden;
+}

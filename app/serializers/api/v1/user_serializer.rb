@@ -28,7 +28,7 @@ module Api::V1
       object.programs.where(id: current_program).pluck(:name).first if current_program.present?
     end
     def link
-      view_context.v1_user_url(object)
+      view_context.api_v1_user_url(object)
     end
     def super_admin?
       view_context.current_user && view_context.current_user.super_admin?

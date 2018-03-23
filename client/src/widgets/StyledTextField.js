@@ -1,19 +1,29 @@
 import React from 'react'
 import TextField from 'material-ui/TextField'
+import PropTypes from 'prop-types'
 import { style } from './styles'
 
 export const StyledTextField = props => {
-  const { text, multiLine, disabled, input, required, dynamicRequired, meta: { error, touched }, fullWidth } = props
+  const {
+    text,
+    multiLine,
+    disabled,
+    input,
+    // required,
+    // dynamicRequired,
+    meta: { error },
+    fullWidth
+  } = props
   const isMultiLine = !!multiLine
   // const errorStyle = required ? style.error : {}
-  const errorText = () => {
-    if (error) {
-      return error
-    } else if (!dynamicRequired && required) {
-      return 'Required'
-    }
-    return ''
-  }
+  // const errorText = () => {
+  //   if (error) {
+  //     return error
+  //   } else if (!dynamicRequired && required) {
+  //     return 'Required'
+  //   }
+  //   return ''
+  // }
 
   return (
     <TextField
@@ -31,3 +41,16 @@ export const StyledTextField = props => {
     />
   )
 }
+
+StyledTextField.propTypes = {
+  text: PropTypes.string.isRequired,
+  /* eslint-disable */
+  input: PropTypes.object.isRequired,
+  multiLine: PropTypes.bool,
+  disabled: PropTypes.bool,
+  meta: PropTypes.object.isRequired,
+  fullWidth: PropTypes.bool
+  /* eslint-enable */
+}
+
+export default StyledTextField

@@ -24,33 +24,30 @@ const tableRow = profile => {
         </div>
         <div className="search-table-icon search-table-border">
           <div className="search-table-avatar">{avatar}</div>
-          {type === 'User' &&
-            <FlatButton 
-              className="search-table-flatbutton" 
+          {type === 'User' && (
+            <FlatButton
+              className="search-table-flatbutton"
               hoverColor="#e7e0d7"
-              containerElement={<Link to={`/roadmap/${id}`} />} 
-            >   
+              containerElement={<Link to={`/roadmap/${id}`} />}>
               View profile
-              </FlatButton>
-          }   
-          {type === 'Organization' &&
-            <FlatButton 
-              className="search-table-flatbutton" 
+            </FlatButton>
+          )}
+          {type === 'Organization' && (
+            <FlatButton
+              className="search-table-flatbutton"
               hoverColor="#e7e0d7"
-              containerElement={<Link to={`/organization/${id}`} />} 
-            >   
+              containerElement={<Link to={`/organization/${id}`} />}>
               View profile
-              </FlatButton>
-          }   
-          {type === 'Program' &&
-            <FlatButton 
-              className="search-table-flatbutton" 
+            </FlatButton>
+          )}
+          {type === 'Program' && (
+            <FlatButton
+              className="search-table-flatbutton"
               hoverColor="#e7e0d7"
-              containerElement={<Link to={`/program/${id}`} />} 
-            >   
+              containerElement={<Link to={`/program/${id}`} />}>
               View profile
-              </FlatButton>
-          }   
+            </FlatButton>
+          )}
         </div>
         <div className="search-table-about">{info}</div>
         <ul className="search-table-contact">Contact: {contact}</ul>
@@ -58,7 +55,6 @@ const tableRow = profile => {
     </TableRow>
   )
 }
-
 
 export const renderProgram = program => {
   const { id, type, name, description, imageUrl, url: contactUrl } = program

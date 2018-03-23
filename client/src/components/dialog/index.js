@@ -28,7 +28,8 @@ Dialog.propTypes = {
   message: PropTypes.string.isRequired,
   open: PropTypes.bool.isRequired,
   closeDialog: PropTypes.func.isRequired,
-  children: PropTypes.element.isRequired
+  children: PropTypes.element.isRequired,
+  description: PropTypes.string.isRequired
 }
 
 export default Dialog

@@ -158,7 +158,7 @@ class EditProfile extends Component {
 
         if (programs) {
           programs.forEach(prog => {
-            const { startDate, endDate, position, expId, award, current } = prog
+            const { startDate, endDate, position, expId, award, current } = prog // eslint-disable-line
 
             const program = {
               startDate: startDate.toString(),
@@ -227,11 +227,12 @@ EditProfile.propTypes = {
   createThings: PropTypes.func.isRequired,
   updateUserInfo: PropTypes.func.isRequired,
   updateUserExperience: PropTypes.func.isRequired,
-  changeUserVideo: PropTypes.func.isRequired,
-  hasVideo: PropTypes.bool.isRequired,
   videoId: PropTypes.number.isRequired,
   userId: PropTypes.number.isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  updateUserVideo: PropTypes.func.isRequired,
+  placesResults: PropTypes.object.isRequired, // eslint-disable-line
+  placesClearAll: PropTypes.func.isRequired
 }
 
 export default EditProfile

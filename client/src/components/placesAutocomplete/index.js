@@ -17,7 +17,7 @@ class GooglePlaceAutocomplete extends Component {
   }
 
   componentWillMount() {
-    const { placesUpdateData, placesUpdateText, formIndex } = this.props
+    const { placesUpdateData, formIndex } = this.props
     placesUpdateData([], formIndex)
   }
 
@@ -49,7 +49,6 @@ class GooglePlaceAutocomplete extends Component {
     const {
       placesData,
       resultsCallback,
-      required,
       errorStyle,
       errorText,
       searchTexts,
@@ -125,10 +124,15 @@ class GooglePlaceAutocomplete extends Component {
 }
 
 GooglePlaceAutocomplete.propTypes = {
-  placesData: PropTypes.array.isRequired, // eslint-disable-line
+  placesData: PropTypes.object.isRequired, // eslint-disable-line
   placesUpdateData: PropTypes.func.isRequired,
   resultsCallback: PropTypes.func, // eslint-disable-line
-  fullWidth: PropTypes.bool // eslint-disable-line
+  fullWidth: PropTypes.bool, // eslint-disable-line
+  formIndex: PropTypes.isRequired,
+  placesUpdateText: PropTypes.func.isRequired,
+  errorStyle: PropTypes.object, // eslint-disable-line
+  errorText: PropTypes.string, // eslint-disable-line
+  searchTexts: PropTypes.object.isRequired // eslint-disable-line
 }
 
 export default GooglePlaceAutocomplete

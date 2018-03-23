@@ -1,6 +1,6 @@
 import { grey400, grey500 } from 'material-ui/styles/colors'
 
-export const style = {
+export default {
   divider: {
     width: 224
   },

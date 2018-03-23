@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
-import './experience.css'
-import { style } from '../../widgets/styles'
-import { FieldArray, Field, reduxForm, getFormValues } from 'redux-form'
-import { StyledSelectField } from '../../widgets/StyledSelectField'
-import { StyledTextField } from '../../widgets/StyledTextField'
+import { FieldArray, Field, reduxForm } from 'redux-form'
 import { DatePicker } from 'redux-form-material-ui'
 import MenuItem from 'material-ui/MenuItem'
 import { RaisedButton } from 'material-ui'
-import { validateExperiences} from './validation'
+import PropTypes from 'prop-types'
+import { style } from '../../widgets/styles'
+import { StyledSelectField } from '../../widgets/StyledSelectField'
+import { StyledTextField } from '../../widgets/StyledTextField'
+import { validateExperiences } from './validation'
+import './experience.css'
 
+/* eslint-disable */
 const renderExistingExp = ({ fields }) => (
   <div>
     {fields.map((exp, index) => (
@@ -48,7 +50,7 @@ const renderExistingExp = ({ fields }) => (
               multiLine
             />
           </div>
-          <div >
+          <div>
             <Field
               name={`${exp}.startDate`}
               component={DatePicker}
@@ -58,7 +60,7 @@ const renderExistingExp = ({ fields }) => (
               required
             />
           </div>
-          <div >
+          <div>
             <Field
               name={`${exp}.endDate`}
               component={DatePicker}
@@ -68,15 +70,15 @@ const renderExistingExp = ({ fields }) => (
             />
           </div>
         </div>
-          <div style={{width: '73vw'}}>
-              <Field
-                  name={`${exp}.address`}
-                  component={StyledTextField}
-                  text="Address"
-                  disabled
-                  fullWidth
-              />
-          </div>
+        <div style={{ width: '73vw' }}>
+          <Field
+            name={`${exp}.address`}
+            component={StyledTextField}
+            text="Address"
+            disabled
+            fullWidth
+          />
+        </div>
         <div>
           <FieldArray name={`${exp}.programs`} component={renderPrograms} />
         </div>
@@ -159,11 +161,10 @@ const renderPrograms = ({ fields }) => (
     ))}
   </div>
 )
+/* eslint-enable */
 
 class ExistingExperiences extends Component {
-  componentDidMount() {
-
-  }
+  componentDidMount() {}
 
   render() {
     const { handleSubmit } = this.props
@@ -173,6 +174,18 @@ class ExistingExperiences extends Component {
       </form>
     )
   }
+}
+
+renderExistingExp.propTypes = {
+  fields: PropTypes.object.isRequired // eslint-disable-line
+}
+
+renderPrograms.propTypes = {
+  fields: PropTypes.object.isRequired // eslint-disable-line
+}
+
+ExistingExperiences.propTypes = {
+  handleSubmit: PropTypes.func.isRequired
 }
 
 export default reduxForm({

@@ -1,7 +1,6 @@
 import { isEmpty } from 'ramda'
 import ActionTypes from '../constants/actionTypes'
 import callApi from '../utils/api'
-import { openDialog } from './index'
 
 export function createThings(organization, experience, programs, userId) {
   return dispatch =>
@@ -107,9 +106,6 @@ export function updateUserInfo(info, userId) {
     ]
   }
 
-  const onSuccess = (response, dispatch) =>
-    dispatch(openDialog(1, { message: 'Success' }))
-
   return dispatch => dispatch(callApi(callDescriptor))
 }
 
@@ -125,9 +121,6 @@ export function updateUserExperience(experience, userId, expId) {
       ActionTypes.FAILURE_UPDATE_EXP
     ]
   }
-
-  const onSuccess = (response, dispatch) =>
-    dispatch(openDialog(1, { message: 'Success' }))
 
   return dispatch => dispatch(callApi(callDescriptor))
 }
@@ -178,9 +171,6 @@ export function updateUserVideo(link, userId, videoId) {
       ActionTypes.FAILURE_UPDATE_USER_VIDEO
     ]
   }
-
-  const onSuccess = (response, dispatch) =>
-    dispatch(openDialog(1, { message: 'Success' }))
 
   return dispatch => dispatch(callApi(callDescriptor))
 }

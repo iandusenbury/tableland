@@ -1,17 +1,19 @@
-import React, { Component } from 'react'
-import './experience.css'
-import { style } from '../../widgets/styles'
-import { FieldArray, Field, reduxForm, reset } from 'redux-form'
-import { StyledSelectField } from '../../widgets/StyledSelectField'
-import { StyledTextField } from '../../widgets/StyledTextField'
+import React from 'react'
 import { DatePicker } from 'redux-form-material-ui'
 import MenuItem from 'material-ui/MenuItem'
 import { RaisedButton } from 'material-ui'
+import { FieldArray, Field, reduxForm, reset } from 'redux-form'
+import PropTypes from 'prop-types'
+import './experience.css'
+import { style } from '../../widgets/styles'
+import { StyledSelectField } from '../../widgets/StyledSelectField'
+import { StyledTextField } from '../../widgets/StyledTextField'
 import GooglePlacesAutocomplete from '../../containers/placesAutocomplete'
 import { validateExperiences } from './validation'
 
 const afterSubmit = (result, dispatch) => dispatch(reset('newExperiences'))
 
+/* eslint-disable */
 const renderPrograms = ({ fields }) => (
   <div>
     <div style={{ width: '50vw', marginLeft: '15%', marginRight: '15%' }}>
@@ -79,6 +81,11 @@ const renderPrograms = ({ fields }) => (
     ))}
   </div>
 )
+/* eslint-enable */
+
+renderPrograms.propTypes = {
+  fields: PropTypes.object.isRequired // eslint-disable-line
+}
 
 const NewExperiences = props => {
   const { handleSubmit, change, placesUpdateResult } = props
@@ -98,11 +105,19 @@ const NewExperiences = props => {
     />
   )
 
+  Places.propTypes = {
+    input: PropTypes.object.isRequired, // eslint-disable-line
+    updateAutocompleteField: PropTypes.func.isRequired,
+    meta: PropTypes.object.isRequired, // eslint-disable-line
+    formIndex: PropTypes.isRequired
+  }
+
   const updateAutocompleteField = (data, exp) => {
     change(`${exp}.address`, data.results.formattedAddress)
     placesUpdateResult(data.results, `${exp}`)
   }
 
+/* eslint-disable */
   const renderNewExp = ({ fields }) => (
     <div>
       <div style={{ marginTop: '4%', marginBottom: '4%', width: '75vw' }}>
@@ -190,12 +205,23 @@ const NewExperiences = props => {
       </div>
     </div>
   )
+  /* eslint-enable */
+
+  renderNewExp.propTypes = {
+    fields: PropTypes.object.isRequired // eslint-disable-line
+  }
 
   return (
     <form onSubmit={handleSubmit}>
       <FieldArray name="newExp" component={renderNewExp} />
     </form>
   )
+}
+
+NewExperiences.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  change: PropTypes.func.isRequired,
+  placesUpdateResult: PropTypes.func.isRequired
 }
 
 export default reduxForm({

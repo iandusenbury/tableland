@@ -3,7 +3,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import Edit from 'material-ui/svg-icons/editor/mode-edit'
 import { style } from './styles'
 
-export const ChangeButton = props => (
+export default () => (
   <RaisedButton
     label="Edit"
     primary

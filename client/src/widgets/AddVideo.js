@@ -3,7 +3,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 import { style } from './styles'
 
-export const AddVideo = props => (
+export default () => (
   <RaisedButton
     label="Add Video"
     primary

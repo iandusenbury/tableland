@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { authorizeUser, logoutUser, fetchUser } from '../../actions'
+import { authorizeUser, logoutUser, fetchUser, fetchProfessional } from '../../actions'
 import { fetchMapProfessional } from '../../actions/gmap'
 
 import Navbar from '../../components/navbar'
@@ -16,7 +16,8 @@ const mapDispatchToProps = dispatch =>
       authorizeUser,
       fetchUser,
       logoutUser,
-      fetchMapProfessional
+      fetchMapProfessional,
+      fetchProfessional
     },
     dispatch
   )

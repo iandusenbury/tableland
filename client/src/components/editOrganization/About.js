@@ -19,8 +19,8 @@ class About extends Component {
 
         const Places = ({ input, updateAutocompleteField }) => (
             <GooglePlacesAutocomplete
-                {...input}
                 org
+                {...input}
                 resultsCallback={(results, status) =>
                     updateAutocompleteField({ results, status })
                 }
@@ -28,7 +28,7 @@ class About extends Component {
         )
 
         const updateAutocompleteField = (data) => {
-            change('address', data)
+            change("address", data.results)
         }
 
 
@@ -93,7 +93,8 @@ class About extends Component {
     }
 }
 About = reduxForm({
-    form: 'about'
+    form: 'about',
+    enableReinitialize: true
 })(About)
 
 export default About;

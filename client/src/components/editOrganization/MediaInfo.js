@@ -49,5 +49,6 @@ class MediaInfo extends Component {
     }
 }
 export default reduxForm({
-    form: 'mediaInfo'
+    form: 'mediaInfo',
+    enableReinitialize: true
 })(MediaInfo)

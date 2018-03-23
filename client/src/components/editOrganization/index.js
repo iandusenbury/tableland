@@ -45,11 +45,12 @@ class EditOrg extends Component {
 
       const saveOrganizationInfo = values => {
           const {name, address, url, description} = values
+
           if(!address) return
 
           let addressLine_1, addressLine_2, city, state, postalCode, country;
 
-          address.results.addressComponents.forEach(item => {
+          address.addressComponents.forEach(item => {
               item.types.forEach(type => {
                   if (type === 'postal_code') {
                       postalCode = item.longName
@@ -74,14 +75,14 @@ class EditOrg extends Component {
               name,
               description,
               url,
-              addressLine_1: address.results.formattedAddress,
+              addressLine_1: address.formattedAddress,
               addressLine_2,
               city,
               state,
               postalCode,
               country,
-              lat: address.results.geometry.location.lat(),
-              lng: address.results.geometry.location.lng()
+              lat: address.geometry.location.lat(),
+              lng: address.geometry.location.lng()
           }
 
           updateOrganization(id, updatedInfo)

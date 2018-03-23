@@ -29,14 +29,14 @@ export const validateAbout = personalInfo => {
 
 export const validateMedia = media => {
   const errors = {}
-  const { profileVideo } = media
+  const { organizationVideo } = media
 
   if (
-    !!profileVideo &&
-    (!profileVideo.includes('youtube.com') ||
-      !profileVideo.includes('watch?v='))
+    !!organizationVideo &&
+    (!organizationVideo.includes('youtube.com') ||
+      !organizationVideo.includes('watch?v='))
   )
-    errors.profileVideo = 'Must be a YouTube link'
+    errors.organizationVideo = 'Must be a YouTube link'
 
   return errors
 }

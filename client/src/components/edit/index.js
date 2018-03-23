@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Avatar from 'material-ui/Avatar'
-import { RaisedButton } from 'material-ui'
+import { RaisedButton, Paper } from 'material-ui'
 import Personal from '../../containers/personal'
 import Media from '../../containers/media'
 import { style } from '../../widgets/styles'
@@ -206,14 +206,16 @@ class EditProfile extends Component {
                 />
               </div>
             </div>
-            <div className='edit-save-button' >
-              <RaisedButton
-                label="Save"
-                onClick={() => clickFunction(submit, placesClearAll)}
-                fullWidth
-                primary
-              />
-            </div>
+            <Paper className='edit-save-button-wrapper' >
+              <div className='edit-save-button' >
+                <RaisedButton
+                  label="Save"
+                  onClick={() => clickFunction(submit, placesClearAll)}
+                  fullWidth
+                  primary
+                />
+              </div>
+            </Paper>
           </div>
         )}
       </div>

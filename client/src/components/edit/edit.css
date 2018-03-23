@@ -28,7 +28,7 @@
 .EditMainGrid {
   overflow-y: scroll;
   overflow-x: hidden;
-  height: 71vh;
+  height: calc(84vh - 114px);
   margin-top: 1%;
   display: grid;
   grid-template-columns: 100%;
@@ -198,70 +198,57 @@
   }
 }
 
-/*
-@media (min-width: 660px) {
-.EditImage {
-width: 350px;
-height: 31vh;
-opacity: 0.5;
-filter: alpha(opacity=50);
-}
+.EditImageWithVideo {
+  width: 350px;
+  height: 31vh;
 }
 
-<<<<<<< HEAD
+.EditAvatar {
+  height: 150px;
+  width: 150px;
+  display: inline-block;
+  margin-left: 15%;
+  margin-top: 3%;
+}
+
+.EditChangeButton {
+  height: auto;
+  width: auto;
+  display: inline-block;
+  margin-left: 4%;
+}
+
+.EditAddVideo {
+  height: 40px;
+  width: 150px;
+  display: inline-block;
+  margin-left: 2%;
+}
+
+.EditGeneric {
+  height: auto;
+  width: auto;
+}
+
+.edit-save-button-wrapper {
+  position: absolute;
+  bottom: 0;
+  width:100%;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.edit-save-button {
+}
+
 @media (max-width: 660px) {
-.EditImage {
-=======
-.EditImageNoVideo {
->>>>>>> development
-width: 350px;
-height: 31vh;
-opacity: 0.5;
-filter: alpha(opacity=50);
+  .edit-save-button {
+    margin: 2%;
+  }
 }
+
+@media (min-width: 660px) {
+  .edit-save-button {
+    margin: .5%;
+  }
 }
- */
-
-  .EditImageWithVideo {
-    width: 350px;
-    height: 31vh;
-  }
-
-  .EditAvatar {
-    height: 150px;
-    width: 150px;
-    display: inline-block;
-    margin-left: 15%;
-    margin-top: 3%;
-  }
-
-  .EditChangeButton {
-    height: auto;
-    width: auto;
-    display: inline-block;
-    margin-left: 4%;
-  }
-
-  .EditAddVideo {
-    height: 40px;
-    width: 150px;
-    display: inline-block;
-    margin-left: 2%;
-  }
-
-  .EditGeneric {
-    height: auto;
-    width: auto;
-  }
-
-  @media (max-width: 660px) {
-    .edit-save-button {
-      margin: 2%;
-    }
-  }
-
-  @media (min-width: 660px) {
-    .edit-save-button {
-      margin: .5%;
-    }
-  }

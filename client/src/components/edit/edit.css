@@ -16,7 +16,9 @@
 }
 
 .EditMainGrid {
-    overflow: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 71vh;
     margin-top: 1%;
     display: grid;
     grid-template-columns: 100%;
@@ -196,8 +198,12 @@
   }
 }
 
+<<<<<<< HEAD
 @media (max-width: 660px) {
   .EditImage {
+=======
+.EditImageNoVideo {
+>>>>>>> development
     width: 350px;
     height: 31vh;
     opacity: 0.5;
@@ -205,6 +211,11 @@
   }
 }
 */
+
+.EditImageWithVideo {
+    width: 350px;
+    height: 31vh;
+}
 
 .EditAvatar {
     height: 150px;

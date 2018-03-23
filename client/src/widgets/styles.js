@@ -22,6 +22,9 @@ export const style = {
     color: grey500
   },
 
+  error: {
+    color: grey500
+  },
   title: {
     cursor: 'pointer'
   },

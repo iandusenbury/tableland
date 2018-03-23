@@ -16,15 +16,21 @@ class GooglePlaceAutocomplete extends Component {
     this.getLatLng = this.getLatLng.bind(this)
   }
 
+  componentWillMount() {
+    const { placesUpdateData, placesUpdateText, formIndex } = this.props
+    placesUpdateData([], formIndex)
+  }
+
   getLatLng(placeId, callback) {
-    this.geocoder.geocode({ placeId }, (results, status) => {
-      callback(results, status)
+    this.geocoder.geocode({ placeId }, (results, status, searchText) => {
+      callback(results, status, searchText)
     })
   }
 
   updateInput(searchText) {
-    const { placesUpdateData } = this.props
+    const { placesUpdateData, placesUpdateText, formIndex } = this.props
     const { service } = this
+    placesUpdateText(searchText, formIndex)
     if (searchText.length > 0) {
       service.getPlacePredictions(
         {
@@ -32,7 +38,7 @@ class GooglePlaceAutocomplete extends Component {
         },
         predictions => {
           if (predictions) {
-            placesUpdateData(predictions)
+            placesUpdateData(predictions, formIndex)
           }
         }
       )
@@ -40,23 +46,39 @@ class GooglePlaceAutocomplete extends Component {
   }
 
   render() {
-    const { placesData, resultsCallback, fullWidth } = this.props
-    return (
+    const {
+      placesData,
+      resultsCallback,
+      required,
+      errorStyle,
+      errorText,
+      searchTexts,
+      formIndex
+    } = this.props
+    return placesData[formIndex] ? (
       <div>
         <AutoComplete
+          searchText={searchTexts[formIndex]}
+          errorText={errorText}
+          errorStyle={errorStyle}
           onUpdateInput={this.updateInput}
           onChange={this.updateInput}
-          fullWidth={fullWidth || false}
+          fullWidth
+          hintText="Address"
           onNewRequest={(request, index) => {
-            let item = placesData[index]
+            let item = placesData[formIndex][index]
             if (!item) {
-              item = placesData[0] // eslint-disable-line
+                            item = placesData[formIndex][0] // eslint-disable-line
             }
             this.getLatLng(item.place_id, (results, status) => {
-              resultsCallback(camelizeKeys(results[0]), status)
+              resultsCallback(
+                camelizeKeys(results[0]),
+                status,
+                searchTexts[formIndex]
+              )
             })
           }}
-          dataSource={placesData.map((item, i, array) => {
+          dataSource={placesData[formIndex].map((item, i, array) => {
             if (i === array.length - 1) {
               return {
                 text: item.description,
@@ -98,7 +120,7 @@ class GooglePlaceAutocomplete extends Component {
           })}
         />
       </div>
-    )
+    ) : null
   }
 }
 

@@ -16,7 +16,7 @@ module Api::V1
 
     test "should create medium" do
       assert_difference('Medium.count') do
-        post v1_user_media_url(@user), params: { medium: { category: @medium.category, description: @medium.description, mediable_id: @medium.mediable_id, mediable_type: @medium.mediable_type, url: @medium.url } }, as: :json
+        post api_v1_user_media_url(@user), params: { medium: { category: @medium.category, description: @medium.description, mediable_id: @medium.mediable_id, mediable_type: @medium.mediable_type, url: @medium.url } }, as: :json
       end
 
       assert_response 201
@@ -28,13 +28,13 @@ module Api::V1
     # end
 
     test "should update medium" do
-      patch v1_user_medium_url(@user, @medium), params: { medium: { category: @medium.category, description: @medium.description, mediable_id: @medium.mediable_id, mediable_type: @medium.mediable_type, url: @medium.url } }, as: :json
+      patch api_v1_user_medium_url(@user, @medium), params: { medium: { category: @medium.category, description: @medium.description, mediable_id: @medium.mediable_id, mediable_type: @medium.mediable_type, url: @medium.url } }, as: :json
       assert_response 200
     end
 
     test "should destroy medium" do
       assert_difference('Medium.count', -1) do
-        delete v1_user_medium_url(@user, @medium), as: :json
+        delete api_v1_user_medium_url(@user, @medium), as: :json
       end
 
       assert_response 204

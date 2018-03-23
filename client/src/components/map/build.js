@@ -3,10 +3,10 @@ import { Polyline } from 'react-google-maps'
 
 const startOpacity = 0.5
 const defaultBounds = {
-  north: 45.516,
-  east: -122.679565,
-  south: 45.516,
-  west: -122.679565
+  north: 45.5231,
+  east: -122.6765,
+  south: 45.5231,
+  west: -122.6765
 }
 
 const buildPolylineGroup = (i, index, nodes) => {
@@ -64,7 +64,7 @@ const buildPolylineGroup = (i, index, nodes) => {
 export const buildBounds = locations => {
   const locationData = []
   const bounds = defaultBounds
-  const boundExtension = 0.3
+  const boundExtension = 0.1
   if (locations && locations.length > 0) {
     locations.forEach(node => {
       if (node.organization) {
@@ -84,11 +84,11 @@ export const buildBounds = locations => {
     bounds.west = Math.min(...longitudes)
   }
   // If there is only one point, or groups of points clumped together
-  if (bounds.north - bounds.south < 1) {
+  if (bounds.north - bounds.south < boundExtension) {
     bounds.north += boundExtension
     bounds.south -= boundExtension
   }
-  if (bounds.east - bounds.west < 1) {
+  if (bounds.east - bounds.west < boundExtension) {
     bounds.east += boundExtension
     bounds.west -= boundExtension
   }

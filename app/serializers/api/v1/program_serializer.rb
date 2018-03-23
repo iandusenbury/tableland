@@ -15,7 +15,7 @@ module Api::V1
       object.class.name
     end
     def link
-      view_context.v1_program_url(object)
+      view_context.api_v1_program_url(object)
     end
     def parent_organization_names
       object.organizations.where(visible: true).pluck(:name, :address_line_1, :address_line_2)

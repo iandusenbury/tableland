@@ -44,7 +44,7 @@ const GMap = compose(withScriptjs, withGoogleMap)(props => {
     <GoogleMap
       ref={props.onMapMounted}
       defaultZoom={8}
-      defaultCenter={{ lat: -34.397, lng: 150.644 }}
+      defaultCenter={{ lng: -122.6765, lat: 45.5231 }}
       {...otherProps}>
       {experienceOrgs.map((experience, index) => {
         const { location } = experience

@@ -7,6 +7,7 @@ import {
   updateUserInfo,
   updateUserVideo
 } from '../../actions/edit'
+import { placesClearAll } from '../../actions'
 
 import EditProfile from '../../components/edit'
 
@@ -25,7 +26,8 @@ const mapDispatchToProps = dispatch =>
       createThings,
       updateUserInfo,
       updateUserExperience,
-      updateUserVideo
+      updateUserVideo,
+      placesClearAll
     },
     dispatch
   )

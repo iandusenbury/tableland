@@ -4,6 +4,12 @@ import ActionTypes from '../constants/actionTypes'
 import callApi from '../utils/api'
 import { authorizeOAuth } from './oauth'
 
+export function placesClearAll() {
+  return {
+    type: ActionTypes.PLACES_CLEAR_ALL
+  }
+}
+
 export function placesUpdateResult(placesResult, index = 0) {
   return {
     type: ActionTypes.PLACES_UPDATE_RESULT,

@@ -12,10 +12,20 @@ const handlers = {
   // [ActionTypes.ACTION_NAME]: actionFunction
   [ActionTypes.PLACES_UPDATE_DATA]: updateData,
   [ActionTypes.PLACES_UPDATE_TEXT]: updateText,
-  [ActionTypes.PLACES_UPDATE_RESULT]: updateResult
+  [ActionTypes.PLACES_UPDATE_RESULT]: updateResult,
+  [ActionTypes.PLACES_CLEAR_ALL]: clearAll
 }
 
 export default createReducer(initialState, handlers)
+
+function clearAll(state) {
+  return {
+    ...state,
+    placesData: {},
+    placesResults: {},
+    searchTexts: {}
+  }
+}
 
 function updateResult(state, { payload }) {
   const { placesResult, index } = payload

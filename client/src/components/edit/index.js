@@ -9,11 +9,12 @@ import Experiences from './Experiences'
 
 import './edit.css'
 
-function clickFunction(submit) {
+function clickFunction(submit, placesClearAll) {
   submit('personal')
   submit('media')
   submit('existingExperiences')
   submit('newExperiences')
+  placesClearAll()
 }
 
 class EditProfile extends Component {
@@ -28,7 +29,8 @@ class EditProfile extends Component {
       videoId,
       userId,
       loading,
-      placesResults
+      placesResults,
+      placesClearAll
     } = this.props
 
     const submitHandler = values => {
@@ -207,7 +209,7 @@ class EditProfile extends Component {
             <div style={{ margin: '.5%' }}>
               <RaisedButton
                 label="Save"
-                onClick={() => clickFunction(submit)}
+                onClick={() => clickFunction(submit, placesClearAll)}
                 fullWidth
                 primary
               />

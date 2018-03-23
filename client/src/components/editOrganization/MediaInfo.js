@@ -9,9 +9,6 @@ import './editOrg.css'
 
 
 class MediaInfo extends Component {
-    componentDidMount(){
-        this.props.initialize({...this.props})
-    }
 
     render() {
         const {handleSubmit} = this.props

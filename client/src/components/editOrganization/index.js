@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import { orange400 } from 'material-ui/styles/colors'
 import './editOrg.css'
 import About from '../../containers/editOrganization/about'
-import MediaInfo from '../../containers/mediaInfo'
+import MediaInfo from '../../containers/editOrganization/mediaInfo'
 import { RaisedButton } from 'material-ui'
 
 function clickFunction(submit) {
   submit('about')
   submit('mediaInfo')
+  window.location.reload(true)
 }
 
 class EditOrg extends Component {
@@ -20,11 +21,6 @@ class EditOrg extends Component {
   render() {
     const {
       id,
-      name,
-      description,
-      url,
-      addressLine1,
-      organizationVideo,
       loading,
       submit,
       updateOrganization,
@@ -32,14 +28,12 @@ class EditOrg extends Component {
       videoID
     } = this.props
 
-    const mediaProps = { organizationVideo }
-
     const saveOrganizationInfo = values => {
       const { name, address, url, description } = values
 
       if (!address) return
 
-      let addressLine_1, addressLine_2, city, state, postalCode, country
+      let addressLine_2, city, state, postalCode, country
 
       address.addressComponents.forEach(item => {
         item.types.forEach(type => {
@@ -95,7 +89,7 @@ class EditOrg extends Component {
                 <About onSubmit={saveOrganizationInfo} />
               </div>
               <div className="orgMedia">
-                <MediaInfo {...mediaProps} onSubmit={saveOrgVideo} />
+                <MediaInfo onSubmit={saveOrgVideo} />
               </div>
             </div>
             <div style={{ margin: '.5%' }}>

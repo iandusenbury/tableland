@@ -6,10 +6,9 @@ import EditOrg from '../../components/editOrganization'
 
 
 const mapStateToProps = state => ({
-    organizationVideo: state.app.organizationPage.media.video.url || null,
     videoID: state.app.organizationPage.media.video.id,
-    loading: state.app.isLoading.loading,
-    ...state.app.organizationPage
+    id: state.app.organizationPage.id,
+    loading: state.app.isLoading.loading
 })
 
 const mapDispatchToProps = dispatch =>

@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
+import { find, propEq } from 'ramda'
 import { orange400 } from 'material-ui/styles/colors'
+import { RaisedButton } from 'material-ui'
+import PropTypes from 'prop-types'
+
 import './editOrg.css'
 import About from '../../containers/editOrganization/about'
+import NotFound from '../notFound'
 import MediaInfo from '../../containers/editOrganization/mediaInfo'
-import { RaisedButton } from 'material-ui'
 
 function clickFunction(submit) {
   submit('about')
@@ -13,21 +17,32 @@ function clickFunction(submit) {
 
 class EditOrg extends Component {
   componentWillMount() {
-    const { fetchOrganization, match } = this.props
+    const { fetchOrganization, fetchUserPermissions, match } = this.props
 
     fetchOrganization(match.params.id)
+    fetchUserPermissions(match.params.id)
   }
 
   render() {
     const {
       id,
-      loading,
       submit,
       updateOrganization,
       updateOrgVideo,
       videoID,
-      placesResult
+      placesResult,
+      permissions
     } = this.props
+
+    const orgIds = permissions.map(perm => {
+      const { id: permId } = perm
+
+      return permId
+    })
+
+    const found = find(propEq('id', id))(permissions)
+
+    const permissionDenied = found === undefined && orgIds.length > 0
 
     const saveOrganizationInfo = values => {
       const { name, address, url, description } = values
@@ -78,35 +93,52 @@ class EditOrg extends Component {
       updateOrgVideo(organizationVideo, id, videoID)
     }
 
-    return (
-      <div>
-        {!loading && (
-          <div className="orgPrimaryDiv">
-            <div className="orgHeader">
-              <div className="orgHeaderAvatar" />
+    const toRender = () => {
+      if (permissionDenied) {
+        return <NotFound />
+      }
+
+      return (
+        <div className="orgPrimaryDiv">
+          <div className="orgHeader">
+            <div className="orgHeaderAvatar" />
+          </div>
+          <div className="orgMainGrid">
+            <div className="orgPersonal">
+              <About onSubmit={saveOrganizationInfo} />
             </div>
-            <div className="orgMainGrid">
-              <div className="orgPersonal">
-                <About onSubmit={saveOrganizationInfo} />
-              </div>
-              <div className="orgMedia">
-                <MediaInfo onSubmit={saveOrgVideo} />
-              </div>
-            </div>
-            <div style={{ margin: '.5%' }}>
-              <RaisedButton
-                label="Save"
-                labelColor="#FFF"
-                fullWidth
-                buttonStyle={{ backgroundColor: orange400 }}
-                onClick={() => clickFunction(submit)}
-              />
+            <div className="orgMedia">
+              <MediaInfo onSubmit={saveOrgVideo} />
             </div>
           </div>
-        )}
-      </div>
-    )
+          <div style={{ margin: '.5%' }}>
+            <RaisedButton
+              label="Save"
+              labelColor="#FFF"
+              fullWidth
+              buttonStyle={{ backgroundColor: orange400 }}
+              onClick={() => clickFunction(submit)}
+            />
+          </div>
+        </div>
+      )
+    }
+
+    return toRender()
   }
+}
+
+EditOrg.propTypes = {
+  fetchOrganization: PropTypes.func.isRequired,
+  fetchUserPermissions: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired, // eslint-disable-line
+  id: PropTypes.number.isRequired,
+  submit: PropTypes.func.isRequired,
+  updateOrganization: PropTypes.func.isRequired,
+  updateOrgVideo: PropTypes.func.isRequired,
+  videoID: PropTypes.number.isRequired,
+  placesResult: PropTypes.object.isRequired, // eslint-disable-line
+  permissions: PropTypes.array.isRequired // eslint-disable-line
 }
 
 export default EditOrg

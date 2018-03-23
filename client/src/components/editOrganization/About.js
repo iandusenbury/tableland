@@ -7,6 +7,7 @@ import Company from 'material-ui/svg-icons/communication/business'
 import { Field, reduxForm } from 'redux-form'
 import GooglePlacesAutocomplete from '../../containers/placesAutocomplete'
 import './editOrg.css'
+import { validateAbout } from './validation'
 
 const About = props => {
   const { handleSubmit, change } = props
@@ -87,5 +88,6 @@ const About = props => {
 
 export default reduxForm({
   form: 'about',
-  enableReinitialize: true
+  enableReinitialize: true,
+  validate: validateAbout
 })(About)

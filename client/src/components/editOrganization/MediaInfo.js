@@ -6,7 +6,7 @@ import Photo from 'material-ui/svg-icons/image/add-a-photo'
 import { StyledPaper } from '../../widgets/StyledPaper'
 import { StyledTextField } from '../../widgets/StyledTextField'
 import './editOrg.css'
-
+import { validateMedia } from './validation'
 
 class MediaInfo extends Component {
 
@@ -47,5 +47,6 @@ class MediaInfo extends Component {
 }
 export default reduxForm({
     form: 'mediaInfo',
-    enableReinitialize: true
+    enableReinitialize: true,
+    validate: validateMedia
 })(MediaInfo)

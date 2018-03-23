@@ -16,11 +16,25 @@ export const maxLength255 = maxLength(255)
 export const validateExperiences = values => {
   const errors = {}
   const { existingExp, newExp } = values
+  const checkEndDate = (start, end) => {
+    const sDate = new Date(start)
+    const eDate = new Date(end)
+
+    if (eDate >= sDate || !end) return undefined
+    return 'End date cannot be past start date'
+  }
 
   if (existingExp) {
     errors.existingExp = []
     existingExp.forEach(experience => {
-      const { name, position, startDate, address, programs } = experience
+      const {
+        name,
+        position,
+        startDate,
+        endDate,
+        address,
+        programs
+      } = experience
       const error = {}
 
       error.name = name ? undefined : 'Required'
@@ -28,19 +42,25 @@ export const validateExperiences = values => {
       error.startDate = startDate ? undefined : 'Required'
       error.address = address ? undefined : 'Required'
 
+      error.endDate = checkEndDate(startDate, endDate)
+
       if (programs && programs.length > 0) {
         error.programs = []
         programs.forEach(program => {
           const {
             name: progName,
             position: progPosition,
-            startDate: progStartDate
+            startDate: progStartDate,
+            endDate: progEndDate
           } = program
           const progError = {}
 
           progError.name = progName ? undefined : 'Required'
           progError.position = progPosition ? undefined : 'Required'
           progError.startDate = progStartDate ? undefined : 'Required'
+
+          progError.endDate = checkEndDate(progStartDate, progEndDate)
+
           error.programs.push(progError)
         })
       }
@@ -50,7 +70,14 @@ export const validateExperiences = values => {
   } else if (newExp) {
     errors.newExp = []
     newExp.forEach(experience => {
-      const { name, position, startDate, address, programs } = experience
+      const {
+        name,
+        position,
+        startDate,
+        endDate,
+        address,
+        programs
+      } = experience
       const error = {}
 
       error.name = name ? undefined : 'Required'
@@ -58,19 +85,25 @@ export const validateExperiences = values => {
       error.startDate = startDate ? undefined : 'Required'
       error.address = address ? undefined : 'Required'
 
+      error.endDate = checkEndDate(startDate, endDate)
+
       if (programs && programs.length > 0) {
         error.programs = []
         programs.forEach(program => {
           const {
             name: progName,
             position: progPosition,
-            startDate: progStartDate
+            startDate: progStartDate,
+            endDate: progEndDate
           } = program
           const progError = {}
 
           progError.name = progName ? undefined : 'Required'
           progError.position = progPosition ? undefined : 'Required'
           progError.startDate = progStartDate ? undefined : 'Required'
+
+          progError.endDate = checkEndDate(progStartDate, progEndDate)
+
           error.programs.push(progError)
         })
       }

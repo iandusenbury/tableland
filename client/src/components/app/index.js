@@ -24,7 +24,7 @@ const App = () => (
       <Route exact path="/" component={Home} />
       <Route exact path="/about" component={About} />
       <PrivateRoute exact path="/admin" component={Admin} />
-      <Route exact path="/organization/edit/:id" component={EditOrg}/>
+      <PrivateRoute exact path="/organization/edit/:id" component={EditOrg} />
       <Route exact path="/results" component={SearchResults} />
       <Route exact path="/organization/:id" component={OrgPage} />
       <Route exact path="/profile" component={Professional} />

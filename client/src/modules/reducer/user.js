@@ -1,4 +1,4 @@
-import { find, propEq, dissoc } from 'ramda'
+import { find, propEq, dissoc, isEmpty } from 'ramda'
 import createReducer from '../../utils/createReducer'
 import ActionTypes from '../../constants/actionTypes'
 
@@ -58,9 +58,20 @@ function updateUser(state, { payload }) {
   const { experiences } = state
   const { experience } = payload
 
+  const { endDate, startDate } = experience
+
+  const dateifiedEndDate = endDate === null ? null : new Date(endDate)
+  const dateifiedStartDate = new Date(startDate)
+
+  const dateifiedExperience = {
+    ...experience,
+    startDate: dateifiedStartDate,
+    endDate: dateifiedEndDate
+  }
+
   return {
     ...state,
-    experiences: [...experiences, dissoc('user', experience)]
+    experiences: [...experiences, dissoc('user', dateifiedExperience)]
   }
 }
 

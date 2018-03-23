@@ -53,7 +53,7 @@ function addExistingExp(state, { payload }) {
     parentOrganization: orgId
   } = experience
 
-  const dateifiedEndDate = isEmpty(endDate) ? '' : new Date(endDate)
+  const dateifiedEndDate = endDate === null ? null : new Date(endDate)
   const dateifiedStartDate = new Date(startDate)
 
   if (organization) {
@@ -84,10 +84,18 @@ function addExistingExp(state, { payload }) {
   }
 
   if (orgId) {
+    const progExp = {
+      name: program.name,
+      position: title,
+      award,
+      current,
+      endDate: dateifiedEndDate,
+      startDate: dateifiedStartDate
+    }
     const exp = find(propEq('id', orgId))(existingExp)
     const expIndex = findIndex(propEq('id', orgId))(existingExp)
     const { programs } = exp
-    const mergedPrograms = append(program, programs)
+    const mergedPrograms = append(progExp, programs)
     const newExp = { ...exp, programs: mergedPrograms }
     const updatedExp = update(expIndex, newExp, existingExp)
 
@@ -205,9 +213,20 @@ function updateUser(state, { payload }) {
   const { experiences } = state
   const { experience } = payload
 
+  const { endDate, startDate } = experience
+
+  const dateifiedEndDate = endDate === null ? null : new Date(endDate)
+  const dateifiedStartDate = new Date(startDate)
+
+  const dateifiedExperience = {
+    ...experience,
+    startDate: dateifiedStartDate,
+    endDate: dateifiedEndDate
+  }
+
   return {
     ...state,
-    experiences: [...experiences, dissoc('user', experience)]
+    experiences: [...experiences, dissoc('user', dateifiedExperience)]
   }
 }
 

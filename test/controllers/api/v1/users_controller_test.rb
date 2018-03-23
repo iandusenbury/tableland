@@ -33,7 +33,7 @@ module Api::V1
 
     test "should destroy user" do
       assert_difference('User.count', -1) do
-        api_delete v1_user_url(@user), as: :json
+        delete api_v1_user_url(@user), as: :json
       end
 
       assert_response 204

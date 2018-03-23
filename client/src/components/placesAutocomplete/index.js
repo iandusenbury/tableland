@@ -18,16 +18,8 @@ class GooglePlaceAutocomplete extends Component {
   }
 
   componentWillMount() {
-    const {
-      placesUpdateData,
-      resultsCallback,
-      placesData,
-      searchTexts,
-      placesUpdateText,
-      value,
-      formIndex
-    } = this.props
-    if (value) {
+    const { placesUpdateData, value, formIndex, org } = this.props
+    if (org && value) {
       this.updateInput(value, formIndex)
     } else placesUpdateData([], formIndex)
   }
@@ -67,10 +59,11 @@ class GooglePlaceAutocomplete extends Component {
       formIndex,
       value,
       placesResults,
-      placesUpdateResult
+      placesUpdateResult,
+      org
     } = this.props
 
-    if (value && placesData[0].length > 0 && isEmpty(placesResults)) {
+    if (org && value && placesData[0].length > 0 && isEmpty(placesResults)) {
       const item = placesData[0]
       this.geocoder.geocode({ placeId: item[0].place_id }, results => {
         placesUpdateResult(camelizeKeys(results[0]), 0)

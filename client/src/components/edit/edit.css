@@ -1,9 +1,9 @@
-.editPrimaryDiv {
+.EditPrimaryDiv {
     width: 100%;
     height: auto;
 }
 
-.editHeader {
+.EditHeader {
     width: 100%;
     height: 16vh;
     margin-top: .5%;
@@ -11,7 +11,7 @@
 
 }
 
-.editHeaderAvatar {
+.EditHeaderAvatar {
     margin-left: 47%;
 }
 
@@ -27,84 +27,84 @@
     grid-template-areas: "personal" "media" "experience";
 }
 
-.editPersonal {
+.EditPersonal {
     height: auto;
     margin-bottom: .75%;
 }
 
-.editMedia {
+.EditMedia {
     height: 35vh;
     margin-bottom: .75%;
 }
 
 
-.editExperience {
+.EditExperience {
     height: auto;
     margin-bottom: .75%;
 }
 
 
-.editSectionGrid {
+.EditSectionGrid {
     display: grid;
     grid-template-columns: 20% 80%;
     grid-column-gap: 2%;
     margin-right: 2%;
 }
 
-.editSectionGrid > div:nth-child(even){
+.EditSectionGrid > div:nth-child(even){
     height: auto;
 
 }
 
-.editSectionGrid > div:nth-child(odd){
+.EditSectionGrid > div:nth-child(odd){
     min-height: 35vh;
     border-right: 2px solid lightblue;
 }
 
-.editGrid {
+.EditGrid {
     margin-top: 1%;
     display: grid;
     grid-template-columns: 20% 80%;
 }
 
 
-.editGrid > div:nth-child(odd){
+.EditGrid > div:nth-child(odd){
     background: transparent;
     height: 35vh;
 }
 
-.editGrid > div:nth-child(even){
+.EditGrid > div:nth-child(even){
     background: transparent;
 }
 
 
-.editFieldsGrid {
+.EditFieldsGrid {
     display: grid;
     height: auto;
     grid-template-columns: 1fr 1fr;
 }
 
-.editFieldsGrid > div {
+.EditFieldsGrid > div {
     background: transparent;
 }
 
-.editExperiencesFields{
+.EditExperiencesFields{
     height: auto;
 }
 
 
-.editMediaGrid {
+.EditMediaGrid {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
-.editMediaGrid > div {
+.EditMediaGrid > div {
     background: transparent;
     height: auto;
 }
 
 
-.editVideo {
+.EditVideo {
     height:31vh;
     width: auto;
     display: inline-block;
@@ -133,21 +133,21 @@
     margin-top: 3%;
 }
 
-.editChangeButton {
+.EditChangeButton {
     height: auto;
     width: auto;
     display: inline-block;
     margin-left: 4%;
 }
 
-.editAddVideo {
+.EditAddVideo {
     height: 40px;
     width: 150px;
     display: inline-block;
     margin-left: 2%;
 }
 
-.editGeneric {
+.EditGeneric {
     height: auto;
     width: auto;
 }

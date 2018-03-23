@@ -13,7 +13,7 @@ export default function callApi(callDescriptor, callbacks = {}) {
   const protocol = window.location.protocol // eslint-disable-line
   const apiUrl =
     windowUrl === 'localhost'
-      ? 'api.roadmaps.lvh.me:5000/api/v1'
+      ? 'api.roadmaps.lvh.me:5000'
       : window.location.hostname
   const mergedCallbacks = merge(defaultCallback, callbacks)
   const {
@@ -27,7 +27,7 @@ export default function callApi(callDescriptor, callbacks = {}) {
     dispatch({
       [RSAA]: {
         body: JSON.stringify(decamelizeKeys(body)) || identity, // TODO test on POST request
-        endpoint: `${protocol}//${apiUrl}${endpoint}`,
+        endpoint: `${protocol}//${apiUrl}/api/v1${endpoint}`,
         method: method || 'GET',
         types: [
           request,

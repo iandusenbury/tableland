@@ -11,6 +11,7 @@ import search from './search'
 import program from './program'
 import roadmap from './roadmap'
 import places from './places'
+import edit from './edit'
 
 export default combineReducers({
   example,
@@ -23,5 +24,6 @@ export default combineReducers({
   search,
   program,
   roadmap,
-  places
+  places,
+  edit
 })

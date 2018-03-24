@@ -133,6 +133,7 @@ EditOrg.propTypes = {
   fetchUserPermissions: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired, // eslint-disable-line
   id: PropTypes.number.isRequired,
+  userId: PropTypes.number.isRequired,
   submit: PropTypes.func.isRequired,
   updateOrganization: PropTypes.func.isRequired,
   updateOrgVideo: PropTypes.func.isRequired,

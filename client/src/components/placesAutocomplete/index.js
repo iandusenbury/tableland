@@ -67,7 +67,7 @@ class GooglePlaceAutocomplete extends Component {
 
     const underlineStyle = org ? style.organization : {}
 
-    if (org && value && placesData[0].length > 0 && isEmpty(placesResults)) {
+    if (org && value && placesData[0] && placesData[0].length > 0 && isEmpty(placesResults)) {
       const item = placesData[0]
       this.geocoder.geocode({ placeId: item[0].place_id }, results => {
         placesUpdateResult(camelizeKeys(results[0]), 0)

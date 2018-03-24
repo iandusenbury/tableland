@@ -105,13 +105,12 @@ const NewExperiences = props => {
 
   const renderNewExp = ({ fields }) => (
     <div>
-      <div style={{ marginTop: '4%', marginBottom: '4%', width: '75vw' }}>
+      <div style={{ marginTop: '4%', marginBottom: '4%', width: '60vw' }}>
         <RaisedButton
           onClick={() => fields.push({})}
           label="Add Experiences"
           fullWidth
           secondary
-          style={{ marginRight: '10%' }}
         />
       </div>
       <div>

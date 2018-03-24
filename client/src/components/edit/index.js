@@ -185,7 +185,7 @@ class EditProfile extends Component {
     }
 
     return (
-      <div>
+      <div className="edit-professional-wrapper">
         {!loading && (
           <div className="EditPrimaryDiv">
             <div className="EditHeader">

@@ -103,7 +103,7 @@ const renderPrograms = ({ fields }) => (
     {fields.map((program, index) => (
       <div
         key={index}
-        style={{ width: '75vw', marginBottom: '2%', marginTop: '2%' }}>
+        style={{ width: 'auto', marginBottom: '2%', marginTop: '2%' }}>
         <div className="EditOuterDiv" style={{ backgroundColor: '#F0FFFF' }}>
           <div>
             <Field

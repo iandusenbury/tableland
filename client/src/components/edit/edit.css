@@ -1,3 +1,7 @@
+.edit-professional-wrapper {
+  
+}
+
 .EditPrimaryDiv {
   width: 100%;
   height: auto;
@@ -39,6 +43,8 @@
 @media (max-width: 660px) {
   .EditPersonal {
     height: auto;
+    width: 90vw;
+    margin: 0 auto;
     margin-bottom: .75%;
   }
 }
@@ -46,6 +52,8 @@
 @media (min-width: 660px) {
   .EditPersonal {
     height: 35vh;
+    width: 90vw;
+    margin: 0 auto;
     margin-bottom: .75%;
   }
 }
@@ -59,6 +67,8 @@
 @media (max-width: 660px) {
   .EditMedia {
     height: 35vh;
+    width: 90vw;
+    margin: 0 auto;
     margin-bottom: .75%;
   }
 }
@@ -66,12 +76,16 @@
 @media (min-width: 660px) {
   .EditMedia {
     height: auto;
+    width: 90vw;
+    margin: 0 auto;
     margin-bottom: .75%;
   }
 }
 
 .EditExperience {
   height: auto;
+  width: 90vw;
+  margin: 0 auto;
   margin-bottom: .75%;
 }
 

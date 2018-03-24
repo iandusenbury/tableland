@@ -12,7 +12,6 @@ import EditOrg from '../../components/editOrganization'
 const mapStateToProps = state => ({
   videoID: state.app.organizationPage.media.video.id,
   id: state.app.organizationPage.id,
-  loading: state.app.isLoading.loading,
   placesResult: state.app.places.placesResults[0],
   permissions: state.app.admin.organizations,
   userId: state.app.user.id

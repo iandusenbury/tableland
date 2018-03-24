@@ -170,7 +170,7 @@ const NewExperiences = props => {
                 />
               </div>
             </div>
-            <div style={{ width: '73vw' }}>
+            <div style={{ width: '60vw' }}>
               <Field
                 name={`${exp}.address`}
                 component={Places}

@@ -203,3 +203,41 @@ export function initializeApp() {
       dispatch(onSuccess())
     })
 }
+
+export function updateOrganization(id, info) {
+  const callDescriptor = {
+    body: { ...info },
+    endpoint: `/organizations/${id}`,
+    method: 'PUT',
+    types: [
+      ActionTypes.REQUEST_UPDATE_ORG,
+      ActionTypes.SUCCESS_UPDATE_ORG,
+      ActionTypes.FAILURE_UPDATE_ORG
+    ]
+  }
+
+  return dispatch => dispatch(callApi(callDescriptor))
+}
+
+export function updateOrgVideo(url, orgID, videoId) {
+  const body = videoId ? { url } : { medium: { category: 'video', url } }
+  const endpoint = videoId
+    ? `/organizations/${orgID}/media/${videoId}`
+    : `/organizations/${orgID}/media`
+  const method = videoId ? 'PUT' : 'POST'
+  const callDescriptor = {
+    body,
+    endpoint,
+    method,
+    types: [
+      ActionTypes.REQUEST_UPDATE_ORG_VIDEO,
+      ActionTypes.SUCCESS_UPDATE_ORG_VIDEO,
+      ActionTypes.FAILURE_UPDATE_ORG_VIDEO
+    ]
+  }
+
+  const onSuccess = (response, dispatch) =>
+    dispatch(openDialog(1, { message: 'Success' }))
+
+  return dispatch => dispatch(callApi(callDescriptor))
+}

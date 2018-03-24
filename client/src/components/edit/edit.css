@@ -85,7 +85,6 @@
 }
 
 .EditSectionGrid > div:nth-child(even){
-  /*height: 35vh;*/
   height: auto;
 
 }
@@ -120,7 +119,7 @@
 @media (min-width: 660px) {
   .EditFieldsGrid {
     display: grid;
-    height: 35vh;
+    height: auto;
     grid-template-columns: 1fr 1fr;
   }
 }

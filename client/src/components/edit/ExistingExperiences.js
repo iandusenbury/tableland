@@ -72,15 +72,15 @@ const renderExistingExp = ({ fields }) => (
             />
           </div>
         </div>
-          <div style={{width: '73vw'}}>
-              <Field
-                  name={`${exp}.address`}
-                  component={StyledTextField}
-                  text="Address"
-                  disabled
-                  fullWidth
-              />
-          </div>
+        <div style={{ width: '73vw' }}>
+          <Field
+            name={`${exp}.address`}
+            component={StyledTextField}
+            text="Address"
+            disabled
+            fullWidth
+          />
+        </div>
         <div>
           <FieldArray name={`${exp}.programs`} component={renderPrograms} />
         </div>
@@ -166,9 +166,7 @@ const renderPrograms = ({ fields }) => (
 )
 
 class ExistingExperiences extends Component {
-  componentDidMount() {
-
-  }
+  componentDidMount() {}
 
   render() {
     const { handleSubmit } = this.props

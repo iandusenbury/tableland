@@ -18,10 +18,9 @@ import SearchBarForm from '../../containers/searchBarForm'
 import styles from '../../constants/styles'
 import './style.css'
 
-import { mesaMenuButton, navbarPaths } from '../../constants/navbar'
 import Dialog from '../../containers/dialog'
 
-//import MESAIcon from '../../assets/images/MESA_logo.svg'
+// import MESAIcon from '../../assets/images/MESA_logo.svg'
 const MESAIcon = require('../../assets/images/MESA_logo_white.svg')
 const MESAIconSmall = require('../../assets/images/MESA_logo_white_small.svg')
 const MESAIconTiny = require('../../assets/images/MESA_logo_white_tiny.svg')
@@ -50,9 +49,10 @@ const Navbar = props => {
       <Dialog open={dialogIsOpen} />
       <Toolbar style={styles.toolbar}>
         <ToolbarGroup style={styles.toolbarGroupLeft}>
-          <img 
-            className='navbar-mesa-logo' 
-            src={MESAIcon} 
+          <img
+            className='navbar-mesa-logo'
+            src={MESAIcon}
+            alt="Home"
             onClick={() => fetchMapProfessional('random')}
           />
           <img 
@@ -89,23 +89,23 @@ const Navbar = props => {
             {signedIn && (
               <MenuItem
                 containerElement={<Link to="/profile" />}
-                value={navbarPaths.view_profile.value}
-                primaryText={navbarPaths.view_profile.primaryText}
+                value="profile"
+                primaryText="View Profile"
               />
             )}
             {signedIn && (
               <MenuItem
-                containerElement={<Link to={navbarPaths.edit_profile.path} />}
-                value={navbarPaths.edit_profile.value}
-                primaryText={navbarPaths.edit_profile.primaryText}
+                containerElement={<Link to="/profile/edit" />}
+                value="edit_profile"
+                primaryText="Edit Profile"
               />
             )}
             <Divider />
             {isAdmin && (
               <MenuItem
-                containerElement={<Link to={navbarPaths.admin_page.path} />}
-                value={navbarPaths.admin_page.value}
-                primaryText={navbarPaths.admin_page.primaryText}
+                containerElement={<Link to="/admin" />}
+                value="admin_panel"
+                primaryText="Admin Panel"
               />
             )}
             {signedIn && (
@@ -119,9 +119,9 @@ const Navbar = props => {
               <Divider />
             )}
             <MenuItem
-              containerElement={<Link to={navbarPaths.about.path} />}
-              value={navbarPaths.about.value}
-              primaryText={navbarPaths.about.primaryText}
+              containerElement={<Link to="/about" />}
+              value="about"
+              primaryText="About"
             />
           </IconMenu>
         </ToolbarGroup>

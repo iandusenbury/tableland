@@ -4,7 +4,8 @@ import About from '../components/about'
 import SearchResults from '../containers/searchResults'
 import OrgPage from '../containers/organization'
 import ProfPage from '../containers/professional'
-import EditProfile from '../containers/edit'
+import EditProfile from '../components/edit'
+import EditOrg from '../components/editOrganization'
 
 export const routePathToComponent = [
   {
@@ -41,6 +42,11 @@ export const routePathToComponent = [
     name: 'EditProfile',
     path: '/edit',
     component: EditProfile
+  },
+  {
+    name: 'EditOrg',
+    path: '/editOrganization',
+    component: EditOrg
   }
 ]
 

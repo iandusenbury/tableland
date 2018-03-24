@@ -20,7 +20,9 @@ const initialState = {
   link: '',
   media: {
     image: {},
-    video: {}
+    video: {
+      id: ''
+    }
   },
   users: []
 }
@@ -53,7 +55,7 @@ function requestOrganization(state, data) {
     ...organization,
     media: {
       image: image || { url: portraitImg },
-      video: video || { url: '' }
+      video: video || { url: '', id: '' }
     },
     users: mediaReducedUsers
   }

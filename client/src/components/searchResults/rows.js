@@ -59,7 +59,6 @@ const tableRow = profile => {
   )
 }
 
-
 export const renderProgram = program => {
   const { id, type, name, parentOrganizationNames, imageUrl, url: contactUrl } = program
 

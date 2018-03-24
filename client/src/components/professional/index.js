@@ -144,6 +144,16 @@ Professional.propTypes = {
 }
 
 function createExperienceTable(experiences) {
+  // Sort experiences by order of end date,
+  // putting current positions first.
+  experiences.sort(function(a,b) {
+    if (!a.endDate)
+      return -1
+    if (!b.endDate)
+      return -1
+    return new Date(b.endDate) - new Date(a.endDate)
+  })
+
   return experiences.map(experience => {
     const {
       id,
@@ -181,6 +191,7 @@ function createExperienceTable(experiences) {
 
 function createProgramTable(name, experience) {
   const { id, startDate, endDate, title, award, program } = experience
+  const { parentOrganization } = program
 
   const start = getDate(startDate)
   const end = getDate(endDate)

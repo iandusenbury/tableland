@@ -12,7 +12,9 @@ const initialState = {
   url: '',
   media: {
     image: {},
-    video: {}
+    video: {
+      id: ''
+    }
   },
   users: [],
   sponsors: [],
@@ -48,7 +50,7 @@ function requestProgram(state, data) {
     ...program,
     media: {
       image: image || { url: portraitImg },
-      video: video || { url: '' }
+      video: video || { url: '', id: '' }
     },
     users: mediaReducedUsers
   }

@@ -20,7 +20,7 @@ import './style.css'
 
 import Dialog from '../../containers/dialog'
 
-//import MESAIcon from '../../assets/images/MESA_logo.svg'
+// import MESAIcon from '../../assets/images/MESA_logo.svg'
 const MESAIcon = require('../../assets/images/MESA_logo_white.svg')
 /*
    [Hamburger Menu] (if signed in)

@@ -28,7 +28,7 @@
 }
 
 .EditPersonal {
-    height: 35vh;
+    height: auto;
     margin-bottom: .75%;
 }
 
@@ -52,13 +52,12 @@
 }
 
 .EditSectionGrid > div:nth-child(even){
-    /*height: 35vh;*/
     height: auto;
 
 }
 
 .EditSectionGrid > div:nth-child(odd){
-    height: 35vh;
+    min-height: 35vh;
     border-right: 2px solid lightblue;
 }
 
@@ -78,9 +77,10 @@
     background: transparent;
 }
 
+
 .EditFieldsGrid {
     display: grid;
-    height: 35vh;
+    height: auto;
     grid-template-columns: 1fr 1fr;
 }
 

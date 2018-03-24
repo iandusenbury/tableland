@@ -19,12 +19,12 @@
 .EditMainGrid {
     overflow-y: scroll;
     overflow-x: hidden;
-    height: 71vh;
+    height: 69.5vh;
     margin-top: 1%;
     display: grid;
     grid-template-columns: 100%;
     grid-row-gap: 5%;
-    grid-template-areas: "personal" "media" "experience";
+    /* grid-template-areas: "personal" "media" "experience"; */
 }
 
 .EditPersonal {

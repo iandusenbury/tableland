@@ -4,6 +4,7 @@ import Marker from 'material-ui/svg-icons/maps/place'
 import PropTypes from 'prop-types'
 import { camelizeKeys } from 'humps'
 import { isEmpty } from 'ramda'
+import { style} from "../../widgets/styles";
 
 class GooglePlaceAutocomplete extends Component {
   constructor(props) {
@@ -63,6 +64,9 @@ class GooglePlaceAutocomplete extends Component {
       org
     } = this.props
 
+
+    const underlineStyle = org ? style.organization : {}
+
     if (org && value && placesData[0].length > 0 && isEmpty(placesResults)) {
       const item = placesData[0]
       this.geocoder.geocode({ placeId: item[0].place_id }, results => {
@@ -73,6 +77,7 @@ class GooglePlaceAutocomplete extends Component {
     return placesData[formIndex] ? (
       <div>
         <AutoComplete
+          underlineFocusStyle={underlineStyle}
           searchText={searchTexts[formIndex]}
           errorText={errorText}
           errorStyle={errorStyle}

@@ -18,6 +18,11 @@ function clickFunction(submit, placesClearAll) {
 }
 
 class EditProfile extends Component {
+  componentWillUnmount() {
+    const { placesClearAll } = this.props
+    placesClearAll()
+  }
+
   render() {
     const {
       profileImage,
@@ -231,7 +236,8 @@ EditProfile.propTypes = {
   hasVideo: PropTypes.bool.isRequired,
   videoId: PropTypes.number.isRequired,
   userId: PropTypes.number.isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  placesClearAll: PropTypes.func.isRequired
 }
 
 export default EditProfile

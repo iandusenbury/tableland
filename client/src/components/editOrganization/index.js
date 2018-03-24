@@ -9,9 +9,10 @@ import About from '../../containers/editOrganization/about'
 import NotFound from '../notFound'
 import MediaInfo from '../../containers/editOrganization/mediaInfo'
 
-function clickFunction(submit) {
+function clickFunction(submit, placesClearAll) {
   submit('about')
   submit('mediaInfo')
+  placesClearAll()
   window.location.reload(true)
 }
 
@@ -28,6 +29,11 @@ class EditOrg extends Component {
     fetchUserPermissions(userId)
   }
 
+  componentWillUnmount() {
+    const { placesClearAll } = this.props
+    placesClearAll()
+  }
+
   render() {
     const {
       id,
@@ -36,7 +42,8 @@ class EditOrg extends Component {
       updateOrgVideo,
       videoID,
       placesResult,
-      permissions
+      permissions,
+      placesClearAll
     } = this.props
 
     const orgIds = permissions.map(perm => {
@@ -122,7 +129,7 @@ class EditOrg extends Component {
               labelColor="#FFF"
               fullWidth
               buttonStyle={{ backgroundColor: orange400 }}
-              onClick={() => clickFunction(submit)}
+              onClick={() => clickFunction(submit, placesClearAll)}
             />
           </div>
         </div>
@@ -144,7 +151,8 @@ EditOrg.propTypes = {
   updateOrgVideo: PropTypes.func.isRequired,
   videoID: PropTypes.number.isRequired,
   placesResult: PropTypes.object.isRequired, // eslint-disable-line
-  permissions: PropTypes.array.isRequired // eslint-disable-line
+  permissions: PropTypes.array.isRequired, // eslint-disable-line
+  placesClearAll: PropTypes.func.isRequired
 }
 
 export default EditOrg

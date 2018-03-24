@@ -4,7 +4,8 @@ import { submit } from 'redux-form'
 import {
   fetchOrganization,
   updateOrganization,
-  updateOrgVideo
+  updateOrgVideo,
+  placesClearAll
 } from '../../actions'
 import { fetchUserPermissions } from '../../actions/admin'
 import EditOrg from '../../components/editOrganization'
@@ -24,7 +25,8 @@ const mapDispatchToProps = dispatch =>
       fetchUserPermissions,
       updateOrganization,
       updateOrgVideo,
-      submit
+      submit,
+      placesClearAll
     },
     dispatch
   )

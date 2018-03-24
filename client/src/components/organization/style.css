@@ -109,6 +109,7 @@
 }
 
 .organizationUrl p {
+  word-break: break-all;
   margin: 0px;
   margin-top: 2px;
 }

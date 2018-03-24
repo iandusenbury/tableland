@@ -65,11 +65,10 @@
 }
 
 .mapProfilePreviewInfo p {
-  margin: 0px;
+  margin: 0 auto;
   margin-top: 6px;
   white-space: normal;
   max-width: 200px;
-  margin-left: 40px;
 }
 
 .mapProfilePreviewAvatar {

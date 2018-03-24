@@ -73,7 +73,7 @@
     padding-left: 0px;
     min-height: 130px;
     display: grid;
-    grid-template-columns: 1fr 3fr 4fr;
+    grid-template-columns: 1fr 3fr;
     grid-template-rows: 25% 25% auto;
     grid-template-areas:
       'name name '
@@ -135,7 +135,7 @@
 }
 
 .search-table-address {
-  margin-top: 12px;
+  /* margin-top: 12px; */
 }
 
 @media (max-width: 600px) {
@@ -174,8 +174,12 @@
 }
 
 @media (max-width: 600px) {
+  .search-table-about p:first-child {
+    /* margin-top: -4px; */
+  }
   .search-table-about p {
     margin: 0;
+    margin-top: 4px;
     width: 50vw;
     font-size: 14px;
     white-space: normal;
@@ -183,8 +187,10 @@
 }
 
 @media (min-width: 601px) {
+  .search-table-about p:first-child {
+    margin-top: 18px;
+  }
   .search-table-about p {
-    margin-top: 10px;
     margin-bottom: 0;
     text-align: center;
     font-size: 14px;

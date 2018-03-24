@@ -86,8 +86,6 @@ export const renderOrganization = organization => {
     type,
     name,
     addressLine1,
-    addressLine2,
-    addressLine3,
     city,
     state,
     imageUrl,
@@ -98,12 +96,6 @@ export const renderOrganization = organization => {
 
   if (addressLine1) {
     address.push(addressLine1)
-  }
-  if (addressLine2) {
-    address.push(addressLine2)
-  }
-  if (addressLine3) {
-    address.push(addressLine3)
   }
   const extendedAddress = []
   if (city) {

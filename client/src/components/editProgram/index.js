@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from "prop-types";
 import { find, propEq } from 'ramda'
 import { orange400 } from 'material-ui/styles/colors'
 import { RaisedButton } from 'material-ui'
@@ -7,6 +8,7 @@ import '../editOrganization/editOrg.css'
 import NotFound from '../notFound'
 import About from '../../containers/editProgram/aboutProgram'
 import Media from '../../containers/editProgram/mediaProgram'
+
 
 function clickFunction(submit) {
     submit('aboutProgram')
@@ -97,5 +99,20 @@ class EditProgram extends Component {
         return toRender()
     }
 }
+
+EditProgram.propTypes = {
+    fetchProgram: PropTypes.func.isRequired,
+    fetchUserPermissions: PropTypes.func.isRequired,
+    match: PropTypes.object.isRequired, // eslint-disable-line
+    id: PropTypes.number.isRequired,
+    userId: PropTypes.number.isRequired,
+    submit: PropTypes.func.isRequired,
+    updateProgram: PropTypes.func.isRequired,
+    updateProgramVideo: PropTypes.func.isRequired,
+    videoID: PropTypes.number.isRequired,
+    permissions: PropTypes.array.isRequired, // eslint-disable-line
+}
+
+
 
 export default EditProgram;

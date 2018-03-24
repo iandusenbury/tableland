@@ -18,7 +18,6 @@ import ProfPage from './style'
 import { getDate } from '../../constants/dates'
 import './style.css'
 
-// const hasVideo = true // this will be passed as props
 const sampleImg = require('./sample.jpg')
 
 class Professional extends Component {

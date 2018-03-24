@@ -14,7 +14,8 @@ const mapStateToProps = state => ({
   id: state.app.organizationPage.id,
   loading: state.app.isLoading.loading,
   placesResult: state.app.places.placesResults[0],
-  permissions: state.app.admin.organizations
+  permissions: state.app.admin.organizations,
+  userId: state.app.user.id
 })
 
 const mapDispatchToProps = dispatch =>

@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
 import PrivateRoute from '../../containers/privateRoute'
+import ProtectedRoute from '../../containers/protectedRoute'
 import Navbar from '../../containers/navbar'
 
 // routes
@@ -31,7 +32,7 @@ const App = () => (
       <Route exact path="/professional/:id" component={Professional} />
       <Route exact path="/program/:id" component={ProgramPage} />
       <Route exact path="/roadmap/:id" component={GMap} />
-      <Route exact path="/edit" component={EditProfile} />
+      <ProtectedRoute exact path="/profile/edit" component={EditProfile} />
       <Route component={NotFound} />
     </Switch>
   </div>

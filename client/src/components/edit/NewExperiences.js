@@ -61,7 +61,8 @@ const renderPrograms = ({ fields }) => (
               component={DatePicker}
               style={style.datePicker}
               hintText="Start Date"
-              mode="landscape"
+              container="inline"
+              mode="portrait"
               required
             />
           </div>
@@ -71,7 +72,8 @@ const renderPrograms = ({ fields }) => (
               component={DatePicker}
               style={style.datePicker}
               hintText="End Date"
-              mode="landscape"
+              container="inline"
+              mode="portrait"
             />
           </div>
         </div>
@@ -156,7 +158,8 @@ const NewExperiences = props => {
                   component={DatePicker}
                   style={style.datePicker}
                   hintText="Start Date"
-                  mode="landscape"
+                  container="inline"
+                  mode="portrait"
                   required
                 />
               </div>
@@ -166,7 +169,8 @@ const NewExperiences = props => {
                   component={DatePicker}
                   style={style.datePicker}
                   hintText="End Date"
-                  mode="landscape"
+                  container="inline"
+                  mode="portrait"
                 />
               </div>
             </div>

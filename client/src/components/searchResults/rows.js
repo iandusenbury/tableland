@@ -92,28 +92,10 @@ export const renderOrganization = organization => {
     url: contactUrl
   } = organization
 
-  const address = []
-
-  if (addressLine1) {
-    address.push(addressLine1)
-  }
-  const extendedAddress = []
-  if (city) {
-    extendedAddress.push(city, ', ')
-  }
-  if (state) {
-    extendedAddress.push(state)
-  }
-  if (extendedAddress.length > 0) {
-    address.push(extendedAddress)
-  }
-
   const avatar = getAvatar(imageUrl)
   const profileName = <h2>{name}</h2>
-  const info = (
-    <div className='search-table-address'>{address.map((line, index) => <p key={index}>{line}</p>)}</div> // eslint-disable-line
-  )
-  //const contact = <a href={contactUrl}>{contactUrl}</a>
+  const info = <p>{addressLine1}</p>
+  // const contact = <a href={contactUrl}>{contactUrl}</a>
   const contact = <RaisedButton linkButton={true} href={contactUrl} label='View Website' />
   const rowInfo = {
     id,

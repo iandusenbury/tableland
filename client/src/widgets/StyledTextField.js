@@ -3,7 +3,17 @@ import TextField from 'material-ui/TextField'
 import { style } from './styles'
 
 export const StyledTextField = props => {
-  const { text, multiLine, disabled, input, required, dynamicRequired, meta: { error, touched }, fullWidth, org } = props
+  const {
+    text,
+    multiLine,
+    disabled,
+    input,
+    required,
+    dynamicRequired,
+    meta: { error, touched },
+    fullWidth,
+    org
+  } = props
   const isMultiLine = !!multiLine
   // const errorStyle = required ? style.error : {}
   const underlineStyle = org ? style.organization : {}

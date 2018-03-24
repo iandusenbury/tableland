@@ -55,7 +55,7 @@ function requestOrganization(state, data) {
     ...organization,
     media: {
       image: image || { url: portraitImg },
-      video: video || { url: '', id:'' }
+      video: video || { url: '', id: '' }
     },
     users: mediaReducedUsers
   }

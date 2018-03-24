@@ -21,7 +21,7 @@ import './style.css'
 import { mesaMenuButton, navbarPaths } from '../../constants/navbar'
 import Dialog from '../../containers/dialog'
 
-//import MESAIcon from '../../assets/images/MESA_logo.svg'
+// import MESAIcon from '../../assets/images/MESA_logo.svg'
 const MESAIcon = require('../../assets/images/MESA_logo_white.svg')
 /*
    [Hamburger Menu] (if signed in)
@@ -47,9 +47,9 @@ const Navbar = props => {
       <Dialog open={dialogIsOpen} />
       <Toolbar style={styles.toolbar}>
         <ToolbarGroup style={styles.toolbarGroupLeft}>
-          <img 
-            className='navbar-mesa-logo' 
-            src={MESAIcon} 
+          <img
+            className="navbar-mesa-logo"
+            src={MESAIcon}
             onClick={() => fetchMapProfessional('random')}
           />
         </ToolbarGroup>

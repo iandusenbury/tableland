@@ -17,7 +17,12 @@ function clickFunction(submit) {
 
 class EditOrg extends Component {
   componentWillMount() {
-    const { fetchOrganization, fetchUserPermissions, match, userId } = this.props
+    const {
+      fetchOrganization,
+      fetchUserPermissions,
+      match,
+      userId
+    } = this.props
 
     fetchOrganization(match.params.id)
     fetchUserPermissions(userId)

@@ -6,8 +6,8 @@ import { StyledPaper } from '../../widgets/StyledPaper'
 import Company from 'material-ui/svg-icons/communication/business'
 import { Field, reduxForm } from 'redux-form'
 import GooglePlacesAutocomplete from '../../containers/placesAutocomplete'
-import './editOrg.css'
 import { validateAbout } from './validation'
+import './editOrg.css'
 
 const About = props => {
   const { handleSubmit, change } = props
@@ -55,7 +55,7 @@ const About = props => {
                 org
               />
             </div>
-            <div style={{ marginTop: '4.5%', width: '35vw' }}>
+            <div className="edit-org-address">
               <Field
                 name="address"
                 component={Places}
@@ -67,7 +67,6 @@ const About = props => {
                 name="url"
                 component={StyledTextField}
                 text="Website Link"
-                multiLine
                 org
               />
             </div>

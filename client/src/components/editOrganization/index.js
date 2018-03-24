@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { find, propEq } from 'ramda'
 import { orange400 } from 'material-ui/styles/colors'
-import { RaisedButton } from 'material-ui'
+import { RaisedButton, Paper } from 'material-ui'
 import PropTypes from 'prop-types'
 
 import About from '../../containers/editOrganization/about'
@@ -115,23 +115,25 @@ class EditOrg extends Component {
           <div className="orgHeader">
             <div className="orgHeaderAvatar" />
           </div>
-          <div className="orgMainGrid">
+          <Paper className="orgMainGrid">
             <div className="orgPersonal">
               <About onSubmit={saveOrganizationInfo} />
             </div>
             <div className="orgMedia">
               <MediaInfo onSubmit={saveOrgVideo} />
             </div>
-          </div>
-          <div style={{ margin: '.5%' }}>
-            <RaisedButton
-              label="Save"
-              labelColor="#FFF"
-              fullWidth
-              buttonStyle={{ backgroundColor: orange400 }}
-              onClick={() => clickFunction(submit, placesClearAll)}
-            />
-          </div>
+          </Paper>
+          <Paper className='edit-org-save-button-wrapper' >
+            <div className='edit-org-save-button' >
+              <RaisedButton
+                label="Save"
+                labelColor="#FFF"
+                fullWidth
+                buttonStyle={{ backgroundColor: orange400 }}
+                onClick={() => clickFunction(submit, placesClearAll)}
+              />
+            </div>
+          </Paper>
         </div>
       )
     }

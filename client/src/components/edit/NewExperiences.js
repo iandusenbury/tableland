@@ -111,7 +111,7 @@ const NewExperiences = props => {
           label="Add Experiences"
           fullWidth
           secondary
-          style={{ marginRight: '10%' }}
+          style={{ marginRight: '0%' }}
         />
       </div>
       <div>
@@ -171,7 +171,7 @@ const NewExperiences = props => {
                 />
               </div>
             </div>
-            <div style={{ width: '73vw' }}>
+            <div style={{ width: '74.8vw' }}>
               <Field
                 name={`${exp}.address`}
                 component={Places}

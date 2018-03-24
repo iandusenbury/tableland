@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Field, reduxForm, formValueSelector } from 'redux-form'
-import { AppBar, IconButton, Avatar } from 'material-ui'
+import { Field, reduxForm } from 'redux-form'
+import { AppBar, IconButton } from 'material-ui'
 import './edit.css'
 import { style } from '../../widgets/styles'
 import Photo from 'material-ui/svg-icons/image/add-a-photo'

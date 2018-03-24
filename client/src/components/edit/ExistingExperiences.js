@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './experience.css'
 import { style } from '../../widgets/styles'
-import { FieldArray, Field, reduxForm, getFormValues } from 'redux-form'
+import { FieldArray, Field, reduxForm } from 'redux-form'
 import { StyledSelectField } from '../../widgets/StyledSelectField'
 import { StyledTextField } from '../../widgets/StyledTextField'
 import { DatePicker } from 'redux-form-material-ui'

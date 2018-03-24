@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { RaisedButton, Paper } from 'material-ui'
 
 import './style.css'

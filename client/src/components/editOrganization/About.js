@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { AppBar, IconButton } from 'material-ui'
 import { StyledTextField } from '../../widgets/StyledTextField'
 import { style } from '../../widgets/styles'

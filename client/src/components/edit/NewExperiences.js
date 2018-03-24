@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './experience.css'
 import { style } from '../../widgets/styles'
 import { FieldArray, Field, reduxForm, reset } from 'redux-form'

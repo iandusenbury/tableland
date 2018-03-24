@@ -1,4 +1,4 @@
-import { find, propEq, update, findIndex, dissoc, isEmpty, append } from 'ramda'
+import { find, propEq, update, findIndex, dissoc, append } from 'ramda'
 import createReducer from '../../utils/createReducer'
 import ActionTypes from '../../constants/actionTypes'
 

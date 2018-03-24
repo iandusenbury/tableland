@@ -55,11 +55,20 @@
     border-right: 2px solid #FFCC80;
 }
 
-.orgFieldsGrid {
-    display: grid;
+@media (max-width: 600px) {
+  .orgFieldsGrid {
     height: auto;
-    grid-template-columns: 1fr 1fr;
+  }
 }
+
+@media (min-width: 600px) {
+  .orgFieldsGrid {
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 
 .orgFieldsGrid > div {
     background: transparent;

@@ -4,10 +4,10 @@ import { orange400 } from 'material-ui/styles/colors'
 import { RaisedButton } from 'material-ui'
 import PropTypes from 'prop-types'
 
-import './editOrg.css'
 import About from '../../containers/editOrganization/about'
 import NotFound from '../notFound'
 import MediaInfo from '../../containers/editOrganization/mediaInfo'
+import './editOrg.css'
 
 function clickFunction(submit, placesClearAll) {
   submit('about')

@@ -145,6 +145,7 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+
 .EditMediaGrid > div {
   background: transparent;
   height: auto;

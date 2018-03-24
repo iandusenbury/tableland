@@ -51,6 +51,7 @@ const About = props => {
                 component={StyledTextField}
                 text="Organization Name"
                 required
+                multiLine
                 org
               />
             </div>

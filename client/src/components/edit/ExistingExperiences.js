@@ -56,7 +56,6 @@ const renderExistingExp = ({ fields }) => (
               component={DatePicker}
               style={style.datePicker}
               hintText="Start Date"
-              container="inline"
               mode="portrait"
               required
             />
@@ -67,7 +66,6 @@ const renderExistingExp = ({ fields }) => (
               component={DatePicker}
               style={style.datePicker}
               hintText="End Date"
-              container="inline"
               mode="portrait"
             />
           </div>
@@ -146,7 +144,6 @@ const renderPrograms = ({ fields }) => (
               component={DatePicker}
               style={style.datePicker}
               hintText="Start Date"
-              container="inline"
               mode="portrait"
             />
           </div>
@@ -156,7 +153,6 @@ const renderPrograms = ({ fields }) => (
               component={DatePicker}
               style={style.datePicker}
               hintText="End Date"
-              container="inline"
             />
           </div>
         </div>

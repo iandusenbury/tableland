@@ -29,7 +29,7 @@ const renderPrograms = ({ fields }) => (
     {fields.map((program, index) => (
       <div
         key={index}
-        style={{ width: '75vw', marginBottom: '2%', marginTop: '2%' }}>
+        style={{ width: '60vw', marginBottom: '2%', marginTop: '2%' }}>
         <div className="EditOuterDiv" style={{ backgroundColor: '#F0FFFF' }}>
           <div>
             <Field
@@ -61,7 +61,6 @@ const renderPrograms = ({ fields }) => (
               component={DatePicker}
               style={style.datePicker}
               hintText="Start Date"
-              container="inline"
               mode="portrait"
               required
             />
@@ -72,7 +71,6 @@ const renderPrograms = ({ fields }) => (
               component={DatePicker}
               style={style.datePicker}
               hintText="End Date"
-              container="inline"
               mode="portrait"
             />
           </div>
@@ -158,7 +156,6 @@ const NewExperiences = props => {
                   component={DatePicker}
                   style={style.datePicker}
                   hintText="Start Date"
-                  container="inline"
                   mode="portrait"
                   required
                 />
@@ -169,7 +166,6 @@ const NewExperiences = props => {
                   component={DatePicker}
                   style={style.datePicker}
                   hintText="End Date"
-                  container="inline"
                   mode="portrait"
                 />
               </div>

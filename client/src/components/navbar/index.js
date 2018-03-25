@@ -22,6 +22,8 @@ import Dialog from '../../containers/dialog'
 
 // import MESAIcon from '../../assets/images/MESA_logo.svg'
 const MESAIcon = require('../../assets/images/MESA_logo_white.svg')
+const MESAIconSmall = require('../../assets/images/MESA_logo_white_small.svg')
+const MESAIconTiny = require('../../assets/images/MESA_logo_white_tiny.svg')
 /*
    [Hamburger Menu] (if signed in)
    "View Profile"
@@ -38,7 +40,8 @@ const Navbar = props => {
     dialogIsOpen,
     fetchMapProfessional,
     media,
-    signedIn
+    signedIn,
+    isAdmin
   } = props
 
   return (
@@ -50,6 +53,16 @@ const Navbar = props => {
             className='navbar-mesa-logo'
             src={MESAIcon}
             alt="Home"
+            onClick={() => fetchMapProfessional('random')}
+          />
+          <img 
+            className='navbar-mesa-logo-small' 
+            src={MESAIconSmall} 
+            onClick={() => fetchMapProfessional('random')}
+          />
+          <img 
+            className='navbar-mesa-logo-tiny'
+            src={MESAIconTiny} 
             onClick={() => fetchMapProfessional('random')}
           />
         </ToolbarGroup>
@@ -66,37 +79,45 @@ const Navbar = props => {
                 <NavigationExpandMoreIcon />
               </IconButton>
             }>
-            <MenuItem
-              onClick={() => authorizeUser()}
-              value="sign_in"
-              primaryText="Sign In"
-            />
-            <MenuItem
-              onClick={() => fetchUser()}
-              value="fetch_user"
-              primaryText="Fetch User"
-            />
-            <MenuItem
-              onClick={() => logoutUser()}
-              value="logout_user"
-              primaryText="Logout"
-            />
+            {!signedIn && (
+              <MenuItem
+                onClick={() => authorizeUser()}
+                value="sign_in"
+                primaryText="Sign In"
+              />
+            )}
+            {signedIn && (
+              <MenuItem
+                containerElement={<Link to="/profile" />}
+                value="profile"
+                primaryText="View Profile"
+              />
+            )}
+            {signedIn && (
+              <MenuItem
+                containerElement={<Link to="/profile/edit" />}
+                value="edit_profile"
+                primaryText="Edit Profile"
+              />
+            )}
             <Divider />
-            <MenuItem
-              containerElement={<Link to="/profile" />}
-              value="profile"
-              primaryText="View Profile"
-            />
-            <MenuItem
-              containerElement={<Link to="/profile/edit" />}
-              value="edit_profile"
-              primaryText="Edit Profile"
-            />
-            <MenuItem
-              containerElement={<Link to="/admin" />}
-              value="admin_panel"
-              primaryText="Admin Panel"
-            />
+            {isAdmin && (
+              <MenuItem
+                containerElement={<Link to="/admin" />}
+                value="admin_panel"
+                primaryText="Admin Panel"
+              />
+            )}
+            {signedIn && (
+              <MenuItem
+                onClick={() => logoutUser()}
+                value="logout_user"
+                primaryText="Logout"
+              />
+            )}
+            {signedIn && (
+              <Divider />
+            )}
             <MenuItem
               containerElement={<Link to="/about" />}
               value="about"

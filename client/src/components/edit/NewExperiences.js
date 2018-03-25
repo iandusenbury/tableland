@@ -55,7 +55,7 @@ const renderPrograms = ({ fields }) => (
               multiLine
             />
           </div>
-          <div>
+          <div className="edit-experience-date-wrapper">
             <Field
               name={`${program}.startDate`}
               component={DatePicker}
@@ -65,7 +65,7 @@ const renderPrograms = ({ fields }) => (
               required
             />
           </div>
-          <div>
+          <div className="edit-experience-date-wrapper">
             <Field
               name={`${program}.endDate`}
               component={DatePicker}
@@ -150,7 +150,7 @@ const NewExperiences = props => {
                   multiLine
                 />
               </div>
-              <div>
+              <div className="edit-experience-date-wrapper">
                 <Field
                   name={`${exp}.startDate`}
                   component={DatePicker}
@@ -160,7 +160,7 @@ const NewExperiences = props => {
                   required
                 />
               </div>
-              <div>
+              <div className="edit-experience-date-wrapper">
                 <Field
                   name={`${exp}.endDate`}
                   component={DatePicker}

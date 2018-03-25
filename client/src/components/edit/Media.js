@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
-import { Field, reduxForm, formValueSelector } from 'redux-form'
-import { AppBar, IconButton, Avatar } from 'material-ui'
+import { Field, reduxForm } from 'redux-form'
+import { AppBar, IconButton } from 'material-ui'
 import './edit.css'
 import { style } from '../../widgets/styles'
 import Photo from 'material-ui/svg-icons/image/add-a-photo'
 import { StyledPaper } from '../../widgets/StyledPaper'
 import { StyledTextField } from '../../widgets/StyledTextField'
 import { validateMedia } from './validation'
+import './edit.css'
 
 class Media extends Component {
   componentDidMount() {

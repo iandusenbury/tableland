@@ -15,6 +15,13 @@ import {
 import AddAdminDialog from '../../containers/admin/dialogs/addAdminDialog'
 import AdminPermissionsDialog from '../../containers/admin/dialogs/adminPermissionsDialog'
 
+const truncate = string => {
+  const maxLen = 14
+  if (string.length <= maxLen) return string
+
+  return `${string.substring(0, maxLen)}...`
+}
+
 export default class OrganizationList extends Component {
   constructor(props) {
     super(props)
@@ -78,7 +85,9 @@ export default class OrganizationList extends Component {
       return (
         <TableRow key={id}>
           <TableRowColumn>{name}</TableRowColumn>
-          <TableRowColumn>{`${addressLine1} ${addressLine2}`}</TableRowColumn>
+          <TableHeaderColumn tooltip={`${addressLine1} ${addressLine2}`}>
+            {truncate(`${addressLine1} ${addressLine2}`)}
+          </TableHeaderColumn>
           <TableRowColumn>{blockedCheckbox}</TableRowColumn>
           <TableRowColumn>{editOrganizationButton}</TableRowColumn>
           <TableRowColumn>{viewAdminListButton}</TableRowColumn>

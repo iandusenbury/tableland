@@ -68,13 +68,6 @@ class Organization extends Component {
               <BusinessIcon style={OrgPage.businessIcon} />
               <div>
                 <p>{addressLine1}</p>
-                <p>
-                  {city}, {state}
-                </p>
-                <p>
-                  {country} {postalCode}
-                </p>
-                <p>{addressLine2}</p>
               </div>
             </div>
             <div className="organizationUrl">

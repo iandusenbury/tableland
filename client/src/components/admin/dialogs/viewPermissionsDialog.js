@@ -60,9 +60,7 @@ export default class AssocOrgListDialog extends Component {
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>{mapHeaderValues}</TableRow>
           </TableHeader>
-          <TableBody displayRowCheckbox={false} stripedRows>
-
-          </TableBody>
+          <TableBody displayRowCheckbox={false} stripedRows />
         </Table>
       </Dialog>
     )

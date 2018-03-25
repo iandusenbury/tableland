@@ -20,15 +20,35 @@
 
 /* search page */
 
-.search-body {
-  height: calc(100vh - 56px);
+@media (max-width: 620px) {
+  .search-body {
+    overflow-y: hidden;
+  }
 }
 
-.search-header {
-  padding-left: 0px;
-  text-align: center;
-  padding-bottom: 16px;
-  font-family: sans-serif;
+@media (min-width: 620px) {
+  .search-body {
+    height: calc(100vh - 56px);
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 620px) {
+  .search-header {
+    padding-left: 0px;
+    text-align: center;
+    padding-bottom: 10px;
+    font-family: sans-serif;
+  }
+}
+
+@media (min-width: 620px) {
+  .search-header {
+    padding-left: 0px;
+    text-align: center;
+    padding-bottom: 16px;
+    font-family: sans-serif;
+  }
 }
 
 .search-title {
@@ -41,35 +61,69 @@
   max-height: 90vh;
 }
 
+.search-box-list {
+  height: 79vh;
+}
+
 /* table of list of results */
 
-.search-table-cell {
-  padding-bottom: 15px;
-  min-height: 130px;
-  display: grid;
-  grid-template-columns: 1fr 3fr 4fr;
-  grid-template-rows: 25% auto;
-  grid-template-areas:
-    'name name  name   '
-    'icon about contact'
-    'icon about contact';
+@media (max-width: 600px) {
+  .search-table-cell {
+    padding-bottom: 15px;
+    padding-left: 0px;
+    min-height: 130px;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 25% 25% auto;
+    grid-template-areas:
+      'name name '
+      'icon about '
+      'icon about '
+      'icon contact';
+  }
+}
+
+@media (min-width: 601px) {
+  .search-table-cell {
+    padding-bottom: 15px;
+    min-height: 130px;
+    display: grid;
+    grid-template-columns: 1fr 3fr 4fr;
+    grid-template-rows: 25% auto;
+    grid-template-areas:
+      'name name  name'
+      'icon about contact'
+      'icon about contact';
+  }
 }
 
 .search-table-name {
-  min-height: 40px;
   grid-area: name;
+  min-height: 40px;
+  width: 100%;
   border-bottom-style: solid;
   margin-bottom: 0px;
   padding-left: 5px;
 }
 
-.search-table-icon {
-  margin-top: 10px;
-  padding-top: 8px;
-  padding-left: 10px;
-  padding-right: 25px;
-  grid-area: icon;
-  border-right-style: solid;
+@media (max-width: 600px) {
+  .search-table-icon {
+    grid-area: icon;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-right-style: solid;
+  }
+}
+
+@media (min-width: 601px) {
+  .search-table-icon {
+    grid-area: icon;
+    margin-top: 10px;
+    padding-top: 8px;
+    padding-left: 10px;
+    padding-right: 25px;
+    border-right-style: solid;
+  }
 }
 
 .search-table-avatar {
@@ -80,26 +134,76 @@
   float: left;
 }
 
-.search-table-about {
-  grid-area: about;
-  margin-top: 4px;
-  padding-left: 5px;
-  max-height: 140px;
+.search-table-address {
+  /* margin-top: 12px; */
 }
 
-.search-table-contact{
-  grid-area: contact;
-  margin-top: 16px;
-  padding-left: 40px;
+@media (max-width: 600px) {
+  .search-table-about {
+    grid-area: about;
+    margin-top: 12px;
+    padding-left: 10px;
+    max-height: 140px;
+  }
+}
+
+@media (min-width: 601px) {
+  .search-table-about {
+    grid-area: about;
+    margin-top: 4px;
+    padding-left: 5px;
+    max-height: 140px;
+  }
+}
+
+@media (max-width: 600px) {
+  .search-table-contact{
+    grid-area: contact;
+    padding-left: 10px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 601px) {
+  .search-table-contact{
+    grid-area: contact;
+    margin: 0 auto;
+    padding-left: 40px;
+    padding-top: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .search-table-about p:first-child {
+    /* margin-top: -4px; */
+  }
+  .search-table-about p {
+    margin: 0;
+    margin-top: 4px;
+    width: 50vw;
+    font-size: 14px;
+    white-space: normal;
+  }
+}
+
+@media (min-width: 601px) {
+  .search-table-about p:first-child {
+    margin-top: 18px;
+  }
+  .search-table-about p {
+    margin-bottom: 0;
+    text-align: center;
+    font-size: 14px;
+    white-space: normal;
+  }
 }
 
 .search-table-about li {
-  list-style-type: none;
-  font-size: 14px;
-  white-space: normal;
+  list-style-type:none;
 }
 
-.search-table-contact li {
+.search-table-contact p {
+  text-align: center;
   list-style-type: none;
   font-size: 14px;
   white-space: normal;
@@ -129,6 +233,7 @@
   border-right-color: white;
 }
 
+/*
 @media only screen and (max-width: 700px) {
   .search-box {
     margin: 0 8px;
@@ -182,3 +287,4 @@
     margin-left: 8px;
   }
 }
+*/

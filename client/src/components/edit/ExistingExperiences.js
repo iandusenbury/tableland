@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
-import './experience.css'
-import { style } from '../../widgets/styles'
 import { FieldArray, Field, reduxForm, getFormValues } from 'redux-form'
-import { StyledSelectField } from '../../widgets/StyledSelectField'
-import { StyledTextField } from '../../widgets/StyledTextField'
+import { RaisedButton } from 'material-ui'
 import { DatePicker } from 'redux-form-material-ui'
 import MenuItem from 'material-ui/MenuItem'
-import { RaisedButton } from 'material-ui'
+
+import { style } from '../../widgets/styles'
+import { StyledSelectField } from '../../widgets/StyledSelectField'
+import { StyledTextField } from '../../widgets/StyledTextField'
+
 import { validateExperiences} from './validation'
+import './experience.css'
 
 const renderExistingExp = ({ fields }) => (
   <div>
@@ -48,35 +50,35 @@ const renderExistingExp = ({ fields }) => (
               multiLine
             />
           </div>
-          <div >
+          <div className="edit-experience-date-wrapper">
             <Field
               name={`${exp}.startDate`}
               component={DatePicker}
               style={style.datePicker}
               hintText="Start Date"
-              mode="landscape"
+              mode="portrait"
               required
             />
           </div>
-          <div >
+          <div className="edit-experience-date-wrapper">
             <Field
               name={`${exp}.endDate`}
               component={DatePicker}
               style={style.datePicker}
               hintText="End Date"
-              mode="landscape"
+              mode="portrait"
             />
           </div>
         </div>
-          <div style={{width: '73vw'}}>
-              <Field
-                  name={`${exp}.address`}
-                  component={StyledTextField}
-                  text="Address"
-                  disabled
-                  fullWidth
-              />
-          </div>
+        <div style={{ width: '73vw' }}>
+          <Field
+            name={`${exp}.address`}
+            component={StyledTextField}
+            text="Address"
+            disabled
+            fullWidth
+          />
+        </div>
         <div>
           <FieldArray name={`${exp}.programs`} component={renderPrograms} />
         </div>
@@ -90,7 +92,7 @@ const renderPrograms = ({ fields }) => (
     <div style={{ width: '50vw', marginLeft: '15%', marginRight: '15%' }}>
       <RaisedButton
         onClick={() => fields.push({})}
-        label="Associated Programs"
+        label="Programs"
         primary
         fullWidth
         disabled
@@ -99,7 +101,7 @@ const renderPrograms = ({ fields }) => (
     {fields.map((program, index) => (
       <div
         key={index}
-        style={{ width: '75vw', marginBottom: '2%', marginTop: '2%' }}>
+        style={{ width: 'auto', marginBottom: '2%', marginTop: '2%' }}>
         <div className="EditOuterDiv" style={{ backgroundColor: '#F0FFFF' }}>
           <div>
             <Field
@@ -136,22 +138,21 @@ const renderPrograms = ({ fields }) => (
               multiLine
             />
           </div>
-          <div>
+          <div className="edit-experience-date-wrapper">
             <Field
               name={`${program}.startDate`}
               component={DatePicker}
               style={style.datePicker}
               hintText="Start Date"
-              mode="landscape"
+              mode="portrait"
             />
           </div>
-          <div>
+          <div className="edit-experience-date-wrapper">
             <Field
               name={`${program}.endDate`}
               component={DatePicker}
               style={style.datePicker}
               hintText="End Date"
-              mode="landscape"
             />
           </div>
         </div>
@@ -161,9 +162,7 @@ const renderPrograms = ({ fields }) => (
 )
 
 class ExistingExperiences extends Component {
-  componentDidMount() {
-
-  }
+  componentDidMount() {}
 
   render() {
     const { handleSubmit } = this.props

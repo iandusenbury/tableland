@@ -1,3 +1,23 @@
+@media (max-width: 600px) {
+  .navbarSearchForm {
+    height: inherit;
+    grid-area: form;
+    display: inline-grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: 'search';
+  }
+}
+
+@media (min-width: 600px) {
+  .navbarSearchForm {
+    height: inherit;
+    grid-area: form;
+    display: inline-grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas: 'search submit';
+  }
+}
+
 .navbarSearch {
   grid-area: search;
   height: 48px;
@@ -9,26 +29,71 @@
   padding-left: 14px;
 }
 
-.navbarSearchForm {
-  height: inherit;
-  grid-area: form;
-  display: inline-grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-areas: 'search submit';
+@media (max-width: 600px) {
+  .navbar-submit-wrapper {
+    display: none;
+  }
 }
 
-.navbarSubmit {
-  height: 38px;
-  grid-area: submit;
-  margin-top: auto;
-  margin-bottom: auto;
-  margin-left: 8px;
-  margin-right: 4px;
+@media (min-width: 600px) {
+  .navbar-submit-wrapper {
+    grid-area: submit;
+    height: 38px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 8px;
+    margin-right: 4px;
+  }
 }
 
-.navbar-mesa-logo {
-  height: 50px;
-  margin-left: 5px;
-  max-width: auto;
-  cursor: pointer;
+@media (max-width: 620px) {
+  .navbar-mesa-logo {
+    display:none;
+  }
 }
+
+@media (min-width: 620px) {
+  .navbar-mesa-logo {
+    height: 50px;
+    margin-left: 5px;
+    max-width: auto;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 620px) {
+  .navbar-mesa-logo-small {
+    height: 50px;
+    margin-left: 5px;
+    max-width: auto;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 400px) {
+  .navbar-mesa-logo-small {
+    display: none;
+  }
+}
+
+@media (min-width: 620px) {
+  .navbar-mesa-logo-small {
+    display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .navbar-mesa-logo-tiny {
+    height: 50px;
+    margin-left: 5px;
+    max-width: auto;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 400px) {
+  .navbar-mesa-logo-tiny {
+    display: none;
+  }
+}
+

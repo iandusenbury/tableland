@@ -1,8 +1,9 @@
 import React from 'react'
 import { Table, TableBody } from 'material-ui'
 import PropTypes from 'prop-types'
-import './style.css'
+
 import { renderUser, renderOrganization, renderProgram } from './rows'
+import './style.css'
 
 class SearchResults extends React.Component {
   constructor(props) {

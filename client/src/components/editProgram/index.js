@@ -4,10 +4,10 @@ import { find, propEq } from 'ramda'
 import { orange400 } from 'material-ui/styles/colors'
 import { RaisedButton } from 'material-ui'
 
-import '../editOrganization/editOrg.css'
 import NotFound from '../notFound'
 import About from '../../containers/editProgram/aboutProgram'
 import Media from '../../containers/editProgram/mediaProgram'
+import '../editOrganization/editOrg.css'
 
 
 function clickFunction(submit) {

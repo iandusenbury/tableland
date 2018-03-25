@@ -69,9 +69,11 @@ class Professional extends Component {
                     src={profileImage}
                   />
                   <div className="professionalPaperStyle">
-                    <h1 className="professionalHeader1">
-                      {mainTitle} at {mainLocation}
-                    </h1>
+                    {mainTitle && (
+                      <h1 className="professionalHeader1">
+                        {mainTitle} at {mainLocation}
+                      </h1>
+                    )}
                   </div>
                 </div>
               }>
@@ -88,8 +90,8 @@ class Professional extends Component {
           </div>
           <div className="professionalContact">
             <div className="professionalUrl">
-              <div>
-                <LanguageIcon style={ProfPage.urlIcon} />
+              <div className="professional-url-icon">
+                <LanguageIcon />
               </div>
               <div>
                 <p>{contactUrl}</p>

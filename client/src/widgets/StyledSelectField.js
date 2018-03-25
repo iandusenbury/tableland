@@ -8,6 +8,7 @@ export const StyledSelectField = props => {
 
   return (
     <SelectField
+      style={{ width: 'auto', minWidth: '200px' }}
       floatingLabelText={text}
       underlineStyle={style.textFieldUnderline}
       floatingLabelStyle={style.textFloating}

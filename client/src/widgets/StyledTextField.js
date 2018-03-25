@@ -1,6 +1,7 @@
 import React from 'react'
 import TextField from 'material-ui/TextField'
 import { style } from './styles'
+import './style.css'
 
 export const StyledTextField = props => {
   const {
@@ -15,7 +16,6 @@ export const StyledTextField = props => {
     org
   } = props
   const isMultiLine = !!multiLine
-  // const errorStyle = required ? style.error : {}
   const underlineStyle = org ? style.organization : {}
   const errorText = () => {
     if (error) {
@@ -28,6 +28,7 @@ export const StyledTextField = props => {
 
   return (
     <TextField
+      style={{ width: 'auto' }}
       underlineFocusStyle={underlineStyle}
       floatingLabelStyle={style.textFloating}
       floatingLabelFocusStyle={style.textFloating}

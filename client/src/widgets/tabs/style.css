@@ -93,14 +93,28 @@
   z-index: 10;
 }
 
-.stubTabBottom
-{
-  height: 26px;
-  width: 90%;
-  border-radius: 40px 40px 0px 0px;
-  background-color: black;
-  position: relative;
-  margin: auto;
+@media (max-width: 450px) {
+  .stubTabBottom
+  {
+      height: 26px;
+      width: 70%;
+      border-radius: 40px 40px 0px 0px;
+      background-color: black;
+      position: relative;
+      margin: auto;
+  }
+}
+
+@media (min-width: 450px) {
+  .stubTabBottom
+  {
+      height: 26px;
+      width: 50%;
+      border-radius: 40px 40px 0px 0px;
+      background-color: black;
+      position: relative;
+      margin: auto;
+  }
 }
 
 .stubTabBottom > p {

@@ -55,5 +55,5 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/(*path)', to: 'index'
+  get '/(*path)', to: redirect('/index.html')
 end

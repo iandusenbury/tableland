@@ -7,7 +7,8 @@ class Program < ApplicationRecord
 
     results = Program.where(
       Search.where_clause_from_fields_vis_only(fields_to_search), 
-      term: Search.term_to_pattern(term))
+      term: Search.term_to_pattern(term),
+      tautology: true)
       .sample(10)
   end
 

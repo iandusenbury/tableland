@@ -13,7 +13,8 @@ class User < ApplicationRecord
     results = User.select('users.*')
       .distinct
       .where(Search.where_clause_from_fields_vis_only(fields_to_search), 
-        term: Search.term_to_pattern(term))
+        term: Search.term_to_pattern(term),
+        tautology: true)
       .joins('INNER JOIN experiences ON users.id=experiences.user_id')
       .sample(10)
   end

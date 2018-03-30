@@ -165,11 +165,7 @@ function createExperienceTable(experiences) {
   })
 
   progList.sort(function(a,b) {
-    if (!a.endDate)
-      return 1
-    if (!b.endDate)
-      return 1
-    return new Date(a.endDate) - new Date(b.endDate)
+    return new Date(b.endDate) - new Date(a.endDate)
   })
 
   var expList = []

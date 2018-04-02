@@ -8,7 +8,7 @@ class User < ApplicationRecord
   enum role: [:user, :admin, :super_admin]
 
   def self.search(term)
-    fields_to_search = ['first_name', 'last_name', 'experiences.title' ]
+    fields_to_search = ['lower(first_name)', 'lower(last_name)', 'lower(experiences.title)' ]
 
     results = User.select('users.*')
       .distinct

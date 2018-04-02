@@ -1,6 +1,6 @@
 .EditBoxGrid {
     display: grid;
-    grid-template-columns: 20% 80%;
+    grid-template-columns: 20% 70%;
     grid-template-areas: "left" "right";
     grid-column-gap: 2%;
 }
@@ -14,12 +14,37 @@
     height: auto;
 }
 
-.EditOuterDiv {
-    display: grid;
-    height: auto;
-    grid-template-columns: 1fr 1fr 1fr;
+/* Mobile view */
+@media (max-width: 660px) {
+  .EditOuterDiv {
+      display: grid;
+      height: auto;
+  }
+}
+
+/* Small view */
+@media (min-width: 660px) and (max-width: 1050px) {
+  .EditOuterDiv {
+      display: grid;
+      height: auto;
+      grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Large view */
+@media (min-width: 1050px) {
+  .EditOuterDiv {
+      display: grid;
+      height: auto;
+      grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 
 .EditOuterDiv > div {
     background: transparent;
+}
+
+.edit-experience-date-wrapper {
+  max-width: 191px;
+  overflow-x: hidden;
 }

@@ -152,46 +152,48 @@ class MyMapComponent extends Component {
             )}
           </div>
         </Paper>
-        {expLength > 0 && (
-          <div>
-            <div className="mapPanNavigation">
-              <RaisedButton
-                style={styleJS.styles.panButtonTo}
-                disabled={isEmptyExperiece}
-                onClick={() =>
-                  onPanTo(currentMarker, experienceOrgs[currentMarker].location)
-                }>
-                Zoom To
-              </RaisedButton>
-              <RaisedButton
-                style={styleJS.styles.panButtonTo}
-                disabled={isEmptyExperiece}
-                onClick={() => onPanOut()}>
-                Zoom Out
-              </RaisedButton>
+        <div className="map-navigation-toggle">
+          {expLength > 0 && (
+            <div>
+              <div className="mapPanNavigation">
+                <RaisedButton
+                  style={styleJS.styles.panButtonTo}
+                  disabled={isEmptyExperiece}
+                  onClick={() =>
+                    onPanTo(currentMarker, experienceOrgs[currentMarker].location)
+                  }>
+                  Zoom To
+                </RaisedButton>
+                <RaisedButton
+                  style={styleJS.styles.panButtonTo}
+                  disabled={isEmptyExperiece}
+                  onClick={() => onPanOut()}>
+                  Zoom Out
+                </RaisedButton>
+              </div>
+              <div className="mapNavigation">
+                <RaisedButton
+                  style={styleJS.styles.navButtonLeft}
+                  disabled={isFirstIndex || isEmptyExperiece}
+                  onClick={() => {
+                    toggleMarker(prevIndex)
+                    onPanTo(prevIndex, experienceOrgs[prevIndex].location)
+                  }}>
+                  <ChevronLeft style={styleJS.styles.chevron} />
+                </RaisedButton>
+                <RaisedButton
+                  style={styleJS.styles.navButtonRight}
+                  disabled={isLastIndex || isEmptyExperiece}
+                  onClick={() => {
+                    toggleMarker(nextIndex)
+                    onPanTo(nextIndex, experienceOrgs[nextIndex].location)
+                  }}>
+                  <ChevronRight style={styleJS.styles.chevron} />
+                </RaisedButton>
+              </div>
             </div>
-            <div className="mapNavigation">
-              <RaisedButton
-                style={styleJS.styles.navButtonLeft}
-                disabled={isFirstIndex || isEmptyExperiece}
-                onClick={() => {
-                  toggleMarker(prevIndex)
-                  onPanTo(prevIndex, experienceOrgs[prevIndex].location)
-                }}>
-                <ChevronLeft style={styleJS.styles.chevron} />
-              </RaisedButton>
-              <RaisedButton
-                style={styleJS.styles.navButtonRight}
-                disabled={isLastIndex || isEmptyExperiece}
-                onClick={() => {
-                  toggleMarker(nextIndex)
-                  onPanTo(nextIndex, experienceOrgs[nextIndex].location)
-                }}>
-                <ChevronRight style={styleJS.styles.chevron} />
-              </RaisedButton>
-            </div>
-          </div>
-        )}
+          )}
+        </div>
         <div className="mapProfilePreviewTab">
           <div className="mapProfilePreviewAvatar">
             <Avatar

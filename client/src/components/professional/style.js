@@ -3,10 +3,6 @@ export default {
     marginRight: '18px',
     marginLeft: '22px'
   },
-  urlIcon: {
-    marginRight: '18px',
-    marginLeft: '22px'
-  },
   tableHeaderCol: {
     width: '10px'
   },

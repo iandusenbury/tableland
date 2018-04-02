@@ -21,7 +21,9 @@ const SearchBar = props => {
   return (
     <form onSubmit={handleSubmit(fetchResults)} className="navbarSearchForm">
       <Field name="searchKey" component={renderTextField} />
-      <RaisedButton className="navbarSubmit" type="submit" label="Search" />
+      <div className="navbar-submit-wrapper">
+        <RaisedButton type="submit" label="Search" />
+      </div>
     </form>
   )
 }

@@ -1,4 +1,4 @@
-import { find, propEq, dissoc, isEmpty } from 'ramda'
+import { find, propEq, dissoc } from 'ramda'
 import createReducer from '../../utils/createReducer'
 import ActionTypes from '../../constants/actionTypes'
 

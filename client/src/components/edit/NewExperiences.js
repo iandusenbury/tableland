@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './experience.css'
 import { style } from '../../widgets/styles'
 import { FieldArray, Field, reduxForm, reset } from 'redux-form'
@@ -29,7 +29,7 @@ const renderPrograms = ({ fields }) => (
     {fields.map((program, index) => (
       <div
         key={index}
-        style={{ width: '75vw', marginBottom: '2%', marginTop: '2%' }}>
+        style={{ width: '60vw', marginBottom: '2%', marginTop: '2%' }}>
         <div className="EditOuterDiv" style={{ backgroundColor: '#F0FFFF' }}>
           <div>
             <Field
@@ -55,23 +55,23 @@ const renderPrograms = ({ fields }) => (
               multiLine
             />
           </div>
-          <div>
+          <div className="edit-experience-date-wrapper">
             <Field
               name={`${program}.startDate`}
               component={DatePicker}
               style={style.datePicker}
               hintText="Start Date"
-              mode="landscape"
+              mode="portrait"
               required
             />
           </div>
-          <div>
+          <div className="edit-experience-date-wrapper">
             <Field
               name={`${program}.endDate`}
               component={DatePicker}
               style={style.datePicker}
               hintText="End Date"
-              mode="landscape"
+              mode="portrait"
             />
           </div>
         </div>
@@ -105,13 +105,12 @@ const NewExperiences = props => {
 
   const renderNewExp = ({ fields }) => (
     <div>
-      <div style={{ marginTop: '4%', marginBottom: '4%', width: '75vw' }}>
+      <div style={{ marginTop: '4%', marginBottom: '4%', width: '60vw' }}>
         <RaisedButton
           onClick={() => fields.push({})}
           label="Add Experiences"
           fullWidth
           secondary
-          style={{ marginRight: '10%' }}
         />
       </div>
       <div>
@@ -151,27 +150,27 @@ const NewExperiences = props => {
                   multiLine
                 />
               </div>
-              <div>
+              <div className="edit-experience-date-wrapper">
                 <Field
                   name={`${exp}.startDate`}
                   component={DatePicker}
                   style={style.datePicker}
                   hintText="Start Date"
-                  mode="landscape"
+                  mode="portrait"
                   required
                 />
               </div>
-              <div>
+              <div className="edit-experience-date-wrapper">
                 <Field
                   name={`${exp}.endDate`}
                   component={DatePicker}
                   style={style.datePicker}
                   hintText="End Date"
-                  mode="landscape"
+                  mode="portrait"
                 />
               </div>
             </div>
-            <div style={{ width: '73vw' }}>
+            <div style={{ width: '60vw' }}>
               <Field
                 name={`${exp}.address`}
                 component={Places}

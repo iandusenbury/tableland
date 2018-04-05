@@ -11,7 +11,6 @@ import ProfPage from './style'
 import { getDate } from '../../constants/dates'
 import './style.css'
 
-// const hasVideo = true // this will be passed as props
 const sampleImg = require('./sample.jpg')
 
 class Professional extends Component {
@@ -139,7 +138,45 @@ Professional.propTypes = {
 }
 
 function createExperienceTable(experiences) {
-  return experiences.map(experience => {
+  // create organization list
+  // organize by end date
+  // create program list
+  // organize by reverse end date
+  // insert programs into organization list following their parent org
+  // print experiences
+  var orgList = [], progList = []
+  for (var i in experiences) {
+    if (experiences[i].hasOwnProperty('organization'))
+      orgList.push(experiences[i])
+    else
+      progList.push(experiences[i])
+  }
+  orgList.sort(function(a,b) {
+    if (!a.endDate)
+      return -1
+    if (!b.endDate)
+      return 1
+    return new Date(b.endDate) - new Date(a.endDate)
+  })
+
+  progList.sort(function(a,b) {
+    if (!a.endDate)
+      return -1
+    if (!b.endDate)
+      return 1
+    return new Date(b.endDate) - new Date(a.endDate)
+  })
+
+  var expList = []
+  for (var j in orgList) {
+    expList.push(orgList[j])
+    for (var k in progList) {
+      if (orgList[j].organization.id === progList[k].parentOrganization)
+        expList.push(progList[k])
+    }
+  }
+
+  return expList.map(experience => {
     const {
       id,
       startDate,
@@ -181,9 +218,11 @@ function createProgramTable(name, experience) {
 
   return (
     <ListItem
+      nestedLevel="1"
       key={id}
       leftIcon={<Group />}
-      containerElement={<Link to={`/program/${program.id}`} />}>
+      containerElement={<Link to={`/program/${program.id}`} />}
+    >
       <h4>
         {name} - {title}
       </h4>

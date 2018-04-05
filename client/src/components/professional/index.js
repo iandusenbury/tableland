@@ -160,6 +160,10 @@ function createExperienceTable(experiences) {
   })
 
   progList.sort(function(a,b) {
+    if (!a.endDate)
+      return -1
+    if (!b.endDate)
+      return 1
     return new Date(b.endDate) - new Date(a.endDate)
   })
 
@@ -171,18 +175,6 @@ function createExperienceTable(experiences) {
         expList.push(progList[k])
     }
   }
-
-  /*
-  // Sort experiences by order of end date,
-  // putting current positions first.
-  experiences.sort(function(a,b) {
-    if (!a.endDate)
-      return -1
-    if (!b.endDate)
-      return -1
-    return new Date(b.endDate) - new Date(a.endDate)
-  })
-  */
 
   return expList.map(experience => {
     const {
@@ -226,9 +218,11 @@ function createProgramTable(name, experience) {
 
   return (
     <ListItem
+      nestedLevel="1"
       key={id}
       leftIcon={<Group />}
-      containerElement={<Link to={`/program/${program.id}`} />}>
+      containerElement={<Link to={`/program/${program.id}`} />}
+    >
       <h4>
         {name} - {title}
       </h4>

@@ -25,7 +25,7 @@ Rails.application.routes.draw do
       # Get all orgs (super_admin/optional), Get a specific organization with all their media, users, and programs, create a new organization,
       # Update an org (admins)
       resources :organizations, except: :destroy do
-        # Assign an admin to an org for permission to edit, revoke the permission for an admin to edit an org, 
+        # Assign an admin to an org for permission to edit, revoke the permission for an admin to edit an org,
         # and get all admins for an org
         member do
           post 'permissions', to: 'organizations#grant_permission'
@@ -54,4 +54,6 @@ Rails.application.routes.draw do
 
     end
   end
+
+  get '/(*path)', to: redirect('/index.html')
 end

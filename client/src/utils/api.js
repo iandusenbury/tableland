@@ -26,7 +26,7 @@ export default function callApi(callDescriptor, callbacks = {}) {
   return (dispatch, getState) =>
     dispatch({
       [RSAA]: {
-        body: JSON.stringify(decamelizeKeys(body)) || identity, // TODO test on POST request
+        body: JSON.stringify(decamelizeKeys(body)), // TODO test on POST request
         endpoint: `${protocol}//${apiUrl}/api/v1${endpoint}`,
         method: method || 'GET',
         types: [
